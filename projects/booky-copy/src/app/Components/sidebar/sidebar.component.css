@@ -1,0 +1,52 @@
+@import "../../app.component.css";
+
+/* ::ng-deep  :root {
+  --main: #dcdcdc;
+} */
+
+.sidebar {
+  height: 93vh;
+  background-color: #404e67;
+  width: 15vw;
+  /* position: fixed; */
+  margin-top: 7vh;
+  direction: var(--dir);
+}
+ul.menu {
+  padding-top: 4vh;
+  padding-inline-start: 0;
+}
+
+li.nav-item {
+  margin-bottom: 1vh;
+  margin-top: 1vh;
+  display: inline-block;
+  width: 80%;
+  align-self: center;
+  text-align: initial;
+}
+li.nav-item span{
+  font-family: Cairo;
+}
+i {
+  margin-right: 1vw;
+  margin-left: 1vw;
+
+}
+a.nav-link {
+  color: #dcdcdc;
+}
+li.active {
+  /* border: solid #fe2d53; */
+  /* border-width: 0 0 0 5px; */
+  /* background-color: #fe2d53; */
+  background-color: var(--main);
+
+  border-radius: 10px;
+}
+.sectionName {
+  color: #fe2d53;
+  font-weight: bold;
+  font-size: large;
+  font-family: Cairo;
+}

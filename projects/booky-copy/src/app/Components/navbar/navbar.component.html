@@ -1,0 +1,31 @@
+<nav class="p-0 bookyNav">
+  <div class="navbar-logo">
+    <a class="navbar-brand" routerLink="/">
+      <img src="../../../assets/images/logo.png" class="logoImg" />
+      oOKy</a
+    >
+  </div>
+  <input
+    class="form-control form-control-dark searchInput"
+    type="text"
+    [placeholder]="'search' | translate"
+    aria-label="Search"
+  />
+  <ul class="navbar-nav px-3 signOut">
+    <li class="nav-item text-nowrap">
+      <a class="nav-link" href="#">{{'signOut' | translate}}</a>
+    </li>
+  </ul>
+  <ul class="navbar-nav px-3 signOut">
+    <li class="nav-item text-nowrap">
+      <select
+        #lang
+        (change)="changeLang($event.target.value)"
+        class="langSelect form-control"
+      >
+        <option value="en" [selected]="currentLang === 'en'">English</option>
+        <option value="ar" [selected]="currentLang === 'ar'">العربية</option>
+      </select>
+    </li>
+  </ul>
+</nav>

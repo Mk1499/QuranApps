@@ -1,0 +1,8 @@
+<div class="authorsContainer ">
+    <div *ngIf="loading === true" class="overlay">
+        <img src="../../../assets/images/loading.gif" class="loadImg" />
+    </div>
+    <div  *ngIf="loading === false" class="author" >
+        <app-author-card *ngFor="let author of authors"  [author]="author"></app-author-card>
+    </div>
+</div>

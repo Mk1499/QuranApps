@@ -1,0 +1,9 @@
+<div class="genresContainer">
+    <div *ngIf="loading === true" class="overlay">
+      <img src="../../../assets/images/loading.gif" class="loadImg" />
+    </div>
+    <div class="genre" *ngIf="loading === false">
+      <app-genre-card *ngFor="let genre of genres" [genre]="genre"></app-genre-card>
+    </div>
+  </div>
+  

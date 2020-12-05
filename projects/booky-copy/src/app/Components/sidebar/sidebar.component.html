@@ -1,0 +1,69 @@
+<nav class="sidebar">
+  <div class="sidebar-sticky">
+    <ul class="nav flex-column menu">
+      <li class="nav-item" [class]="activePage === 'books' ? 'active' : ''">
+        <a class="nav-link" (click)="changePage('books')" routerLink="/books">
+          <i class="fas fa-book"></i>
+          <span> {{ "books" | translate }} </span>
+        </a>
+      </li>
+      <li class="nav-item" [class]="activePage === 'authors' ? 'active' : ''">
+        <a
+          class="nav-link"
+          (click)="changePage('authors')"
+          routerLink="/authors"
+        >
+          <i class="fas fa-pen"></i>
+          <span>{{ "authors" | translate }}</span>
+        </a>
+      </li>
+      <li class="nav-item" [class]="activePage === 'genres' ? 'active' : ''">
+        <a class="nav-link" (click)="changePage('genres')" routerLink="/genres">
+          <i class="fas fa-puzzle-piece"></i>
+          <span> {{ "genres" | translate }} </span>
+        </a>
+      </li>
+      <li class="nav-item" [class]="activePage === 'users' ? 'active' : ''">
+        <a class="nav-link" routerLink="/users" (click)="changePage('users')"
+          ><i class="fas fa-users"></i>
+          <span> {{ "users" | translate }} </span>
+        </a>
+      </li>
+    </ul>
+
+    <h6
+      class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted"
+    >
+      <span class="sectionName">{{ "edit" | translate }}</span>
+      <a class="d-flex align-items-center text-muted" href="#"> </a>
+    </h6>
+    <ul class="nav flex-column menu">
+      <li class="nav-item" [class]="activePage === 'addBook' ? 'active' : ''">
+        <a
+          class="nav-link"
+          routerLink="/addBook"
+          (click)="changePage('addBook')"
+        >
+          <i class="fas fa-book-medical"></i>
+          <span>{{ "add" | translate }} {{ "book" | translate }} </span>
+        </a>
+      </li>
+      <li class="nav-item" [class]="activePage === 'addAuthor' ? 'active' : ''">
+        <a
+          class="nav-link"
+          routerLink="/addAuthor"
+          (click)="changePage('addAuthor')"
+        >
+          <i class="fas fa-user-plus"></i>
+          <span>{{ "add" | translate }} {{ "author" | translate }} </span>
+        </a>
+      </li>
+      <!-- <li class="nav-item" [class]="activePage === 'addGenre' ? 'active' : ''">
+        <a class="nav-link" href="#" (click)="changePage('addGenre')">
+          <i class="fas fa-plus-circle"></i>
+          <span>{{ "add" | translate }} {{ "genre" | translate }} </span>
+        </a>
+      </li> -->
+    </ul>
+  </div>
+</nav>

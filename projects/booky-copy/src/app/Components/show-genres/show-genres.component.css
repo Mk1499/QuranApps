@@ -1,0 +1,13 @@
+.genre{
+    padding-left: 2vw;
+}
+
+.overlay{
+    width: 82vw;
+    height: 90vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff;
+    margin-left: 1%;
+  }

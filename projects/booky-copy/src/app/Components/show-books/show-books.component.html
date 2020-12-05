@@ -1,0 +1,8 @@
+<div class="booksContainer">
+  <div *ngIf="loading === true" class="overlay">
+    <img src="../../../assets/images/loading.gif" class="loadImg" />
+  </div>
+  <div class="book" *ngIf="loading === false">
+    <app-book-card *ngFor="let book of books" [book]="book"></app-book-card>
+  </div>
+</div>

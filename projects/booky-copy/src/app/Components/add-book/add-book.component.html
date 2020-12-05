@@ -1,0 +1,135 @@
+<div class="formCont" (submit)="addBook()">
+  <form class="form">
+    <div class="form-group">
+      <input
+        type="text"
+        class="form-control input"
+        name="name"
+        [(ngModel)]="name"
+        [placeholder]="'bookName' | translate"
+      />
+    </div>
+    <div class="form-group">
+      <label>{{'author' | translate}}</label>
+      <select
+        class="form-control input dropDown"
+        id="authorName"
+        name="authorID"
+        [(ngModel)]="authorID"
+      >
+        <option *ngFor="let author of authors" [ngValue]="author.id">
+          {{ author.name }}
+        </option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label>{{'genre' | translate}}</label>
+      <select
+        class="form-control input dropDown"
+        id="Genre"
+        name="genre"
+        [(ngModel)]="genre"
+      >
+        <option disabled selected [ngValue]="null" hidden>Genre</option>
+
+        <option *ngFor="let genre of genres" [ngValue]="genre.id">
+          {{ genre.name }}
+        </option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label>{{'releaseDate' | translate}}</label>
+      <input
+        type="number"
+        min="1899"
+        max="2030"
+        step="1"
+        placeholder="Release Year"
+        name="releaseDate"
+        [(ngModel)]="releaseDate"
+        class="form-control input"
+      />
+    </div>
+
+    <!-- <div class="form-group">
+      <input
+        type="text"
+        class="form-control input"
+        name="posterURL"
+        [(ngModel)]="posterURL"
+        placeholder="Poster URL"
+      />
+    </div> -->
+
+    <div class="form-group">
+      <label for="poster">{{'poster' | translate}}</label>
+      <input
+        type="file"
+        #poster
+        (change)="uploadImg($event)"
+        accept="*.png.jpg"
+        class="input uploadBtn form-control-file"
+        id="poster"
+      />
+      <p class="loadingInd" *ngIf="imgUploading">{{ loadPercent }}%</p>
+    </div>
+
+    <div class="form-group">
+      <input
+        type="text"
+        class="form-control input"
+        name="downloadURL"
+        [(ngModel)]="downloadURL"
+        [placeholder]="'downloadURL' | translate"
+      />
+    </div>
+    <div class="form-group">
+      <input
+        type="text"
+        class="form-control input"
+        name="buyURL"
+        [(ngModel)]="buyURL"
+        [placeholder]="'buyURL' | translate"
+      />
+    </div>
+    <div class="form-group">
+      <input
+        type="text"
+        class="form-control input"
+        name="readURL"
+        [(ngModel)]="readURL"
+        [placeholder]="'readURL' | translate"
+      />
+    </div>
+    <div class="form-group">
+      <input
+        class="form-control input"
+        type="number"
+        name="rate"
+        [(ngModel)]="rate"
+        [placeholder]="'rate' | translate"
+      />
+    </div>
+    <div class="form-group">
+      <textarea
+        class="form-control input"
+        [placeholder]="'description' | translate"
+        name="description"
+        [(ngModel)]="description"
+        rows="3"
+      ></textarea>
+    </div>
+
+    <div class="card bookView text-center" style="width: 18rem">
+      <img class="card-img-top cover" [src]="posterURL" />
+      <div class="card-body">
+        <p class="card-text">{{ name }}</p>
+        <p class="card-text">{{ genre }}</p>
+      </div>
+    </div>
+
+    <button type="submit" class="btn btn-submit">
+      {{ "add" | translate }} {{ "book" | translate }}
+    </button>
+  </form>
+</div>

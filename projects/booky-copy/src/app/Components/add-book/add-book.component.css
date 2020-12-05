@@ -1,0 +1,76 @@
+@import '../../app.component.css'; 
+
+.formCont {
+  width: 83vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* justify-content: center; */
+  margin-top: 5%;
+  height: 90vh;
+  direction: var(--dir);
+}
+.form {
+  background-color: #404e67;
+  padding: 2vw;
+  border-radius: 1vw;
+  box-shadow: 0 0 11px rgba(0, 0, 0, 0.3);
+  width: 70%;
+}
+.form .btn{
+  font-family: Cairo;
+}
+.input {
+  background-color: #404e67;
+  border-color: #dcdcdc;
+  color: #dcdcdc;
+  font-family: Cairo;
+}
+
+.form-control-file.uploadBtn{
+  width: 50%;
+  margin-left: 7%;
+  margin-right: 7%;
+
+
+}
+.loadingInd{
+  color: #dcdcdc;
+  font-family: Cairo;
+}
+
+
+.dropDown {
+  padding-top: 0;
+}
+
+.btn-submit {
+  background-color: #fe2d53;
+  color: #dcdcdc;
+  font-family: "Courier New", Courier, monospace;
+  border-radius: 1vh;
+  margin-top: 1vh;
+  width: 20%;
+}
+.form-group label{
+  float: var(--float);
+}
+
+.bookView {
+  margin-top: 3%;
+  margin-left: 20vw;
+}
+
+.bookView .cover {
+  height: 30vh;
+}
+
+.card-text{
+    font-family: Cairo;
+
+}
+label{
+    color:#fff; 
+    float: left;
+    font-family: Cairo;
+}

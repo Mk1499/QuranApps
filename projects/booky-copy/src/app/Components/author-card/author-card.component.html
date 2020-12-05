@@ -1,0 +1,18 @@
+<div class="authorCard" style="width: 22rem">
+  <img
+    class="card-img-top"
+    [src]="
+      author.avatarURL ||
+      'https://www.imockups.com/storage/product/1753/HLemBweMKZjlpUXPpoh7.png'
+    "
+    alt="Card image cap"
+    [title]="author?.name || 'authorCover'"
+  />
+  
+  <h5 class="card-title authorName">{{author?.name}}</h5>
+  <!-- <div class="card-body ">
+    </div>
+    <ul class="list-group list-group-flush authorDiv">
+      <li class="list-group-item authorName">{{book?.author?.name}}</li>
+    </ul> -->
+</div>

@@ -1,0 +1,24 @@
+<div class="formCont" (submit)="addAuthor()">
+  <form class="form">
+    <div class="form-group">
+      <input type="text" class="form-control input" name="authorName" [(ngModel)]="authorName" placeholder="Author Name" />
+    </div>
+    <div class="form-group">
+      <input type="text" class="form-control input" name="avatarURL" [(ngModel)]="avatarURL" placeholder="Avatar URL" />
+    </div>
+    <div class="form-group">
+      <input class="form-control input" type="number" name="age" [(ngModel)]="age" placeholder="Age" />
+    </div>
+    <div class="form-group">
+        <textarea class="form-control input" placeholder="Bio" name="bio" [(ngModel)]="bio" rows="3"></textarea>
+    </div>
+    <div class="card authorView text-center" style="width: 18rem">
+      <img class="card-img-top cover" [src]="avatarURL" />
+      <div class="card-body">
+        <p class="card-text">{{ authorName }}</p>
+        <p class="card-text">{{ age }}</p>
+      </div>
+    </div>
+    <button type="submit" class="btn btn-submit">Add Author</button>
+  </form>
+</div>

@@ -1,0 +1,35 @@
+.bookCard {
+  border-radius: 2vw;
+  overflow: hidden;
+  margin: 1vw;
+  text-align: center;
+  box-shadow: 0 0 11px rgba(0, 0, 0, 0.3);
+  display: inline-block;
+  opacity: 0.8;
+  cursor: pointer;
+}
+.bookCard:hover {
+  opacity: 1;
+  transform: scale(1.05);
+  transition: 0.5s ease-in-out;
+}
+
+.card-img-top {
+  height: 25vh;
+}
+.bookDesc {
+  height: 7.5vh;
+  overflow: hidden;
+  font-family: "Cairo", sans-serif;
+}
+.bookName {
+  font-family: "Cairo", sans-serif;
+  font-weight: 600;
+  color: #404e67;
+  height: 5vh;
+}
+.authorName {
+  color: #fff;
+  background-color: #fe2d53;
+  font-family: "Cairo", sans-serif;
+}

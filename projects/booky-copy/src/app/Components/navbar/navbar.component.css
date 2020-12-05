@@ -1,0 +1,62 @@
+@import '../../app.component.css'; 
+
+.bookyNav {
+  display: flex;
+  flex-direction: row;
+  height: 7vh;
+  padding-bottom: 0;
+  box-shadow: 0 0 11px rgba(0, 0, 0, 0.3);
+  width: 100vw;
+  /* flex-direction: row; */
+  position: fixed;
+  z-index: 10;
+  background-color: #fff;
+  direction: var(--dir);
+}
+.searchInput {
+  background-color: rgba(255, 255, 255, 0.1);
+  /* background-color: #fff; */
+  border-color: #dcdcdc;
+  color: #404e67;
+  height: 100%;
+  border-radius: 0;
+  font-family: Cairo;
+  width: 65vw;
+}
+.navbar-logo {
+  background-color: #404e67;
+  width: 15vw;
+  height: 100%;
+  border-radius: 0;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  direction: ltr;
+}
+.logoImg {
+  width: 2vw;
+}
+.signOut {
+  background-color: #404e67;
+  height: 100%;
+  text-align: center;
+  justify-content: center;
+  width: 10vw;
+  font-family: Cairo;
+}
+.signOut li a {
+  color: #dcdcdc;
+}
+.navbar-brand{
+  color:#dcdcdc
+}
+.langSelect{
+  background-color: transparent;
+  color: #dcdcdc;
+  font-family: Cairo;
+  font-size: small;
+}
+option{
+  color:#404e67; 
+}

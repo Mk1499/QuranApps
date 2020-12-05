@@ -1,0 +1,16 @@
+<div class="card bookCard" style="width: 20vw">
+  <img
+    class="card-img-top"
+    [src]="book.posterURL || 'https://www.imockups.com/storage/product/1753/HLemBweMKZjlpUXPpoh7.png'"
+    alt="Card image cap"
+  />
+  <div class="card-body ">
+    <h5 class="card-title bookName" >{{book.name}}</h5>
+    <p class="card-text bookDesc">
+     {{book.description}}
+    </p>
+  </div>
+  <ul class="list-group list-group-flush authorDiv">
+    <li class="list-group-item authorName">{{book?.author?.name}}</li>
+  </ul>
+</div>

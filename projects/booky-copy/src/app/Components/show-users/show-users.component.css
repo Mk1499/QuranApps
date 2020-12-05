@@ -1,0 +1,21 @@
+@import '../../app.component.css'; 
+.usersTable{
+    /* margin-left: 12vw; */
+    /* align-self : center; */
+    margin-top:5vh; 
+    padding: 5%;
+    border-radius: 1%;
+}
+.container{
+    direction: var(--dir);
+    font-family: Cairo;
+}
+.overlay{
+    width: 82vw;
+    height: 90vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff;
+    margin-left: 1%;
+  }
