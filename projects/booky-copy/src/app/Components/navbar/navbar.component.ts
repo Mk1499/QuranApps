@@ -26,8 +26,8 @@ export class NavbarComponent implements OnInit {
     let float = targetLang === 'ar' ? 'right' : 'left';
 
     
-    document.documentElement.style.setProperty('--dir', dir);
-    document.documentElement.style.setProperty('--float', float);
+    // document.documentElement.style.setProperty('--dir', dir);
+    // document.documentElement.style.setProperty('--float', float);
 
     localStorage.setItem('lang', targetLang);
     localStorage.setItem('dir', dir);

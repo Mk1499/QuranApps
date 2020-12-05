@@ -18,7 +18,7 @@ export class AppComponent {
     localStorage.setItem("lang", language);
     translate.setDefaultLang(language);
 
-    document.documentElement.style.setProperty('--dir', dir);
+    // document.documentElement.style.setProperty('--dir', dir);
   }
 
 

@@ -177,7 +177,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/BookyCopy",
+            "outputPath": "dist/BookyCopy/browser",
             "index": "projects/booky-copy/src/index.html",
             "main": "projects/booky-copy/src/main.ts",
             "polyfills": "projects/booky-copy/src/polyfills.ts",
@@ -266,7 +266,8 @@
             "tsConfig": [
               "projects/booky-copy/tsconfig.app.json",
               "projects/booky-copy/tsconfig.spec.json",
-              "projects/booky-copy/e2e/tsconfig.json"
+              "projects/booky-copy/e2e/tsconfig.json",
+              "projects/booky-copy/tsconfig.server.json"
             ],
             "exclude": [
               "**/node_modules/**"
@@ -284,9 +285,56 @@
               "devServerTarget": "BookyCopy:serve:production"
             }
           }
+        },
+        "server": {
+          "builder": "@angular-devkit/build-angular:server",
+          "options": {
+            "outputPath": "dist/BookyCopy/server",
+            "main": "projects/booky-copy/server.ts",
+            "tsConfig": "projects/booky-copy/tsconfig.server.json"
+          },
+          "configurations": {
+            "production": {
+              "outputHashing": "media",
+              "fileReplacements": [
+                {
+                  "replace": "projects/booky-copy/src/environments/environment.ts",
+                  "with": "projects/booky-copy/src/environments/environment.prod.ts"
+                }
+              ],
+              "sourceMap": false,
+              "optimization": true
+            }
+          }
+        },
+        "serve-ssr": {
+          "builder": "@nguniversal/builders:ssr-dev-server",
+          "options": {
+            "browserTarget": "BookyCopy:build",
+            "serverTarget": "BookyCopy:server"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "BookyCopy:build:production",
+              "serverTarget": "BookyCopy:server:production"
+            }
+          }
+        },
+        "prerender": {
+          "builder": "@nguniversal/builders:prerender",
+          "options": {
+            "browserTarget": "BookyCopy:build:production",
+            "serverTarget": "BookyCopy:server:production",
+            "routes": [
+              "/"
+            ]
+          },
+          "configurations": {
+            "production": {}
+          }
         }
       }
     }
   },
-  "defaultProject": "QuranWeb"
+  "defaultProject": "BookyCopy"
 }

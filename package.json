@@ -8,10 +8,10 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "dev:ssr": "ng run QuranWeb:serve-ssr",
-    "serve:ssr": "node dist/QuranWeb/server/main.js",
-    "build:ssr": "ng build --prod && ng run QuranWeb:server:production",
-    "prerender": "ng run QuranWeb:prerender"
+    "dev:ssr": "ng run BookyCopy:serve-ssr",
+    "serve:ssr": "node dist/BookyCopy/server/main.js",
+    "build:ssr": "ng build --prod && ng run BookyCopy:server:production",
+    "prerender": "ng run BookyCopy:prerender"
   },
   "private": true,
   "dependencies": {
@@ -34,6 +34,7 @@
     "graphql": "^15.4.0",
     "graphql-tag": "^2.11.0",
     "jquery": "^3.5.1",
+    "localstorage-polyfill": "^1.0.1",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
     "zone.js": "~0.10.2"
