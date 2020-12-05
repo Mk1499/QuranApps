@@ -166,6 +166,126 @@
           }
         }
       }
+    },
+    "BookyCopy": {
+      "projectType": "application",
+      "schematics": {},
+      "root": "projects/booky-copy",
+      "sourceRoot": "projects/booky-copy/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/BookyCopy",
+            "index": "projects/booky-copy/src/index.html",
+            "main": "projects/booky-copy/src/main.ts",
+            "polyfills": "projects/booky-copy/src/polyfills.ts",
+            "tsConfig": "projects/booky-copy/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "projects/booky-copy/src/favicon.ico",
+              "projects/booky-copy/src/assets"
+            ],
+            "styles": [
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "projects/booky-copy/src/assets/css/fontAwesome/all.min.css",
+              "projects/booky-copy/src/styles.css"
+            ],
+            "scripts": [
+              "node_modules/bootstrap/dist/js/bootstrap.min.js"
+            ]
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/booky-copy/src/environments/environment.ts",
+                  "with": "projects/booky-copy/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "BookyCopy:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "BookyCopy:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "BookyCopy:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/booky-copy/src/test.ts",
+            "polyfills": "projects/booky-copy/src/polyfills.ts",
+            "tsConfig": "projects/booky-copy/tsconfig.spec.json",
+            "karmaConfig": "projects/booky-copy/karma.conf.js",
+            "assets": [
+              "projects/booky-copy/src/favicon.ico",
+              "projects/booky-copy/src/assets"
+            ],
+            "styles": [
+              "projects/booky-copy/src/styles.css"
+            ],
+            "scripts": []
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/booky-copy/tsconfig.app.json",
+              "projects/booky-copy/tsconfig.spec.json",
+              "projects/booky-copy/e2e/tsconfig.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "projects/booky-copy/e2e/protractor.conf.js",
+            "devServerTarget": "BookyCopy:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "BookyCopy:serve:production"
+            }
+          }
+        }
+      }
     }
   },
   "defaultProject": "QuranWeb"
