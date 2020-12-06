@@ -27,7 +27,7 @@ export class ShowAuthorsComponent implements OnInit {
     }).valueChanges.subscribe(({data,loading})=>{
       this.loading = loading; 
       this.authors = data?.authors; 
-      console.log("Authors loaded : ",data.authors);
+      // console.log("Authors loaded : ",data.authors);
       
     })
 

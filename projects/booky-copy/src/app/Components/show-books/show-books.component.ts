@@ -27,7 +27,7 @@ export class ShowBooksComponent implements OnInit {
     }).valueChanges.subscribe(({ data, loading }) => {
       this.loading = loading;
       this.books = data?.books;
-      console.log("Data loaded : ", data.books);
+      // console.log("Data loaded : ", data.books);
 
     })
   }

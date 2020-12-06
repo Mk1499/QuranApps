@@ -1,5 +1,5 @@
 import 'zone.js/dist/zone-node';
-import 'localstorage-polyfill'; 
+import 'localstorage-polyfill';
 
 import { ngExpressEngine } from '@nguniversal/express-engine';
 import * as express from 'express';
@@ -14,7 +14,11 @@ export function app(): express.Express {
   global['localStorage'] = localStorage;
 
   const server = express();
-  const distFolder = join(process.cwd(), 'dist/BookyCopy/browser');
+  // const distFolder = join(process.cwd(), 'dist/BookyCopy/browser');
+  let distFolder = join(process.cwd(), "browser");
+  if (!existsSync(distFolder)) {
+    distFolder = join(process.cwd(), "dist/BookyCopy/browser");
+  }
   const indexHtml = existsSync(join(distFolder, 'index.original.html')) ? 'index.original.html' : 'index';
 
   // Our Universal express-engine (found @ https://github.com/angular/universal/tree/master/modules/express-engine)
