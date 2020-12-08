@@ -19,13 +19,13 @@
 
   <div class="collapse navbar-collapse menu" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
+      <li class="nav-item" (click)="changeActive('')"  [class]="active === '' ? 'active' : ''">
         <a class="nav-link" routerLink="/"
           >Home <span class="sr-only">(current)</span></a
         >
       </li>
       <li class="nav-item">
-        <a class="nav-link" routerLink="/teachers">Teachers</a>
+        <a class="nav-link" routerLink="/teachers" (click)="changeActive('teachers')" [class]="active === 'teachers' ? 'active' : ''">Teachers</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="#">Library</a>

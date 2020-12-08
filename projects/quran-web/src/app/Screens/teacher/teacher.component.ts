@@ -1,3 +1,4 @@
+import { ApiCallService } from './../../Services/api-call.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TeacherComponent implements OnInit {
 
-  constructor() { }
+  teachers:any = [];
+
+  constructor(private apiService:ApiCallService) { }
 
   ngOnInit(): void {
+    
+    this.teachers = this.apiService.getTeachers().subscribe(t => {
+      this.teachers = t.teachers; 
+    });
+    
+ 
   }
 
 }

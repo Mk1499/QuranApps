@@ -11,7 +11,10 @@
     color: #666666;
     font-family: Cairo;
 }
-
+h1{
+  /* font-family: Oswald; */
+  font-family: Cairo;
+}
 
 .teachers{
     /* height: 50vh; */

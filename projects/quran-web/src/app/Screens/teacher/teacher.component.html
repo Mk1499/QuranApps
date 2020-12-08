@@ -8,31 +8,13 @@
       non
     </p>
   </div>
-
-  <ul class="teachers">
-    <li class="teacherItem">
-      <teacher-card></teacher-card>
+  <div class="loadCont" *ngIf="!teachers.length">
+    <img src="../../../assets/images/loading.gif" alt="" class="loadImg">
+  </div>
+  <ul class="teachers" *ngIf="teachers.length">
+    <li class="teacherItem" *ngFor="let teacher of teachers" >
+      <teacher-card [teacher]="teacher"></teacher-card>
     </li>
-    <li class="teacherItem">
-      <teacher-card></teacher-card>
-    </li>
-    <li class="teacherItem">
-      <teacher-card></teacher-card>
-    </li>
-    <li class="teacherItem">
-      <teacher-card></teacher-card>
-    </li>
-    <li class="teacherItem">
-      <teacher-card></teacher-card>
-    </li>
-    <li class="teacherItem">
-      <teacher-card></teacher-card>
-    </li>
-    <li class="teacherItem">
-      <teacher-card></teacher-card>
-    </li>
-    <li class="teacherItem">
-      <teacher-card></teacher-card>
-    </li>
+  
   </ul>
 </div>
