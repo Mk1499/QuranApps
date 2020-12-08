@@ -1,0 +1,29 @@
+.cardItem {
+  width: 18vw;
+  height: 30vh;
+  border: 1px solid #e1e9ed;
+  padding-top: 5%;
+  background-color: #fff;
+  cursor: pointer;
+  font-family: Cairo;
+}
+
+.teacherImg {
+  width: 8vw;
+  height: 8vw;
+  border-radius: 4vw;
+  margin-bottom: 5%;
+}
+
+.cardItem:hover {
+  transform: scale(1.2);
+  box-shadow: 0 8px 50px rgba(0, 0, 0, 0.2);
+  transform: scale(1.05);
+  transition: box-shadow 0.2s ease, transform 0.2s ease, z-index 0s 0s ease;
+}
+
+
+.teacherEmail{
+    color:#666; 
+
+}

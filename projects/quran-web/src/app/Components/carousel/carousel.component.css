@@ -1,0 +1,29 @@
+.carousel {
+  height: 90vh;
+  /* overflow: hidden; */
+  /* margin-top: 20vh; */
+}
+.carImg {
+  height: 90vh;
+}
+
+.carousel-caption {
+  text-align: center;
+}
+.capHead {
+  font-family: Oswald;
+  font-size: 5vh;
+}
+.capText {
+  margin-top: 3vh;
+  font-family: Cairo;
+  font-size: 2.5vh;
+}
+
+@media (min-width: 768px) {
+  .carousel-caption {
+    left: 50%;
+    top: 44%;
+    width: 37%;
+  }
+}
