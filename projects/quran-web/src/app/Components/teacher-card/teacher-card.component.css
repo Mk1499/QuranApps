@@ -1,19 +1,23 @@
 .cardItem {
-  width: 18vw;
-  height: 30vh;
+  /* width: 18vw;
+  height: 30vh; */
   border: 1px solid #e1e9ed;
   padding-top: 5%;
   background-color: #fff;
   cursor: pointer;
   font-family: Cairo;
 }
+.teacherName{
+  font-size: 150%;
+}
 
 .teacherImg {
-  width: 8vw;
-  height: 8vw;
-  border-radius: 4vw;
+  width: 14vh;
+  height: 14vh;
+  border-radius: 7vh;
   margin-bottom: 5%;
 }
+
 
 .cardItem:hover {
   transform: scale(1.2);
@@ -27,3 +31,9 @@
     color:#666; 
 
 }
+
+/* @media only screen and (max-width:1200px){
+  .cardItem{
+    width: 93%;
+  }
+} */
