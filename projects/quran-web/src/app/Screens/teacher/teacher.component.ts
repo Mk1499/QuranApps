@@ -14,7 +14,7 @@ export class TeacherComponent implements OnInit {
 
   ngOnInit(): void {
     
-    this.teachers = this.apiService.getTeachers().subscribe(t => {
+   this.apiService.getTeachers().subscribe(t => {
       this.teachers = t.teachers; 
     });
     

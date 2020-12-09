@@ -1,1 +1,41 @@
-<p>teacher-profile works!</p>
+<div class="container">
+  <div class="loadCont" *ngIf="!teacher">
+    <img src="../../../assets/images/loading.gif" alt="" class="loadImg" />
+  </div>
+  <div *ngIf="teacher">
+    <div class="row head">
+      <div class="teacherDataLeft">
+        <div class="">
+          <img class="profileImg" [src]="teacher?.avatar" />
+        </div>
+        <div class="col-md-8 teacherData">
+          <p class="h3 teacherName">{{ teacher?.name }}</p>
+          <p class="teacherSub">
+            <strong>Students : </strong> {{ teacher?.students.length }}
+          </p>
+          <p class="teacherSub">
+            <strong>Samples : </strong> {{ teacher?.samples.length }}
+          </p>
+          <p class="teacherSub">
+            <strong>Price : </strong> {{ teacher?.price | currency: "EGP" }}
+          </p>
+        </div>
+      </div>
+      <div class="teacherDataRight">
+        <button class="btn btn-warning">Enroll</button>
+      </div>
+    </div>
+
+    <div class="header">
+      <h2 class="text-center h1">Samples</h2>
+      <div class="line"></div>
+    </div>
+    <div class="row samples">
+      <sample-card
+        class="col-md-4"
+        *ngFor="let sample of teacher?.samples"
+        [sample]="sample"
+      ></sample-card>
+    </div>
+  </div>
+</div>

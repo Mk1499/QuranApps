@@ -1,3 +1,4 @@
+import { RouterModule } from '@angular/router';
 import { ApiCallService } from './Services/api-call.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -31,7 +32,8 @@ import { TeacherProfileComponent } from './Screens/teacher-profile/teacher-profi
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    RouterModule
   ],
   providers: [ApiCallService],
   bootstrap: [AppComponent]

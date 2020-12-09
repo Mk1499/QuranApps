@@ -18,4 +18,8 @@ export class ApiCallService {
     let url = this.baseURL + "/sample";
     return this.http.get(url)
   }
+  getTeacherProfile(id): Observable<any>{
+    let url = this.baseURL + "/teacher/"+id; 
+    return this.http.get(url); 
+  }
 }

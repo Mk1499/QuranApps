@@ -1,4 +1,5 @@
-<div class="cardItem">
+
+<div class="cardItem" [routerLink]="['/teachers',teacher._id]">
   <img [src]="teacher.avatar" class="teacherImg" />
   <h3 class="teacherName">{{ teacher.name }}</h3>
   <p class="teacherEmail">{{ teacher.email }}</p>

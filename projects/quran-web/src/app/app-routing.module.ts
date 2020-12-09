@@ -1,3 +1,4 @@
+import { TeacherProfileComponent } from './Screens/teacher-profile/teacher-profile.component';
 import { LiberaryComponent } from './Screens/liberary/liberary.component';
 import { TeacherComponent } from './Screens/teacher/teacher.component';
 import { CarouselComponent } from './Components/carousel/carousel.component';
@@ -11,8 +12,8 @@ const routes: Routes = [
   {path:'',component:HomeComponent,children:[
     {path:'',component:CarouselComponent},
     {path:'teachers',component:TeacherComponent},
+    {path:'teachers/:id',component:TeacherProfileComponent},
     {path:'library',component:LiberaryComponent}
-
   ]},
   {path:'login', component:LoginComponent}
 ];
