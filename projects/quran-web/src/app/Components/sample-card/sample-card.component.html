@@ -1,5 +1,8 @@
 <div class="card text-center item">
   <div class="card-img">
+    <div class="playOverlay">
+      <i class="fa fa-play-circle fa-3x playIcon" aria-hidden="true"></i>
+    </div>
     <img
       class="card-img-top"
       [src]="
@@ -11,7 +14,20 @@
   </div>
   <div class="card-body">
     <h3 class="card-title name">{{ sample.name }}</h3>
-    <p class="card-text">{{sample.teacher?.name}}</p>
-    <a href="#" class="btn btn-warning">View Details</a>
+    <hr />
+    <p class="card-text data" *ngIf="sample.teacher?.name">
+      <strong>Teacher : </strong>
+      <span [routerLink]="['/teachers', sample.teacher._id]">
+        {{ sample.teacher?.name }}
+      </span>
+    </p>
+    <p class="card-text data">
+      <strong>Duration : </strong> {{ sample.duration }} min
+    </p>
+    <p class="card-text data">
+      <strong>Ayat Number : </strong>{{ sample.noOfAyat }}
+    </p>
+    <p class="card-text data"><strong>Joz2 : </strong>{{ sample.joz2 }}</p>
+    <!-- <a href="#" class="btn btn-warning">View Details</a> -->
   </div>
 </div>

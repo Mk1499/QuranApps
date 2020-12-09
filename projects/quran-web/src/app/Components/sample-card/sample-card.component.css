@@ -21,3 +21,31 @@
   font-weight: bold;
   /* font-size: 2.5vh; */
 }
+.data{
+  text-align: start;
+}
+.data strong{
+  color: gold;
+}
+.data span{
+  cursor: pointer;
+}
+.playOverlay{
+  position: absolute;
+  background: rgba(0, 0, 0, 0.3);
+  z-index: 20;
+  height: 25vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  display: none;
+}
+.playIcon{
+  color:gold; 
+  cursor: pointer;
+  font-size: 4vw;
+}
+.card:hover .playOverlay{
+  display: flex;
+}
