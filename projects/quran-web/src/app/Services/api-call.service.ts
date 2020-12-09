@@ -14,5 +14,8 @@ export class ApiCallService {
     let url = this.baseURL + "/teacher";
     return this.http.get(url)
   }
-
+  getSamples(): Observable<any> {
+    let url = this.baseURL + "/sample";
+    return this.http.get(url)
+  }
 }

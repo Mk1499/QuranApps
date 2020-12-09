@@ -1,3 +1,4 @@
+import { LiberaryComponent } from './Screens/liberary/liberary.component';
 import { TeacherComponent } from './Screens/teacher/teacher.component';
 import { CarouselComponent } from './Components/carousel/carousel.component';
 import { HomeComponent } from './Screens/home/home.component';
@@ -9,7 +10,9 @@ import { Routes, RouterModule } from '@angular/router';
 const routes: Routes = [
   {path:'',component:HomeComponent,children:[
     {path:'',component:CarouselComponent},
-    {path:'teachers',component:TeacherComponent}
+    {path:'teachers',component:TeacherComponent},
+    {path:'library',component:LiberaryComponent}
+
   ]},
   {path:'login', component:LoginComponent}
 ];
