@@ -20,8 +20,12 @@ import { SampleCardComponent } from './Components/sample-card/sample-card.compon
 import { TeacherProfileComponent } from './Screens/teacher-profile/teacher-profile.component';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { translateBrowserLoaderFactory } from './shared/loaders/translate-browser.loader';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
 
+export function HttpLoaderFactory(httpClient: HttpClient) {
+  return new TranslateHttpLoader(httpClient);
+}
 
 @NgModule({
   declarations: [

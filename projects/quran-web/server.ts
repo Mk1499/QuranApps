@@ -1,4 +1,5 @@
 import 'zone.js/dist/zone-node';
+import 'localstorage-polyfill';
 
 import { ngExpressEngine } from '@nguniversal/express-engine';
 import * as express from 'express';
@@ -11,6 +12,7 @@ import { existsSync } from 'fs';
 // The Express app is exported so that it can be used by serverless Functions.
 export function app(): express.Express {
   const server = express();
+  global['localStorage'] = localStorage;
   const distFolder = join(process.cwd(), 'dist/QuranWeb/browser');
   const indexHtml = existsSync(join(distFolder, 'index.original.html')) ? 'index.original.html' : 'index';
 
