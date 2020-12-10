@@ -17,7 +17,7 @@
     <hr />
     <p class="card-text data" *ngIf="sample.teacher?.name">
       <strong>Teacher : </strong>
-      <span [routerLink]="['/teachers', sample.teacher._id]">
+      <span [routerLink]="['/'+currentLang+'/teachers', sample.teacher._id]">
         {{ sample.teacher?.name }}
       </span>
     </p>

@@ -18,9 +18,17 @@
   "readURL": "Read URL",
   "releaseDate": "Release Date",
   "search": "Search",
-  "bookName":"Book Name",
-  "poster":"Poster",
-  "buyURL":"Buy URL", 
-  "email":"Email",
-  "reads":"Reads"
+  "bookName": "Book Name",
+  "poster": "Poster",
+  "buyURL": "Buy URL",
+  "email": "Email",
+  "reads": "Reads",
+  "teachers": "Teachers",
+  "library": "Library",
+  "home": "Home",
+  "darkMode": "Dark Mode",
+  "about": "About",
+  "otherLang": "العربية",
+  "samples":"Samples",
+  "enroll":"Enroll"
 }

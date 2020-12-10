@@ -8,6 +8,7 @@ import { Component, Input, OnInit } from '@angular/core';
 export class SampleCardComponent implements OnInit {
 
   @Input('sample') sample;
+  currentLang:string = localStorage.getItem('lang');
   constructor() { }
 
   ngOnInit(): void {

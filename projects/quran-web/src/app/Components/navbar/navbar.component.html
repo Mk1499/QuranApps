@@ -19,20 +19,36 @@
 
   <div class="collapse navbar-collapse menu" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item" (click)="changeActive('')"  [class]="active === '' ? 'active' : ''">
-        <a class="nav-link" routerLink="/"
-          >Home <span class="sr-only">(current)</span></a
+      <li
+        class="nav-item"
+        (click)="changeActive('')"
+        [class]="active === '' ? 'active' : ''"
+      >
+        <a class="nav-link" [routerLink]="'/' + urlLang + '/'"
+          >{{ "home" | translate }} <span class="sr-only">(current)</span></a
         >
       </li>
       <li class="nav-item">
-        <a class="nav-link" routerLink="/teachers" (click)="changeActive('teachers')" [class]="active === 'teachers' ? 'active' : ''">Teachers</a>
+        <a
+          class="nav-link"
+          [routerLink]="'/' + urlLang + '/teachers'"
+          (click)="changeActive('teachers')"
+          [class]="active === 'teachers' ? 'active' : ''"
+          >{{ "teachers" | translate }}</a
+        >
       </li>
       <li class="nav-item">
-        <a class="nav-link" routerLink="/library" (click)="changeActive('library')" [class]="active === 'library' ? 'active' : ''">Library</a>
+        <a
+          class="nav-link"
+          [routerLink]="'/' + urlLang + '/library'"
+          (click)="changeActive('library')"
+          [class]="active === 'library' ? 'active' : ''"
+          >{{ "library" | translate }}</a
+        >
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">About</a>
-      </li>
+      <!-- <li class="nav-item">
+        <a class="nav-link" href="#">{{ testStr}}</a>
+      </li> -->
       <!-- <li class="nav-item dropdown">
         <a
           class="nav-link dropdown-toggle"
@@ -64,5 +80,29 @@
         Search
       </button>
     </form> -->
+    <div class="my-2 my-lg-0 dropdown">
+      <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+        <a class="dropdown-item" (click)="changeLanguage()" >{{'otherLang'|translate}}</a>
+        <a class="dropdown-item" href="#">Dark Mode</a>
+        <!-- <div class="dropdown-divider"></div>
+        <a class="dropdown-item" href="#">Something else here</a> -->
+      </div>
+      <a
+        class="ddMenu"
+        href="#"
+        id="navbarDropdown"
+        role="button"
+        data-toggle="dropdown"
+        aria-haspopup="true"
+        aria-expanded="false"
+      >
+        <i class="fa fa-caret-down" aria-hidden="true"></i>
+        <img
+          src="https://w7.pngwing.com/pngs/110/145/png-transparent-computer-icons-father-icon-design-avatar-avatar.png"
+          alt=""
+          class="usrImg"
+        />
+      </a>
+    </div>
   </div>
 </nav>

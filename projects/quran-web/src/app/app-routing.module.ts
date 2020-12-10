@@ -6,22 +6,40 @@ import { HomeComponent } from './Screens/home/home.component';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './Screens/login/login.component';
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { Routes, RouterModule, Router } from '@angular/router';
+
+const lang = localStorage.getItem('lang') || 'ar';
+console.log("LAng : ", lang);
+
 
 const routes: Routes = [
-  {path:'',component:HomeComponent,children:[
-    {path:'',component:CarouselComponent},
-    {path:'teachers',component:TeacherComponent},
-    {path:'teachers/:id',component:TeacherProfileComponent},
-    {path:'library',component:LiberaryComponent}
-  ]},
-  {path:'login', component:LoginComponent}
+  {
+    path: 'ar', component: HomeComponent,
+    children: [
+      { path: '', component: CarouselComponent },
+      { path: 'teachers', component: TeacherComponent },
+      { path: 'teachers/:id', component: TeacherProfileComponent },
+      { path: 'library', component: LiberaryComponent }
+    ]
+  },
+  {
+    path: 'en', component: HomeComponent,
+    children: [
+      { path: '', component: CarouselComponent },
+      { path: 'teachers', component: TeacherComponent },
+      { path: 'teachers/:id', component: TeacherProfileComponent },
+      { path: 'library', component: LiberaryComponent }
+    ]
+  },
+  { path: 'login', component: LoginComponent },
+  { path: "**", redirectTo: lang }
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes, {
     initialNavigation: 'enabled'
-})],
+  })],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {
+}

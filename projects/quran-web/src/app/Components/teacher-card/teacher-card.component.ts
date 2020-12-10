@@ -1,3 +1,4 @@
+import { LangService } from './../../Services/lang.service';
 import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
@@ -8,10 +9,13 @@ import { Component, Input, OnInit } from '@angular/core';
 export class TeacherCardComponent implements OnInit {
 
   @Input('teacher') teacher;
+  lang: string;
 
-  constructor() { }
+  constructor(private l: LangService) {
+  }
 
   ngOnInit(): void {
+    this.lang = this.l.urlLang;
   }
 
 }

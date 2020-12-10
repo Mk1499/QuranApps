@@ -1,8 +1,11 @@
+import { LangService } from './Services/lang.service';
+import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { ApiCallService } from './Services/api-call.service';
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule, TransferState } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { TransferHttpCacheModule } from '@nguniversal/common';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -15,6 +18,10 @@ import { TeacherCardComponent } from './Components/teacher-card/teacher-card.com
 import { LiberaryComponent } from './Screens/liberary/liberary.component';
 import { SampleCardComponent } from './Components/sample-card/sample-card.component';
 import { TeacherProfileComponent } from './Screens/teacher-profile/teacher-profile.component';
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { translateBrowserLoaderFactory } from './shared/loaders/translate-browser.loader';
+
+
 
 @NgModule({
   declarations: [
@@ -33,9 +40,18 @@ import { TeacherProfileComponent } from './Screens/teacher-profile/teacher-profi
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
     AppRoutingModule,
     HttpClientModule,
-    RouterModule
+    RouterModule,
+    FormsModule,
+    TransferHttpCacheModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: translateBrowserLoaderFactory,
+        deps: [HttpClient, TransferState]
+      }
+    })
   ],
-  providers: [ApiCallService],
+  providers: [ApiCallService,LangService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,6 +1,8 @@
-import { Route } from '@angular/compiler/src/core';
+import { LangService } from './../../Services/lang.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
+
 
 @Component({
   selector: 'navbar',
@@ -9,16 +11,23 @@ import { Router } from '@angular/router';
 })
 export class NavbarComponent implements OnInit {
 
-  active:string; 
+  active: string;
+  urlLang: string;
+  constructor(private router: Router, private langService: LangService) { }
 
-  constructor(private router:Router) {}
-  
   ngOnInit(): void {
-    this.active =  this.router.url.substring(1); 
+    this.langService.intialization() ; 
+    this.urlLang = this.langService.urlLang; 
+    this.active = this.router.url.substring(4);
+
   }
 
-  changeActive(active){
-    this.active = active ; 
+  changeActive(active) {
+    this.active = active;
+  }
+
+  changeLanguage() {
+    this.langService.changeLanguage();
   }
 
 }
