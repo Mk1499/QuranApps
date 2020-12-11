@@ -33,11 +33,14 @@
   .btn{
       border-radius: 2vh;
       width: 50%;
+      height: 10vh;
       
   }
   .gold {
       color: gold;
       font-size: 5vh;
       /* -webkit-text-stroke: 1px black; */
-  
+    }
+    .btnLoad{
+        height: 100%;
     }

@@ -1,3 +1,4 @@
+import { AuthService } from './Services/auth.service';
 import { LangService } from './Services/lang.service';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
@@ -61,7 +62,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
       }
     })
   ],
-  providers: [ApiCallService,LangService],
+  providers: [ApiCallService,LangService,AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

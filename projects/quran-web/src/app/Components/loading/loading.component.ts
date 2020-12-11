@@ -17,12 +17,15 @@ export class LoadingComponent implements OnInit {
     this.langS.intialization() ; 
 
     if (this.storedUser){
+      setTimeout(()=>{
 
+        this.router.navigateByUrl(this.langS.urlLang+'/home')
+      },2000)
     }else {
       setTimeout(()=>{
 
         this.router.navigateByUrl(this.langS.urlLang+'/login')
-      },3000)
+      },2000)
     }
   }
 

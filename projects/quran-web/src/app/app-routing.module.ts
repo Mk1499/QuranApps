@@ -34,12 +34,20 @@ const routes: Routes = [
     ]
   },
   {
-    path: 'en', component: HomeComponent,
+    path: 'en', component: SplashComponent,
     children: [
-      { path: '', component: CarouselComponent },
-      { path: 'teachers', component: TeacherComponent },
-      { path: 'teachers/:id', component: TeacherProfileComponent },
-      { path: 'library', component: LiberaryComponent }
+      { path: '', component: LoadingComponent },
+      { path: 'login', component: LoginComponent },
+      { path: 'login/student', component: StudentLoginComponent },
+
+      {
+        path: 'home', component: HomeComponent, children: [
+          { path: '', component: CarouselComponent },
+          { path: 'teachers', component: TeacherComponent },
+          { path: 'teachers/:id', component: TeacherProfileComponent },
+          { path: 'library', component: LiberaryComponent }
+        ]
+      },
     ]
   },
   { path: "**", redirectTo: lang }

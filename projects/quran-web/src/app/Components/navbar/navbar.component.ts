@@ -1,7 +1,9 @@
+import { AuthService } from './../../Services/auth.service';
 import { LangService } from './../../Services/lang.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
+import { json } from 'express';
 
 
 @Component({
@@ -13,12 +15,14 @@ export class NavbarComponent implements OnInit {
 
   active: string;
   urlLang: string;
-  constructor(private router: Router, private langService: LangService) { }
+  user: any;
+  constructor(private router: Router, private langService: LangService, private auth: AuthService) { }
 
   ngOnInit(): void {
-    // this.langService.intialization() ; 
-    this.urlLang = this.langService.urlLang; 
-    this.active = this.router.url.substring(4);
+    this.langService.intialization() ; 
+    this.urlLang = this.langService.urlLang;
+    this.active = this.router.url.substring(9);
+    this.user = JSON.parse(localStorage.getItem('quranUser'))
 
   }
 
@@ -29,5 +33,7 @@ export class NavbarComponent implements OnInit {
   changeLanguage() {
     this.langService.changeLanguage();
   }
-
+  logOut() {
+    this.auth.logOut();
+  }
 }

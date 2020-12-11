@@ -29,6 +29,11 @@
   "darkMode": "Dark Mode",
   "about": "About",
   "otherLang": "العربية",
-  "samples":"Samples",
-  "enroll":"Enroll"
+  "samples": "Samples",
+  "enroll": "Enroll",
+  "logOut": "Log Out",
+  "loginNow": "Login Now",
+  "teacherLogin": "Login as a Teacher",
+  "studentLogin": "Login as a Student"
+
 }

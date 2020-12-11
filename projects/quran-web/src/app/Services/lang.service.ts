@@ -14,8 +14,10 @@ export class LangService {
   }
   intialization() {
     this.urlLang = this.router.url.substring(1, 3);
-    this.trans.setDefaultLang(this.urlLang);
-    localStorage.setItem('lang', this.urlLang);
+    if (this.urlLang) {
+      this.trans.setDefaultLang(this.urlLang);
+      localStorage.setItem('lang', this.urlLang);
+    }
   }
   changeLanguage() {
     let currentURL = this.router.url;
