@@ -16,7 +16,7 @@ export class NavbarComponent implements OnInit {
   constructor(private router: Router, private langService: LangService) { }
 
   ngOnInit(): void {
-    this.langService.intialization() ; 
+    // this.langService.intialization() ; 
     this.urlLang = this.langService.urlLang; 
     this.active = this.router.url.substring(4);
 

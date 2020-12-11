@@ -24,14 +24,14 @@
         (click)="changeActive('')"
         [class]="active === '' ? 'active' : ''"
       >
-        <a class="nav-link" [routerLink]="'/' + urlLang + '/'"
+        <a class="nav-link" [routerLink]="'/' + urlLang + '/home'"
           >{{ "home" | translate }} <span class="sr-only">(current)</span></a
         >
       </li>
       <li class="nav-item">
         <a
           class="nav-link"
-          [routerLink]="'/' + urlLang + '/teachers'"
+          [routerLink]="'/' + urlLang + '/home/teachers'"
           (click)="changeActive('teachers')"
           [class]="active === 'teachers' ? 'active' : ''"
           >{{ "teachers" | translate }}</a
@@ -40,7 +40,7 @@
       <li class="nav-item">
         <a
           class="nav-link"
-          [routerLink]="'/' + urlLang + '/library'"
+          [routerLink]="'/' + urlLang + '/home/library'"
           (click)="changeActive('library')"
           [class]="active === 'library' ? 'active' : ''"
           >{{ "library" | translate }}</a

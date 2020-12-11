@@ -10,7 +10,7 @@ export class LangService {
   urlLang: string;
 
   constructor(private router: Router, private trans: TranslateService) {
-
+    this.intialization()
   }
   intialization() {
     this.urlLang = this.router.url.substring(1, 3);

@@ -21,6 +21,9 @@ import { TeacherProfileComponent } from './Screens/teacher-profile/teacher-profi
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { translateBrowserLoaderFactory } from './shared/loaders/translate-browser.loader';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { SplashComponent } from './Screens/splash/splash.component';
+import { LoadingComponent } from './Components/loading/loading.component';
+import { StudentLoginComponent } from './Screens/student-login/student-login.component';
 
 
 export function HttpLoaderFactory(httpClient: HttpClient) {
@@ -38,7 +41,10 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     TeacherCardComponent,
     LiberaryComponent,
     SampleCardComponent,
-    TeacherProfileComponent
+    TeacherProfileComponent,
+    SplashComponent,
+    LoadingComponent,
+    StudentLoginComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),

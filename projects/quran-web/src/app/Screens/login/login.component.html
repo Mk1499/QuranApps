@@ -1,17 +1,34 @@
-<div class="text-center">
-    <form class="form-signin">
-        <img class="mb-4" src="https://getbootstrap.com/docs/4.0/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
-        <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
-        <label for="inputEmail" class="sr-only">Email address</label>
-        <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required="" autofocus="">
-        <label for="inputPassword" class="sr-only">Password</label>
-        <input type="password" id="inputPassword" class="form-control" placeholder="Password" required="">
-        <div class="checkbox mb-3">
-          <label>
-            <input type="checkbox" value="remember-me"> Remember me
-          </label>
+<div class="all">
+
+  <div class="logo">
+    <img src="../../../assets/images/logo.jpg" alt="" class="logoImg">
+    <h1 class="h3 mb-3 font-weight-normal">Mo<span class="gold">3</span>alem</h1>
+  </div>
+  <div class=" container cont">
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Login as a Teacher</h5>
+          <h6 class="card-subtitle mb-2 text-muted">Shiekh</h6>
+          <p class="card-text">
+            as a Teacher you can add Lectures and view your students status
+          </p>
+          <a [routerLink]="'/'+lang+'/login/student'" class="btn btn-warning">Login Now</a>
         </div>
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-        <p class="mt-5 mb-3 text-muted">© 2020-2021</p>
-      </form>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Login as a Student</h5>
+          <h6 class="card-subtitle mb-2 text-muted">Talib</h6>
+          <p class="card-text">
+            as a Student you can see many Teachers and enroll in any course
+          </p>
+          <a [routerLink]="'/'+lang+'/login/student'" class="btn btn-warning">Login Now</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  
 </div>

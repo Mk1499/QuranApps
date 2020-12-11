@@ -1,3 +1,4 @@
+import { LangService } from './../../Services/lang.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginComponent implements OnInit {
 
-  constructor() { }
+  lang:string; 
+  constructor(private langService:LangService) { }
 
   ngOnInit(): void {
+    this.lang  = this.langService.urlLang; 
   }
 
 }
