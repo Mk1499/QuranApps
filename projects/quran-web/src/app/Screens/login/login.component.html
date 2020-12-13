@@ -6,35 +6,37 @@
     </h1>
   </div>
   <div class="container cont">
-    <div class="col-md-6">
-      <div class="card">
-        <div class="card-body">
-          <h5 class="card-title">{{ "teacherLogin" | translate }}</h5>
-          <h6 class="card-subtitle mb-2 text-muted">Shiekh</h6>
-          <p class="card-text">
-            as a Teacher you can add Lectures and view your students status
-          </p>
-          <a
-            [routerLink]="'/' + lang + '/login/student'"
-            class="btn btn-warning"
-            >{{ "loginNow" | translate }}</a
-          >
+    <div class="row">
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">{{ "teacherLogin" | translate }}</h5>
+            <h6 class="card-subtitle mb-2 text-muted">Shiekh</h6>
+            <p class="card-text">
+              as a Teacher you can add Lectures and view your students status
+            </p>
+            <a
+              [routerLink]="'/' + lang + '/login/student'"
+              class="btn btn-warning"
+              >{{ "loginNow" | translate }}</a
+            >
+          </div>
         </div>
       </div>
-    </div>
-    <div class="col-md-6">
-      <div class="card">
-        <div class="card-body">
-          <h5 class="card-title">{{ "studentLogin" | translate }}</h5>
-          <h6 class="card-subtitle mb-2 text-muted">Talib</h6>
-          <p class="card-text">
-            as a Student you can see many Teachers and enroll in any course
-          </p>
-          <a
-            [routerLink]="'/' + lang + '/login/student'"
-            class="btn btn-warning"
-            >{{ "loginNow" | translate }}</a
-          >
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">{{ "studentLogin" | translate }}</h5>
+            <h6 class="card-subtitle mb-2 text-muted">Talib</h6>
+            <p class="card-text">
+              as a Student you can see many Teachers and enroll in any course
+            </p>
+            <a
+              [routerLink]="'/' + lang + '/login/student'"
+              class="btn btn-warning"
+              >{{ "loginNow" | translate }}</a
+            >
+          </div>
         </div>
       </div>
     </div>

@@ -8,7 +8,7 @@
     background-color: #eee;
   }
   .view {
-    width: 40%;
+    width: 90%;
     /* height: 40%; */
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     padding: 5%;
@@ -33,7 +33,7 @@
   .btn{
       border-radius: 2vh;
       width: 50%;
-      height: 10vh;
+      height: 8vh;
       
   }
   .gold {
@@ -43,4 +43,10 @@
     }
     .btnLoad{
         height: 100%;
+    }
+
+    @media(min-width:1025px){
+        .view{
+            width: 40%;
+        }
     }

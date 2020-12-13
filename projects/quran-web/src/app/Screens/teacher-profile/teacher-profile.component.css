@@ -4,32 +4,38 @@
 .head {
   display: flex;
   justify-content: space-between;
+  min-height: 20vh;
 }
 .teacherDataLeft {
-  display: flex;
+  /* display: flex; */
 }
 .teacherDataRight {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
   font-family: Cairo;
 }
 
 .profileImg {
-  width: 200px;
-  height: 200px;
-  border-radius: 100px;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 .teacherData {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  /* align-items: center; */
   font-family: Cairo;
-  margin: 0 5%;
+  /* margin: 0 5%;. */
 }
 .teacherSub {
   margin: 0;
+}
+.enrollBtn{
+ /* max-width: 10vw;  */
 }
 .teacherSub strong {
   color: gold;
@@ -49,4 +55,14 @@
 }
 .loadCont {
   text-align: center;
+}
+
+@media(max-width:766px){
+  .teacherData{
+    align-items: center;
+    margin: 3% 0;
+  }
+  .enrollBtn{
+    width:100%
+  }
 }

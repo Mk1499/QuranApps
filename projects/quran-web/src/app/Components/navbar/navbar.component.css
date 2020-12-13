@@ -41,25 +41,32 @@
   border-radius: 30px;
   background-color: #fff;
   cursor: pointer;
-  margin: 0 15%;
+  /* margin: 0 15%; */
 }
-i{
-  margin: 0 100%;
+i {
+  /* margin: 0 100%; */
 }
 .ddMenu {
-  display: flex;
+  /* display: flex; */
   align-items: center;
   /* background-color: red; */
   width: 10%;
   justify-content: center;
   color: #333;
 }
-.dropdown-menu{
+.dropdown-menu {
   left:-10vw
 }
-.dropdown-item{
+.dropdown-item {
   cursor: pointer;
 }
-.dropdown-item:hover{
+.dropdown-item:hover {
   background-color: gold;
+}
+@media (max-width: 966px) {
+  .dropdown-menu {
+    width: 100%;
+    text-align: center;
+    left: 0;
+  }
 }

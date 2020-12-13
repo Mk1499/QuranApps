@@ -1,15 +1,12 @@
 .all{
     background-color: #333;
-    width: 100vw;
-    height: 100vh;
+    min-width: 100vw;
+    min-height: 100vh;
     
 }
 .cont {
   /* width: 100vw; */
   /* height: 100vh; */
-  display: flex;
-  justify-content: center;
-  align-items: center;
   font-family: Cairo;
 
 }
@@ -19,6 +16,7 @@
     /* color: #fff; */
     padding: 2vh;
     border-radius: 2vh;
+    margin: 5% 0;
 }
 .view {
   /* width: 40%; */
