@@ -16,6 +16,7 @@ export class StudentRegComponent implements OnInit {
   username: string;
   loading: boolean = false;
   lang: string;
+  errMsg: string = "";
   constructor(private l: LangService, private api: ApiCallService, private auth: AuthService, private router: Router) { }
 
   ngOnInit(): void {
