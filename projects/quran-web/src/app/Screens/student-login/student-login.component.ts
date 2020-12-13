@@ -15,6 +15,7 @@ export class StudentLoginComponent implements OnInit {
   password: string;
   errMsg: string;
   loading: boolean = false;
+  
   constructor(private auth: AuthService,
     private api: ApiCallService,
     private router: Router,
@@ -32,8 +33,8 @@ export class StudentLoginComponent implements OnInit {
       this.api.studentLogin(this.email, this.password).subscribe(data => {
         console.log("Data : ", data);
         this.auth.setActiveUser(data?.student);
-        this.router.navigateByUrl('/' + this.lang.urlLang + '/home')
         localStorage.setItem('quranUser', JSON.stringify(data?.student))
+        this.router.navigateByUrl('/' + this.lang.urlLang + '/home')
       }, err => {
         console.log("err: ", err.error);
         this.loading = false;

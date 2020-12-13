@@ -25,6 +25,7 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { SplashComponent } from './Screens/splash/splash.component';
 import { LoadingComponent } from './Components/loading/loading.component';
 import { StudentLoginComponent } from './Screens/student-login/student-login.component';
+import { StudentRegComponent } from './Screens/student-reg/student-reg.component';
 
 
 export function HttpLoaderFactory(httpClient: HttpClient) {
@@ -45,7 +46,8 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     TeacherProfileComponent,
     SplashComponent,
     LoadingComponent,
-    StudentLoginComponent
+    StudentLoginComponent,
+    StudentRegComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),

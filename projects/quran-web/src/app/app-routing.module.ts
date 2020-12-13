@@ -1,3 +1,4 @@
+import { StudentRegComponent } from './Screens/student-reg/student-reg.component';
 import { StudentLoginComponent } from './Screens/student-login/student-login.component';
 import { LoadingComponent } from './Components/loading/loading.component';
 import { HomeComponent } from './Screens/home/home.component';
@@ -22,6 +23,7 @@ const routes: Routes = [
       { path: '', component: LoadingComponent },
       { path: 'login', component: LoginComponent },
       { path: 'login/student', component: StudentLoginComponent },
+      { path: 'reg/student', component: StudentRegComponent },
 
       {
         path: 'home', component: HomeComponent, children: [
@@ -39,6 +41,7 @@ const routes: Routes = [
       { path: '', component: LoadingComponent },
       { path: 'login', component: LoginComponent },
       { path: 'login/student', component: StudentLoginComponent },
+      { path: 'reg/student', component: StudentRegComponent },
 
       {
         path: 'home', component: HomeComponent, children: [

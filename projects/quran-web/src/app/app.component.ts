@@ -11,14 +11,9 @@ import { Router } from '@angular/router';
 })
 export class AppComponent {
   title = 'QuranWeb';
+  lastUsedLang: string = localStorage.getItem('lang') || 'en';
+  constructor(private translate: TranslateService) {
 
-  constructor(private translate: TranslateService, private router: Router , private lang:LangService) {
-    let url = router.url;
-    let selLang = url.substring(0); 
-    console.log("LA : ",url.substring(1));
-    console.log("Router URLl : ", url);
-
-
-    translate.setDefaultLang("ar")
+    translate.setDefaultLang(this.lastUsedLang);
   }
 }

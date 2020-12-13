@@ -17,4 +17,5 @@ export class AuthService {
     localStorage.removeItem('quranUser');
     this.router.navigateByUrl('/' + this.lang.urlLang)
   }
+
 }

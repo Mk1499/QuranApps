@@ -26,11 +26,30 @@ export class ApiCallService {
 
   studentLogin(email, password): Observable<any> {
     let url = this.baseURL + "/student/login";
-    console.log("Email: ",email);
-    
+    console.log("Email: ", email);
+
     return this.http.post(url, {
       email,
       password
     });
+  }
+
+  studentReg(user): Observable<any> {
+    let url = this.baseURL + "/student/add";
+    console.log("Email: ", user.email);
+
+    return this.http.post(url, {
+      email: user.email,
+      password: user.password,
+      name: user.name
+    });
+  }
+
+  studentEnroll(data):Observable<any>{
+    let url = this.baseURL + "/student/enroll";
+    return this.http.post(url,{
+      teacher: data.teacherID,
+      student: data.studentID
+    })
   }
 }

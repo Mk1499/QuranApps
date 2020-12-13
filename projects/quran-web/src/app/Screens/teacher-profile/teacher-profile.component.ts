@@ -1,6 +1,6 @@
 import { ApiCallService } from './../../Services/api-call.service';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 
 @Component({
@@ -11,21 +11,42 @@ import { ActivatedRoute } from '@angular/router';
 export class TeacherProfileComponent implements OnInit {
 
   teacherID: string = "";
-  teacher ; 
-  constructor(private apiService: ApiCallService, private router: ActivatedRoute) { }
+  teacher;
+  user: any = JSON.parse(localStorage.getItem('quranUser'))
+  loading: boolean = false;
+
+  constructor(private apiService: ApiCallService,
+    private activeRoute: ActivatedRoute,
+    private router: Router) { }
 
   ngOnInit(): void {
-   
-   this.teacherID = this.router.snapshot.params['id']; 
-   console.log("Tracher ID : ",this.teacherID);
-   
-   
-    this.apiService.getTeacherProfile(this.teacherID).subscribe(t => {
-      console.log("T : ",t.teacher[0]);
-      
-      this.teacher = t.teacher[0];
-    })
-
+    this.getTeacherData()
   }
 
+  getTeacherData() {
+    this.teacherID = this.activeRoute.snapshot.params['id'];
+    this.apiService.getTeacherProfile(this.teacherID).subscribe(t => {
+      this.teacher = t.teacher[0];
+    })
+  }
+
+  enroll() {
+    let data = {
+      userID: this.user._id,
+      teacher: this.teacher._id
+    }
+    this.loading = true;
+    this.apiService.studentEnroll(data).subscribe(res => {
+      this.loading = false;
+      this.getTeacherData();
+      console.log("Enroll RES :", res);
+
+    },
+      (err) => {
+        this.loading = false;
+        console.error("ERR ", err);
+
+      }
+    )
+  }
 }

@@ -12,7 +12,9 @@ export class LoginComponent implements OnInit {
   constructor(private langService:LangService) { }
 
   ngOnInit(): void {
-    this.lang  = this.langService.urlLang; 
+    this.langService.intialization();
+    this.lang  = this.langService.urlLang;
+
   }
 
 }

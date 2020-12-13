@@ -80,7 +80,7 @@
         Search
       </button>
     </form> -->
-    <div class="my-2 my-lg-0 dropdown">
+    <div class="my-2 my-lg-0 dropdown" *ngIf="user">
       <div class="dropdown-menu" aria-labelledby="navbarDropdown">
         <a class="dropdown-item" href="#">{{ user.name }}</a>
         <a class="dropdown-item" (click)="changeLanguage()">{{
@@ -110,6 +110,9 @@
           class="usrImg"
         />
       </a>
+    </div>
+    <div class="my-2 my-lg-0">
+      <button class="btn btn-warning" *ngIf="!user" [routerLink]="'/'+urlLang+'/login/student'">Sign In</button>
     </div>
   </div>
 </nav>
