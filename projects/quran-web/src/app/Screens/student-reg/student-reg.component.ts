@@ -33,7 +33,7 @@ export class StudentRegComponent implements OnInit {
       this.auth.setActiveUser(user?.student);
       this.loading = false;
       localStorage.setItem('quranUser', JSON.stringify(user?.student))
-      this.router.navigateByUrl('/' + this.lang.urlLang + '/home')
+      this.router.navigateByUrl('/' + this.lang + '/home')
     }
       ,
       err => {
