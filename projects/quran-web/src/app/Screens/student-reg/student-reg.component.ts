@@ -15,33 +15,33 @@ export class StudentRegComponent implements OnInit {
   password: string;
   username: string;
   loading: boolean = false;
-
-  constructor(private lang: LangService, private api: ApiCallService,private auth:AuthService,private router:Router) { }
+  lang: string;
+  constructor(private l: LangService, private api: ApiCallService, private auth: AuthService, private router: Router) { }
 
   ngOnInit(): void {
-    // localStorage.clear()
+    this.lang = this.l.urlLang;
   }
-
   register() {
+
     let user = {
       email: this.email,
       password: this.password,
       name: this.username
     }
-    this.loading = true; 
+    this.loading = true;
     this.api.studentReg(user).subscribe(user => {
       this.auth.setActiveUser(user?.student);
       this.loading = false;
       localStorage.setItem('quranUser', JSON.stringify(user?.student))
       this.router.navigateByUrl('/' + this.lang.urlLang + '/home')
     }
-    ,
-    err =>{
-      console.log("Error : ",err);
-      this.loading = false;
-      
-    }
-    ); 
+      ,
+      err => {
+        console.log("Error : ", err);
+        this.loading = false;
+
+      }
+    );
 
   }
 

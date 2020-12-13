@@ -15,13 +15,14 @@ export class StudentLoginComponent implements OnInit {
   password: string;
   errMsg: string;
   loading: boolean = false;
-  
+  lang: string;
   constructor(private auth: AuthService,
     private api: ApiCallService,
     private router: Router,
-    private lang: LangService) { }
+    private l: LangService) { }
 
   ngOnInit(): void {
+    this.lang = this.l.urlLang;
   }
 
   login() {
@@ -34,7 +35,7 @@ export class StudentLoginComponent implements OnInit {
         console.log("Data : ", data);
         this.auth.setActiveUser(data?.student);
         localStorage.setItem('quranUser', JSON.stringify(data?.student))
-        this.router.navigateByUrl('/' + this.lang.urlLang + '/home')
+        this.router.navigateByUrl('/' + this.lang + '/home')
       }, err => {
         console.log("err: ", err.error);
         this.loading = false;
