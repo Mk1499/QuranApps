@@ -9,6 +9,7 @@ import { Component, OnInit } from '@angular/core';
 export class TeacherComponent implements OnInit {
 
   teachers:any = [];
+  mode:string;
 
   constructor(private apiService:ApiCallService) { }
 

@@ -1,3 +1,6 @@
+
+
+
 .navBar {
   min-height: 10vh;
   font-family: Cairo;
@@ -44,7 +47,7 @@
   /* margin: 0 15%; */
 }
 i {
-  /* margin: 0 100%; */
+  margin: 0 10px;
 }
 .ddMenu {
   /* display: flex; */

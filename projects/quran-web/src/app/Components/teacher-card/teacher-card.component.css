@@ -1,9 +1,8 @@
 .cardItem {
   /* width: 18vw;
   height: 30vh; */
-  border: 1px solid #e1e9ed;
   padding-top: 5%;
-  background-color: #fff;
+  /* background-color: #fff; */
   cursor: pointer;
   font-family: Cairo;
 }

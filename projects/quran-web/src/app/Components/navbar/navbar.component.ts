@@ -1,3 +1,4 @@
+import { ThemesService } from './../../Services/themes.service';
 import { AuthService } from './../../Services/auth.service';
 import { LangService } from './../../Services/lang.service';
 import { Component, OnInit } from '@angular/core';
@@ -16,14 +17,23 @@ export class NavbarComponent implements OnInit {
   active: string;
   urlLang: string;
   user: any;
-  constructor(private router: Router, private langService: LangService, private auth: AuthService) { }
+  mode: string;
+  constructor(private router: Router,
+    private langService: LangService,
+    private auth: AuthService,
+    private theme: ThemesService) {
+
+    theme.modeChanging.subscribe(m => {
+      this.mode = m
+    })
+  }
 
   ngOnInit(): void {
-    this.langService.intialization() ; 
+    this.langService.intialization();
     this.urlLang = this.langService.urlLang;
     this.active = this.router.url.substring(9);
-    this.user = JSON.parse(localStorage.getItem('quranUser'))
-
+    this.user = JSON.parse(localStorage.getItem('quranUser'));
+    this.mode = this.theme.mode;
   }
 
   changeActive(active) {
@@ -35,5 +45,9 @@ export class NavbarComponent implements OnInit {
   }
   logOut() {
     this.auth.logOut();
+  }
+
+  toggleTheme() {
+    this.theme.toggleTheme();
   }
 }

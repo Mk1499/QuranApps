@@ -1,9 +1,17 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light navBar">
-  <div class="logo" (click)="changeActive('')"  [routerLink]="'/' + urlLang + '/home'">
+<nav
+  [ngClass]="{
+    light: mode === 'light',
+    dark: mode === 'dark'
+  }"
+  class="navbar navbar-expand-lg navbar-light  navBar"
+>
+  <div
+    class="logo"
+    (click)="changeActive('')"
+    [routerLink]="'/' + urlLang + '/home'"
+  >
     <img src="../../../assets/images/logo.jpg" class="logoImg" />
-    <a class="navbar-brand logoName"
-      >Mo<span class="gold">3</span>alem</a
-    >
+    <a class="navbar-brand logoName">Mo<span class="gold">3</span>alem</a>
   </div>
   <button
     class="navbar-toggler"
@@ -18,7 +26,7 @@
   </button>
 
   <div class="collapse navbar-collapse menu" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
+    <ul class="navbar-nav mr-auto " >
       <li
         class="nav-item"
         (click)="changeActive('')"
@@ -86,7 +94,15 @@
         <a class="dropdown-item" (click)="changeLanguage()">{{
           "otherLang" | translate
         }}</a>
-        <a class="dropdown-item" href="#">{{ "darkMode" | translate }}</a>
+        <a class="dropdown-item" (click)="toggleTheme()">
+          <span>
+            {{ "darkMode" | translate }}
+          </span>
+
+          <input type="checkbox" [checked]="mode==='dark'" data-toggle="toggle" data-size="lg">
+
+
+        </a>
         <a class="dropdown-item" (click)="logOut()">{{
           "logOut" | translate
         }}</a>
@@ -104,15 +120,17 @@
         aria-expanded="false"
       >
         <i class="fa fa-caret-down" aria-hidden="true"></i>
-        <img
-          [src]="user?.avatar"
-          alt=""
-          class="usrImg"
-        />
+        <img [src]="user?.avatar" alt="" class="usrImg" />
       </a>
     </div>
     <div class="my-2 my-lg-0">
-      <button class="btn btn-warning" *ngIf="!user" [routerLink]="'/'+urlLang+'/login/student'">Sign In</button>
+      <button
+        class="btn btn-warning"
+        *ngIf="!user"
+        [routerLink]="'/' + urlLang + '/login/student'"
+      >
+        Sign In
+      </button>
     </div>
   </div>
 </nav>

@@ -1,4 +1,6 @@
+import { ThemesService } from './../../Services/themes.service';
 import { Component, OnInit } from '@angular/core';
+import { StringifyOptions } from 'querystring';
 
 @Component({
   selector: 'app-splash',
@@ -6,10 +8,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./splash.component.css']
 })
 export class SplashComponent implements OnInit {
-
-  constructor() { }
+  mode: string;
+  constructor(private theme:ThemesService) {
+    theme.modeChanging.subscribe(m =>{
+      this.mode = m;
+    })
+   }
 
   ngOnInit(): void {
+    this.mode = this.theme.mode;
   }
 
 }

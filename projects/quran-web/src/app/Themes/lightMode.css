@@ -1,0 +1,10 @@
+.light{
+    background-color: #fff;
+    color:#333;
+}
+
+.light .cardItem{
+    background-color: #fff;
+    border: 1px solid #e1e9ed;
+
+}
