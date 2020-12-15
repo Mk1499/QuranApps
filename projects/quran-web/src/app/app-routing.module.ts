@@ -55,9 +55,9 @@ const routes: Routes = [
         ]
       },
       { path: 'profile', component: ProfileComponent },
-      { path: "**", redirectTo: lang }
     ]
-  }
+  },
+  { path: "**", redirectTo: lang }
 ]
 
 @NgModule({
