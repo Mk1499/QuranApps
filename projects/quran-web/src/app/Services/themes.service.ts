@@ -6,27 +6,34 @@ import { Subject } from 'rxjs';
 })
 export class ThemesService {
 
-  mode: string = 'dark';
-  modeChanging:Subject<string> = new Subject<string>();
+  mode: string = localStorage.getItem('theme') || 'dark';
+  modeChanging: Subject<string> = new Subject<string>();
 
   constructor() {
 
-   }
+  }
 
 
   setDarkTheme() {
     this.mode = 'dark';
+
   }
 
   setLightTheme() {
     this.mode = 'light';
   }
   toggleTheme() {
-    if (this.mode === 'dark')
+    if (this.mode === 'dark') {
+
       this.mode = 'light';
-    else
+      localStorage.setItem('theme', 'light');
+    }
+    else {
       this.mode = 'dark'
+      localStorage.setItem('theme', 'dark');
+    }
+
     // return this.mode;
-    this.modeChanging.next(this.mode); 
+    this.modeChanging.next(this.mode);
   }
 }

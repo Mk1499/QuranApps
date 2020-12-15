@@ -12,6 +12,8 @@ export class TeacherCardComponent implements OnInit {
   lang: string;
 
   constructor(private l: LangService) {
+    console.log("T: ",this.teacher);
+    
   }
 
   ngOnInit(): void {

@@ -90,7 +90,7 @@
     </form> -->
     <div class="my-2 my-lg-0 dropdown" *ngIf="user">
       <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-        <a class="dropdown-item" href="#">{{ user.name }}</a>
+        <a class="dropdown-item"  [routerLink]="'/' + urlLang + '/profile'">{{ user.name }}</a>
         <a class="dropdown-item" (click)="changeLanguage()">{{
           "otherLang" | translate
         }}</a>

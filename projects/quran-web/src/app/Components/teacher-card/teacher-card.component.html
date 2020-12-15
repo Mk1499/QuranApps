@@ -1,6 +1,10 @@
-
-<div class="cardItem" [routerLink]="['/'+lang+'/home/teachers',teacher._id]">
+<div
+  class="cardItem"
+  [routerLink]="['/' + lang + '/home/teachers', teacher._id]"
+>
   <img [src]="teacher.avatar" class="teacherImg" />
-  <h3 class="teacherName">{{ teacher.name }}</h3>
+  <h3 class="teacherName">
+    {{ lang === "ar" ? teacher?.arName : teacher.name }}
+  </h3>
   <p class="teacherEmail">{{ teacher.email }}</p>
 </div>

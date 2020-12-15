@@ -1,3 +1,5 @@
+import { Title } from '@angular/platform-browser';
+import { TranslateService } from '@ngx-translate/core';
 import { LangService } from './../../Services/lang.service';
 import { Router } from '@angular/router';
 import { ApiCallService } from './../../Services/api-call.service';
@@ -19,10 +21,15 @@ export class StudentLoginComponent implements OnInit {
   constructor(private auth: AuthService,
     private api: ApiCallService,
     private router: Router,
-    private l: LangService) { }
+    private l: LangService,
+    private translate: TranslateService,
+    private title: Title) { }
 
   ngOnInit(): void {
     this.lang = this.l.urlLang;
+    this.translate.get('studentLogin').subscribe(t => {
+      this.title.setTitle(t)
+    })
   }
 
   login() {

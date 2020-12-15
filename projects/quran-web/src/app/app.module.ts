@@ -4,7 +4,7 @@ import { LangService } from './Services/lang.service';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { ApiCallService } from './Services/api-call.service';
-import { BrowserModule, TransferState } from '@angular/platform-browser';
+import { BrowserModule, TransferState , Meta,Title} from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { TransferHttpCacheModule } from '@nguniversal/common';
@@ -27,6 +27,7 @@ import { SplashComponent } from './Screens/splash/splash.component';
 import { LoadingComponent } from './Components/loading/loading.component';
 import { StudentLoginComponent } from './Screens/student-login/student-login.component';
 import { StudentRegComponent } from './Screens/student-reg/student-reg.component';
+import { ProfileComponent } from './Screens/profile/profile.component';
 
 
 export function HttpLoaderFactory(httpClient: HttpClient) {
@@ -48,7 +49,8 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     SplashComponent,
     LoadingComponent,
     StudentLoginComponent,
-    StudentRegComponent
+    StudentRegComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
@@ -65,7 +67,13 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
       }
     })
   ],
-  providers: [ApiCallService,LangService,AuthService,ThemesService],
+  providers: [ApiCallService,
+              LangService,
+              AuthService,
+              ThemesService,
+              Title,
+              Meta
+            ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

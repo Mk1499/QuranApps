@@ -18,6 +18,8 @@
 }
 .logoImg {
   border-radius: 50%;
+  width: 9vw;
+  height: 20%;
 }
 
 input.form-control {
@@ -44,11 +46,11 @@ input.form-control {
   height: 100%;
 }
 .signUp {
-    margin: 2vh 0;
+  margin: 2vh 0;
 }
-.link{
-    color: gold;
-    cursor: pointer;
+.link {
+  color: gold;
+  cursor: pointer;
 }
 
 @media (min-width: 1025px) {

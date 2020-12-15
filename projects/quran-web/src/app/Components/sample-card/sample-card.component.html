@@ -13,12 +13,19 @@
     />
   </div>
   <div class="card-body">
-    <h3 class="card-title name">{{ sample.name }}</h3>
+    <h3 class="card-title name">{{  currentLang === "ar" ?  sample.arName : sample.name }}</h3>
     <hr />
     <p class="card-text data" *ngIf="sample.teacher?.name">
       <strong>Teacher : </strong>
-      <span [routerLink]="['/'+currentLang+'/teachers', sample.teacher._id]">
-        {{ sample.teacher?.name }}
+      <span
+        [routerLink]="[
+          '/' + currentLang + '/home/teachers',
+          sample.teacher._id
+        ]"
+      >
+        {{
+          currentLang === "ar" ? sample.teacher?.arName : sample.teacher?.name
+        }}
       </span>
     </p>
     <p class="card-text data">

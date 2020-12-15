@@ -24,9 +24,13 @@ export class ApiCallService {
     return this.http.get(url);
   }
 
+  getStudentProfile(id): Observable<any> {
+    let url = this.baseURL + "/student/" + id;
+    return this.http.get(url);
+  }
+
   studentLogin(email, password): Observable<any> {
     let url = this.baseURL + "/student/login";
-    console.log("Email: ", email);
 
     return this.http.post(url, {
       email,
@@ -36,7 +40,6 @@ export class ApiCallService {
 
   studentReg(user): Observable<any> {
     let url = this.baseURL + "/student/add";
-    console.log("Email: ", user.email);
 
     return this.http.post(url, {
       email: user.email,
@@ -45,9 +48,18 @@ export class ApiCallService {
     });
   }
 
-  studentEnroll(data):Observable<any>{
+  studentEnroll(data): Observable<any> {
+
     let url = this.baseURL + "/student/enroll";
-    return this.http.post(url,{
+    return this.http.post(url, {
+      teacher: data.teacherID,
+      student: data.studentID
+    })
+  }
+
+  studentUnEnroll(data): Observable<any> {
+    let url = this.baseURL + "/student/unenroll";
+    return this.http.post(url, {
       teacher: data.teacherID,
       student: data.studentID
     })

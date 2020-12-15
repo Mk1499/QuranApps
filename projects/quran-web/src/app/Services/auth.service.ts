@@ -8,10 +8,13 @@ import { Injectable } from '@angular/core';
 })
 export class AuthService {
   user: any;
-  constructor(private router: Router, private lang: LangService) { }
+  constructor(private router: Router, private lang: LangService) {
+    this.user = JSON.parse(localStorage.getItem('quranUser'));
+  }
 
   setActiveUser(user) {
     this.user = user;
+    localStorage.setItem('quranUser', JSON.stringify(user))
   }
   logOut() {
     localStorage.removeItem('quranUser');

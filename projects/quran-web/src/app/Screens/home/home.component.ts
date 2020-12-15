@@ -1,3 +1,5 @@
+import { Title } from '@angular/platform-browser';
+import { TranslateService } from '@ngx-translate/core';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +9,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  constructor(private translate:TranslateService,
+              private title:Title) { }
 
   ngOnInit(): void {
+    this.translate.get('siteName').subscribe(t => this.title.setTitle(t))
   }
 
 }

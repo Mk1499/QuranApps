@@ -1,3 +1,4 @@
+import { LangService } from './../../Services/lang.service';
 import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
@@ -8,10 +9,13 @@ import { Component, Input, OnInit } from '@angular/core';
 export class SampleCardComponent implements OnInit {
 
   @Input('sample') sample;
-  currentLang:string = localStorage.getItem('lang');
-  constructor() { }
+  // lang:string; 
+  // currentLang:string = localStorage.getItem('lang');
+  currentLang:string; 
+  constructor(private langS:LangService) { }
 
   ngOnInit(): void {
+    this.currentLang = this.langS.urlLang; 
   }
 
 }

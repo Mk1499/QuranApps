@@ -1,3 +1,4 @@
+import { ProfileComponent } from './Screens/profile/profile.component';
 import { StudentRegComponent } from './Screens/student-reg/student-reg.component';
 import { StudentLoginComponent } from './Screens/student-login/student-login.component';
 import { LoadingComponent } from './Components/loading/loading.component';
@@ -30,9 +31,11 @@ const routes: Routes = [
           { path: '', component: CarouselComponent },
           { path: 'teachers', component: TeacherComponent },
           { path: 'teachers/:id', component: TeacherProfileComponent },
-          { path: 'library', component: LiberaryComponent }
+          { path: 'library', component: LiberaryComponent },
+
         ]
       },
+      { path: 'profile', component: ProfileComponent },
     ]
   },
   {
@@ -51,16 +54,17 @@ const routes: Routes = [
           { path: 'library', component: LiberaryComponent }
         ]
       },
+      { path: 'profile', component: ProfileComponent },
+      { path: "**", redirectTo: lang }
     ]
-  },
-  { path: "**", redirectTo: lang }
-];
+  }
+]
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, {
-    initialNavigation: 'enabled'
-  })],
-  exports: [RouterModule]
-})
+      imports: [RouterModule.forRoot(routes, {
+        initialNavigation: 'enabled'
+      })],
+      exports: [RouterModule]
+    })
 export class AppRoutingModule {
 }
