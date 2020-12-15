@@ -21,7 +21,9 @@
             "aot": true,
             "assets": [
               "projects/quran-web/src/favicon.ico",
-              "projects/quran-web/src/assets"
+              "projects/quran-web/src/assets",
+              "projects/quran-web/src/assets/robots.txt",
+              "project/quran-web/src/assets/sitemap.xml"
             ],
             "styles": [
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
@@ -91,9 +93,7 @@
               "projects/quran-web/src/favicon.ico",
               "projects/quran-web/src/assets"
             ],
-            "styles": [
-              "projects/quran-web/src/styles.css"
-            ],
+            "styles": ["projects/quran-web/src/styles.css"],
             "scripts": []
           }
         },
@@ -106,9 +106,7 @@
               "projects/quran-web/e2e/tsconfig.json",
               "projects/quran-web/tsconfig.server.json"
             ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
+            "exclude": ["**/node_modules/**"]
           }
         },
         "e2e": {
@@ -162,9 +160,7 @@
           "options": {
             "browserTarget": "QuranWeb:build:production",
             "serverTarget": "QuranWeb:server:production",
-            "routes": [
-              "/"
-            ]
+            "routes": ["/"]
           },
           "configurations": {
             "production": {}
@@ -197,9 +193,7 @@
               "projects/booky-copy/src/assets/css/fontAwesome/all.min.css",
               "projects/booky-copy/src/styles.css"
             ],
-            "scripts": [
-              "node_modules/bootstrap/dist/js/bootstrap.min.js"
-            ]
+            "scripts": ["node_modules/bootstrap/dist/js/bootstrap.min.js"]
           },
           "configurations": {
             "production": {
@@ -259,9 +253,7 @@
               "projects/booky-copy/src/favicon.ico",
               "projects/booky-copy/src/assets"
             ],
-            "styles": [
-              "projects/booky-copy/src/styles.css"
-            ],
+            "styles": ["projects/booky-copy/src/styles.css"],
             "scripts": []
           }
         },
@@ -274,9 +266,7 @@
               "projects/booky-copy/e2e/tsconfig.json",
               "projects/booky-copy/tsconfig.server.json"
             ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
+            "exclude": ["**/node_modules/**"]
           }
         },
         "e2e": {
@@ -330,9 +320,7 @@
           "options": {
             "browserTarget": "BookyCopy:build:production",
             "serverTarget": "BookyCopy:server:production",
-            "routes": [
-              "/"
-            ]
+            "routes": ["/"]
           },
           "configurations": {
             "production": {}
