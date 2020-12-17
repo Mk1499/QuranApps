@@ -1,3 +1,5 @@
+import { Note } from './../../Models/notification.model';
+import { MessagingService } from './../../Services/messaging.service';
 import { ThemesService } from './../../Services/themes.service';
 import { AuthService } from './../../Services/auth.service';
 import { LangService } from './../../Services/lang.service';
@@ -18,10 +20,13 @@ export class NavbarComponent implements OnInit {
   urlLang: string;
   user: any;
   mode: string;
+  newNote:number; 
+  allNotes:Note[] = [];
   constructor(private router: Router,
     private langService: LangService,
     private auth: AuthService,
-    private theme: ThemesService) {
+    private theme: ThemesService, 
+    private msg: MessagingService) {
 
     theme.modeChanging.subscribe(m => {
       this.mode = m
@@ -34,6 +39,8 @@ export class NavbarComponent implements OnInit {
     this.active = this.router.url.substring(9);
     this.user = JSON.parse(localStorage.getItem('quranUser'));
     this.mode = this.theme.mode;
+    this.allNotes = this.msg.allNotes; 
+    this.newNote = this.msg.newNotes; 
   }
 
   changeActive(active) {
