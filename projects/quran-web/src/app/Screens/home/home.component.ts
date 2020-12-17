@@ -13,7 +13,10 @@ export class HomeComponent implements OnInit {
               private title:Title) { }
 
   ngOnInit(): void {
-    this.translate.get('siteName').subscribe(t => this.title.setTitle(t))
+    this.translate.get('siteName').subscribe(t =>    {
+      if (t !== 'siteNameI')
+      this.title.setTitle(t)
+    })
   }
 
 }

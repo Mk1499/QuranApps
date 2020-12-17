@@ -10,12 +10,12 @@ import { Component, OnInit } from '@angular/core';
 export class CarouselComponent implements OnInit {
 
   constructor(private translate: TranslateService,
-    private title: Title ) { }
+    private title: Title) { }
 
   ngOnInit(): void {
     this.translate.get('siteName').subscribe(t => {
-      this.title.setTitle(t)
-   
+      if (t !== 'siteNameI')
+        this.title.setTitle(t)
     })
 
   }

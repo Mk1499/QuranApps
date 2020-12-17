@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFireMessaging } from '@angular/fire/messaging';
 import { BehaviorSubject } from 'rxjs'
+import { runInThisContext } from 'vm';
 @Injectable()
 export class MessagingService {
   currentMessage = new BehaviorSubject(null);
@@ -14,6 +15,8 @@ export class MessagingService {
       }
     )
   }
+
+
   requestPermission() {
     this.angularFireMessaging.requestToken.subscribe(
       (token) => {
@@ -30,7 +33,16 @@ export class MessagingService {
         this.currentMessage.next(payload);
         this.showCutomeNotification(payload); 
       })
+    // this.angularFireMessaging.onMessage(msg => {
+    //   console.log("R Msg : ",msg);
+      
+    // })
   }
+
+
+// reciveBG(){
+//   this.angularFireMessaging.onBackgroundMessage.
+// }
 
   showCutomeNotification(payload:any){
     let notifyData = payload['notification']; 
@@ -47,7 +59,10 @@ export class MessagingService {
 
     notify.onclick = event =>{
       event.preventDefault(); 
-      window.location.href = 'https://quranmk.herokuapp.com'
+      // window.location.href = 'https://quranmk.herokuapp.com'; 
+      window.open('https://quranmk.herokuapp.com','_blank')
+
+      // clients
     }
   }
 }

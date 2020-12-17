@@ -19,7 +19,12 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
     this.langService.intialization();
     this.lang = this.langService.urlLang;
-    this.translate.get('siteName').subscribe(t => this.title.setTitle(t))
+    this.translate.get('siteName').subscribe(t => 
+      {
+        if (t !== 'siteNameI')
+        this.title.setTitle(t)
+      }
+      )
 
   }
 
