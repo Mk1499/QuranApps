@@ -23,7 +23,9 @@
               "projects/quran-web/src/favicon.ico",
               "projects/quran-web/src/assets",
               "projects/quran-web/src/assets/robots.txt",
-              "projects/quran-web/src/assets/sitemap.xml"
+              "projects/quran-web/src/assets/sitemap.xml",
+              "projects/quran-web/src/firebase-messaging-sw.js",
+              "projects/quran-web/src/manifest.json"
             ],
             "styles": [
               "node_modules/bootstrap/dist/css/bootstrap.min.css",

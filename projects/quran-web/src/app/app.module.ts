@@ -1,13 +1,21 @@
 import { ThemesService } from './Services/themes.service';
 import { AuthService } from './Services/auth.service';
 import { LangService } from './Services/lang.service';
+import { ApiCallService } from './Services/api-call.service';
+import { MessagingService } from './Services/messaging.service';
+
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-import { ApiCallService } from './Services/api-call.service';
-import { BrowserModule, TransferState , Meta,Title} from '@angular/platform-browser';
+import { BrowserModule, TransferState, Meta, Title } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { TransferHttpCacheModule } from '@nguniversal/common';
+import { AngularFireMessagingModule } from '@angular/fire/messaging';
+import { AngularFireDatabaseModule } from '@angular/fire/database';
+import { AngularFireAuthModule } from '@angular/fire/auth';
+import { AngularFireModule } from '@angular/fire';
+import { environment } from '../environments/environment';
+import { AsyncPipe } from '@angular/common';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -65,15 +73,21 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
         useFactory: translateBrowserLoaderFactory,
         deps: [HttpClient, TransferState]
       }
-    })
+    }),
+    AngularFireDatabaseModule,
+    AngularFireAuthModule,
+    AngularFireMessagingModule,
+    AngularFireModule.initializeApp(environment.firebase)
   ],
   providers: [ApiCallService,
-              LangService,
-              AuthService,
-              ThemesService,
-              Title,
-              Meta
-            ],
+    LangService,
+    AuthService,
+    ThemesService,
+    Title,
+    Meta,
+    MessagingService,
+    AsyncPipe
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
