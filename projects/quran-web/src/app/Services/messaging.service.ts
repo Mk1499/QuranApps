@@ -2,12 +2,15 @@ import { Injectable } from '@angular/core';
 import { AngularFireMessaging } from '@angular/fire/messaging';
 import { BehaviorSubject } from 'rxjs';
 import { Note } from '../Models/notification.model';
+import { Subject } from 'rxjs';
+
 
 @Injectable()
 export class MessagingService {
   currentMessage = new BehaviorSubject(null);
   newNotes: number = 0;
-  allNotes: Note[];
+  allNotes: Note[] = [];
+  newNotesChanged:Subject<Note> = new Subject<Note>(); 
 
 
   constructor(private angularFireMessaging: AngularFireMessaging) {
@@ -34,15 +37,19 @@ export class MessagingService {
   }
   receiveMessage() {
     this.angularFireMessaging.messages.subscribe(
-      (payload: Note) => {
+      (payload: any) => {
+
+        console.log("Note Recived : ", payload);
+        
 
         let note = new Note(payload.title || "Note Title",
-          payload.body || "Note Body",
-          payload.click_action || "https://www.google.com"
+          payload.notification.body || "Note Body",
+          payload.notification.click_action || "https://www.google.com"
         );
 
-        this.allNotes.push(note);
-        this.newNotes++;
+        // this.allNotes.push(note);
+        // this.newNotes++;
+        this.newNotesChanged.next(note); 
 
         this.currentMessage.next(payload);
         this.showCutomeNotification(payload);

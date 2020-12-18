@@ -10,26 +10,27 @@ firebase.initializeApp({
   measurementId: "G-KQB1GJ59D9",
 });
 
-this.addEventListener('notificationclick',(event)=> {
-  let url =  event.notification.data.FCM_MSG.notification.click_action ||  "https://quranmk.herokuapp.com"; 
-  event.notification.close(); 
-  console.log("Note Clicked : ",event.notification);
+this.addEventListener("notificationclick", (event) => {
+  let url =
+    event.notification.data.FCM_MSG.notification.click_action ||
+    "https://quranmk.herokuapp.com";
+  event.notification.close();
+  console.log("Note Clicked : ", event.notification);
   event.waitUntil(
-    clients.matchAll({type: 'window'}).then( windowClients => {
-        // Check if there is already a window/tab open with the target URL
-        for (var i = 0; i < windowClients.length; i++) {
-            var client = windowClients[i];
-            // If so, just focus it.
-            if (client.url === url && 'focus' in client) {
-                return client.focus();
-            }
+    clients.matchAll({ type: "window" }).then((windowClients) => {
+      // Check if there is already a window/tab open with the target URL
+      for (var i = 0; i < windowClients.length; i++) {
+        var client = windowClients[i];
+        // If so, just focus it.
+        if (client.url === url && "focus" in client) {
+          return client.focus();
         }
-        // If not, then open the target URL in a new window/tab.
-        if (clients.openWindow) {
-            return clients.openWindow(url);
-        }
+      }
+      // If not, then open the target URL in a new window/tab.
+      if (clients.openWindow) {
+        return clients.openWindow(url);
+      }
     })
-);
-
-})
+  );
+});
 const messaging = firebase.messaging();

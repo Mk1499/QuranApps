@@ -20,8 +20,9 @@ export class NavbarComponent implements OnInit {
   urlLang: string;
   user: any;
   mode: string;
-  newNote:number; 
+  newNotes:number; 
   allNotes:Note[] = [];
+
   constructor(private router: Router,
     private langService: LangService,
     private auth: AuthService,
@@ -30,6 +31,11 @@ export class NavbarComponent implements OnInit {
 
     theme.modeChanging.subscribe(m => {
       this.mode = m
+    }); 
+    
+    msg.newNotesChanged.subscribe(n => {
+      this.allNotes.push(n) ;
+      this.newNotes++; 
     })
   }
 
@@ -40,7 +46,7 @@ export class NavbarComponent implements OnInit {
     this.user = JSON.parse(localStorage.getItem('quranUser'));
     this.mode = this.theme.mode;
     this.allNotes = this.msg.allNotes; 
-    this.newNote = this.msg.newNotes; 
+    this.newNotes = this.msg.newNotes; 
   }
 
   changeActive(active) {
@@ -56,5 +62,9 @@ export class NavbarComponent implements OnInit {
 
   toggleTheme() {
     this.theme.toggleTheme();
+  }
+
+  emptyNotes(){
+    this.newNotes = 0 ;
   }
 }

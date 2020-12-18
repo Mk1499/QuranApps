@@ -66,6 +66,22 @@ i {
 .dropdown-item:hover {
   background-color: gold;
 }
+
+.notesCount{
+  position: absolute;
+    background-color: red;
+    font-size: 1.8vh;
+    width: 2.4vh;
+    height: 2.4vh;
+    border-radius: 1.5vh;
+    text-align: center;
+    top: -1vh;
+}
+
+.noteDiv{
+  cursor: pointer;
+}
+
 @media (max-width: 966px) {
   .dropdown-menu {
     width: 100%;

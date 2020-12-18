@@ -88,20 +88,27 @@
         Search
       </button>
     </form> -->
-    <div class="dropdown my-2 my-lg-0" *ngIf="user">
-  
+    <div class="dropdown my-2 my-lg-0 noteDiv" *ngIf="user" >
       <i
-        class="fa fa-bell"
+        class="fa fa-bell "
         id="dropdownMenuButton"
-        I
         data-toggle="dropdown"
         aria-haspopup="true"
         aria-expanded="false"
+        (click)="emptyNotes()"
       ></i>
+
+      <div class="notesCount" *ngIf="newNotes > 0">{{ newNotes }}</div>
+
       <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-       
-        <a class="dropdown-item" *ngIf="allNotes?.length">Action</a>
-       
+        <div *ngIf="allNotes?.length">
+          <a class="dropdown-item" *ngFor="let note of allNotes">{{
+            note.body
+          }}</a>
+        </div>
+        <div *ngIf="!allNotes?.length">
+          <p class="text-center">No Notifications</p>
+        </div>
       </div>
     </div>
 
