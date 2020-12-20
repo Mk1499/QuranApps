@@ -1,3 +1,6 @@
+import { AdminHomeComponent } from './Screens/Admin/admin-home/admin-home.component';
+import { AdminComponent } from './Screens/Admin/admin/admin.component';
+import { AdminLoginComponent } from './Screens/Admin/login/login.component';
 import { ProfileComponent } from './Screens/profile/profile.component';
 import { StudentRegComponent } from './Screens/student-reg/student-reg.component';
 import { StudentLoginComponent } from './Screens/student-login/student-login.component';
@@ -8,8 +11,10 @@ import { TeacherProfileComponent } from './Screens/teacher-profile/teacher-profi
 import { LiberaryComponent } from './Screens/liberary/liberary.component';
 import { TeacherComponent } from './Screens/teacher/teacher.component';
 import { CarouselComponent } from './Components/carousel/carousel.component';
-import { AppComponent } from './app.component';
 import { LoginComponent } from './Screens/login/login.component';
+
+
+
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule, Router } from '@angular/router';
 
@@ -35,6 +40,7 @@ const routes: Routes = [
 
         ]
       },
+      { path: 'admin/login', component: AdminLoginComponent },
       { path: 'profile', component: ProfileComponent },
     ]
   },
@@ -54,6 +60,11 @@ const routes: Routes = [
           { path: 'library', component: LiberaryComponent }
         ]
       },
+      { path: 'admin', component: AdminComponent, children:[
+        {path:'',component:AdminHomeComponent}
+      ] },
+      { path: 'admin/login', component: AdminLoginComponent },
+
       { path: 'profile', component: ProfileComponent },
     ]
   },
@@ -61,10 +72,10 @@ const routes: Routes = [
 ]
 
 @NgModule({
-      imports: [RouterModule.forRoot(routes, {
-        initialNavigation: 'enabled'
-      })],
-      exports: [RouterModule]
-    })
+  imports: [RouterModule.forRoot(routes, {
+    initialNavigation: 'enabled'
+  })],
+  exports: [RouterModule]
+})
 export class AppRoutingModule {
 }

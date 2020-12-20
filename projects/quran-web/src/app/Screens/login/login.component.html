@@ -7,7 +7,7 @@
   </div>
   <div class="container cont">
     <div class="row">
-      <div class="col-md-6">
+      <div class="col-md-4">
         <div class="card">
           <div class="card-body">
             <h5 class="card-title">{{ "teacherLogin" | translate }}</h5>
@@ -23,7 +23,7 @@
           </div>
         </div>
       </div>
-      <div class="col-md-6">
+      <div class="col-md-4">
         <div class="card">
           <div class="card-body">
             <h5 class="card-title">{{ "studentLogin" | translate }}</h5>
@@ -33,6 +33,22 @@
             </p>
             <a
               [routerLink]="'/' + lang + '/login/student'"
+              class="btn btn-warning"
+              >{{ "loginNow" | translate }}</a
+            >
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">{{ "adminLogin" | translate }}</h5>
+            <h6 class="card-subtitle mb-2 text-muted">Admin</h6>
+            <p class="card-text">
+              as a Admin you can see many Teachers and enroll in any course
+            </p>
+            <a
+              [routerLink]="'/' + lang + '/admin/login'"
               class="btn btn-warning"
               >{{ "loginNow" | translate }}</a
             >

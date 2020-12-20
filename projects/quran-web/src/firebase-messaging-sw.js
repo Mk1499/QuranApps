@@ -15,7 +15,9 @@ this.addEventListener("notificationclick", (event) => {
     event.notification.data.FCM_MSG.notification.click_action ||
     "https://quranmk.herokuapp.com";
   event.notification.close();
+
   console.log("Note Clicked : ", event.notification);
+ 
   event.waitUntil(
     clients.matchAll({ type: "window" }).then((windowClients) => {
       // Check if there is already a window/tab open with the target URL

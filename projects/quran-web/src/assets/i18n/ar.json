@@ -36,5 +36,6 @@
   "logOut": "تسجيل الخروج",
   "loginNow": "سجل الدخول الان",
   "teacherLogin": "سجل الدخول كمعلم",
-  "studentLogin": "سجل الدخول كطالب"
+  "studentLogin": "سجل الدخول كطالب",
+  "adminLogin": "سجل الدخول كمدير"
 }

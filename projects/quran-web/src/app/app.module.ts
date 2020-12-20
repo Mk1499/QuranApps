@@ -1,3 +1,4 @@
+import { AdminLoginComponent } from './Screens/Admin/login/login.component';
 import { ThemesService } from './Services/themes.service';
 import { AuthService } from './Services/auth.service';
 import { LangService } from './Services/lang.service';
@@ -36,6 +37,9 @@ import { LoadingComponent } from './Components/loading/loading.component';
 import { StudentLoginComponent } from './Screens/student-login/student-login.component';
 import { StudentRegComponent } from './Screens/student-reg/student-reg.component';
 import { ProfileComponent } from './Screens/profile/profile.component';
+import { AdminComponent } from './Screens/Admin/admin/admin.component';
+import { AdminHomeComponent } from './Screens/Admin/admin-home/admin-home.component';
+import { SideBarComponent } from './Components/side-bar/side-bar.component';
 
 
 export function HttpLoaderFactory(httpClient: HttpClient) {
@@ -58,7 +62,11 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     LoadingComponent,
     StudentLoginComponent,
     StudentRegComponent,
-    ProfileComponent
+    ProfileComponent,
+    AdminLoginComponent,
+    AdminComponent,
+    AdminHomeComponent,
+    SideBarComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),

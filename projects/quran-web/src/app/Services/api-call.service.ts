@@ -64,4 +64,17 @@ export class ApiCallService {
       student: data.studentID
     })
   }
+
+
+  adminLogin(data): Observable<any> {
+    let url = this.baseURL + "/admin/login";
+    console.log("Login Data : ", data);
+
+    return this.http.post(url, {
+      email: data.email,
+      password: data.password
+    })
+  }
+
+
 }

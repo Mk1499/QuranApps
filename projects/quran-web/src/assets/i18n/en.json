@@ -36,6 +36,7 @@
   "logOut": "Log Out",
   "loginNow": "Login Now",
   "teacherLogin": "Login as a Teacher",
-  "studentLogin": "Login as a Student"
+  "studentLogin": "Login as a Student",
+  "adminLogin":"Login as an Admin"
 
 }
