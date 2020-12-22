@@ -1,0 +1,10 @@
+{
+  "projects": {
+    "quranMobile": {
+      "name": "quranMobile",
+      "integrations": {},
+      "type": "angular",
+      "root": "projects/quranMobile"
+    }
+  }
+}
