@@ -2,9 +2,14 @@
   "projects": {
     "quranMobile": {
       "name": "quranMobile",
-      "integrations": {},
+      "integrations": {
+        "capacitor": {}
+      },
       "type": "angular",
       "root": "projects/quranMobile"
     }
+  },
+  "integrations": {
+    "capacitor": {}
   }
 }
