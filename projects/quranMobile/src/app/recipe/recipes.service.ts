@@ -11,7 +11,7 @@ export class RecipesService {
     {
       id: 'R1',
       title: "Koshary",
-      imageUrl: "https://www.middleeasteye.net/sites/default/files/images-story/koshary_egypt_food_recipe_creative_commons_dina_said.jpg",
+      imageUrl: "https://egyptianstreets.com/wp-content/uploads/2017/08/Koshary-2.jpg",
       ingredients: ['Pasta', 'Rice']
     },
     {

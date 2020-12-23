@@ -1,3 +1,6 @@
+import { AdminTeacherProfileComponent } from './Screens/Admin/admin-teacher-profile/admin-teacher-profile.component';
+import { AdminStudentsComponent } from './Screens/Admin/admin-students/admin-students.component';
+import { AdminTeachersComponent } from './Screens/Admin/admin-teachers/admin-teachers.component';
 import { AdminHomeComponent } from './Screens/Admin/admin-home/admin-home.component';
 import { AdminComponent } from './Screens/Admin/admin/admin.component';
 import { AdminLoginComponent } from './Screens/Admin/login/login.component';
@@ -41,6 +44,14 @@ const routes: Routes = [
         ]
       },
       { path: 'admin/login', component: AdminLoginComponent },
+      {
+        path: 'admin', component: AdminComponent, children: [
+          { path: '', component: AdminHomeComponent },
+          { path: 'teachers', component: AdminTeachersComponent },
+          { path: 'teachers/:id', component: AdminTeacherProfileComponent },
+          { path: 'students', component: AdminStudentsComponent },
+        ]
+      },
       { path: 'profile', component: ProfileComponent },
     ]
   },
@@ -60,9 +71,15 @@ const routes: Routes = [
           { path: 'library', component: LiberaryComponent }
         ]
       },
-      { path: 'admin', component: AdminComponent, children:[
-        {path:'',component:AdminHomeComponent}
-      ] },
+      {
+        path: 'admin', component: AdminComponent, children: [
+          { path: '', component: AdminHomeComponent },
+          { path: 'teachers', component: AdminTeachersComponent },
+          { path: 'teachers/:id', component: AdminTeacherProfileComponent },
+          { path: 'students', component: AdminStudentsComponent },
+
+        ]
+      },
       { path: 'admin/login', component: AdminLoginComponent },
 
       { path: 'profile', component: ProfileComponent },

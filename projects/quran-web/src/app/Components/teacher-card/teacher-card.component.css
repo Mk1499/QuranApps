@@ -26,8 +26,14 @@
 
 
 .teacherEmail{
-    color:#666; 
+    color:#666;
 
+}
+.deleteBtn{
+  position: absolute;
+  left: -1vw;
+  top:-1vh;
+  z-index: 50;
 }
 
 /* @media only screen and (max-width:1200px){

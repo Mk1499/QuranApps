@@ -9,7 +9,7 @@
   padding-left: 5%;
   padding-top: 5%;
 }
-.active{
+.active , .active:hover,.active:focus {
   background-color: #333 !important;
 }
 

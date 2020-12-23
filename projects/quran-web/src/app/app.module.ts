@@ -17,6 +17,7 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFireModule } from '@angular/fire';
 import { environment } from '../environments/environment';
 import { AsyncPipe } from '@angular/common';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -40,6 +41,11 @@ import { ProfileComponent } from './Screens/profile/profile.component';
 import { AdminComponent } from './Screens/Admin/admin/admin.component';
 import { AdminHomeComponent } from './Screens/Admin/admin-home/admin-home.component';
 import { SideBarComponent } from './Components/side-bar/side-bar.component';
+import { AdminTeachersComponent } from './Screens/Admin/admin-teachers/admin-teachers.component';
+import { AdminStudentsComponent } from './Screens/Admin/admin-students/admin-students.component';
+import { AdminTeacherProfileComponent } from './Screens/Admin/admin-teacher-profile/admin-teacher-profile.component';
+import { AddItemComponent } from './Components/add-item/add-item.component';
+import { AddTeacherFormComponent } from './Components/add-teacher-form/add-teacher-form.component';
 
 
 export function HttpLoaderFactory(httpClient: HttpClient) {
@@ -66,7 +72,12 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     AdminLoginComponent,
     AdminComponent,
     AdminHomeComponent,
-    SideBarComponent
+    SideBarComponent,
+    AdminTeachersComponent,
+    AdminStudentsComponent,
+    AdminTeacherProfileComponent,
+    AddItemComponent,
+    AddTeacherFormComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
@@ -85,7 +96,8 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     AngularFireDatabaseModule,
     AngularFireAuthModule,
     AngularFireMessagingModule,
-    AngularFireModule.initializeApp(environment.firebase)
+    AngularFireModule.initializeApp(environment.firebase),
+    BrowserAnimationsModule
   ],
   providers: [ApiCallService,
     LangService,

@@ -1,3 +1,4 @@
+import { AuthService } from './../../Services/auth.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -9,13 +10,17 @@ export class SideBarComponent implements OnInit {
 
  activePage:string = 'dashboard';
 
-  constructor() { }
+  constructor(private auth:AuthService) { }
 
   ngOnInit(): void {
   }
 
   changeActive(name){
     this.activePage = name;
+  }
+
+  adminLogOut(){
+    this.auth.adminLogOut()
   }
 
 }

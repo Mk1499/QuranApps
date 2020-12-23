@@ -21,4 +21,9 @@ export class AuthService {
     this.router.navigateByUrl('/' + this.lang.urlLang)
   }
 
+  adminLogOut() {
+    localStorage.removeItem('quranAdmin');
+    this.router.navigateByUrl('/' + this.lang.urlLang)
+  }
+
 }
