@@ -8,16 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SideBarComponent implements OnInit {
 
- activePage:string = 'dashboard';
 
   constructor(private auth:AuthService) { }
 
   ngOnInit(): void {
   }
 
-  changeActive(name){
-    this.activePage = name;
-  }
 
   adminLogOut(){
     this.auth.adminLogOut()

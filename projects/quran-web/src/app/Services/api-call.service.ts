@@ -4,33 +4,34 @@ import { HttpClient } from '@angular/common/http'
 import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
 
+export const baseURL = "https://quranmkserver.herokuapp.com";
+
 @Injectable({
   providedIn: 'root'
 })
 export class ApiCallService {
-  baseURL = "https://quranmkserver.herokuapp.com";
 
   constructor(private http: HttpClient, private auth: AuthService) { }
   getTeachers(): Observable<any> {
-    let url = this.baseURL + "/teacher";
+    let url = baseURL + "/teacher";
     return this.http.get(url)
   }
   getSamples(): Observable<any> {
-    let url = this.baseURL + "/sample";
+    let url = baseURL + "/sample";
     return this.http.get(url)
   }
   getTeacherProfile(id): Observable<any> {
-    let url = this.baseURL + "/teacher/" + id;
+    let url = baseURL + "/teacher/" + id;
     return this.http.get(url);
   }
 
   getStudentProfile(id): Observable<any> {
-    let url = this.baseURL + "/student/" + id;
+    let url = baseURL + "/student/" + id;
     return this.http.get(url);
   }
 
   studentLogin(email, password): Observable<any> {
-    let url = this.baseURL + "/student/login";
+    let url = baseURL + "/student/login";
 
     return this.http.post(url, {
       email,
@@ -39,7 +40,7 @@ export class ApiCallService {
   }
 
   studentReg(user): Observable<any> {
-    let url = this.baseURL + "/student/add";
+    let url = baseURL + "/student/add";
 
     return this.http.post(url, {
       email: user.email,
@@ -50,7 +51,7 @@ export class ApiCallService {
 
   studentEnroll(data): Observable<any> {
 
-    let url = this.baseURL + "/student/enroll";
+    let url = baseURL + "/student/enroll";
     return this.http.post(url, {
       teacher: data.teacherID,
       student: data.studentID
@@ -58,7 +59,7 @@ export class ApiCallService {
   }
 
   studentUnEnroll(data): Observable<any> {
-    let url = this.baseURL + "/student/unenroll";
+    let url = baseURL + "/student/unenroll";
     return this.http.post(url, {
       teacher: data.teacherID,
       student: data.studentID
@@ -67,7 +68,7 @@ export class ApiCallService {
 
 
   adminLogin(data): Observable<any> {
-    let url = this.baseURL + "/admin/login";
+    let url = baseURL + "/admin/login";
     console.log("Login Data : ", data);
 
     return this.http.post(url, {

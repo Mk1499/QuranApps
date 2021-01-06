@@ -1,0 +1,22 @@
+.sidebar {
+  width: 100%;
+  height: 100vh;
+  /* background-color: honeydew; */
+  color: #333;
+  /* position: fixed; */
+  display: block;
+  font-family: Cairo;
+  padding-left: 5%;
+  padding-top: 5%;
+}
+.active , .active:hover,.active:focus {
+  background-color: #333 !important;
+}
+
+.list-group{
+  margin-top: 15%;
+}
+
+.menu-item{
+  cursor: pointer;
+}

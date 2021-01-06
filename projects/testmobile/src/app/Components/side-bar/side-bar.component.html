@@ -1,0 +1,32 @@
+<div class="sidebar bg-light border-right" id="sidebar-wrapper">
+  <div class="sidebar-heading h3">Quran Admin</div>
+  <div class="list-group list-group-flush">
+    <a
+      class="list-group-item list-group-item-action bg-light"
+      [ngClass]="activePage === 'dashboard' ? 'active' : ''"
+      (click)="changeActive('dashboard')"
+      [routerLink]="'./'"
+      >Dashboard</a
+    >
+    <a
+    class="list-group-item list-group-item-action bg-light menu-item"
+    [ngClass]="activePage === 'teachers' ? 'active' : ''"
+    (click)="changeActive('teachers')"
+    [routerLink]="'./teachers'"
+    >Teachers</a
+    >
+    <!-- <a
+      class="list-group-item list-group-item-action bg-light menu-item"
+      [ngClass]="activePage === 'students' ? 'active' : ''"
+      (click)="changeActive('students')"
+      [routerLink]="'./students'"
+      >Students</a
+    > -->
+
+    <a
+      class="list-group-item list-group-item-action bg-light menu-item"
+      (click)="adminLogOut()"
+      >Logout</a
+    >
+  </div>
+</div>

@@ -56,6 +56,7 @@ export class AddTeacherFormComponent implements OnInit {
       }
       this.errMsg = "";
       this.teacherSubmited.emit(teacher);
+      this.hideForm()
     }
   }
 

@@ -1,6 +1,8 @@
+import { Subscription } from 'rxjs';
+import { TeacherService } from './../../../Services/teacher.service';
 import { ApiCallService } from './../../../Services/api-call.service';
 import { Teacher } from './../../../Interfaces/teacher';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { transition, trigger, state, style, animate } from '@angular/animations';
 
 @Component({
@@ -23,15 +25,20 @@ import { transition, trigger, state, style, animate } from '@angular/animations'
     ]),
   ]
 })
-export class AdminTeachersComponent implements OnInit {
+export class AdminTeachersComponent implements OnInit, OnDestroy {
 
   teachers: Teacher[] = [];
   teachersCopy: Teacher[];
+  addedTeachers: Teacher[] = [];
+
   filterName: string;
   loadTeachers: boolean = true;
   activeMode: string = "show";
+  teachSub: Subscription;
 
-  constructor(private api: ApiCallService) { }
+  constructor(
+    private api: ApiCallService,
+    private teacherService: TeacherService) { }
 
   ngOnInit(): void {
     this.api.getTeachers().subscribe(data => {
@@ -71,6 +78,7 @@ export class AdminTeachersComponent implements OnInit {
     console.log("Received teacher : ", teacher);
 
     this.teachers.push(teacher);
+    this.addedTeachers.push(teacher);
 
     this.activeMode = 'edit'
   }
@@ -83,7 +91,16 @@ export class AdminTeachersComponent implements OnInit {
   submitEditing() {
     this.teachersCopy = this.teachers;
     this.activeMode = 'show';
+    if (this.addedTeachers.length) {
+      this.teachSub = this.teacherService.addManyTeachers(this.addedTeachers).subscribe(data => {
+        console.log("Teachers Added : ", data);
+        this.addedTeachers = []
+      })
+    }
   }
-
+  ngOnDestroy() {
+    if (this.teachSub)
+      this.teachSub.unsubscribe();
+  }
 
 }

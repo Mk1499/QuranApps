@@ -1,0 +1,83 @@
+<div class="container admin">
+  <div class="row">
+    <div class="col-md-6 offset-md-3">
+      <div class="input-group mb-3">
+        <!-- <div class="input-group-prepend">
+          <span class="input-group-text fa fa-search" id="basic-addon1"></span>
+        </div> -->
+        <input
+          type="text"
+          class="form-control filterInput"
+          placeholder="Filter by Name"
+          aria-label="Username"
+          aria-describedby="basic-addon1"
+          [(ngModel)]="filterName"
+          (keyup)="filterTeacehers()"
+        />
+      </div>
+    </div>
+    <div class="col-md-3 text-center">
+      <button
+        class="btn btn-warning m-3"
+        *ngIf="activeMode === 'show'"
+        (click)="changeMode('edit')"
+      >
+        <i class="fa fa-edit"></i>
+        Edit
+      </button>
+      <button class="btn btn-success m-3" *ngIf="activeMode === 'edit'" (click)="submitEditing('show')">
+        <i class="fa fa-check-circle"></i>
+        Submit
+      </button>
+      <button
+        class="btn btn-primary"
+        *ngIf="activeMode === 'edit'"
+        (click)="cancelEditMode()"
+      >
+        <i class="fa fa-times-circle"></i>
+        Cancel
+      </button>
+    </div>
+  </div>
+
+  <div class="row text-center">
+    <div class="col-sm-12">
+      <div class="loadCont" *ngIf="loadTeachers">
+        <img
+          src="../../../../assets/images/loading.gif"
+          alt=""
+          class="loadImg"
+        />
+      </div>
+      <ul class="teachers row" >
+        <li
+            class="teacherItem col-md-3"
+            *ngFor="let teacher of teachers"
+            >
+
+              <teacher-card [mode]="activeMode" [teacher]="teacher" (delTeacher)="deleteTeacher($event)"></teacher-card>
+        </li>
+
+        <li class="teacherItem col-md-3" *ngIf="activeMode === 'edit'">
+          <comp-add-item
+            [itemName]="'Teacher'"
+            (addAction)="addPressed()"
+          ></comp-add-item>
+        </li>
+      </ul>
+      <p *ngIf="filterName && !teachers.length">
+        Sorry but there is no teachers with name :
+        <span class="filterName">{{ filterName }}</span>
+      </p>
+    </div>
+  </div>
+</div>
+
+<div class="addFormCont" *ngIf="activeMode === 'addTeacher'">
+  <div class="addForm">
+    <comp-add-teacher-form
+      (teacherSubmited)="addTeacher($event)"
+      (hideForm)="changeMode('edit')"
+    ></comp-add-teacher-form>
+  </div>
+</div>

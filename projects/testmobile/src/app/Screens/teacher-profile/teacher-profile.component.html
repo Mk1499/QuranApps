@@ -1,0 +1,74 @@
+<div class="container">
+  <div class="loadCont" *ngIf="!teacher">
+    <img src="../../../assets/images/loading.gif" alt="" class="loadImg" />
+  </div>
+  <div *ngIf="teacher; container">
+    <div class="row head">
+      <div class="teacherDataLeft col-md-6">
+        <div class="row">
+          <div class="col-md-5">
+            <img class="profileImg" [src]="teacher?.avatar" />
+          </div>
+          <div class="col-md-6 teacherData">
+            <p class="h3 teacherName">
+              {{ lang === "ar" ? teacher?.arName : teacher?.name }}
+            </p>
+            <p class="teacherSub">
+              <strong>Students : </strong> {{ teacher?.students.length }}
+            </p>
+            <p class="teacherSub">
+              <strong>Samples : </strong> {{ teacher?.samples.length }}
+            </p>
+            <p class="teacherSub">
+              <strong>Price : </strong> {{ teacher?.price | currency: "EGP" }}
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="teacherDataRight col-md-6" *ngIf="user">
+        <button
+          class="btn btn-warning enrollBtn"
+          *ngIf="!enrolled"
+          (click)="enroll()"
+        >
+          <p *ngIf="!loading" class="btnText h3">
+            {{ "enroll" | translate }}
+          </p>
+          <img
+            *ngIf="loading"
+            src="../../../assets/images/loading.gif"
+            alt=""
+            class="loadingImg"
+          />
+        </button>
+        <button
+          class="btn btn-warning enrollBtn"
+          *ngIf="enrolled"
+          (click)="unEnroll()"
+        >
+          <p *ngIf="!loading" class="btnText h3">
+            {{ "unEnroll" | translate }}
+          </p>
+          <img
+            *ngIf="loading"
+            src="../../../assets/images/loading.gif"
+            alt=""
+            class="loadingImg"
+          />
+        </button>
+      </div>
+    </div>
+
+    <div class="header">
+      <h2 class="text-center h1">{{ "samples" | translate }}</h2>
+      <div class="line"></div>
+    </div>
+    <div class="row samples">
+      <sample-card
+        class="col-md-4"
+        *ngFor="let sample of teacher?.samples"
+        [sample]="sample"
+      ></sample-card>
+    </div>
+  </div>
+</div>

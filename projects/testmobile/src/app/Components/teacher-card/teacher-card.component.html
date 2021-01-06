@@ -1,0 +1,17 @@
+<div class="animate__animated" [ngClass]="animateClass">
+  <div class="cardItem" [routerLink]="['./', teacher._id]">
+    <img [src]="teacher.avatar" class="teacherImg" />
+    <h3 class="teacherName">
+      {{ lang === "ar" ? teacher?.arName : teacher.name }}
+    </h3>
+    <p class="teacherEmail">{{ teacher.email }}</p>
+  </div>
+
+  <button
+    *ngIf="mode === 'edit'"
+    class="btn btn-danger deleteBtn"
+    (click)="deleteTeacher(teacher._id)"
+  >
+    <i class="fa fa-trash"></i>
+  </button>
+</div>

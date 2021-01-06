@@ -18,10 +18,9 @@
   }
   .logoImg {
     border-radius: 50%;
-    width: 9vw;
-    height: 20%;
+    height: 20vh;
   }
-  
+
   input.form-control {
     margin: 5% 0;
     height: 8vh;
@@ -52,10 +51,9 @@
       color: gold;
       cursor: pointer;
   }
-  
+
   @media (min-width: 1025px) {
     .view {
       width: 40%;
     }
   }
-  

@@ -1,0 +1,60 @@
+.cont {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: Cairo;
+  background-color: #eee;
+}
+.view {
+  width: 90%;
+  /* height: 40%; */
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  padding: 5%;
+  border-radius: 5%;
+  background-color: #333;
+  color: #fff;
+}
+.logoImg {
+  border-radius: 50%;
+  width: 120px;
+  height: 120px;
+}
+
+input.form-control {
+  margin: 5% 0;
+  height: 8vh;
+  border-radius: 2vh;
+  border-color: gold;
+}
+.btnCont {
+  display: flex;
+  justify-content: center;
+}
+.btn {
+  border-radius: 2vh;
+  width: 50%;
+  height: 8vh;
+}
+.gold {
+  color: gold;
+  font-size: 5vh;
+  /* -webkit-text-stroke: 1px black; */
+}
+.btnLoad {
+  height: 100%;
+}
+.signUp {
+  margin: 2vh 0;
+}
+.link {
+  color: gold;
+  cursor: pointer;
+}
+
+@media (min-width: 1025px) {
+  .view {
+    width: 40%;
+  }
+}

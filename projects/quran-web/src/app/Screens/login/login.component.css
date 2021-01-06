@@ -2,7 +2,8 @@
     background-color: #333;
     min-width: 100vw;
     min-height: 100vh;
-    
+    overflow: auto;
+
 }
 .cont {
   /* width: 100vw; */
@@ -51,7 +52,7 @@ input.form-control{
 .btn{
     border-radius: 2vh;
     /* width: 50%; */
-    
+
 }
 .gold {
     color: gold;

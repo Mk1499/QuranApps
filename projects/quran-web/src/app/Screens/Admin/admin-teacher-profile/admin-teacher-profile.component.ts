@@ -31,11 +31,13 @@ export class AdminTeacherProfileComponent implements OnInit {
     this.teacherID = this.activeRoute.snapshot.params['id'];
     this.apiService.getTeacherProfile(this.teacherID).subscribe(t => {
       this.teacher = t;
-      if (this.teacher.students.includes(this.user?._id)) {
-        this.enrolled = true
-      } else {
-        this.enrolled = false
-      }
+      console.log("Teacher Data : ",t);
+
+      // if (this.teacher?.students?.includes(this.user?._id)) {
+      //   this.enrolled = true
+      // } else {
+      //   this.enrolled = false
+      // }
 
       this.title.setTitle(this.teacher.name || "Teacher Profile")
     })

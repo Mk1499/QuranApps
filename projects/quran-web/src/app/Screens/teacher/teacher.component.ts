@@ -17,15 +17,13 @@ export class TeacherComponent implements OnInit {
   constructor(private apiService:ApiCallService , private title:Title,private translate:TranslateService) { }
 
   ngOnInit(): void {
-    
+
    this.apiService.getTeachers().subscribe(t => {
-      this.teachers = t.teachers; 
+      this.teachers = t.teachers;
     });
     this.translate.get('teachers').subscribe(t => {
       this.title.setTitle(t)
     })
-    
- 
   }
 
 }

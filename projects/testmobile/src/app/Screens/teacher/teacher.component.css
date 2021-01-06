@@ -1,0 +1,40 @@
+.header {
+  margin-top: 5vh;
+}
+.line {
+  background: url(https://vatican.modeltheme.com/wp-content/plugins/modeltheme-framework/inc/shortcodes/img/delimiter_dark.png)
+    no-repeat center center;
+  height: 5vh;
+}
+.desc{
+    margin-top: 2vh;
+    color: #666666;
+    font-family: Cairo;
+}
+h1{
+  /* font-family: Oswald; */
+  font-family: Cairo;
+}
+
+.teachers{
+    /* height: 50vh; */
+    margin-top: 10vh;
+    margin-bottom: 10vh;
+    width:100%;
+    list-style-type: none;
+    justify-content: center;
+
+}
+
+.teacherItem{
+    /* width: 20%; */
+    display: inline-block;
+    padding: 0;
+}
+
+/* 
+@media only screen and (max-width:1200px){
+  .teacherItem{
+    display: block;
+  }
+} */

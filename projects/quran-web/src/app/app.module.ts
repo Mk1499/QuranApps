@@ -18,6 +18,8 @@ import { AngularFireModule } from '@angular/fire';
 import { environment } from '../environments/environment';
 import { AsyncPipe } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ChartsModule } from 'ng2-charts';
+
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -46,6 +48,8 @@ import { AdminStudentsComponent } from './Screens/Admin/admin-students/admin-stu
 import { AdminTeacherProfileComponent } from './Screens/Admin/admin-teacher-profile/admin-teacher-profile.component';
 import { AddItemComponent } from './Components/add-item/add-item.component';
 import { AddTeacherFormComponent } from './Components/add-teacher-form/add-teacher-form.component';
+import { IonicModule } from '@ionic/angular';
+import { LogoComponent } from './Components/logo/logo.component';
 
 
 export function HttpLoaderFactory(httpClient: HttpClient) {
@@ -78,6 +82,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     AdminTeacherProfileComponent,
     AddItemComponent,
     AddTeacherFormComponent,
+    LogoComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
@@ -97,7 +102,9 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     AngularFireAuthModule,
     AngularFireMessagingModule,
     AngularFireModule.initializeApp(environment.firebase),
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    IonicModule.forRoot(),
+    ChartsModule
   ],
   providers: [ApiCallService,
     LangService,

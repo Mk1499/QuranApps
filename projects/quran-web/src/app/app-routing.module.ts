@@ -1,3 +1,4 @@
+import { AddItemComponent } from './Components/add-item/add-item.component';
 import { AdminTeacherProfileComponent } from './Screens/Admin/admin-teacher-profile/admin-teacher-profile.component';
 import { AdminStudentsComponent } from './Screens/Admin/admin-students/admin-students.component';
 import { AdminTeachersComponent } from './Screens/Admin/admin-teachers/admin-teachers.component';
@@ -46,7 +47,7 @@ const routes: Routes = [
       { path: 'admin/login', component: AdminLoginComponent },
       {
         path: 'admin', component: AdminComponent, children: [
-          { path: '', component: AdminHomeComponent },
+          { path: '', component: AdminHomeComponent , pathMatch:'full' },
           { path: 'teachers', component: AdminTeachersComponent },
           { path: 'teachers/:id', component: AdminTeacherProfileComponent },
           { path: 'students', component: AdminStudentsComponent },

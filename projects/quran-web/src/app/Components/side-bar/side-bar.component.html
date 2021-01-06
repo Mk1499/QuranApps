@@ -3,25 +3,23 @@
   <div class="list-group list-group-flush">
     <a
       class="list-group-item list-group-item-action bg-light"
-      [ngClass]="activePage === 'dashboard' ? 'active' : ''"
-      (click)="changeActive('dashboard')"
+      routerLinkActive="active"
       [routerLink]="'./'"
+      [routerLinkActiveOptions]="{ exact: true }"
       >Dashboard</a
     >
     <a
-    class="list-group-item list-group-item-action bg-light menu-item"
-    [ngClass]="activePage === 'teachers' ? 'active' : ''"
-    (click)="changeActive('teachers')"
-    [routerLink]="'./teachers'"
-    >Teachers</a
-    >
-    <!-- <a
       class="list-group-item list-group-item-action bg-light menu-item"
-      [ngClass]="activePage === 'students' ? 'active' : ''"
-      (click)="changeActive('students')"
+      routerLinkActive="active"
+      [routerLink]="'./teachers'"
+      >Teachers</a
+    >
+    <a
+      class="list-group-item list-group-item-action bg-light menu-item"
+      routerLinkActive="active"
       [routerLink]="'./students'"
       >Students</a
-    > -->
+    >
 
     <a
       class="list-group-item list-group-item-action bg-light menu-item"

@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">quranMob</string>
+    <string name="title_activity_main">quranMob</string>
+    <string name="package_name">io.mk14.quranMobile</string>
+    <string name="custom_url_scheme">io.mk14.quranMobile</string>
+</resources>
