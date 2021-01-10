@@ -20,15 +20,18 @@ import { LoginComponent } from './Screens/login/login.component';
 
 
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule, Router } from '@angular/router';
+import { Routes, RouterModule} from '@angular/router';
 
 const lang = localStorage.getItem('lang') || 'ar';
+
+
+
 console.log("LAng : ", lang);
 
 
 const routes: Routes = [
   {
-    path: 'ar', component: SplashComponent,
+    path: lang, component: SplashComponent,
     children: [
       { path: '', component: LoadingComponent },
       { path: 'login', component: LoginComponent },
@@ -47,7 +50,7 @@ const routes: Routes = [
       { path: 'admin/login', component: AdminLoginComponent },
       {
         path: 'admin', component: AdminComponent, children: [
-          { path: '', component: AdminHomeComponent , pathMatch:'full' },
+          { path: '', component: AdminHomeComponent, pathMatch: 'full' },
           { path: 'teachers', component: AdminTeachersComponent },
           { path: 'teachers/:id', component: AdminTeacherProfileComponent },
           { path: 'students', component: AdminStudentsComponent },
@@ -56,36 +59,36 @@ const routes: Routes = [
       { path: 'profile', component: ProfileComponent },
     ]
   },
-  {
-    path: 'en', component: SplashComponent,
-    children: [
-      { path: '', component: LoadingComponent },
-      { path: 'login', component: LoginComponent },
-      { path: 'login/student', component: StudentLoginComponent },
-      { path: 'reg/student', component: StudentRegComponent },
+  // {
+  //   path: 'en', component: SplashComponent,
+  //   children: [
+  //     { path: '', component: LoadingComponent },
+  //     { path: 'login', component: LoginComponent },
+  //     { path: 'login/student', component: StudentLoginComponent },
+  //     { path: 'reg/student', component: StudentRegComponent },
 
-      {
-        path: 'home', component: HomeComponent, children: [
-          { path: '', component: CarouselComponent },
-          { path: 'teachers', component: TeacherComponent },
-          { path: 'teachers/:id', component: TeacherProfileComponent },
-          { path: 'library', component: LiberaryComponent }
-        ]
-      },
-      {
-        path: 'admin', component: AdminComponent, children: [
-          { path: '', component: AdminHomeComponent },
-          { path: 'teachers', component: AdminTeachersComponent },
-          { path: 'teachers/:id', component: AdminTeacherProfileComponent },
-          { path: 'students', component: AdminStudentsComponent },
+  //     {
+  //       path: 'home', component: HomeComponent, children: [
+  //         { path: '', component: CarouselComponent },
+  //         { path: 'teachers', component: TeacherComponent },
+  //         { path: 'teachers/:id', component: TeacherProfileComponent },
+  //         { path: 'library', component: LiberaryComponent }
+  //       ]
+  //     },
+  //     {
+  //       path: 'admin', component: AdminComponent, children: [
+  //         { path: '', component: AdminHomeComponent },
+  //         { path: 'teachers', component: AdminTeachersComponent },
+  //         { path: 'teachers/:id', component: AdminTeacherProfileComponent },
+  //         { path: 'students', component: AdminStudentsComponent },
 
-        ]
-      },
-      { path: 'admin/login', component: AdminLoginComponent },
+  //       ]
+  //     },
+  //     { path: 'admin/login', component: AdminLoginComponent },
 
-      { path: 'profile', component: ProfileComponent },
-    ]
-  },
+  //     { path: 'profile', component: ProfileComponent },
+  //   ]
+  // },
   { path: "**", redirectTo: lang }
 ]
 

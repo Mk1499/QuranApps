@@ -1,13 +1,13 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([["polyfills"],{
 
 /***/ 1:
-/*!****************************************************!*\
-  !*** multi ./projects/testmobile/src/polyfills.ts ***!
-  \****************************************************/
+/*!***************************************************!*\
+  !*** multi ./projects/quran-web/src/polyfills.ts ***!
+  \***************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /media/mkhaled/46229A46229A3B3F/Applications/Web/Angular/QuranApps/projects/testmobile/src/polyfills.ts */"ifmk");
+module.exports = __webpack_require__(/*! /media/mkhaled/46229A46229A3B3F/Applications/Web/Angular/QuranApps/projects/quran-web/src/polyfills.ts */"crj5");
 
 
 /***/ }),
@@ -38,10 +38,10 @@ module.exports = __webpack_require__(/*! /media/mkhaled/46229A46229A3B3F/Applica
 
 /***/ }),
 
-/***/ "ifmk":
-/*!**********************************************!*\
-  !*** ./projects/testmobile/src/polyfills.ts ***!
-  \**********************************************/
+/***/ "crj5":
+/*!*********************************************!*\
+  !*** ./projects/quran-web/src/polyfills.ts ***!
+  \*********************************************/
 /*! no exports provided */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
