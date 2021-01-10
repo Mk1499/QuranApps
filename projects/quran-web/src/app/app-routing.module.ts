@@ -20,9 +20,9 @@ import { LoginComponent } from './Screens/login/login.component';
 
 
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule} from '@angular/router';
+import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
 
-const lang = localStorage.getItem('lang') || 'ar';
+const lang = localStorage.getItem('lang') || 'en';
 
 
 
@@ -31,13 +31,12 @@ console.log("LAng : ", lang);
 
 const routes: Routes = [
   {
-    path: lang, component: SplashComponent,
+    path: 'ar', component: SplashComponent,
     children: [
       { path: '', component: LoadingComponent },
       { path: 'login', component: LoginComponent },
       { path: 'login/student', component: StudentLoginComponent },
       { path: 'reg/student', component: StudentRegComponent },
-
       {
         path: 'home', component: HomeComponent, children: [
           { path: '', component: CarouselComponent },
@@ -47,54 +46,37 @@ const routes: Routes = [
 
         ]
       },
-      { path: 'admin/login', component: AdminLoginComponent },
-      {
-        path: 'admin', component: AdminComponent, children: [
-          { path: '', component: AdminHomeComponent, pathMatch: 'full' },
-          { path: 'teachers', component: AdminTeachersComponent },
-          { path: 'teachers/:id', component: AdminTeacherProfileComponent },
-          { path: 'students', component: AdminStudentsComponent },
-        ]
-      },
+      { path: 'admin', loadChildren: () => import('./Screens/Admin/admin.module').then(m => m.AdminModule) },
       { path: 'profile', component: ProfileComponent },
     ]
   },
-  // {
-  //   path: 'en', component: SplashComponent,
-  //   children: [
-  //     { path: '', component: LoadingComponent },
-  //     { path: 'login', component: LoginComponent },
-  //     { path: 'login/student', component: StudentLoginComponent },
-  //     { path: 'reg/student', component: StudentRegComponent },
+  {
+    path: 'en', component: SplashComponent,
+    children: [
+      { path: '', component: LoadingComponent },
+      { path: 'login', component: LoginComponent },
+      { path: 'login/student', component: StudentLoginComponent },
+      { path: 'reg/student', component: StudentRegComponent },
+      {
+        path: 'home', component: HomeComponent, children: [
+          { path: '', component: CarouselComponent },
+          { path: 'teachers', component: TeacherComponent },
+          { path: 'teachers/:id', component: TeacherProfileComponent },
+          { path: 'library', component: LiberaryComponent },
 
-  //     {
-  //       path: 'home', component: HomeComponent, children: [
-  //         { path: '', component: CarouselComponent },
-  //         { path: 'teachers', component: TeacherComponent },
-  //         { path: 'teachers/:id', component: TeacherProfileComponent },
-  //         { path: 'library', component: LiberaryComponent }
-  //       ]
-  //     },
-  //     {
-  //       path: 'admin', component: AdminComponent, children: [
-  //         { path: '', component: AdminHomeComponent },
-  //         { path: 'teachers', component: AdminTeachersComponent },
-  //         { path: 'teachers/:id', component: AdminTeacherProfileComponent },
-  //         { path: 'students', component: AdminStudentsComponent },
-
-  //       ]
-  //     },
-  //     { path: 'admin/login', component: AdminLoginComponent },
-
-  //     { path: 'profile', component: ProfileComponent },
-  //   ]
-  // },
+        ]
+      },
+      { path: 'admin', loadChildren: () => import('./Screens/Admin/admin.module').then(m => m.AdminModule) },
+      { path: 'profile', component: ProfileComponent },
+    ]
+  },
   { path: "**", redirectTo: lang }
 ]
 
 @NgModule({
   imports: [RouterModule.forRoot(routes, {
-    initialNavigation: 'enabled'
+    initialNavigation: 'enabled',
+    preloadingStrategy: PreloadAllModules
   })],
   exports: [RouterModule]
 })

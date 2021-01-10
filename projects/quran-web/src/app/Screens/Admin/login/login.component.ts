@@ -39,7 +39,7 @@ export class AdminLoginComponent implements OnInit, OnDestroy {
       console.log("Admin Login Data : ", data);
       localStorage.setItem('quranAdmin', data);
       this.loading = false;
-      this.router.navigateByUrl("/" + this.l.urlLang + '/admin')
+      this.router.navigateByUrl("/" + this.l.urlLang + '/admin/home')
     }
       ,
       err => {

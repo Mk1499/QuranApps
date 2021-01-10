@@ -1,5 +1,5 @@
 {
-  "siteName":"القرأن المعلم",
+  "siteName": "القرأن المعلم",
   "genres": "الفئات",
   "books": "الكتب",
   "authors": "المؤلفون",
@@ -32,10 +32,11 @@
   "otherLang": "English",
   "samples": "مقتطفات",
   "enroll": "أشتراك",
-  "unEnroll":"الغاء الاشتراك",
+  "unEnroll": "الغاء الاشتراك",
   "logOut": "تسجيل الخروج",
   "loginNow": "سجل الدخول الان",
   "teacherLogin": "سجل الدخول كمعلم",
   "studentLogin": "سجل الدخول كطالب",
-  "adminLogin": "سجل الدخول كمدير"
+  "adminLogin": "سجل الدخول كمدير",
+  "admin": "مدير"
 }
