@@ -1,0 +1,29 @@
+<section class="cont">
+  <div class="cover"></div>
+  <div class="imgCont">
+    <img [src]="teacherData.avatar" alt="" class="profileImg">
+    <p class="h2 teacherName">{{teacherData.name}}</p >
+  </div>
+  <div class="container teacherData">
+    <div class="row h3">
+      <strong class="label">{{"email" | translate}} :  </strong>
+      <p> {{teacherData.email}} </p>
+    </div>
+    <div class="row h3">
+      <strong class="label">{{'samplesNum' | translate}} :  </strong>
+      <p> {{teacherData.samples.length}} </p>
+    </div>
+    <div class="row h3">
+      <strong class="label">{{"studentsNum" | translate}} :  </strong>
+      <p> {{teacherData.students.length}} </p>
+    </div>
+    <div class="row h3">
+      <strong class="label">{{"enrollPrice" | translate}} :  </strong>
+      <p> {{teacherData.price | currency: "EGP" }} </p>
+    </div>
+    <div class="row h3">
+      <strong class="label">{{"credit" | translate}} :  </strong>
+      <p> {{teacherData.price * teacherData.students.length | currency: "EGP" }} </p>
+    </div>
+  </div>
+</section>

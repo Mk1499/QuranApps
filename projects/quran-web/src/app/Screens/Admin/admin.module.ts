@@ -1,7 +1,6 @@
 import { SharedModule } from '../../shared/shared.module';
 import { AddTeacherFormComponent } from './../../Components/add-teacher-form/add-teacher-form.component';
 import { SideBarComponent } from './../../Components/side-bar/side-bar.component';
-import { LogoComponent } from './../../Components/logo/logo.component';
 import { AdminRouting } from './admin.routing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
@@ -28,7 +27,6 @@ import { ChartsModule } from 'ng2-charts';
     AdminTeachersComponent,
     AdminComponent,
     AdminHomeComponent,
-    LogoComponent,
     SideBarComponent,
     AddTeacherFormComponent,
     AddItemComponent,

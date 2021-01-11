@@ -2,23 +2,17 @@
   <div class="view">
     <div class="text-center">
       <form class="form-signin" (submit)="login()">
-        <img
-          class="mb-4 logoImg"
-          src="../../../assets/images/logo.jpg"
-          alt=""
-          width="72"
-          height="72"
-        />
+       <app-logo-img></app-logo-img>
         <h1 class=" mb-3 font-weight-normal">
           Mo<span class="gold">3</span>alem
         </h1>
-        <p class="h3">Student</p>
+        <p class="h3">{{"sheikh" | translate}}</p>
         <label for="inputEmail" class="sr-only">Email address</label>
         <input
           type="email"
           id="inputEmail"
           class="form-control"
-          placeholder="Email addressv"
+          placeholder="Email address"
           required
           autofocus=""
           name="email"
@@ -40,8 +34,7 @@
             <span *ngIf="!loading"> Sign in </span>
           </button>
         </div>
-        <p class="signUp">Don't Have an account ? <span class="link" [routerLink]="'/'+lang+'/reg/student'">Sign Up Now</span> </p>
-        <p class="mt-5 mb-3 text-muted">© 2020-2021</p>
+        <p class="signUp">Don't Have an account ? <span class="link" [routerLink]="['../signup']">Sign Up Now</span> </p>
         <p>{{ errMsg }}</p>
       </form>
     </div>

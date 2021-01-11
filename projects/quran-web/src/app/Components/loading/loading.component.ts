@@ -10,6 +10,7 @@ import { Component, OnInit } from '@angular/core';
 export class LoadingComponent implements OnInit {
 
   storedUser:string = localStorage.getItem('quranUser');
+  storedTeacher:string = localStorage.getItem('quranTeacher');
   storedAdmin:string = localStorage.getItem('quranAdmin');
 
   constructor(private router:Router,private langS : LangService) { }
@@ -19,19 +20,21 @@ export class LoadingComponent implements OnInit {
 
     if (this.storedUser){
       setTimeout(()=>{
-
-        this.router.navigateByUrl(this.langS.urlLang+'/home')
+        this.router.navigateByUrl(this.langS.urlLang+'/student')
       },2000)
     }
-    if (this.storedAdmin){
+    else if (this.storedAdmin){
       setTimeout(()=>{
-
         this.router.navigateByUrl(this.langS.urlLang+'/admin')
+      },2000)
+    }
+    else if (this.storedTeacher){
+      setTimeout(()=>{
+        this.router.navigateByUrl(this.langS.urlLang+'/teacher')
       },2000)
     }
     else {
       setTimeout(()=>{
-
         this.router.navigateByUrl(this.langS.urlLang+'/login')
       },2000)
     }

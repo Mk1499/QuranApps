@@ -11,7 +11,7 @@ import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 
 import { NgModule } from "@angular/core";
-import { StudentRouting } from './student.routing';
+import { StudentRouting } from "./student.routing";
 
 
 

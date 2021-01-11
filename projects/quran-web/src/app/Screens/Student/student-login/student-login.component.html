@@ -2,7 +2,7 @@
   <div class="view">
     <div class="text-center">
       <form class="form-signin" (submit)="login()">
-       <!-- <app-logo-img></app-logo-img> -->
+       <app-logo-img></app-logo-img>
         <h1 class=" mb-3 font-weight-normal">
           Mo<span class="gold">3</span>alem
         </h1>
@@ -35,7 +35,6 @@
           </button>
         </div>
         <p class="signUp">Don't Have an account ? <span class="link" [routerLink]="['../signup']">Sign Up Now</span> </p>
-        <p class="mt-5 mb-3 text-muted">© 2020-2021</p>
         <p>{{ errMsg }}</p>
       </form>
     </div>

@@ -8,7 +8,6 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class LangService {
   urlLang: string;
-
   constructor(private router: Router, private trans: TranslateService) {
     this.intialization()
   }

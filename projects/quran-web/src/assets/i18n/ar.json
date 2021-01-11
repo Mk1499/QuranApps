@@ -26,6 +26,7 @@
   "reads": "عدد القراءات",
   "teachers": "المعلمون",
   "library": "المكتبة",
+  "students":"الطلاب",
   "home": "الرئيسية",
   "darkMode": "الوضع الداكن",
   "about": "من نحن",
@@ -45,5 +46,7 @@
   "joz2":"الجزء",
   "studentsNum":"عدد الطلاب",
   "samplesNum":"عدد الامثله",
-  "enrollPrice":"سعر الاشتراك"
+  "enrollPrice":"سعر الاشتراك",
+  "credit":"الرصيد",
+  "min":"دقيقة"
 }

@@ -28,21 +28,9 @@ const routes: Routes = [
     children: [
       { path: '', component: LoadingComponent },
       { path: 'login', component: LoginComponent },
-      // { path: 'login/student', component: StudentLoginComponent },
-      // { path: 'reg/student', component: StudentRegComponent },
-      // {
-      //   path: 'home', component: HomeComponent, children: [
-      //     { path: '', component: CarouselComponent },
-      //     { path: 'teachers', component: TeacherComponent },
-      //     { path: 'teachers/:id', component: TeacherProfileComponent },
-      //     { path: 'library', component: LiberaryComponent },
-
-      //   ]
-      // },
       { path: 'admin', loadChildren: () => import('./Screens/Admin/admin.module').then(m => m.AdminModule) },
-      {
-        path: 'student', loadChildren: () => import('./Screens/Student/student.module').then(m => m.StudentModule)
-      },
+      { path: 'student', loadChildren: () => import('./Screens/Student/student.module').then(m => m.StudentModule) },
+      { path: 'teacher', loadChildren: () => import('./Screens/Teacher/teacher.module').then(m => m.TeacherModule) },
     ]
   },
   {
@@ -50,20 +38,9 @@ const routes: Routes = [
     children: [
       { path: '', component: LoadingComponent },
       { path: 'login', component: LoginComponent },
-      // { path: 'login/student', component: StudentLoginComponent },
-      // { path: 'reg/student', component: StudentRegComponent },
-      // {
-      //   path: 'home', component: HomeComponent, children: [
-      //     { path: '', component: CarouselComponent },
-      //     { path: 'teachers', component: TeacherComponent },
-      //     { path: 'teachers/:id', component: TeacherProfileComponent },
-      //     { path: 'library', component: LiberaryComponent },
-
-      //   ]
-      // },
       { path: 'admin', loadChildren: () => import('./Screens/Admin/admin.module').then(m => m.AdminModule) },
       { path: 'student', loadChildren: () => import('./Screens/Student/student.module').then(m => m.StudentModule) },
-
+      { path: 'teacher', loadChildren: () => import('./Screens/Teacher/teacher.module').then(m => m.TeacherModule) },
     ]
   },
   { path: "**", redirectTo: lang }

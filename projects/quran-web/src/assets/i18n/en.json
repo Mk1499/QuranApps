@@ -25,6 +25,7 @@
   "email": "Email",
   "reads": "Reads",
   "teachers": "Teachers",
+  "students": "Students",
   "library": "Library",
   "home": "Home",
   "darkMode": "Dark Mode",
@@ -45,5 +46,7 @@
   "joz2": "Joz2",
   "studentsNum": "Number of Students",
   "samplesNum": "Number of Samples",
-  "enrollPrice": "Enroll Price"
+  "enrollPrice": "Enroll Price",
+  "credit": "Credit",
+  "min": "min"
 }

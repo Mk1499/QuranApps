@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "public": "dist/QuranWeb/browser",
+    "public": "dist/QuranWeb/web",
     "ignore": [
       "firebase.json",
       "**/.*",

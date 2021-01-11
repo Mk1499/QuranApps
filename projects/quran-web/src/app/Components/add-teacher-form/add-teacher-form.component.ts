@@ -1,4 +1,4 @@
-import { Teacher } from './../../Interfaces/teacher';
+import { Teacher } from '../../Models/teacher';
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 
 @Component({

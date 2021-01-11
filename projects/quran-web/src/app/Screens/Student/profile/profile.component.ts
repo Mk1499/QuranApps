@@ -3,7 +3,7 @@ import { ApiCallService } from '../../../Services/api-call.service';
 import { AuthService } from '../../../Services/auth.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs'
-import { Teacher } from '../../../Interfaces/teacher';
+import { Teacher } from '../../../Models/teacher';
 
 @Component({
   selector: 'app-profile',

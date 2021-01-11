@@ -1,7 +1,7 @@
 import { Subscription } from 'rxjs';
 import { TeacherService } from './../../../Services/teacher.service';
 import { ApiCallService } from './../../../Services/api-call.service';
-import { Teacher } from './../../../Interfaces/teacher';
+import { Teacher } from '../../../Models/teacher';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { transition, trigger, state, style, animate } from '@angular/animations';
 

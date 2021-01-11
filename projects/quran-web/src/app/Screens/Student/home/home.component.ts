@@ -1,3 +1,4 @@
+import { LangService } from './../../../Services/lang.service';
 import { Title } from '@angular/platform-browser';
 import { TranslateService } from '@ngx-translate/core';
 import { Component, OnInit } from '@angular/core';
@@ -9,14 +10,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private translate:TranslateService,
-              private title:Title) { }
+  direction: string = "ltr";
+  constructor(private translate: TranslateService,
+    private title: Title,
+    private lang: LangService) { }
 
   ngOnInit(): void {
-    this.translate.get('siteName').subscribe(t =>    {
-      if (t !== 'siteNameI')
-      this.title.setTitle(t)
+    this.translate.get('siteName').subscribe(t => {
+      if (t !== 'siteNameI' && t)
+        this.title.setTitle(t)
     })
+    if (this.lang.urlLang === "ar") {
+      this.direction = "rtl";
+    } else {
+      this.direction = "ltr";
+    }
   }
 
 }

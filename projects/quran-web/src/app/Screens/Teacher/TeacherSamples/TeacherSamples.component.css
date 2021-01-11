@@ -1,0 +1,13 @@
+.line {
+  background: url(https://vatican.modeltheme.com/wp-content/plugins/modeltheme-framework/inc/shortcodes/img/delimiter_dark.png)
+    no-repeat center center;
+  height: 5vh;
+}
+.header{
+    margin: 3vh 0;
+    font-family: Cairo;
+    font-weight: bolder;
+}
+.loadCont{
+    text-align: center;
+}

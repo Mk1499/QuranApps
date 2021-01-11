@@ -1,3 +1,5 @@
+import { Student } from './Student.model';
+
 export interface Teacher {
   _id?: string;
   email: string;
@@ -8,4 +10,5 @@ export interface Teacher {
   price: string;
   role?: string;
   password?: string;
+  students: [Student]
 }

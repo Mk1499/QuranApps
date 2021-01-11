@@ -1,5 +1,5 @@
 .dark,
-.dark .dropdown-menu , 
+.dark .dropdown-menu ,
 .dark .card,
 .dark .cardItem
 
@@ -12,7 +12,8 @@
 .dark .navbar-nav .nav-link:hover,
 .dark .dropdown-item,
 .dark .navbar-nav .nav-link.active,
-.dark .navbar-light .navbar-nav .active>.nav-link {
+.dark .navbar-light .navbar-nav .active>.nav-link ,
+.dark .logoName {
   color: #fff;
 }
 

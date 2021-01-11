@@ -16,7 +16,6 @@ const routes: Routes = [
   { path: 'signup', component: StudentRegComponent },
   {
     path: '', component: HomeComponent, children: [
-
       { path: 'home', component: CarouselComponent },
       { path: 'teachers', component: TeacherComponent },
       { path: 'teachers/:id', component: TeacherProfileComponent },

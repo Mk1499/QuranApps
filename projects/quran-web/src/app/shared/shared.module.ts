@@ -1,4 +1,6 @@
+import { FormsModule } from '@angular/forms';
 import { NavbarComponent } from '../Components/navbar/navbar.component';
+import { LogoComponent } from '../Components/logo/logo.component';
 import { TransferState } from '@angular/platform-browser';
 import { HttpClient } from '@angular/common/http';
 import { SampleCardComponent } from '../Components/sample-card/sample-card.component';
@@ -15,9 +17,9 @@ import { translateBrowserLoaderFactory } from './loaders/translate-browser.loade
 @NgModule({
   declarations: [
     TeacherCardComponent,
-    SampleCardComponent ,
+    SampleCardComponent,
     NavbarComponent,
-
+    LogoComponent
 
   ],
   imports: [
@@ -30,14 +32,18 @@ import { translateBrowserLoaderFactory } from './loaders/translate-browser.loade
         deps: [HttpClient, TransferState]
       }
     }),
+    // FormsModule
   ],
-  exports:[
+  exports: [
     CommonModule,
     RouterModule,
     TeacherCardComponent,
     SampleCardComponent,
     TranslateModule,
-    NavbarComponent
+    NavbarComponent,
+    LogoComponent,
+    FormsModule
+
   ]
 })
 
