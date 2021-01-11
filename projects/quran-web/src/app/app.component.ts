@@ -12,7 +12,7 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class AppComponent implements OnInit {
   title = 'QuranWeb';
-  message; 
+  message;
   lastUsedLang: string = localStorage.getItem('lang') || 'en';
   constructor(private translate: TranslateService, private msgService:MessagingService) {
 
@@ -20,9 +20,9 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() :void{
-    this.msgService.requestPermission(); 
-    this.msgService.receiveMessage(); 
+    this.msgService.requestPermission();
+    this.msgService.receiveMessage();
 
-    this.message = this.msgService.currentMessage; 
+    this.message = this.msgService.currentMessage;
   }
 }

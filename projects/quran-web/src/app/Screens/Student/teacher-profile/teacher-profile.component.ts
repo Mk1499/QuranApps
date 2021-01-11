@@ -1,6 +1,6 @@
 import { Title } from '@angular/platform-browser';
-import { LangService } from './../../Services/lang.service';
-import { ApiCallService } from './../../Services/api-call.service';
+import { LangService } from '../../../Services/lang.service';
+import { ApiCallService } from '../../../Services/api-call.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
@@ -21,7 +21,7 @@ export class TeacherProfileComponent implements OnInit {
 
   constructor(private apiService: ApiCallService,
     private activeRoute: ActivatedRoute,
-    private langService: LangService, 
+    private langService: LangService,
     private title:Title) { }
 
   ngOnInit(): void {
@@ -38,7 +38,7 @@ export class TeacherProfileComponent implements OnInit {
       } else {
         this.enrolled = false
       }
-      
+
       this.title.setTitle(this.teacher.name || "Teacher Profile")
     })
   }

@@ -1,9 +1,9 @@
 import { Title } from '@angular/platform-browser';
 import { TranslateService } from '@ngx-translate/core';
-import { LangService } from './../../Services/lang.service';
+import { LangService } from './../../../Services/lang.service';
 import { Router } from '@angular/router';
-import { ApiCallService } from './../../Services/api-call.service';
-import { AuthService } from './../../Services/auth.service';
+import { ApiCallService } from './../../../Services/api-call.service';
+import { AuthService } from './../../../Services/auth.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -42,7 +42,7 @@ export class StudentLoginComponent implements OnInit {
         console.log("Data : ", data);
         this.auth.setActiveUser(data?.student);
         localStorage.setItem('quranUser', JSON.stringify(data?.student))
-        this.router.navigateByUrl('/' + this.lang + '/home')
+        this.router.navigateByUrl('/' + this.lang + '/student/home')
       }, err => {
         console.log("err: ", err.error);
         this.loading = false;

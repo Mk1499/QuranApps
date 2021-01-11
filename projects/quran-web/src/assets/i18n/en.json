@@ -1,5 +1,5 @@
 {
-  "siteName":"Mo3alem",
+  "siteName": "Mo3alem",
   "genres": "Genres",
   "books": "Books",
   "authors": "Authors",
@@ -32,12 +32,18 @@
   "otherLang": "العربية",
   "samples": "Samples",
   "enroll": "Enroll",
-  "unEnroll":"Un-Enroll",
+  "unEnroll": "Un-Enroll",
   "logOut": "Log Out",
   "loginNow": "Login Now",
   "teacherLogin": "Login as a Teacher",
   "studentLogin": "Login as a Student",
-  "adminLogin":"Login as an Admin",
-  "admin":"Admin"
-
+  "adminLogin": "Login as an Admin",
+  "admin": "Admin",
+  "sheikh": "Teacher",
+  "duration": "Duration",
+  "ayatNum": "Ayat Number",
+  "joz2": "Joz2",
+  "studentsNum": "Number of Students",
+  "samplesNum": "Number of Samples",
+  "enrollPrice": "Enroll Price"
 }

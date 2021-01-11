@@ -1,6 +1,6 @@
 <div class="text-center" [ngClass]="mode">
   <div class="header">
-    <h1 class="">{{'teachers'|translate}}</h1>
+    <h1 class="">{{ "teachers" | translate }}</h1>
     <div class="line"></div>
     <p class="desc">
       Lorem ipsum dolor sit, amet consectetur adipisicing elit. Error, sed optio
@@ -9,12 +9,13 @@
     </p>
   </div>
   <div class="loadCont" *ngIf="!teachers.length">
-    <img src="../../../assets/images/loading.gif" alt="" class="loadImg">
+    <img src="../../../assets/images/loading.gif" alt="" class="loadImg" />
   </div>
   <ul class="teachers row" *ngIf="teachers.length">
-    <li class="teacherItem col-md-3" *ngFor="let teacher of teachers" >
-      <teacher-card [teacher]="teacher"></teacher-card>
+    <li class="teacherItem col-md-3" *ngFor="let teacher of teachers">
+      <div [routerLink]="['./', teacher._id]">
+        <teacher-card [teacher]="teacher"></teacher-card>
+      </div>
     </li>
-  
   </ul>
 </div>

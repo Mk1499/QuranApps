@@ -27,30 +27,24 @@
 
   <div class="collapse navbar-collapse menu" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
-      <li
-        class="nav-item"
-        (click)="changeActive('')"
-        [class]="active === '' ? 'active' : ''"
-      >
-        <a class="nav-link" [routerLink]="'/' + urlLang + '/home'"
+      <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link" [routerLink]="'./home'"
           >{{ "home" | translate }} <span class="sr-only">(current)</span></a
         >
       </li>
       <li class="nav-item">
         <a
           class="nav-link"
-          [routerLink]="'/' + urlLang + '/home/teachers'"
-          (click)="changeActive('teachers')"
-          [class]="active === 'teachers' ? 'active' : ''"
+          routerLinkActive="active"
+          [routerLink]="'./teachers'"
           >{{ "teachers" | translate }}</a
         >
       </li>
       <li class="nav-item">
         <a
           class="nav-link"
-          [routerLink]="'/' + urlLang + '/home/library'"
-          (click)="changeActive('library')"
-          [class]="active === 'library' ? 'active' : ''"
+          [routerLink]="'./library'"
+          routerLinkActive="active"
           >{{ "library" | translate }}</a
         >
       </li>
@@ -88,9 +82,9 @@
         Search
       </button>
     </form> -->
-    <div class="dropdown my-2 my-lg-0 noteDiv" *ngIf="user" >
+    <div class="dropdown my-2 my-lg-0 noteDiv" *ngIf="user">
       <i
-        class="fa fa-bell "
+        class="fa fa-bell"
         id="dropdownMenuButton"
         data-toggle="dropdown"
         aria-haspopup="true"
@@ -114,7 +108,7 @@
 
     <div class="my-2 my-lg-0 dropdown" *ngIf="user">
       <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-        <a class="dropdown-item" [routerLink]="'/' + urlLang + '/profile'">{{
+        <a class="dropdown-item" routerLinkActive="ddMenuActive" [routerLink]="'./profile'">{{
           user.name
         }}</a>
         <a class="dropdown-item" (click)="changeLanguage()">{{
@@ -154,11 +148,7 @@
     </div>
 
     <div class="my-2 my-lg-0">
-      <button
-        class="btn btn-warning"
-        *ngIf="!user"
-        [routerLink]="'/' + urlLang + '/login/student'"
-      >
+      <button class="btn btn-warning" *ngIf="!user" [routerLink]="'./login'">
         Sign In
       </button>
     </div>

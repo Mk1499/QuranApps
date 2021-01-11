@@ -1,5 +1,5 @@
 import { Title } from '@angular/platform-browser';
-import { ApiCallService } from './../../Services/api-call.service';
+import { ApiCallService } from '../../../Services/api-call.service';
 import { Component, OnInit } from '@angular/core';
 import {TranslateService} from '@ngx-translate/core';
 

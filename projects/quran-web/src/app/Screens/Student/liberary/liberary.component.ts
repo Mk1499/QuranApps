@@ -1,7 +1,7 @@
 import { TranslateService } from '@ngx-translate/core';
 import { Title } from '@angular/platform-browser';
 import { Component, OnInit } from '@angular/core';
-import { ApiCallService } from './../../Services/api-call.service';
+import { ApiCallService } from '../../../Services/api-call.service';
 @Component({
   selector: 'app-liberary',
   templateUrl: './liberary.component.html',
@@ -12,7 +12,7 @@ export class LiberaryComponent implements OnInit {
 
   constructor(private apiService: ApiCallService,
               private title:Title,
-              private translate:TranslateService          
+              private translate:TranslateService
     ) { }
 
   ngOnInit(): void {

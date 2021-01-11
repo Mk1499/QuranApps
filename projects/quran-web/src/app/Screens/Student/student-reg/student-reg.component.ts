@@ -1,9 +1,9 @@
 import { Title } from '@angular/platform-browser';
 import { TranslateService } from '@ngx-translate/core';
 import { Router } from '@angular/router';
-import { AuthService } from './../../Services/auth.service';
-import { ApiCallService } from './../../Services/api-call.service';
-import { LangService } from './../../Services/lang.service';
+import { AuthService } from '../../../Services/auth.service';
+import { ApiCallService } from '../../../Services/api-call.service';
+import { LangService } from '../../../Services/lang.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -23,7 +23,7 @@ export class StudentRegComponent implements OnInit {
              private api: ApiCallService,
              private auth: AuthService,
              private router: Router,
-             private  translate:TranslateService, 
+             private  translate:TranslateService,
              private title:Title) { }
 
   ngOnInit(): void {

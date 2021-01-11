@@ -81,6 +81,10 @@ i {
 .noteDiv{
   cursor: pointer;
 }
+.ddMenuActive{
+  background-color: gold;
+  color:#333
+}
 
 @media (max-width: 966px) {
   .dropdown-menu {

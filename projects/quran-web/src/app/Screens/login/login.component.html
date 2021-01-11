@@ -16,7 +16,7 @@
               as a Teacher you can add Lectures and view your students status
             </p>
             <a
-              [routerLink]="'/' + lang + '/login/student'"
+              [routerLink]="'../student/login'"
               class="btn btn-warning"
               >{{ "loginNow" | translate }}</a
             >
@@ -32,7 +32,7 @@
               as a Student you can see many Teachers and enroll in any course
             </p>
             <a
-              [routerLink]="'/' + lang + '/login/student'"
+              [routerLink]="'../student/login'"
               class="btn btn-warning"
               >{{ "loginNow" | translate }}</a
             >
@@ -48,7 +48,7 @@
               as a Admin you can see many Teachers and enroll in any course
             </p>
             <a
-              [routerLink]="'/' + lang + '/admin/login'"
+              [routerLink]="'../admin/login'"
               class="btn btn-warning"
               >{{ "loginNow" | translate }}</a
             >

@@ -38,5 +38,12 @@
   "teacherLogin": "سجل الدخول كمعلم",
   "studentLogin": "سجل الدخول كطالب",
   "adminLogin": "سجل الدخول كمدير",
-  "admin": "مدير"
+  "admin": "مدير",
+  "sheikh":"الشيخ",
+  "duration":"المدة",
+  "ayatNum":"عدد الايات",
+  "joz2":"الجزء",
+  "studentsNum":"عدد الطلاب",
+  "samplesNum":"عدد الامثله",
+  "enrollPrice":"سعر الاشتراك"
 }

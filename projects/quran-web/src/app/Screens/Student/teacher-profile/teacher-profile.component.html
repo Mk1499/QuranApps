@@ -14,13 +14,16 @@
               {{ lang === "ar" ? teacher?.arName : teacher?.name }}
             </p>
             <p class="teacherSub">
-              <strong>Students : </strong> {{ teacher?.students.length }}
+              <strong>{{ "studentsNum" | translate }} : </strong>
+              {{ teacher?.students.length }}
             </p>
             <p class="teacherSub">
-              <strong>Samples : </strong> {{ teacher?.samples.length }}
+              <strong>{{ "samplesNum" | translate }} : </strong>
+              {{ teacher?.samples.length }}
             </p>
             <p class="teacherSub">
-              <strong>Price : </strong> {{ teacher?.price | currency: "EGP" }}
+              <strong>{{ "enrollPrice" | translate }} : </strong>
+              {{ teacher?.price | currency: "EGP" }}
             </p>
           </div>
         </div>

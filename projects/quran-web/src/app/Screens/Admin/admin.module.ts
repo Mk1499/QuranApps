@@ -1,8 +1,4 @@
-import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-import { HttpClient } from '@angular/common/http';
-import { TransferState } from '@angular/platform-browser';
-import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
-import { SharedModule } from './../../shared/loaders/shared.module';
+import { SharedModule } from '../../shared/shared.module';
 import { AddTeacherFormComponent } from './../../Components/add-teacher-form/add-teacher-form.component';
 import { SideBarComponent } from './../../Components/side-bar/side-bar.component';
 import { LogoComponent } from './../../Components/logo/logo.component';
@@ -19,12 +15,8 @@ import { AdminComponent } from './admin/admin.component';
 import { AdminHomeComponent } from './admin-home/admin-home.component';
 import { AddItemComponent } from 'projects/testmobile/src/app/Components/add-item/add-item.component';
 import { ChartsModule } from 'ng2-charts';
-import { translateBrowserLoaderFactory } from 'projects/booky-copy/src/app/shared/loaders/translate-browser.loader';
 
 
-export function HttpLoaderFactory(httpClient: HttpClient) {
-  return new TranslateHttpLoader(httpClient);
-}
 
 
 @NgModule({
