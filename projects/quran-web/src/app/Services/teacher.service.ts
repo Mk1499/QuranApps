@@ -29,7 +29,12 @@ export class TeacherService {
     return this.http.get(url);
   }
   getTeacherSamples(teacherID) {
-    let url = baseURL + "/sample/teacher/" + teacherID;
+    let url = baseURL + "/teacher/" + teacherID + "/samples";
     return this.http.get(url);
+  }
+
+  getTeacherStudents(teacherID) {
+    let url = baseURL + "/teacher/" + teacherID + "/students";
+    return this.http.get(url)
   }
 }

@@ -1,0 +1,16 @@
+<div class="text-center cont">
+  <div class="header">
+    <h2 class="h1">{{ "students" | translate }}</h2>
+    <div class="line"></div>
+  </div>
+  <div class="loadCont" *ngIf="!students.length">
+    <img src="../../../assets/images/loading.gif" alt="" class="loadImg" />
+  </div>
+  <ul class="students row" *ngIf="students.length">
+    <li class="studentItem col-md-3" *ngFor="let student of students">
+      <div>
+        <student-card [student]="student"></student-card>
+      </div>
+    </li>
+  </ul>
+</div>

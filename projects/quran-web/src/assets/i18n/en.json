@@ -48,5 +48,7 @@
   "samplesNum": "Number of Samples",
   "enrollPrice": "Enroll Price",
   "credit": "Credit",
-  "min": "min"
+  "min": "min",
+  "noStudents": "No Students",
+  "noSamples": "No Samples"
 }

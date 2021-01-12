@@ -1,0 +1,85 @@
+<div class="container formCont">
+  <div class="row">
+    <form class="form col-md-6">
+      <div class="row g-3">
+        <input
+          type="text"
+          class="form-control"
+          id="sampleName"
+          placeholder="Sample Name"
+          value=""
+          required=""
+          [(ngModel)]="name"
+        />
+        <input
+          type="text"
+          class="form-control"
+          id="arName"
+          placeholder="Arabic Name"
+          value=""
+          required=""
+          [(ngModel)]="arName"
+
+        />
+
+        <input
+          type="number"
+          min="1"
+          class="form-control"
+          id="duration"
+          placeholder="Duration in minutes"
+          required
+          [(ngModel)]="duration"
+
+        />
+
+        <input
+          type="number"
+          class="form-control"
+          id="joz2"
+          min="1"
+          max="30"
+          placeholder="Joz2"
+          [(ngModel)]="joz2"
+        />
+
+        <input
+          type="number"
+          class="form-control"
+          id="numberOfAyat"
+          placeholder="Number of Ayat"
+          required
+          min="0"
+          [(ngModel)]="ayatNums"
+        />
+
+        <input
+          type="text"
+          class="form-control"
+          id="avatar"
+          placeholder="Avatar URL"
+          [(ngModel)]="avatar"
+        />
+
+        <input
+          type="text"
+          class="form-control"
+          id="audio"
+          placeholder="Audio URL"
+          [(ngModel)]="audioURL"
+        />
+      </div>
+      <hr class="my-4" />
+
+      <button class="w-100 btn btn-warning btn-lg" type="submit">
+        Add Sample
+      </button>
+    </form>
+    <div class="col-md-4   preview">
+      <div class="prevContent">
+        <img [src]="avatar"  width="100%" height="50vh" />
+        <h3 class="name">{{name}}</h3>
+      </div>
+    </div>
+  </div>
+</div>

@@ -13,7 +13,8 @@
 .dark .dropdown-item,
 .dark .navbar-nav .nav-link.active,
 .dark .navbar-light .navbar-nav .active>.nav-link ,
-.dark .logoName {
+.dark .logoName ,
+.dark .card-title.name {
   color: #fff;
 }
 
@@ -28,4 +29,8 @@
 .dark .cardItem{
   border: 1px solid grey;
 
+}
+
+.dark .cover{
+  background-color: #333;
 }

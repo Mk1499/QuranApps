@@ -1,0 +1,16 @@
+<div class="card animate__animated" [ngClass]="animateClass">
+  <div class="cardItem" >
+    <img [src]="student.avatar" class="studentImg" />
+    <h3 class="studentName">
+      {{ lang === "ar" ? student?.arName : student.name }}
+    </h3>
+    <p class="studentEmail">{{ student.email }}</p>
+  </div>
+  <button
+    *ngIf="mode === 'edit'"
+    class="btn btn-danger deleteBtn"
+    (click)="deleteStudent(student._id)"
+  >
+    <i class="fa fa-trash"></i>
+  </button>
+</div>

@@ -48,5 +48,7 @@
   "samplesNum":"عدد الامثله",
   "enrollPrice":"سعر الاشتراك",
   "credit":"الرصيد",
-  "min":"دقيقة"
+  "min":"دقيقة",
+  "noStudents": "لا يوجد طلاب",
+  "noSamples": "لا يوجد نماذج"
 }

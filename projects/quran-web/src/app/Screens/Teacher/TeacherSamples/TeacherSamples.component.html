@@ -1,10 +1,17 @@
 <div class="container">
   <div class="header">
-    <h2 class="text-center h1">{{'library' | translate}}</h2>
+    <h2 class="text-center h1">{{ "library" | translate }}</h2>
     <div class="line"></div>
+
+    <div class="addSampleCont" [ngStyle]="{ float: addDirection }" routerLink="./add">
+      <i class="fa fa-plus-circle fa-3x addSampleIcon"> </i>
+      <!-- <div class="addSampleText">
+        <p>add sample</p>
+      </div> -->
+    </div>
   </div>
   <div class="loadCont" *ngIf="!samples.length">
-    <img src="../../../assets/images/loading.gif" alt="" class="loadImg">
+    <img src="../../../assets/images/loading.gif" alt="" class="loadImg" />
   </div>
   <div class="row" *ngIf="samples.length">
     <sample-card

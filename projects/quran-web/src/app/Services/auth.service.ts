@@ -18,6 +18,7 @@ export class AuthService {
   }
   logOut() {
     localStorage.removeItem('quranUser');
+    localStorage.removeItem('quranTeacher');
     this.router.navigateByUrl('/' + this.lang.urlLang)
   }
 

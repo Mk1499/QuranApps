@@ -23,7 +23,7 @@
     </div>
     <div class="row h3">
       <strong class="label">{{"credit" | translate}} :  </strong>
-      <p> {{teacherData.price * teacherData.students.length | currency: "EGP" }} </p>
+      <p> {{+teacherData.price * teacherData.students.length | currency: "EGP" }} </p>
     </div>
   </div>
 </section>

@@ -1,3 +1,11 @@
+.cont{
+
+  font-family: Cairo;
+  text-align: center;
+}
+
+.students{
+}
 .line {
   background: url(https://vatican.modeltheme.com/wp-content/plugins/modeltheme-framework/inc/shortcodes/img/delimiter_dark.png)
     no-repeat center center;
@@ -5,12 +13,16 @@
 }
 .header{
     margin: 3vh 0;
-    font-family: Cairo;
     font-weight: bolder;
 }
 .loadCont{
     text-align: center;
 }
-.addSampleIcon{
-  cursor: pointer;
+.message{
+  width: 100%;
+  margin-top: 10%;
+}
+.studentItem{
+  list-style-type: none;
+  text-align: center;
 }

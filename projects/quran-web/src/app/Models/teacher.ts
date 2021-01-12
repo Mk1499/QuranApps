@@ -10,5 +10,5 @@ export interface Teacher {
   price: string;
   role?: string;
   password?: string;
-  students: [Student]
+  students?: [Student]
 }

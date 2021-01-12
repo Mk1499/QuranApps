@@ -1,3 +1,5 @@
+import { AddSampleComponent } from './AddSample/AddSample.component';
+import { TeacherStudentsComponent } from './TeacherStudents/teacher-students.component';
 import { TeacherSamples } from './TeacherSamples/TeacherSamples.component';
 import { TeacherHomeComponent } from './TeacherHome/teacherHome.component';
 import { TeacherMainComponent } from './TeacherMain/teacherMain.component';
@@ -12,6 +14,8 @@ const routes: Routes = [
     path: '', component: TeacherMainComponent, children: [
       { path: 'home', component: TeacherHomeComponent },
       { path: 'library', component: TeacherSamples },
+      { path: 'library/add', component: AddSampleComponent },
+      { path: 'students', component: TeacherStudentsComponent },
       { path: '**', redirectTo: 'home' }
     ]
   },

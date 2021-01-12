@@ -11,6 +11,7 @@ import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { translateBrowserLoaderFactory } from './loaders/translate-browser.loader';
+import { StudentCardComponent } from '../Components/student-card/student-card.component';
 
 
 
@@ -19,7 +20,8 @@ import { translateBrowserLoaderFactory } from './loaders/translate-browser.loade
     TeacherCardComponent,
     SampleCardComponent,
     NavbarComponent,
-    LogoComponent
+    LogoComponent,
+    StudentCardComponent
 
   ],
   imports: [
@@ -42,7 +44,8 @@ import { translateBrowserLoaderFactory } from './loaders/translate-browser.loade
     TranslateModule,
     NavbarComponent,
     LogoComponent,
-    FormsModule
+    FormsModule,
+    StudentCardComponent
 
   ]
 })
