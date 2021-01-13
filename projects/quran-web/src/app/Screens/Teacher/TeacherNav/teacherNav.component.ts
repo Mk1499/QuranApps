@@ -55,7 +55,7 @@ export class TeacherNav implements OnInit {
     this.langService.changeLanguage();
   }
   logOut() {
-    this.auth.logOut();
+    this.auth.teacherLogout();
   }
 
   toggleTheme() {

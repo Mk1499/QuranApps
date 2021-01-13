@@ -2,6 +2,7 @@ import { baseURL } from './api-call.service';
 import { Teacher } from '../Models/teacher';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Sample } from '../Models/Sample.model';
 
 @Injectable({
   providedIn: 'root'
@@ -36,5 +37,15 @@ export class TeacherService {
   getTeacherStudents(teacherID) {
     let url = baseURL + "/teacher/" + teacherID + "/students";
     return this.http.get(url)
+  }
+
+  addSample(sample: Sample) {
+    let url = baseURL + "/sample/add";
+    return this.http.post(url, sample)
+  }
+
+  getTeacherEnrolls(teacherID: string) {
+    let url = baseURL + "/enroll/teacher/" + teacherID;
+    return this.http.get(url);
   }
 }

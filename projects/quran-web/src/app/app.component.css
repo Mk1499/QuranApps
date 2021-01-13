@@ -1,2 +1,6 @@
 @import './Themes/darkMode.css';
 @import './Themes/lightMode.css';
+
+*{
+  font-family: Cairo;
+}

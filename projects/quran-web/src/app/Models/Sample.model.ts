@@ -6,6 +6,6 @@ export interface Sample {
   joz2: string;
   name: string;
   noOfAyat: number;
-  teacher: string;
+  teacher?: string;
   url: string;
 }

@@ -64,6 +64,18 @@
 .loadCont {
   text-align: center;
 }
+.loadSampleCont{
+  /* width: 100vw; */
+  display: flex;
+  justify-content: center;
+}
+
+.msgCont{
+  /* width: 100vw; */
+  display: flex;
+  justify-content: center;
+}
+
 
 @media(max-width:766px){
   .teacherData{

@@ -50,5 +50,17 @@
   "credit": "Credit",
   "min": "min",
   "noStudents": "No Students",
-  "noSamples": "No Samples"
+  "noSamples": "No Samples",
+  "aya": "Aya",
+  "addSample": "Add Sample",
+  "sampleAddedSuccess": "Sample Added Successfully",
+  "enrolls": "Enrolls",
+  "studentName": "Student Name",
+  "status": "Status",
+  "dateTime": "Date",
+  "exists": "Exists",
+  "finished": "Finished",
+  "yes": "Yes",
+  "no": "No",
+  "noEnrolls": "You havn't any Enrolls yet"
 }

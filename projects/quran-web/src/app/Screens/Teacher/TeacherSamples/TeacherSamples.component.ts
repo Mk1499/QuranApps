@@ -16,6 +16,7 @@ export class TeacherSamples implements OnInit {
 
   samples: any = [];
   addDirection: string = "right";
+  loading: boolean = true;
 
   constructor(
     private teacher: TeacherService,
@@ -25,21 +26,28 @@ export class TeacherSamples implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.getSamples();
+    this.changeTitle();
+  }
+
+  getSamples() {
+    this.loading = true;
     let teacher = JSON.parse(localStorage.getItem("quranTeacher"));
     this.teacher.getTeacherSamples(teacher._id).subscribe((s: Sample[]) => {
+      this.loading = false;
       this.samples = s;
       console.log("Samples : ", s);
     })
-    this.translate.get('library').subscribe(t => this.title.setTitle(t))
-    console.log("LAng : ",this.lang.urlLang);
+  }
 
+  changeTitle() {
+
+    this.translate.get('library').subscribe(t => this.title.setTitle(t))
+    console.log("LAng : ", this.lang.urlLang);
     if (this.lang.urlLang == "en") {
       this.addDirection = "right";
     } else {
       this.addDirection = "left"
     }
-
-
-
   }
 }

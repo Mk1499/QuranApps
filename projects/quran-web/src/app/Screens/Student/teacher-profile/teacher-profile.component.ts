@@ -1,8 +1,11 @@
+import { Subscription } from 'rxjs';
+import { TeacherService } from './../../../Services/teacher.service';
 import { Title } from '@angular/platform-browser';
 import { LangService } from '../../../Services/lang.service';
 import { ApiCallService } from '../../../Services/api-call.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Sample } from '../../../Models/Sample.model';
 
 
 @Component({
@@ -10,7 +13,7 @@ import { ActivatedRoute, Router } from '@angular/router';
   templateUrl: './teacher-profile.component.html',
   styleUrls: ['./teacher-profile.component.css']
 })
-export class TeacherProfileComponent implements OnInit {
+export class TeacherProfileComponent implements OnInit, OnDestroy {
 
   teacherID: string = "";
   teacher;
@@ -18,11 +21,17 @@ export class TeacherProfileComponent implements OnInit {
   loading: boolean = false;
   enrolled: boolean = false;
   lang: string;
+  loadSamples: boolean = true;
+  samples: Sample[] = [];
+  teacherSamplesSub: Subscription;
+
 
   constructor(private apiService: ApiCallService,
     private activeRoute: ActivatedRoute,
     private langService: LangService,
-    private title:Title) { }
+    private title: Title,
+    private teacherSer: TeacherService
+  ) { }
 
   ngOnInit(): void {
     this.getTeacherData();
@@ -32,7 +41,11 @@ export class TeacherProfileComponent implements OnInit {
   getTeacherData() {
     this.teacherID = this.activeRoute.snapshot.params['id'];
     this.apiService.getTeacherProfile(this.teacherID).subscribe(t => {
+      console.log("teacherData : ",t);
+
       this.teacher = t;
+      this.getSamples();
+
       if (this.teacher.students.includes(this.user._id)) {
         this.enrolled = true
       } else {
@@ -40,6 +53,20 @@ export class TeacherProfileComponent implements OnInit {
       }
 
       this.title.setTitle(this.teacher.name || "Teacher Profile")
+    })
+  }
+
+
+
+  getSamples() {
+    this.teacherSamplesSub = this.teacherSer.getTeacherSamples(this.teacher._id).subscribe((smpls: Sample[]) => {
+
+      this.samples = smpls;
+      this.loadSamples = false;
+    }, (err) => {
+      this.loadSamples = false;
+      console.log("Load Samples Err :  ", err);
+
     })
   }
 
@@ -82,5 +109,9 @@ export class TeacherProfileComponent implements OnInit {
 
       }
     )
+  }
+
+  ngOnDestroy() {
+    this.teacherSamplesSub.unsubscribe();
   }
 }

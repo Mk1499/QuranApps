@@ -14,6 +14,7 @@ export class TeacherStudentsComponent implements OnInit, OnDestroy {
   students: Student[] = [];
   stuSub: Subscription;
   teacherData: Teacher;
+  loading: boolean = true;
 
   constructor(
     private teacher: TeacherService
@@ -24,9 +25,14 @@ export class TeacherStudentsComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.stuSub = this.teacher.getTeacherStudents(this.teacherData._id).subscribe((students: Student[]) => {
-      console.log("Teacher Students : ",students);
+      console.log("Teacher Students : ", students);
 
       this.students = students;
+      this.loading = false;
+    }, (err) => {
+      this.loading = false;
+      console.log("Getting Teacher students Error  : ", err);
+
     })
   }
 

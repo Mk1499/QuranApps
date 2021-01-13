@@ -18,13 +18,18 @@ export class AuthService {
   }
   logOut() {
     localStorage.removeItem('quranUser');
-    localStorage.removeItem('quranTeacher');
     this.router.navigateByUrl('/' + this.lang.urlLang)
   }
 
   adminLogOut() {
     localStorage.removeItem('quranAdmin');
     this.router.navigateByUrl('/' + this.lang.urlLang)
+  }
+
+  teacherLogout() {
+    localStorage.removeItem('quranTeacher');
+    this.router.navigateByUrl('/' + this.lang.urlLang)
+
   }
 
 }

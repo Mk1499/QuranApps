@@ -1,124 +1,134 @@
-  <nav
-    [ngClass]="{
-      light: mode === 'light',
-      dark: mode === 'dark'
-    }"
-    class="navbar navbar-expand-lg navbar-light navBar"
+<nav
+  [ngClass]="{
+    light: mode === 'light',
+    dark: mode === 'dark'
+  }"
+  class="navbar navbar-expand-lg navbar-light navBar"
+>
+  <div class="logo">
+    <img
+      src="../../../../assets/images/logo.jpg"
+      class="logoImg"
+      [routerLink]="'./home'"
+    />
+    <a class="navbar-brand logoName" [routerLink]="'./home'"
+      >Mo<span class="gold">3</span>alem</a
+    >
+  </div>
+  <button
+    class="navbar-toggler"
+    type="button"
+    data-toggle="collapse"
+    data-target="#navbarSupportedContent"
+    aria-controls="navbarSupportedContent"
+    aria-expanded="false"
+    aria-label="Toggle navigation"
   >
-    <div
-      class="logo"
-      (click)="changeActive('')"
-      [routerLink]="'/' + urlLang + '/home'"
-    >
-      <img src="../../../../assets/images/logo.jpg" class="logoImg" />
-      <a class="navbar-brand logoName">Mo<span class="gold">3</span>alem</a>
-    </div>
-    <button
-      class="navbar-toggler"
-      type="button"
-      data-toggle="collapse"
-      data-target="#navbarSupportedContent"
-      aria-controls="navbarSupportedContent"
-      aria-expanded="false"
-      aria-label="Toggle navigation"
-    >
-      <span class="navbar-toggler-icon"></span>
-    </button>
+    <span class="navbar-toggler-icon"></span>
+  </button>
 
-    <div class="collapse navbar-collapse menu" id="navbarSupportedContent">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item" routerLinkActive="active">
-          <a class="nav-link" [routerLink]="'./home'"
-            >{{ "home" | translate }} <span class="sr-only">(current)</span></a
-          >
-        </li>
-        <li class="nav-item">
-          <a
-            class="nav-link"
-            routerLinkActive="active"
-            [routerLink]="'./students'"
-            >{{ "students" | translate }}</a
-          >
-        </li>
-        <li class="nav-item">
-          <a
-            class="nav-link"
-            [routerLink]="'./library'"
-            routerLinkActive="active"
-            >{{ "library" | translate }}</a
-          >
-        </li>
-      </ul>
-
-      <div class="dropdown my-2 my-lg-0 noteDiv" *ngIf="user">
-        <i
-          class="fa fa-bell"
-          id="dropdownMenuButton"
-          data-toggle="dropdown"
-          aria-haspopup="true"
-          aria-expanded="false"
-          (click)="emptyNotes()"
-        ></i>
-
-        <div class="notesCount" *ngIf="newNotes > 0">{{ newNotes }}</div>
-
-        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-          <div *ngIf="allNotes?.length">
-            <a class="dropdown-item" *ngFor="let note of allNotes">{{
-              note.body
-            }}</a>
-          </div>
-          <div *ngIf="!allNotes?.length">
-            <p class="text-center">No Notifications</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="my-2 my-lg-0 dropdown" *ngIf="user">
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a
-            class="dropdown-item"
-            routerLinkActive="ddMenuActive"
-            [routerLink]="'./home'"
-            >{{ user.name }}</a
-          >
-          <a class="dropdown-item" (click)="changeLanguage()">{{
-            "otherLang" | translate
-          }}</a>
-          <a class="dropdown-item" (click)="toggleTheme()">
-            <span>
-              {{ "darkMode" | translate }}
-            </span>
-
-            <input
-              type="checkbox"
-              [checked]="mode === 'dark'"
-              data-toggle="toggle"
-              data-size="lg"
-            />
-          </a>
-          <a class="dropdown-item" (click)="logOut()">{{
-            "logOut" | translate
-          }}</a>
-        </div>
-        <a
-          class="ddMenu"
-          href="#"
-          id="navbarDropdown"
-          role="button"
-          data-toggle="dropdown"
-          aria-haspopup="true"
-          aria-expanded="false"
+  <div class="collapse navbar-collapse menu" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link" [routerLink]="'./home'"
+          >{{ "home" | translate }} <span class="sr-only">(current)</span></a
         >
-          <i class="fa fa-caret-down" aria-hidden="true"></i>
-          <img [src]="user?.avatar" alt="" class="usrImg" />
-        </a>
-      </div>
+      </li>
+      <li class="nav-item">
+        <a
+          class="nav-link"
+          routerLinkActive="active"
+          [routerLink]="'./students'"
+          >{{ "students" | translate }}</a
+        >
+      </li>
+      <li class="nav-item">
+        <a
+          class="nav-link"
+          [routerLink]="'./library'"
+          routerLinkActive="active"
+          >{{ "library" | translate }}</a
+        >
+      </li>
+      <li class="nav-item">
+        <a
+          class="nav-link"
+          [routerLink]="'./enrolls'"
+          routerLinkActive="active"
+          >{{ "enrolls" | translate }}</a
+        >
+      </li>
+    </ul>
 
-      <div class="my-2 my-lg-0">
-        <button class="btn btn-warning" *ngIf="!user" [routerLink]="'./login'">
-          Sign In
-        </button>
+    <div class="dropdown my-2 my-lg-0 noteDiv" *ngIf="user">
+      <i
+        class="fa fa-bell"
+        id="dropdownMenuButton"
+        data-toggle="dropdown"
+        aria-haspopup="true"
+        aria-expanded="false"
+        (click)="emptyNotes()"
+      ></i>
+
+      <div class="notesCount" *ngIf="newNotes > 0">{{ newNotes }}</div>
+
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <div *ngIf="allNotes?.length">
+          <a class="dropdown-item" *ngFor="let note of allNotes">{{
+            note.body
+          }}</a>
+        </div>
+        <div *ngIf="!allNotes?.length">
+          <p class="text-center">No Notifications</p>
+        </div>
       </div>
     </div>
-  </nav>
+
+    <div class="my-2 my-lg-0 dropdown" *ngIf="user">
+      <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+        <a
+          class="dropdown-item"
+          routerLinkActive="ddMenuActive"
+          [routerLink]="'./home'"
+          >{{ user.name }}</a
+        >
+        <a class="dropdown-item" (click)="changeLanguage()">{{
+          "otherLang" | translate
+        }}</a>
+        <a class="dropdown-item" (click)="toggleTheme()">
+          <span>
+            {{ "darkMode" | translate }}
+          </span>
+
+          <input
+            type="checkbox"
+            [checked]="mode === 'dark'"
+            data-toggle="toggle"
+            data-size="lg"
+          />
+        </a>
+        <a class="dropdown-item" (click)="logOut()">{{
+          "logOut" | translate
+        }}</a>
+      </div>
+      <a
+        class="ddMenu"
+        href="#"
+        id="navbarDropdown"
+        role="button"
+        data-toggle="dropdown"
+        aria-haspopup="true"
+        aria-expanded="false"
+      >
+        <i class="fa fa-caret-down" aria-hidden="true"></i>
+        <img [src]="user?.avatar" alt="" class="usrImg" />
+      </a>
+    </div>
+
+    <div class="my-2 my-lg-0">
+      <button class="btn btn-warning" *ngIf="!user" [routerLink]="'./login'">
+        Sign In
+      </button>
+    </div>
+  </div>
+</nav>

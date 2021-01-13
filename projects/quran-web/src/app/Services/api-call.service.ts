@@ -51,18 +51,18 @@ export class ApiCallService {
 
   studentEnroll(data): Observable<any> {
 
-    let url = baseURL + "/student/enroll";
+    let url = baseURL + "/enroll";
     return this.http.post(url, {
-      teacher: data.teacherID,
-      student: data.studentID
+      teacherID: data.teacherID,
+      studentID: data.studentID
     })
   }
 
   studentUnEnroll(data): Observable<any> {
-    let url = baseURL + "/student/unenroll";
+    let url = baseURL + "/enroll/remove";
     return this.http.post(url, {
-      teacher: data.teacherID,
-      student: data.studentID
+      teacherID: data.teacherID,
+      studentID: data.studentID
     })
   }
 

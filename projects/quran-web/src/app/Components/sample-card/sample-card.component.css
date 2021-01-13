@@ -42,9 +42,9 @@
   display: none;
 }
 .playIcon{
-  color:gold; 
+  color:gold;
   cursor: pointer;
-  font-size: 4vw;
+  font-size: 8vh;
 }
 .card:hover .playOverlay{
   display: flex;

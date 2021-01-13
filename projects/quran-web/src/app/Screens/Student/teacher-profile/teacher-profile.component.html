@@ -66,12 +66,23 @@
       <h2 class="text-center h1">{{ "samples" | translate }}</h2>
       <div class="line"></div>
     </div>
-    <div class="row samples">
+    <div class="row loadSampleCont" *ngIf="loadSamples">
+      <img
+        src="../../../assets/images/loading.gif"
+        alt=""
+        class="loadingSamplesImg"
+      />
+    </div>
+
+    <div class="row samples" *ngIf="samples.length">
       <sample-card
         class="col-md-4"
-        *ngFor="let sample of teacher?.samples"
+        *ngFor="let sample of samples"
         [sample]="sample"
       ></sample-card>
+    </div>
+    <div class="row msgCont" *ngIf="!loadSamples && !samples.length">
+      <h1 class="">{{ "noSamples" | translate }}</h1>
     </div>
   </div>
 </div>

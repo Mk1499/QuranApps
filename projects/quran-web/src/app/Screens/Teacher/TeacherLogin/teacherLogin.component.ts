@@ -28,8 +28,8 @@ export class TeacherLoginComponent implements OnInit, OnDestroy {
     private l: LangService,
     private translate: TranslateService,
     private title: Title,
-    private router:Router
-    ) { }
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
     this.lang = this.l.urlLang;
@@ -44,14 +44,21 @@ export class TeacherLoginComponent implements OnInit, OnDestroy {
     } else {
       this.loading = true;
       this.loginSub = this.teacher.teacherLogin(
-        this.email,
+        this.email.toLocaleLowerCase(),
         this.password
       ).subscribe((data: Teacher) => {
         console.log("Teacher data : ", data);
         this.loading = false;
         localStorage.setItem('quranTeacher', JSON.stringify(data));
         this.router.navigateByUrl("/" + this.lang + '/teacher')
-      })
+      },
+        (err) => {
+          console.log("ErR: ", err);
+          this.errMsg = err.error?.message || "something went wrong";
+          this.loading = false;
+
+        }
+      )
 
     }
   }

@@ -9,6 +9,7 @@ import { TeacherRouting } from './teacher.routing';
 import { NgModule } from "@angular/core";
 import { TeacherStudentsComponent } from './TeacherStudents/teacher-students.component';
 import { AddSampleComponent } from './AddSample/AddSample.component';
+import { TeacherEnrollsComponent } from './TeacherEnrolls/TeacherEnrolls.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { AddSampleComponent } from './AddSample/AddSample.component';
     TeacherSamples,
     TeacherStudentsComponent,
     AddSampleComponent,
+    TeacherEnrollsComponent,
   ],
   imports: [
     SharedModule,

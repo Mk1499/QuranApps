@@ -12,6 +12,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { translateBrowserLoaderFactory } from './loaders/translate-browser.loader';
 import { StudentCardComponent } from '../Components/student-card/student-card.component';
+import { SuccessAlertComponent } from '../Components/success-alert/success-alert.component';
 
 
 
@@ -21,7 +22,8 @@ import { StudentCardComponent } from '../Components/student-card/student-card.co
     SampleCardComponent,
     NavbarComponent,
     LogoComponent,
-    StudentCardComponent
+    StudentCardComponent,
+    SuccessAlertComponent
 
   ],
   imports: [
@@ -45,7 +47,9 @@ import { StudentCardComponent } from '../Components/student-card/student-card.co
     NavbarComponent,
     LogoComponent,
     FormsModule,
-    StudentCardComponent
+    StudentCardComponent,
+    SuccessAlertComponent
+
 
   ]
 })

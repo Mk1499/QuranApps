@@ -1,0 +1,36 @@
+<div class="container">
+  <div class="row">
+    <div class="cont" *ngIf="loading">
+      <img src="../../../../assets/images/loading.gif" class="loadImg" />
+    </div>
+
+    <div class="cont" *ngIf="!loading && !enrolls.length">
+      <h3>{{ "noEnrolls" | translate }}</h3>
+    </div>
+    <table
+      class="table table-hover table-dark usersTable"
+      *ngIf="enrolls.length"
+    >
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">{{ "studentName" | translate }}</th>
+          <th scope="col">{{ "dateTime" | translate }}</th>
+          <th scope="col">{{ "status" | translate }}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let enroll of enrolls; let i = index">
+          <th scope="row">{{ i + 1 }}</th>
+          <td>{{ enroll.studentID?.name }}</td>
+          <td>{{ enroll.dateTime }}</td>
+          <td>
+            {{
+              enroll.active ? ("exists" | translate) : ("finished" | translate)
+            }}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

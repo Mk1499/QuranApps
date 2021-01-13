@@ -14,7 +14,8 @@
 .dark .navbar-nav .nav-link.active,
 .dark .navbar-light .navbar-nav .active>.nav-link ,
 .dark .logoName ,
-.dark .card-title.name {
+.dark .card-title.name,
+.dark .logoName:hover {
   color: #fff;
 }
 
