@@ -23,7 +23,7 @@
         <tr *ngFor="let enroll of enrolls; let i = index">
           <th scope="row">{{ i + 1 }}</th>
           <td>{{ enroll.studentID?.name }}</td>
-          <td>{{ enroll.dateTime }}</td>
+          <td>{{ enroll.dateTime | date}}</td>
           <td>
             {{
               enroll.active ? ("exists" | translate) : ("finished" | translate)
