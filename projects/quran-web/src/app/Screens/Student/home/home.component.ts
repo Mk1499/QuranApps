@@ -17,7 +17,7 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.translate.get('siteName').subscribe(t => {
-      if (t !== 'siteNameI' && t)
+      if (t !== 'siteName' && t)
         this.title.setTitle(t)
     })
     if (this.lang.urlLang === "ar") {

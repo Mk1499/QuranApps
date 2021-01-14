@@ -1,3 +1,4 @@
+import { StudentComponent } from './student.component';
 import { TeacherProfileComponent } from './teacher-profile/teacher-profile.component';
 import { TeacherComponent } from './teacher/teacher.component';
 import { StudentRegComponent } from './student-reg/student-reg.component';
@@ -25,6 +26,7 @@ import { StudentRouting } from "./student.routing";
     TeacherComponent,
     TeacherProfileComponent,
     HomeComponent,
+    StudentComponent
   ],
   imports: [
     FormsModule,

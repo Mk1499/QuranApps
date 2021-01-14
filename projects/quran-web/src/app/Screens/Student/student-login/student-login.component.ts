@@ -28,6 +28,7 @@ export class StudentLoginComponent implements OnInit {
   ngOnInit(): void {
     this.lang = this.l.urlLang;
     this.translate.get('studentLogin').subscribe(t => {
+      if (t !== "studentLogin")
       this.title.setTitle(t)
     })
   }

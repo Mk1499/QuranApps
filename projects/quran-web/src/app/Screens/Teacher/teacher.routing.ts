@@ -7,6 +7,7 @@ import { TeacherLoginComponent } from './TeacherLogin/teacherLogin.component';
 import { TeacherEnrollsComponent } from './TeacherEnrolls/TeacherEnrolls.component';
 import { Routes, RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
+import { TeacherGuard } from '../../Guards/Teacher.guard';
 
 
 const routes: Routes = [
@@ -19,7 +20,8 @@ const routes: Routes = [
       { path: 'students', component: TeacherStudentsComponent },
       { path: 'enrolls', component: TeacherEnrollsComponent },
       { path: '**', redirectTo: 'home' }
-    ]
+    ],
+    canActivate: [TeacherGuard]
   },
 ]
 

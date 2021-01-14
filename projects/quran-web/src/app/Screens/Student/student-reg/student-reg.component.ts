@@ -20,16 +20,17 @@ export class StudentRegComponent implements OnInit {
   lang: string;
   errMsg: string = "";
   constructor(private l: LangService,
-             private api: ApiCallService,
-             private auth: AuthService,
-             private router: Router,
-             private  translate:TranslateService,
-             private title:Title) { }
+    private api: ApiCallService,
+    private auth: AuthService,
+    private router: Router,
+    private translate: TranslateService,
+    private title: Title) { }
 
   ngOnInit(): void {
     this.lang = this.l.urlLang;
-    this.translate.get('studentLogin').subscribe(t => {
-      this.title.setTitle(t)
+    this.translate.get('studentSignup').subscribe(t => {
+      if (t !== "studentSignup")
+        this.title.setTitle(t)
     })
   }
   register() {

@@ -1,6 +1,6 @@
 .cont {
     width: 100vw;
-    height: 100vh;
+    min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -9,9 +9,9 @@
   }
   .view {
     width: 90%;
-    /* height: 40%; */
+    height: 90vh;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    padding: 5%;
+    padding: 2% 5%;
     border-radius: 5%;
     background-color: #333;
     color: #fff;

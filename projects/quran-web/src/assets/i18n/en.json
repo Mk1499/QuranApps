@@ -62,5 +62,7 @@
   "finished": "Finished",
   "yes": "Yes",
   "no": "No",
-  "noEnrolls": "You havn't any Enrolls yet"
+  "noEnrolls": "You havn't any Enrolls yet",
+  "studentSignup": "Sign up as a Student"
+
 }

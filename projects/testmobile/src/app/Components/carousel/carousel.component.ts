@@ -14,7 +14,7 @@ export class CarouselComponent implements OnInit {
 
   ngOnInit(): void {
     this.translate.get('siteName').subscribe(t => {
-      if (t !== 'siteNameI')
+      if (t !== 'siteName')
         this.title.setTitle(t)
     })
 

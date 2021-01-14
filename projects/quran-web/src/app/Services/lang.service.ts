@@ -7,7 +7,7 @@ import { TranslateService } from '@ngx-translate/core';
   providedIn: 'root'
 })
 export class LangService {
-  urlLang: string;
+  urlLang: string = "en";
   constructor(private router: Router, private trans: TranslateService) {
     this.intialization()
   }

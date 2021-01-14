@@ -1,3 +1,4 @@
+import { StudentGuard } from './../../Guards/Student.guard';
 import { ProfileComponent } from './profile/profile.component';
 import { HomeComponent } from './home/home.component';
 import { StudentRegComponent } from './student-reg/student-reg.component';
@@ -16,13 +17,14 @@ const routes: Routes = [
   { path: 'signup', component: StudentRegComponent },
   {
     path: '', component: HomeComponent, children: [
-      { path: 'home', component: CarouselComponent },
+      { path: 'home', component: CarouselComponent  },
       { path: 'teachers', component: TeacherComponent },
       { path: 'teachers/:id', component: TeacherProfileComponent },
       { path: 'library', component: LiberaryComponent },
       { path : 'profile',component:ProfileComponent},
       { path: '**', redirectTo: 'home' }
-    ]
+    ],
+    canActivate:[StudentGuard]
   }
 ]
 

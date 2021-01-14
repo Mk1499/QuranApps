@@ -35,9 +35,9 @@ export class AdminLoginComponent implements OnInit, OnDestroy {
     console.log("Email : ", this.email);
     this.loading = true;
 
-    this.loginSub = this.api.adminLogin(data).subscribe(data => {
-      console.log("Admin Login Data : ", data);
-      localStorage.setItem('quranAdmin', data);
+    this.loginSub = this.api.adminLogin(data).subscribe(d => {
+      console.log("Admin Login Data : ", d);
+      localStorage.setItem('quranAdmin', JSON.stringify(d));
       this.loading = false;
       this.router.navigateByUrl("/" + this.l.urlLang + '/admin/home')
     }

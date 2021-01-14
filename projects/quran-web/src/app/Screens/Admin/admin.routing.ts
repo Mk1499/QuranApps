@@ -1,3 +1,4 @@
+import { AdminGuard } from './../../Guards/Admin.guard';
 import { AdminLoginComponent } from './login/login.component';
 import { AdminStudentsComponent } from './admin-students/admin-students.component';
 import { AdminTeacherProfileComponent } from './admin-teacher-profile/admin-teacher-profile.component';
@@ -16,7 +17,8 @@ const routes: Routes = [
       { path: 'teachers/:id', component: AdminTeacherProfileComponent },
       { path: 'students', component: AdminStudentsComponent },
       { path: "**", redirectTo: 'home' }
-    ]
+    ],
+    canActivate: [AdminGuard]
   },
 ]
 
