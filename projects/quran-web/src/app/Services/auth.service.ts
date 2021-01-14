@@ -1,3 +1,4 @@
+import { SampleService } from './sample.service';
 import { LangService } from './lang.service';
 import { Router } from '@angular/router';
 import { ApiCallService } from './api-call.service';
@@ -8,7 +9,7 @@ import { Injectable } from '@angular/core';
 })
 export class AuthService {
   user: any;
-  constructor(private router: Router, private lang: LangService) {
+  constructor(private router: Router, private lang: LangService, private sampleSer: SampleService) {
     this.user = JSON.parse(localStorage.getItem('quranUser'));
   }
 
@@ -18,17 +19,22 @@ export class AuthService {
   }
   logOut() {
     localStorage.removeItem('quranUser');
-    this.router.navigateByUrl('/' + this.lang.urlLang)
+    this.router.navigateByUrl('/' + this.lang.urlLang);
+    this.sampleSer.changeActiveSample.next(null)
   }
 
   adminLogOut() {
     localStorage.removeItem('quranAdmin');
-    this.router.navigateByUrl('/' + this.lang.urlLang)
+    this.router.navigateByUrl('/' + this.lang.urlLang);
+    this.sampleSer.changeActiveSample.next(null)
+
   }
 
   teacherLogout() {
     localStorage.removeItem('quranTeacher');
-    this.router.navigateByUrl('/' + this.lang.urlLang)
+    this.router.navigateByUrl('/' + this.lang.urlLang);
+    this.sampleSer.changeActiveSample.next(null)
+
 
   }
 

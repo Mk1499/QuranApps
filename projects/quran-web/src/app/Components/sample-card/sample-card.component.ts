@@ -1,3 +1,4 @@
+import { SampleService } from './../../Services/sample.service';
 import { LangService } from './../../Services/lang.service';
 import { Component, Input, OnInit } from '@angular/core';
 
@@ -9,13 +10,17 @@ import { Component, Input, OnInit } from '@angular/core';
 export class SampleCardComponent implements OnInit {
 
   @Input('sample') sample;
-  // lang:string; 
+  // lang:string;
   // currentLang:string = localStorage.getItem('lang');
-  currentLang:string; 
-  constructor(private langS:LangService) { }
+  currentLang:string;
+  constructor(private langS:LangService ,private sampleSer:SampleService) { }
 
   ngOnInit(): void {
-    this.currentLang = this.langS.urlLang; 
+    this.currentLang = this.langS.urlLang;
+  }
+
+  playSample(){
+    this.sampleSer.changeActiveSample.next(this.sample)
   }
 
 }

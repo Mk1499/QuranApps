@@ -13,6 +13,7 @@ import { NgModule } from '@angular/core';
 import { translateBrowserLoaderFactory } from './loaders/translate-browser.loader';
 import { StudentCardComponent } from '../Components/student-card/student-card.component';
 import { SuccessAlertComponent } from '../Components/success-alert/success-alert.component';
+import { AudioPlayerComponent } from '../Components/audio-player/audio-player.component';
 
 
 
@@ -23,7 +24,8 @@ import { SuccessAlertComponent } from '../Components/success-alert/success-alert
     NavbarComponent,
     LogoComponent,
     StudentCardComponent,
-    SuccessAlertComponent
+    SuccessAlertComponent,
+    AudioPlayerComponent
 
   ],
   imports: [
@@ -48,9 +50,8 @@ import { SuccessAlertComponent } from '../Components/success-alert/success-alert
     LogoComponent,
     FormsModule,
     StudentCardComponent,
-    SuccessAlertComponent
-
-
+    SuccessAlertComponent,
+    AudioPlayerComponent
   ]
 })
 

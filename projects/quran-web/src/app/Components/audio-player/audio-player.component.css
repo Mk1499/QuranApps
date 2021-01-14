@@ -1,0 +1,76 @@
+.main {
+  background-color: #333;
+  position: fixed;
+  bottom: -1px;
+  width: 100vw;
+  height: 10vh;
+  border-top: 1px gold solid;
+  box-shadow: 0 4px 8px 0 gold, 0 6px 20px 0 gold;
+  z-index: 50;
+}
+.content {
+  padding: 0 5vw;
+}
+.data {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  width: 20vw;
+}
+.avatar {
+  width: 8vh;
+  height: 8vh;
+  border-radius: 10px;
+  margin: 0 1vw;
+}
+
+.audioName,
+.teacherName {
+  color: #fff;
+}
+.playerCont {
+  width: 10vw;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+.playerCont i {
+  color: #fff;
+  cursor: pointer;
+}
+
+.playerCont i.largeIcon {
+  font-size: 3vw;
+}
+.playerCont i.medIcon {
+  font-size: 2vw;
+}
+
+.playerCont i:hover {
+  color: gold;
+}
+
+.progreeBar {
+  width: 50vw;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+.bar {
+  width: 85%;
+  height: 1vh;
+  background-color: grey;
+  border-radius: 2px;
+}
+.time {
+  align-self: center;
+  color: #fff;
+  font-weight: 300;
+  margin-top: 1.5vh;
+}
+.filledBar {
+  width: 50%;
+  height: 100%;
+  background-color: gold;
+  border-radius: 2px;
+}

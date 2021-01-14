@@ -1,0 +1,57 @@
+
+<div class="main" *ngIf="audio" [@animate]  tabindex="1"  (keyup.space) = "toggle()">
+
+  <div class="content">
+    <div class="row">
+      <div class="data">
+        <img
+          [src]="
+            audio.avatar ||
+            'https://i.pinimg.com/originals/2c/19/7d/2c197db4eb3e3695bc09777a31a86de2.png'
+          "
+          alt="cover"
+          class="avatar"
+        />
+        <div class="details">
+          <h4 class="audioName">
+            {{ lang == "ar" ? audio.arName : audio.name }}
+          </h4>
+          <p class="teacherName">
+            {{ lang == "ar" ? audio.teacher?.arName : audio.teacher?.name }}
+          </p>
+        </div>
+      </div>
+      <div class="playerCont">
+        <i class="fa fa-fast-backward fa-2x medIcon"></i>
+        <i
+          class="fa fa-play-circle fa-3x"
+          aria-hidden="true"
+          *ngIf="mode == 'paused'"
+          (click)="play(true)"
+        ></i>
+        <i
+          class="fa fa-pause-circle fa-3x largeIcon"
+          *ngIf="mode == 'playing'"
+          (click)="pause()"
+        ></i>
+        <i class="fa fa-fast-forward fa-2x medIcon"></i>
+      </div>
+      <div class="progreeBar">
+        <p class="time">
+          {{ currentMin > 9 ? currentMin : "0" + currentMin }} :
+          {{ currentSec > 9 ? currentSec : "0" + currentSec }}
+        </p>
+        <div class="bar">
+          <div
+            class="filledBar"
+            [ngStyle]="{
+              width: ((currentMin * 60 + currentSec) / totalSec) * 100 + '%'
+            }"
+          ></div>
+        </div>
+        <p class="time">{{ totalMin > 9 ? totalMin : "0" + totalMin }}:00</p>
+      </div>
+
+    </div>
+  </div>
+</div>
