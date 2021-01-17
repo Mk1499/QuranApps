@@ -3,19 +3,29 @@ import { LangService } from './lang.service';
 import { Router } from '@angular/router';
 import { ApiCallService } from './api-call.service';
 import { Injectable } from '@angular/core';
+import * as fromApp from '../Store/app.reducer';
+import * as StudentActions from '../Screens/Student/Store/student.action';
+import { Store } from '@ngrx/store';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
   user: any;
-  constructor(private router: Router, private lang: LangService, private sampleSer: SampleService) {
+  constructor(private router: Router,
+    private lang: LangService,
+    private sampleSer: SampleService,
+    private store: Store<fromApp.AppState>
+  ) {
     this.user = JSON.parse(localStorage.getItem('quranUser'));
   }
 
   setActiveUser(user) {
     this.user = user;
-    localStorage.setItem('quranUser', JSON.stringify(user))
+    localStorage.setItem('quranUser', JSON.stringify(user));
+    this.store.dispatch(new StudentActions.LoginSuccess(user))
+
   }
   logOut() {
     localStorage.removeItem('quranUser');

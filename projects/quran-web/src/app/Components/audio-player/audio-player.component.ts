@@ -47,8 +47,8 @@ export class AudioPlayerComponent implements OnInit, OnDestroy {
 
     this.audioSub = this.sampleSer.changeActiveSample.subscribe(s => {
       this.audio = s;
-      this.totalSec = s.duration * 60;
-      this.totalMin = s.duration;
+      this.totalSec = s?.duration * 60;
+      this.totalMin = s?.duration;
       this.currentMin = 0;
       this.currentSec = 0;
       if (this.playingInt) {
@@ -61,8 +61,8 @@ export class AudioPlayerComponent implements OnInit, OnDestroy {
   intialization() {
     if (this.sampleSer.activeSample) {
       this.audio = this.sampleSer.activeSample;
-      this.totalMin = this.audio.duration;
-      this.totalSec = this.audio.duration * 60;
+      this.totalMin = this.audio?.duration;
+      this.totalSec = this.audio?.duration * 60;
     }
     this.lang = this.langSer.urlLang;
     this.currentSec = 0;

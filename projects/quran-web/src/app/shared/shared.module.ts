@@ -1,3 +1,4 @@
+import { StoreModule } from '@ngrx/store';
 import { FormsModule } from '@angular/forms';
 import { NavbarComponent } from '../Components/navbar/navbar.component';
 import { LogoComponent } from '../Components/logo/logo.component';
@@ -15,6 +16,7 @@ import { StudentCardComponent } from '../Components/student-card/student-card.co
 import { SuccessAlertComponent } from '../Components/success-alert/success-alert.component';
 import { AudioPlayerComponent } from '../Components/audio-player/audio-player.component';
 
+import * as fromApp from '../Store/app.reducer';
 
 
 @NgModule({
@@ -38,6 +40,8 @@ import { AudioPlayerComponent } from '../Components/audio-player/audio-player.co
         deps: [HttpClient, TransferState]
       }
     }),
+    StoreModule
+
     // FormsModule
   ],
   exports: [

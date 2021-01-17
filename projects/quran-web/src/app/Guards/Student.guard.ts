@@ -1,3 +1,4 @@
+import { Store } from '@ngrx/store';
 import { LangService } from './../Services/lang.service';
 import { Injectable } from '@angular/core';
 import {
@@ -7,7 +8,8 @@ import {
   UrlTree,
   Router
 } from '@angular/router';
-import { Observable } from 'rxjs';
+import * as fromApp from '../Store/app.reducer';
+import * as studentActions from '../Screens/Student/Store/student.action';
 
 
 @Injectable({
@@ -16,7 +18,8 @@ import { Observable } from 'rxjs';
 export class StudentGuard implements CanActivate {
   constructor(
     private router: Router,
-    private lang: LangService
+    private lang: LangService,
+    private store: Store<fromApp.AppState>
   ) { }
 
   canActivate(
@@ -26,8 +29,15 @@ export class StudentGuard implements CanActivate {
 
     let user = JSON.parse(localStorage.getItem('quranUser'));
     let lang = this.lang.urlLang || "en";
-    console.log("Active User in student Gaurd: ", user, `/${lang}/student/login`);
 
-    return user && user.role == "Student" ? true : this.router.parseUrl(`/${lang}/student/login`)
+    if (user && user.role == "Student") {
+      this.store.dispatch(new studentActions.LoginSuccess(user))
+      return true;
+    }
+
+    else {
+      this.router.parseUrl(`/${lang}/student/login`)
+    }
+
   }
 }

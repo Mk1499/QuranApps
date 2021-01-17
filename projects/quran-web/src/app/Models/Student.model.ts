@@ -1,11 +1,18 @@
 import { Teacher } from './teacher';
 
-export interface Student {
-  name: string;
-  arName: string;
-  email: string;
-  teachers: [Teacher];
-  _id: string;
-  role: string;
-  avatar: string;
+export class Student {
+
+
+  constructor (
+    public name: string,
+    public arName: string,
+    public email: string,
+    public teachers: [Teacher],
+    public _id: string,
+    public role: string,
+    public avatar: string,
+
+  ){
+
+  }
 }
