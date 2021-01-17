@@ -6,10 +6,10 @@
     <img
       class="card-img-top"
       [src]="
-        sample.avatar ||
-        'https://i.pinimg.com/originals/2c/19/7d/2c197db4eb3e3695bc09777a31a86de2.png'
+        imageURL
       "
       alt="Card image cap"
+      (error)= "imgUrlErr()"
     />
   </div>
   <div class="card-body">
