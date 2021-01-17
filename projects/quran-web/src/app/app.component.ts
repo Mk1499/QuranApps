@@ -2,6 +2,8 @@ import { MessagingService } from './Services/messaging.service';
 import { Component , OnInit} from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 
+import {requestPermission,notificationListeners} from './Services/notifications.service';
+
 
 
 
@@ -22,6 +24,10 @@ export class AppComponent implements OnInit {
   ngOnInit() :void{
     this.msgService.requestPermission();
     this.msgService.receiveMessage();
+
+    requestPermission();
+    notificationListeners();
+
 
     this.message = this.msgService.currentMessage;
   }
