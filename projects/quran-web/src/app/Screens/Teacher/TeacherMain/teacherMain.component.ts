@@ -1,4 +1,4 @@
-import { LangService } from './../../../../../../testmobile/src/app/Services/lang.service';
+import { LangService } from './../../../Services/lang.service';
 import { Component, OnInit } from "@angular/core";
 
 @Component({

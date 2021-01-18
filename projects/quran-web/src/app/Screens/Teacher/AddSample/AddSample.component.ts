@@ -1,5 +1,5 @@
+import { LangService } from './../../../Services/lang.service';
 import { SuccessAlertComponent } from './../../../Components/success-alert/success-alert.component';
-import { LangService } from './../../../../../../testmobile/src/app/Services/lang.service';
 import { Subscription } from 'rxjs';
 import { TeacherService } from './../../../Services/teacher.service';
 import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';

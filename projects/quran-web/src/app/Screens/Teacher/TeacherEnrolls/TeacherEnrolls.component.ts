@@ -1,5 +1,5 @@
+import { Teacher } from './../../../Models/teacher';
 import { Subscription } from 'rxjs';
-import { Teacher } from './../../../../../../testmobile/src/app/Interfaces/teacher';
 import { Enroll } from './../../../Models/Enroll.model';
 import { TeacherService } from './../../../Services/teacher.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';

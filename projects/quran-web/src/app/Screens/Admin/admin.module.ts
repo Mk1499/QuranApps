@@ -1,3 +1,4 @@
+import { AddItemComponent } from './../../Components/add-item/add-item.component';
 import { SharedModule } from '../../shared/shared.module';
 import { AddTeacherFormComponent } from './../../Components/add-teacher-form/add-teacher-form.component';
 import { SideBarComponent } from './../../Components/side-bar/side-bar.component';
@@ -12,7 +13,6 @@ import { AdminTeacherProfileComponent } from './admin-teacher-profile/admin-teac
 import { AdminTeachersComponent } from './admin-teachers/admin-teachers.component';
 import { AdminComponent } from './admin/admin.component';
 import { AdminHomeComponent } from './admin-home/admin-home.component';
-import { AddItemComponent } from 'projects/testmobile/src/app/Components/add-item/add-item.component';
 import { ChartsModule } from 'ng2-charts';
 
 

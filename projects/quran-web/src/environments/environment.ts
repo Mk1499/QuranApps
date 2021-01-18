@@ -12,7 +12,13 @@ export const environment = {
     messagingSenderId: "873696623827",
     appId: "1:873696623827:web:ea26ccee646e5126122826",
     measurementId: "G-KQB1GJ59D9"
-  }
+  },
+  hostUrl: 'http://localhost:4200',
+  // Contentful API authentication credentials
+  contentful: {
+    space: 'vcdjjbl2zaex',
+    accessToken: 'xG-Ei5PrA5Dz-dr7kaKwSUMHe0UGXUzP690e4QGtSbE',
+  },
 };
 
 /*

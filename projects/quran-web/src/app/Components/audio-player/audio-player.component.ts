@@ -1,5 +1,5 @@
+import { LangService } from './../../Services/lang.service';
 import { state, style, trigger, transition, animate } from '@angular/animations';
-import { LangService } from './../../../../../testmobile/src/app/Services/lang.service';
 import { Subscription } from 'rxjs';
 import { SampleService } from './../../Services/sample.service';
 import { Sample } from './../../Models/Sample.model';
