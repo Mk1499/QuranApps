@@ -1,8 +1,9 @@
 import { MessagingService } from './Services/messaging.service';
-import { Component , OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 
-import {requestPermission,notificationListeners} from './Services/notifications.service';
+import { requestPermission, notificationListeners } from './Services/notifications.service';
+import { DeviceDetectorService } from 'ngx-device-detector';
 
 
 
@@ -16,17 +17,21 @@ export class AppComponent implements OnInit {
   title = 'QuranWeb';
   message;
   lastUsedLang: string = localStorage.getItem('lang') || 'en';
-  constructor(private translate: TranslateService, private msgService:MessagingService) {
+  constructor(private translate: TranslateService, private msgService: MessagingService,
+    private deviceService: DeviceDetectorService
+  ) {
 
     translate.setDefaultLang(this.lastUsedLang);
   }
 
-  ngOnInit() :void{
-    this.msgService.requestPermission();
-    this.msgService.receiveMessage();
-
-    requestPermission();
-    notificationListeners();
+  ngOnInit(): void {
+    if (this.deviceService.isMobile()) {
+      requestPermission();
+      notificationListeners();
+    } else {
+      this.msgService.requestPermission();
+      this.msgService.receiveMessage();
+    }
 
 
     this.message = this.msgService.currentMessage;

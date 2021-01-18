@@ -5,7 +5,7 @@ import { LangService } from './Services/lang.service';
 import { ApiCallService } from './Services/api-call.service';
 import { MessagingService } from './Services/messaging.service';
 
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule, TransferState, Meta, Title } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
@@ -51,6 +51,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
+    ReactiveFormsModule,
     TransferHttpCacheModule,
     AngularFireDatabaseModule,
     AngularFireAuthModule,

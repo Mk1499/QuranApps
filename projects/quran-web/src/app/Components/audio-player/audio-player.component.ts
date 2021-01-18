@@ -3,7 +3,11 @@ import { LangService } from './../../../../../testmobile/src/app/Services/lang.s
 import { Subscription } from 'rxjs';
 import { SampleService } from './../../Services/sample.service';
 import { Sample } from './../../Models/Sample.model';
-import { Component, Input, OnInit, OnDestroy } from '@angular/core';
+import { Component, Input, OnInit, OnDestroy, ViewChild, AfterViewChecked, AfterViewInit, ContentChildren, ContentChild } from '@angular/core';
+import { Howl } from 'howler';
+
+
+
 
 @Component({
   selector: 'app-audio-player',
@@ -29,18 +33,23 @@ export class AudioPlayerComponent implements OnInit, OnDestroy {
   playingInt;
   audio: Sample;
   audioSub: Subscription;
-  sound: HTMLAudioElement = new Audio();
+  loadingTone: boolean = false;
 
+  // sound: HTMLAudioElement = new Audio();
+  audioPlayer = new Howl({
+    src: ["https://server11.mp3quran.net/shatri/001.mp3", "https://server11.mp3quran.net/shatri/055.mp3"]
+  })
   constructor(
     private sampleSer: SampleService,
     private langSer: LangService
-  ) { }
+  ) {
+
+  }
 
   ngOnInit(): void {
 
     this.intialization();
     this.changeSubscription();
-
   }
 
   changeSubscription() {
@@ -53,7 +62,9 @@ export class AudioPlayerComponent implements OnInit, OnDestroy {
       this.currentSec = 0;
       if (this.playingInt) {
         clearInterval(this.playingInt)
+        this.pause();
       }
+
       this.play();
     })
   }
@@ -70,39 +81,63 @@ export class AudioPlayerComponent implements OnInit, OnDestroy {
 
   }
 
+  timer(source) {
+    console.log("create timer from : ", source, " => ", this.playingInt);
+
+    this.playingInt = setInterval(() => {
+      if ((this.currentMin * 60) + this.currentSec < this.totalSec) {
+        if (this.currentSec >= 59) {
+          this.currentSec = 0;
+          this.currentMin++;
+        }
+        else {
+          this.currentSec++;
+        }
+      } else {
+        this.currentSec = 0;
+        this.currentMin = 0;
+        this.pause();
+      }
+    }, 1000)
+  }
+
   play(resumeFlag = false) {
     this.mode = "playing";
-    if (!resumeFlag)
-      this.sound.src = this.audio.url;
-    this.sound.play().then(() => {
+    if (this.playingInt) {
+      clearInterval(this.playingInt)
+    }
+    if (!resumeFlag) {
+      this.loadingTone = true;
+      this.audioPlayer = new Howl({
+        src: [this.audio.url]
+      })
 
-      this.playingInt = setInterval(() => {
-        if ((this.currentMin * 60) + this.currentSec < this.totalSec) {
-          if (this.currentSec >= 59) {
-            this.currentSec = 0;
-            this.currentMin++;
-          }
-          else {
-            this.currentSec++;
-          }
-        } else {
-          this.currentSec = 0;
-          this.currentMin = 0;
+      this.audioPlayer.play();
+      this.audioPlayer.once('play', () => {
+        if (this.mode === 'paused') {
           this.pause();
+
         }
-      }, 1000)
-    })
+        this.timer("first play");
+        this.loadingTone = false;
+      })
+    } else {
+      this.audioPlayer.play();
+      this.timer("Resuminng");
+    }
   }
 
   pause() {
     this.mode = "paused";
-    this.sound.pause();
-    clearInterval(this.playingInt);
+    // this.sound.pause();
+    if (this.playingInt)
+      clearInterval(this.playingInt);
+    this.audioPlayer.pause();
 
   }
 
-  toggle(){
-    if (this.mode == "paused"){
+  toggle() {
+    if (this.mode == "paused") {
       this.play(true)
     } else {
       this.pause();
