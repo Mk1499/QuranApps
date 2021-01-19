@@ -1,3 +1,5 @@
+import { DynamicMeta } from './../../../Services/dynamicMeta.service';
+import { RouteData } from './../../../Models/RouteData.model';
 import { TranslateService } from '@ngx-translate/core';
 import { Title } from '@angular/platform-browser';
 import { Component, OnInit } from '@angular/core';
@@ -12,7 +14,8 @@ export class LiberaryComponent implements OnInit {
 
   constructor(private apiService: ApiCallService,
               private title:Title,
-              private translate:TranslateService
+              private translate:TranslateService,
+              private metaService:DynamicMeta
     ) { }
 
   ngOnInit(): void {
@@ -21,6 +24,13 @@ export class LiberaryComponent implements OnInit {
       console.log("Samples : ", t);
     })
     this.translate.get('library').subscribe(t => this.title.setTitle(t))
+
+
+    let metaData : RouteData = {
+      title:"All App Samples",
+      description: "Here You can browse all application  samples and listen to it",
+    }
+    this.metaService.updateTags(metaData)
 
   }
 }

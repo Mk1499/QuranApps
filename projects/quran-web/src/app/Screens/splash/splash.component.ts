@@ -1,3 +1,4 @@
+import { DynamicMeta } from './../../Services/dynamicMeta.service';
 import { Store } from '@ngrx/store';
 import { ThemesService } from './../../Services/themes.service';
 import { Component, OnInit } from '@angular/core';
@@ -13,7 +14,7 @@ import * as fromApp from '../../Store/app.reducer'
 })
 export class SplashComponent implements OnInit {
   mode: string;
-  constructor(private theme: ThemesService, private meta: Meta,
+  constructor(private theme: ThemesService, private metaService: DynamicMeta,
     private store: Store<fromApp.AppState>
   ) {
     theme.modeChanging.subscribe(m => {
@@ -23,10 +24,7 @@ export class SplashComponent implements OnInit {
 
   ngOnInit(): void {
     this.mode = this.theme.mode;
-    this.meta.addTag({
-      name: 'description',
-      content: "This is a web site used to help students to learn Quran Karim "
-    })
+    this.metaService.intializTags();
     this.store.select("studentData").subscribe(s => {
       console.log("store in splash : ", s);
 

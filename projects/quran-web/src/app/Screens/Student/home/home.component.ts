@@ -1,3 +1,5 @@
+import { RouteData } from './../../../Models/RouteData.model';
+import { DynamicMeta } from './../../../Services/dynamicMeta.service';
 import { LangService } from './../../../Services/lang.service';
 import { Title } from '@angular/platform-browser';
 import { TranslateService } from '@ngx-translate/core';
@@ -13,7 +15,9 @@ export class HomeComponent implements OnInit {
   direction: string = "ltr";
   constructor(private translate: TranslateService,
     private title: Title,
-    private lang: LangService) { }
+    private lang: LangService,
+    private metaService : DynamicMeta
+    ) { }
 
   ngOnInit(): void {
     this.translate.get('siteName').subscribe(t => {
@@ -25,6 +29,12 @@ export class HomeComponent implements OnInit {
     } else {
       this.direction = "ltr";
     }
+
+    let metaData : RouteData = {
+      title:"Student Home",
+      description: "Student Home",
+    }
+    this.metaService.updateTags(metaData)
   }
 
 }

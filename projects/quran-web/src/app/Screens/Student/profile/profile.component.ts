@@ -1,3 +1,5 @@
+import { DynamicMeta } from './../../../Services/dynamicMeta.service';
+import { RouteData } from './../../../Models/RouteData.model';
 import { StudentService } from './../../../Services/student.service';
 import { ApiCallService } from '../../../Services/api-call.service';
 import { AuthService } from '../../../Services/auth.service';
@@ -20,12 +22,19 @@ export class ProfileComponent implements OnInit, OnDestroy {
   constructor(
     private auth: AuthService,
     private api: ApiCallService,
-    private student: StudentService
-  ) { }
+    private student: StudentService,
+    private metaService: DynamicMeta
+    ) { }
 
   ngOnInit(): void {
     this.user = this.auth.user;
     this.getStudentData();
+
+    let metaData : RouteData = {
+      title:"Student Profile",
+      description: "Student Profile data",
+    }
+    this.metaService.updateTags(metaData)
   }
 
   getStudentData() {

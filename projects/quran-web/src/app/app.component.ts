@@ -1,3 +1,4 @@
+import { DynamicMeta } from './Services/dynamicMeta.service';
 import { MessagingService } from './Services/messaging.service';
 import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
@@ -18,7 +19,8 @@ export class AppComponent implements OnInit {
   message;
   lastUsedLang: string = localStorage.getItem('lang') || 'en';
   constructor(private translate: TranslateService, private msgService: MessagingService,
-    private deviceService: DeviceDetectorService
+    private deviceService: DeviceDetectorService ,
+    private dynamicMeta : DynamicMeta
   ) {
 
     translate.setDefaultLang(this.lastUsedLang);

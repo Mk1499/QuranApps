@@ -1,3 +1,5 @@
+import { RouteData } from './../../../Models/RouteData.model';
+import { DynamicMeta } from './../../../Services/dynamicMeta.service';
 import { GropedEnroll } from './../../../Models/GropedEnroll.model';
 import { Subscription } from 'rxjs';
 import { Component, OnInit, OnDestroy } from '@angular/core';
@@ -37,7 +39,8 @@ export class AdminHomeComponent implements OnInit, OnDestroy {
   enrollsSub: Subscription;
 
   constructor(
-    private adminService: AdminService
+    private adminService: AdminService ,
+    private metaService : DynamicMeta
   ) {
 
 
@@ -46,6 +49,12 @@ export class AdminHomeComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.getAllEnrolls();
     this.getUnEnrolls();
+
+    let data : RouteData = {
+      title : "Admin Monotoring",
+      description: "admin panel you can view your students and teachers also you can add or remove teachers in conclusion you have a full control from all app also you can see a charts for app"
+    }
+    this.metaService.updateTags(data);
   }
 
 

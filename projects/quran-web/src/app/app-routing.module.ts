@@ -1,13 +1,5 @@
-import { ProfileComponent } from './Screens/Student/profile/profile.component';
-import { StudentRegComponent } from './Screens/Student/student-reg/student-reg.component';
-import { StudentLoginComponent } from './Screens/Student/student-login/student-login.component';
 import { LoadingComponent } from './Components/loading/loading.component';
-// import { HomeComponent } from './Screens/Student/home/home.component';
 import { SplashComponent } from './Screens/splash/splash.component';
-import { TeacherProfileComponent } from './Screens/Student/teacher-profile/teacher-profile.component';
-import { LiberaryComponent } from './Screens/Student/liberary/liberary.component';
-import { TeacherComponent } from './Screens/Student/teacher/teacher.component';
-import { CarouselComponent } from './Components/carousel/carousel.component';
 import { LoginComponent } from './Screens/login/login.component';
 
 

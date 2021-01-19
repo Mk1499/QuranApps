@@ -1,3 +1,5 @@
+import { DynamicMeta } from './../../../Services/dynamicMeta.service';
+import { RouteData } from './../../../Models/RouteData.model';
 import { Subscription } from 'rxjs';
 import { TeacherService } from './../../../Services/teacher.service';
 import { ApiCallService } from './../../../Services/api-call.service';
@@ -38,7 +40,9 @@ export class AdminTeachersComponent implements OnInit, OnDestroy {
 
   constructor(
     private api: ApiCallService,
-    private teacherService: TeacherService) { }
+    private teacherService: TeacherService,
+    private metaService: DynamicMeta
+  ) { }
 
   ngOnInit(): void {
     this.api.getTeachers().subscribe(data => {
@@ -46,6 +50,15 @@ export class AdminTeachersComponent implements OnInit, OnDestroy {
       this.teachersCopy = data.teachers;
       this.teachers = data.teachers;
     })
+
+
+    let metaData: RouteData = {
+      title: "Conrolling Teachers",
+      description: "Here you can Add and Remove Teachers"
+    }
+
+    this.metaService.updateTags(metaData)
+
   }
 
   filterTeacehers() {

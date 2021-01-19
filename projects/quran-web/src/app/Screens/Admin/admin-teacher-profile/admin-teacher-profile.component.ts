@@ -1,3 +1,5 @@
+import { RouteData } from './../../../Models/RouteData.model';
+import { DynamicMeta } from './../../../Services/dynamicMeta.service';
 import { Title } from '@angular/platform-browser';
 import { LangService } from './../../../Services/lang.service';
 import { ActivatedRoute } from '@angular/router';
@@ -20,24 +22,27 @@ export class AdminTeacherProfileComponent implements OnInit {
   constructor(private apiService: ApiCallService,
     private activeRoute: ActivatedRoute,
     private langService: LangService,
-    private title:Title) { }
+    private title: Title,
+    private metaService: DynamicMeta
+  ) { }
 
   ngOnInit(): void {
     this.getTeacherData();
     this.lang = this.langService.urlLang;
+
+    let metaData: RouteData = {
+      title: "Admin Teacher Profile",
+      description: "Here you can view any teacher details",
+      robots: "muslim,quran,teacher,profile"
+    }
+    this.metaService.updateTags(metaData)
   }
 
   getTeacherData() {
     this.teacherID = this.activeRoute.snapshot.params['id'];
     this.apiService.getTeacherProfile(this.teacherID).subscribe(t => {
       this.teacher = t;
-      console.log("Teacher Data : ",t);
-
-      // if (this.teacher?.students?.includes(this.user?._id)) {
-      //   this.enrolled = true
-      // } else {
-      //   this.enrolled = false
-      // }
+      console.log("Teacher Data : ", t);
 
       this.title.setTitle(this.teacher.name || "Teacher Profile")
     })

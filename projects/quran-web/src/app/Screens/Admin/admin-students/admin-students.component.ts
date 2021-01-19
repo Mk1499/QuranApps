@@ -1,3 +1,5 @@
+import { DynamicMeta } from './../../../Services/dynamicMeta.service';
+import { RouteData } from './../../../Models/RouteData.model';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +9,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdminStudentsComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private metaService: DynamicMeta
+  ) { }
 
   ngOnInit(): void {
+
+    let data : RouteData = {
+      title : "Conrolling Students",
+      description: "Here you can Add and Remove Students"
+    }
+    this.metaService.updateTags(data);
   }
 
 }
