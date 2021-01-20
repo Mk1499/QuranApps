@@ -1,3 +1,4 @@
+import { AudioService } from './../../Services/audio.service';
 import { Sample } from './../../Models/Sample.model';
 import { SampleService } from './../../Services/sample.service';
 import { LangService } from './../../Services/lang.service';
@@ -11,25 +12,26 @@ import { sample } from 'rxjs/operators';
 })
 export class SampleCardComponent implements OnInit {
 
-  @Input('sample') sample:Sample;
-  imageURL:string = 'https://i.pinimg.com/originals/2c/19/7d/2c197db4eb3e3695bc09777a31a86de2.png';
+  @Input('sample') sample: Sample;
+  imageURL: string = 'https://i.pinimg.com/originals/2c/19/7d/2c197db4eb3e3695bc09777a31a86de2.png';
   // lang:string;
   // currentLang:string = localStorage.getItem('lang');
-  currentLang:string;
-  constructor(private langS:LangService ,private sampleSer:SampleService) { }
+  currentLang: string;
+  constructor(private langS: LangService, private audioService: AudioService) { }
 
   ngOnInit(): void {
     this.currentLang = this.langS.urlLang;
-    if (this.sample.avatar){
+    if (this.sample.avatar) {
       this.imageURL = this.sample.avatar;
     }
   }
 
-  playSample(){
-    this.sampleSer.changeActiveSample.next(this.sample)
+  playSample() {
+    this.audioService.changeSample(this.sample);
+    this.audioService.startPlay(this.sample.url);
   }
 
-  imgUrlErr(){
+  imgUrlErr() {
     this.imageURL = 'https://i.pinimg.com/originals/2c/19/7d/2c197db4eb3e3695bc09777a31a86de2.png';
   }
 

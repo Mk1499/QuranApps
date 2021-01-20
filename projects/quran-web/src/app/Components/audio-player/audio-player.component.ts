@@ -1,9 +1,10 @@
+import { AudioService } from './../../Services/audio.service';
 import { LangService } from './../../Services/lang.service';
 import { state, style, trigger, transition, animate } from '@angular/animations';
 import { Subscription } from 'rxjs';
 import { SampleService } from './../../Services/sample.service';
 import { Sample } from './../../Models/Sample.model';
-import { Component, Input, OnInit, OnDestroy, ViewChild, AfterViewChecked, AfterViewInit, ContentChildren, ContentChild } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild, AfterViewChecked, AfterViewInit, ContentChildren, ContentChild } from '@angular/core';
 import { Howl } from 'howler';
 
 
@@ -33,6 +34,7 @@ export class AudioPlayerComponent implements OnInit, OnDestroy {
   playingInt;
   audio: Sample;
   audioSub: Subscription;
+  modeSub: Subscription;
   loadingTone: boolean = false;
 
   // sound: HTMLAudioElement = new Audio();
@@ -41,7 +43,8 @@ export class AudioPlayerComponent implements OnInit, OnDestroy {
   })
   constructor(
     private sampleSer: SampleService,
-    private langSer: LangService
+    private langSer: LangService,
+    private audioService: AudioService
   ) {
 
   }
@@ -50,11 +53,28 @@ export class AudioPlayerComponent implements OnInit, OnDestroy {
 
     this.intialization();
     this.changeSubscription();
+    this.modeChangingSub();
+  }
+
+  modeChangingSub() {
+    this.modeSub = this.audioService.changingMode.subscribe((mode: string) => {
+      this.mode = mode;
+      if (mode === "playing") {
+        this.timer();
+        this.loadingTone = false;
+      } else if (mode === "paused") {
+        clearInterval(this.playingInt);
+        this.loadingTone = false;
+      } else if (mode === "loading") {
+        clearInterval(this.playingInt);
+        this.loadingTone = true;
+      }
+    })
   }
 
   changeSubscription() {
 
-    this.audioSub = this.sampleSer.changeActiveSample.subscribe(s => {
+    this.audioSub = this.audioService.changeActiveSample.subscribe(s => {
       this.audio = s;
       this.totalSec = s?.duration * 60;
       this.totalMin = s?.duration;
@@ -62,16 +82,13 @@ export class AudioPlayerComponent implements OnInit, OnDestroy {
       this.currentSec = 0;
       if (this.playingInt) {
         clearInterval(this.playingInt)
-        this.pause();
       }
-
-      this.play();
     })
   }
 
   intialization() {
-    if (this.sampleSer.activeSample) {
-      this.audio = this.sampleSer.activeSample;
+    if (this.audioService.activeSample) {
+      this.audio = this.audioService.activeSample;
       this.totalMin = this.audio?.duration;
       this.totalSec = this.audio?.duration * 60;
     }
@@ -81,8 +98,8 @@ export class AudioPlayerComponent implements OnInit, OnDestroy {
 
   }
 
-  timer(source) {
-    console.log("create timer from : ", source, " => ", this.playingInt);
+  timer() {
+    // console.log("create timer from : ", source, " => ", this.playingInt);
 
     this.playingInt = setInterval(() => {
       if ((this.currentMin * 60) + this.currentSec < this.totalSec) {
@@ -101,54 +118,32 @@ export class AudioPlayerComponent implements OnInit, OnDestroy {
     }, 1000)
   }
 
-  play(resumeFlag = false) {
-    this.mode = "playing";
-    if (this.playingInt) {
-      clearInterval(this.playingInt)
-    }
-    if (!resumeFlag) {
-      this.loadingTone = true;
-      this.audioPlayer = new Howl({
-        src: [this.audio.url]
-      })
 
-      this.audioPlayer.play();
-      this.audioPlayer.once('play', () => {
-        if (this.mode === 'paused') {
-          this.pause();
+  play() {
+    this.audioService.startPlay(this.audio.url)
+  }
 
-        }
-        this.timer("first play");
-        this.loadingTone = false;
-      })
-    } else {
-      this.audioPlayer.play();
-      this.timer("Resuminng");
-    }
+  resume() {
+    this.audioService.resume();
   }
 
   pause() {
-    this.mode = "paused";
-    // this.sound.pause();
-    if (this.playingInt)
-      clearInterval(this.playingInt);
-    this.audioPlayer.pause();
-
+    this.audioService.pause();
   }
 
-  toggle() {
-    if (this.mode == "paused") {
-      this.play(true)
-    } else {
-      this.pause();
-    }
+  next() {
+    this.audioService.playNext();
   }
 
+  previous() {
+    this.audioService.playPrevious();
+  }
 
   ngOnDestroy() {
     if (this.audioSub) {
       this.audioSub.unsubscribe();
     }
+    this.modeSub.unsubscribe();
   }
 
 }

@@ -1,4 +1,4 @@
-<div class="main" *ngIf="audio" [@animate] tabindex="1">
+<div class="main" *ngIf='audio' [@animate] tabindex="1">
   <div class="content">
     <div class="row mainRow">
       <div class="data">
@@ -20,11 +20,7 @@
         </div>
       </div>
       <div class="playerCont">
-        <i
-          class="fa fa-step-backward fa-2x"
-          *ngIf="!loadingTone"
-          (click)="previous()"
-        ></i>
+        <i class="fa fa-step-backward fa-2x " *ngIf="!loadingTone" (click)="previous()"></i>
         <i
           class="fa fa-play-circle fa-3x"
           aria-hidden="true"
@@ -32,7 +28,7 @@
           (click)="resume()"
         ></i>
         <i
-          class="fa fa-pause-circle fa-3x"
+          class="fa fa-pause-circle fa-3x "
           *ngIf="mode == 'playing' && !loadingTone"
           (click)="pause()"
         ></i>
@@ -41,28 +37,9 @@
           class="loadingImg"
           *ngIf="loadingTone"
         />
-        <i
-          class="fa fa-step-forward fa-2x"
-          *ngIf="!loadingTone"
-          (click)="next()"
-          disabled
-        ></i>
+        <i class="fa fa-step-forward fa-2x " *ngIf="!loadingTone" (click)="next()"></i>
       </div>
-      <div class="progreeBar">
-        <p class="time">
-          {{ currentMin > 9 ? currentMin : "0" + currentMin }} :
-          {{ currentSec > 9 ? currentSec : "0" + currentSec }}
-        </p>
-        <div class="bar">
-          <div
-            class="filledBar"
-            [ngStyle]="{
-              width: ((currentMin * 60 + currentSec) / totalSec) * 100 + '%'
-            }"
-          ></div>
-        </div>
-        <p class="time">{{ totalMin > 9 ? totalMin : "0" + totalMin }}:00</p>
-      </div>
+
     </div>
   </div>
 </div>

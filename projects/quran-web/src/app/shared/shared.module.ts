@@ -17,6 +17,7 @@ import { SuccessAlertComponent } from '../Components/success-alert/success-alert
 import { AudioPlayerComponent } from '../Components/audio-player/audio-player.component';
 
 import * as fromApp from '../Store/app.reducer';
+import { MobileAudioPlayerComponent } from '../Components/mobile-audio-player/mobile-audio-player.component';
 
 
 @NgModule({
@@ -27,7 +28,8 @@ import * as fromApp from '../Store/app.reducer';
     LogoComponent,
     StudentCardComponent,
     SuccessAlertComponent,
-    AudioPlayerComponent
+    AudioPlayerComponent,
+    MobileAudioPlayerComponent
 
   ],
   imports: [
@@ -55,7 +57,9 @@ import * as fromApp from '../Store/app.reducer';
     FormsModule,
     StudentCardComponent,
     SuccessAlertComponent,
-    AudioPlayerComponent
+    AudioPlayerComponent,
+    MobileAudioPlayerComponent
+
   ]
 })
 

@@ -9,4 +9,5 @@ export interface Sample {
   noOfAyat?: number;
   teacher?: Teacher;
   url: string;
+  _id?:string;
 }
