@@ -1,8 +1,8 @@
-import { AuthService } from './auth.service';
+import { Store } from '@ngrx/store';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http'
-import { Observable, throwError } from 'rxjs';
-import { catchError, retry } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+import * as fromApp from '../Store/app.reducer';
 
 export const baseURL = "https://quranmkserver.herokuapp.com";
 
@@ -11,7 +11,7 @@ export const baseURL = "https://quranmkserver.herokuapp.com";
 })
 export class ApiCallService {
 
-  constructor(private http: HttpClient, private auth: AuthService) { }
+  constructor(private http: HttpClient, private store: Store<fromApp.AppState>) { }
   getTeachers(): Observable<any> {
     let url = baseURL + "/teacher";
     return this.http.get(url)
@@ -30,23 +30,41 @@ export class ApiCallService {
     return this.http.get(url);
   }
 
-  studentLogin(email, password): Observable<any> {
+  studentLogin(email, password, webToken, mobileToken): Observable<any> {
     let url = baseURL + "/student/login";
-
-    return this.http.post(url, {
+    let body = {
       email,
       password
-    });
+    }
+
+    if (webToken) {
+      body['webToken'] = webToken;
+    }
+    if (mobileToken) {
+      body['mobileToken'] = mobileToken;
+    }
+
+
+    return this.http.post(url, body);
   }
 
   studentReg(user): Observable<any> {
     let url = baseURL + "/student/add";
-
-    return this.http.post(url, {
+    let body = {
       email: user.email,
       password: user.password,
       name: user.name
-    });
+    }
+    this.store.select("notificationTokens").subscribe(tokens => {
+      if (tokens.mobileToken) {
+        body['mobileToken'] = tokens.mobileToken
+      } else if (tokens.webToken) {
+        body['webToken'] = tokens.webToken
+      }
+    })
+    console.log("body before reg : ", body);
+
+    return this.http.post(url, body);
   }
 
   studentEnroll(data): Observable<any> {

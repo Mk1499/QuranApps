@@ -9,6 +9,7 @@ export const environment = {
     appId: "1:873696623827:web:ea26ccee646e5126122826",
     measurementId: "G-KQB1GJ59D9"
   },
+  // for sitemap
   hostUrl: 'https://quranmk.herokuapp.com/',
     // Contentful API authentication credentials
     contentful: {

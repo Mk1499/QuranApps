@@ -30,12 +30,16 @@ export class StudentGuard implements CanActivate {
     let user = JSON.parse(localStorage.getItem('quranUser'));
     let lang = this.lang.urlLang || "en";
 
-    if (user && user.role == "Student") {
+    if (user && (user.role == "Student" || user.role == "student")) {
+      console.log("Auth Student : ",user);
+
       this.store.dispatch(new studentActions.LoginSuccess(user))
       return true;
     }
 
     else {
+      console.log("'Not Auth Student : ",user);
+
       this.router.parseUrl(`/${lang}/student/login`)
     }
 

@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/QuranWeb/browser",
+            "outputPath": "www",
             "index": "projects/quran-web/src/index.html",
             "main": "projects/quran-web/src/main.ts",
             "polyfills": "projects/quran-web/src/polyfills.ts",

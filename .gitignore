@@ -46,5 +46,6 @@ testem.log
 Thumbs.db
 
 # ionic
+
 /www
-www
+/www/*
