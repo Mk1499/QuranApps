@@ -27,6 +27,6 @@ export class TeacherGuard implements CanActivate {
     let lang = this.lang.urlLang || "en";
     console.log("Active User in Teacher Gaurd: ", user, `/${lang}/Teacher/login`);
 
-    return user && user.role == "teacher" ? true : this.router.parseUrl(`/${lang}/teacher/login`)
+    return user && (user.role === "teacher" || user.role === "Teacher") ? true : this.router.parseUrl(`/${lang}/teacher/login`)
   }
 }
