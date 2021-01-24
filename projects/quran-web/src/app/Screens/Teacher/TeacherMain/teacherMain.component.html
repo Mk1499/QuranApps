@@ -1,5 +1,8 @@
 <teacher-nav></teacher-nav>
 
-<div [dir]="direction">
+<div
+  [dir]="direction"
+  [ngStyle]="{ 'text-align': direction === 'rtl' ? 'right' : 'left' }"
+>
   <router-outlet></router-outlet>
 </div>

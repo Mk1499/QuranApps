@@ -15,7 +15,9 @@ export class TeacherMainComponent implements OnInit {
 
   }
   ngOnInit() {
-    if (this.lang.urlLang === "ar") {
+    console.log("URL Lang : ",this.lang.getLang());
+
+    if (this.lang.getLang() === "ar") {
       this.direction = "rtl";
     } else {
       this.direction = "ltr";

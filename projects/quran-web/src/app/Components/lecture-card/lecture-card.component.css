@@ -1,0 +1,51 @@
+.item {
+  margin: 2vh 0;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  overflow: hidden;
+  font-family: Cairo;
+}
+
+.card-img {
+  overflow: hidden;
+}
+
+.card-img-top {
+  transition: box-shadow 0.2s ease, transform 0.5s ease-out, z-index 0s 0s ease;
+  height: 25vh;
+}
+.item:hover .card-img-top {
+  transform: scale(1.1) rotate(4deg);
+}
+.name {
+  color: #666;
+  font-weight: bold;
+  /* font-size: 2.5vh; */
+}
+.data{
+  text-align: start;
+}
+.data strong{
+  color: gold;
+}
+.data span{
+  cursor: pointer;
+}
+.playOverlay{
+  position: absolute;
+  background: rgba(0, 0, 0, 0.3);
+  z-index: 20;
+  height: 25vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  display: none;
+}
+.playIcon{
+  color:gold;
+  cursor: pointer;
+  font-size: 8vh;
+}
+.card:hover .playOverlay{
+  display: flex;
+}

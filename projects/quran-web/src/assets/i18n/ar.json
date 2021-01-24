@@ -63,5 +63,15 @@
   "finished":"منتهي",
   "yes":"نعم",
   "no":"لا",
-  "noEnrolls":"لا يوجد اشتراكات لديك"
+  "noEnrolls":"لا يوجد اشتراكات لديك",
+  "lecture":"محاضرة",
+  "lectures":"المحاضرات",
+  "yourLectures":"محاضراتك",
+  "upcomingLectures":"المحاضرات القادمة",
+  "finishedLectures":"المحاضرات المنتهية",
+  "cancelledLectures":"المحاضرات الملغاة",
+  "addLecture":"أضف محاضرة",
+  "startTime":"الموعد",
+  "lectureName":"أسم المحاضرة",
+  "lectureDate":"موعد المحاضرة"
 }

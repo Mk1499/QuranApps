@@ -2,19 +2,29 @@ import { Store } from '@ngrx/store';
 import { baseURL } from './api-call.service';
 import { Teacher } from '../Models/teacher';
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
 import { Sample } from '../Models/Sample.model';
 import * as fromApp from '../Store/app.reducer';
 
 @Injectable({
   providedIn: 'root'
 })
-export class TeacherService {
+export class TeacherService implements OnInit {
+
+  teacherData: Teacher;
 
   constructor(
     private http: HttpClient,
     private store: Store<fromApp.AppState>
-  ) { }
+  ) {
+
+  }
+
+  ngOnInit() {
+    this.store.select('teacherData').subscribe(tData => {
+      this.teacherData = tData.teacher;
+    })
+  }
 
   addManyTeachers(teachers: Teacher[]) {
     let url = baseURL + "/teacher/addMany";
@@ -36,11 +46,7 @@ export class TeacherService {
         body['mobileToken'] = tokens.mobileToken
       }
     })
-
-    console.log("Body before sent : ",body);
-
-
-
+    console.log("Body before sent : ", body);
     return this.http.post(url, body);
   }
 
@@ -55,6 +61,13 @@ export class TeacherService {
 
   getTeacherStudents(teacherID) {
     let url = baseURL + "/teacher/" + teacherID + "/students";
+    return this.http.get(url)
+  }
+
+  getTeacherLectures() {
+    console.log("Teahcer on store : ", this.teacherData);
+    let teacher = JSON.parse(localStorage.getItem("quranTeacher"))
+    let url = baseURL + "/teacher/" + teacher._id + "/lectures";
     return this.http.get(url)
   }
 

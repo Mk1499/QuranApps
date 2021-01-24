@@ -1,11 +1,11 @@
+import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
 import { TeacherService } from './../../../Services/teacher.service';
 import { LangService } from './../../../Services/lang.service';
 import { Title } from '@angular/platform-browser';
 import { TranslateService } from '@ngx-translate/core';
 import { Router } from '@angular/router';
-import { ApiCallService } from './../../../Services/api-call.service';
-import { AuthService } from './../../../Services/auth.service';
+import * as TeacherActions from '../Store/teacher.action';
 import { Component, OnInit, OnDestroy } from "@angular/core";
 import { Teacher } from '../../../Models/teacher';
 
@@ -28,7 +28,8 @@ export class TeacherLoginComponent implements OnInit, OnDestroy {
     private l: LangService,
     private translate: TranslateService,
     private title: Title,
-    private router: Router
+    private router: Router,
+    private store: Store
   ) { }
 
   ngOnInit(): void {
@@ -50,6 +51,7 @@ export class TeacherLoginComponent implements OnInit, OnDestroy {
         console.log("Teacher data : ", data);
         this.loading = false;
         localStorage.setItem('quranTeacher', JSON.stringify(data));
+        this.store.dispatch(new TeacherActions.LoginSuccess(data))
         this.router.navigateByUrl("/" + this.lang + '/teacher')
       },
         (err) => {

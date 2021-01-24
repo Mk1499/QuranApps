@@ -62,7 +62,7 @@ i {
   color: #333;
 }
 .dropdown-menu {
-  left:-10vw
+  /* left:-10vw */
 }
 .dropdown-item {
   cursor: pointer;

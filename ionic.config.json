@@ -17,5 +17,5 @@
       "root": "projects/quran-web"
     }
   },
-  "defaultProject":"quranMobile"
+  "defaultProject":"quran-web"
 }

@@ -63,6 +63,15 @@
   "yes": "Yes",
   "no": "No",
   "noEnrolls": "You havn't any Enrolls yet",
-  "studentSignup": "Sign up as a Student"
-
+  "studentSignup": "Sign up as a Student",
+  "lecture": "Lecture",
+  "lectures": "Lectures",
+  "yourLectures": "Your Lectures",
+  "upcomingLectures": "Upcoming Lectures",
+  "finishedLectures": "Finished Lectures",
+  "cancelledLectures": "Cancelled Lectures",
+  "addLecture": "Add Lecture",
+  "startTime": "Starting Time",
+  "lectureName": "Lecture Name",
+  "lectureDate": "Lecture Date"
 }

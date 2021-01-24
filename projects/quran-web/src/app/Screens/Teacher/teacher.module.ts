@@ -10,6 +10,8 @@ import { NgModule } from "@angular/core";
 import { TeacherStudentsComponent } from './TeacherStudents/teacher-students.component';
 import { AddSampleComponent } from './AddSample/AddSample.component';
 import { TeacherEnrollsComponent } from './TeacherEnrolls/TeacherEnrolls.component';
+import { TeacherLecturesComponent } from './TeacherLectures/teacher-lectures.component';
+import { AddLectureComponent } from './add-lecture/add-lecture.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +23,8 @@ import { TeacherEnrollsComponent } from './TeacherEnrolls/TeacherEnrolls.compone
     TeacherStudentsComponent,
     AddSampleComponent,
     TeacherEnrollsComponent,
+    TeacherLecturesComponent,
+    AddLectureComponent,
   ],
   imports: [
     SharedModule,

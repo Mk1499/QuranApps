@@ -1,9 +1,11 @@
+import { Teacher } from './../../../Models/teacher';
+import { Subscription } from 'rxjs';
 import { MessagingService } from '../../../Services/messaging.service';
 import { ThemesService } from '../../../Services/themes.service';
 import { AuthService } from '../../../Services/auth.service';
 import { LangService } from '../../../Services/lang.service';
 import { Note } from '../../../Models/notification.model';
-import { Component , OnInit} from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { Router } from '@angular/router';
 
 @Component({
@@ -15,10 +17,11 @@ import { Router } from '@angular/router';
 export class TeacherNav implements OnInit {
   active: string;
   urlLang: string;
-  user: any;
+  user: Teacher;
   mode: string;
-  newNotes:number;
-  allNotes:Note[] = [];
+  newNotes: number;
+  allNotes: Note[] = [];
+  prevNotesSub: Subscription;
 
   constructor(
     private router: Router,
@@ -32,7 +35,7 @@ export class TeacherNav implements OnInit {
     });
 
     msg.newNotesChanged.subscribe(n => {
-      this.allNotes.push(n) ;
+      this.allNotes.push(n);
       this.newNotes++;
     })
   }
@@ -43,8 +46,17 @@ export class TeacherNav implements OnInit {
     this.active = this.router.url.substring(9);
     this.user = JSON.parse(localStorage.getItem('quranTeacher'));
     this.mode = this.theme.mode;
-    this.allNotes = this.msg.allNotes;
-    this.newNotes = this.msg.newNotes;
+    // this.allNotes = this.msg.allNotes;
+    // this.newNotes = this.msg.newNotes;
+    this.getPrevNotes();
+  }
+
+  getPrevNotes() {
+    this.prevNotesSub = this.msg.getIntialNotes(this.user._id, "Teacher").subscribe((notes: Note[]) => {
+      console.log("All Notes : ", notes);
+
+      this.allNotes = notes
+    })
   }
 
   changeActive(active) {
@@ -62,7 +74,7 @@ export class TeacherNav implements OnInit {
     this.theme.toggleTheme();
   }
 
-  emptyNotes(){
-    this.newNotes = 0 ;
+  emptyNotes() {
+    this.newNotes = 0;
   }
 }

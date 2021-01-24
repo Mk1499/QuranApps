@@ -1,3 +1,5 @@
+import { baseURL } from './api-call.service';
+import { HttpClient } from '@angular/common/http';
 import { AddWebToken } from './../shared/Store/Notification/notification.action';
 import { Store } from '@ngrx/store';
 import { Injectable } from '@angular/core';
@@ -17,7 +19,8 @@ export class MessagingService {
 
   constructor(
     private angularFireMessaging: AngularFireMessaging,
-    private store: Store
+    private store: Store,
+    private http: HttpClient
   ) {
     this.angularFireMessaging.messages.subscribe(
       (msg) => {
@@ -29,6 +32,15 @@ export class MessagingService {
     )
   }
 
+  getIntialNotes(userId, userType) {
+    let url = `${baseURL}/notify/user`;
+console.log("CALLED , ",userId,userType);
+
+    return this.http.post(url, {
+      recieverId: userId,
+      recieverType: userType
+    })
+  }
 
   requestPermission() {
     this.angularFireMessaging.requestToken.subscribe(

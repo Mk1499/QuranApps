@@ -18,6 +18,8 @@ import { AudioPlayerComponent } from '../Components/audio-player/audio-player.co
 
 import * as fromApp from '../Store/app.reducer';
 import { MobileAudioPlayerComponent } from '../Components/mobile-audio-player/mobile-audio-player.component';
+import { LectureCardComponent } from '../Components/lecture-card/lecture-card.component';
+import { NoteRowComponent } from '../Components/note-row/note-row.component';
 
 
 @NgModule({
@@ -29,7 +31,10 @@ import { MobileAudioPlayerComponent } from '../Components/mobile-audio-player/mo
     StudentCardComponent,
     SuccessAlertComponent,
     AudioPlayerComponent,
-    MobileAudioPlayerComponent
+    MobileAudioPlayerComponent,
+    LectureCardComponent,
+    NoteRowComponent,
+
 
   ],
   imports: [
@@ -58,7 +63,9 @@ import { MobileAudioPlayerComponent } from '../Components/mobile-audio-player/mo
     StudentCardComponent,
     SuccessAlertComponent,
     AudioPlayerComponent,
-    MobileAudioPlayerComponent
+    MobileAudioPlayerComponent,
+    NoteRowComponent,
+    LectureCardComponent
 
   ]
 })
