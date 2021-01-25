@@ -11,7 +11,7 @@ import { TeacherStudentsComponent } from './TeacherStudents/teacher-students.com
 import { AddSampleComponent } from './AddSample/AddSample.component';
 import { TeacherEnrollsComponent } from './TeacherEnrolls/TeacherEnrolls.component';
 import { TeacherLecturesComponent } from './TeacherLectures/teacher-lectures.component';
-import { AddLectureComponent } from './add-lecture/add-lecture.component';
+import { AddLectureComponent } from './AddLecture/add-lecture.component';
 
 @NgModule({
   declarations: [

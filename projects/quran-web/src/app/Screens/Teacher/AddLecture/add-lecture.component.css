@@ -11,13 +11,16 @@
 input.form-control {
   margin: 1vh 0;
   background-color: transparent;
-  color: white;
   font-family: Cairo;
   height: 5vh;
 }
+textarea.form-control {
+  background-color: transparent;
+  margin: 1vh 0;
+}
+
 input.form-control:focus,
-input.form-control:read-write
-{
+input.form-control:read-write {
   background-color: transparent;
 }
 
@@ -44,10 +47,22 @@ input.form-control:read-write
   color: #333;
 }
 
-.errField{
+.errField {
   border-color: red;
 }
+::-webkit-calendar-picker-indicator {
+  filter: invert(1);
+}
 
-.subBtn{
+.btn {
   height: 8vh;
+}
+.btnLoad {
+  height: 100%;
+}
+
+@media (max-width: 768px) {
+  .rowCont {
+    justify-content: center;
+  }
 }

@@ -32,6 +32,7 @@
   "about": "About",
   "otherLang": "العربية",
   "samples": "Samples",
+  "sampleName": "Sample Name",
   "enroll": "Enroll",
   "unEnroll": "Un-Enroll",
   "logOut": "Log Out",
@@ -73,5 +74,10 @@
   "addLecture": "Add Lecture",
   "startTime": "Starting Time",
   "lectureName": "Lecture Name",
-  "lectureDate": "Lecture Date"
+  "lectureDate": "Lecture Date",
+  "arName": "Arabic Name",
+  "cover": "Cover",
+  "lectureAddedSuccess": "Lecture Added Succefully",
+  "timeDiffNote": "Please Define a GMT Time ",
+  "sorryUHavenot": "Sorry but you haven't any "
 }

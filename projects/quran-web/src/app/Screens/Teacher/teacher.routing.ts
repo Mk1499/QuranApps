@@ -1,3 +1,4 @@
+import { AddLectureComponent } from './AddLecture/add-lecture.component';
 import { TeacherLecturesComponent } from './TeacherLectures/teacher-lectures.component';
 import { AddSampleComponent } from './AddSample/AddSample.component';
 import { TeacherStudentsComponent } from './TeacherStudents/teacher-students.component';
@@ -22,6 +23,7 @@ const routes: Routes = [
       { path: 'students', component: TeacherStudentsComponent },
       { path: 'enrolls', component: TeacherEnrollsComponent },
       { path: 'lectures', component: TeacherLecturesComponent },
+      { path: 'lectures/add', component: AddLectureComponent },
       { path: '**', redirectTo: 'home' }
     ],
     canActivate: [TeacherGuard]

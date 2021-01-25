@@ -1,3 +1,4 @@
+import { Lecture } from './../Models/Lecture.model';
 import { Store } from '@ngrx/store';
 import { baseURL } from './api-call.service';
 import { Teacher } from '../Models/teacher';
@@ -69,6 +70,12 @@ export class TeacherService implements OnInit {
     let teacher = JSON.parse(localStorage.getItem("quranTeacher"))
     let url = baseURL + "/teacher/" + teacher._id + "/lectures";
     return this.http.get(url)
+  }
+
+  addLecture(lecture: Lecture) {
+
+    let url = baseURL + '/lecture/add';
+    return this.http.post(url, lecture);
   }
 
   addSample(sample: Sample) {

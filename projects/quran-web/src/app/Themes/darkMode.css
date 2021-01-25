@@ -1,9 +1,7 @@
 .dark,
-.dark .dropdown-menu ,
+.dark .dropdown-menu,
 .dark .card,
-.dark .cardItem
-
- {
+.dark .cardItem {
   background-color: #333;
   color: #fff;
 }
@@ -12,26 +10,32 @@
 .dark .navbar-nav .nav-link:hover,
 .dark .dropdown-item,
 .dark .navbar-nav .nav-link.active,
-.dark .navbar-light .navbar-nav .active>.nav-link ,
-.dark .logoName ,
+.dark .navbar-light .navbar-nav .active > .nav-link,
+.dark .logoName,
 .dark .card-title.name,
-.dark .logoName:hover {
+.dark .logoName:hover,
+.dark input.form-control ,
+.dark textarea.form-control {
   color: #fff;
 }
 
-.dark .dropdown-item:hover,.dark a.dropdown-item:hover{
-    color: #333;
+.dark .dropdown-item:hover,
+.dark a.dropdown-item:hover {
+  color: #333;
 }
 
 .dark .navbar-nav .nav-link {
   color: rgba(255, 255, 255, 0.6);
 }
 
-.dark .cardItem{
+.dark .cardItem {
   border: 1px solid grey;
-
 }
 
-.dark .cover{
+.dark .cover {
   background-color: #333;
+}
+
+.dark hr {
+  background-color: #222;
 }

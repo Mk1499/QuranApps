@@ -3,10 +3,11 @@
     <h2 class="text-center h1">{{ "lectures" | translate }}</h2>
     <div class="line"></div>
 
-    <div class="addSampleCont" routerLink="./add">
+    <div class="addSampleCont">
       <i
         class="fa fa-plus-circle fa-3x addSampleIcon"
         [ngStyle]="{ float: addDirection }"
+        routerLink="./add"
       >
       </i>
       <!-- <div class="addSampleText">
@@ -19,7 +20,7 @@
   </div>
 
   <section class="upcoming" *ngIf="!loading">
-    <h3 class="h2">{{ "upcomingLectures" | translate }}</h3>
+    <h3 class="h2 text-center">{{ "upcomingLectures" | translate }}</h3>
     <div class="row lectCont" *ngIf="upcomingLecs.length">
       <lecture-card
         *ngFor="let lecture of upcomingLecs"
@@ -28,13 +29,15 @@
       ></lecture-card>
     </div>
     <div class="row emptyMsg" *ngIf="!upcomingLecs.length">
-      <p class="h3">Sorry but you havn't any upcoming lectures</p>
+      <p class="h3">
+        {{ "sorryUHavenot" | translate }} {{ "upcomingLectures" | translate }}
+      </p>
     </div>
   </section>
 
-
+  <hr />
   <section class="upcoming" *ngIf="!loading && finishedLecs.length">
-    <h3 class="h2">{{ "finishedLectures" | translate }}</h3>
+    <h3 class="h2 text-center">{{ "finishedLectures" | translate }}</h3>
     <div class="row lectCont" *ngIf="finishedLecs.length">
       <lecture-card
         *ngFor="let lecture of finishedLecs"
@@ -43,11 +46,11 @@
       ></lecture-card>
     </div>
     <div class="row emptyMsg" *ngIf="!finishedLecs.length">
-      <p class="h3">Sorry but you havn't any upcoming lectures</p>
+      <p class="h3">{{ "sorryUHavenot" | translate }} upcoming lectures</p>
     </div>
+    <hr />
   </section>
-
-  <section class="upcoming" *ngIf="!loading && cancelledLecs.length ">
+  <section class="upcoming" *ngIf="!loading && cancelledLecs.length">
     <h3 class="h2">{{ "cancelledLectures" | translate }}</h3>
     <div class="row lectCont" *ngIf="cancelledLecs.length">
       <lecture-card
@@ -57,7 +60,9 @@
       ></lecture-card>
     </div>
     <div class="row emptyMsg" *ngIf="!cancelledLecs.length">
-      <p class="h3">Sorry but you havn't any upcoming lectures</p>
+      <p class="h3">
+        {{ "sorryUHavenot" | translate }} {{ "cancelledLectures" | translate }}
+      </p>
     </div>
   </section>
 

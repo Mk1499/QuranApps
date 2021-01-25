@@ -1,31 +1,32 @@
 <app-success-alert
-  [msg]="'sampleAddedSuccess' | translate"
+  [msg]="'lectureAddedSuccess' | translate"
   #successAlert
 ></app-success-alert>
 
 <div class="container formCont">
-  <div class="row">
+  <div class="row rowCont">
     <form
-      class="form col-md-6"
-      #addSampleForm="ngForm"
-      (submit)="onSubmit(addSampleForm)"
+      class="form col-lg-6"
+      #addLectureForm="ngForm"
+      (submit)="onSubmit(addLectureForm)"
     >
       <div class="row g-3">
         <input
           type="text"
           class="form-control"
-          id="sampleName"
-          placeholder="Sample Name"
+          id="lectureName"
+          [placeholder]="'lectureName' | translate"
           required
           [(ngModel)]="name"
           name="name"
           [ngClass]="{ errField: errorFields.includes('name') && !name }"
         />
+
         <input
           type="text"
           class="form-control"
           id="arName"
-          placeholder="Arabic Name"
+          [placeholder]="'arName' | translate"
           value=""
           required
           [(ngModel)]="arName"
@@ -34,12 +35,22 @@
           [ngClass]="{ errField: errorFields.includes('arName') && !arName }"
         />
 
+        <textarea
+          rows="3"
+          class="form-control"
+          [placeholder]="'description' | translate"
+          required
+          [(ngModel)]="description"
+          name="description"
+          [ngClass]="{ errField: errorFields.includes('description') && !name }"
+        ></textarea>
+
         <input
           type="number"
           min="1"
           class="form-control"
           id="duration"
-          placeholder="Duration in minutes"
+          [placeholder]="'duration' | translate"
           required
           [(ngModel)]="duration"
           name="duration"
@@ -47,77 +58,50 @@
             errField: errorFields.includes('duration') && !duration
           }"
         />
-
         <input
-          type="number"
           class="form-control"
-          id="joz2"
-          min="1"
-          max="30"
-          placeholder="Joz2"
-          [(ngModel)]="joz2"
-          name="joz2"
-          [ngClass]="{ errField: errorFields.includes('joz2') && !joz2 }"
+          type="datetime-local"
+          name="time"
+          [(ngModel)]="time"
           required
+          (change)="logDate()"
         />
-
-        <input
-          type="number"
-          class="form-control"
-          id="numberOfAyat"
-          placeholder="Number of Ayat"
-          required
-          min="0"
-          [(ngModel)]="noOfAyat"
-          name="noOfAyat"
-          [ngClass]="{
-            errField: errorFields.includes('noOfAyat') && !noOfAyat
-          }"
-        />
+        <p class="note">{{"timeDiffNote" | translate}}</p>
 
         <input
           type="text"
           class="form-control"
           id="avatar"
-          placeholder="Avatar URL"
-          [(ngModel)]="avatar"
-          name="avatar"
-          [ngClass]="{ errField: errorFields.includes('avatar') && !avatar }"
+          [placeholder]="'cover' | translate"
+          [(ngModel)]="coverURL"
+          name="coverURL"
+          [ngClass]="{ errField: errorFields.includes('coverURL') && !coverURL }"
           required
-        />
-
-        <input
-          type="text"
-          class="form-control"
-          id="audio"
-          placeholder="Audio URL"
-          [(ngModel)]="url"
-          name="url"
-          required
-          [ngClass]="{ errField: errorFields.includes('url') && !url }"
         />
       </div>
       <hr class="my-4" />
       <p class="h3" *ngIf="errMsg">{{ errMsg }}</p>
       <hr class="my-4" *ngIf="errMsg" />
 
-      <button class="w-100 btn btn-warning btn-lg subBtn" type="submit">
-        <span *ngIf="!loading">
-          {{ "addSample" | translate }}
-        </span>
+      <button class="w-100 btn btn-warning btn-lg" type="submit">
+
         <img
           src="../../../../assets/images/loading.gif"
           height="100vh"
           *ngIf="loading"
+          class="btnLoad"
         />
+        <span *ngIf="!loading">
+          {{ "addLecture" | translate }}
+        </span>
       </button>
     </form>
-    <div class="col-md-4 preview">
+    <div class="col-lg-5 preview">
       <div class="prevContent">
         <div class="card-img">
           <img
             [src]="
-              avatar ||
+              coverURL ||
               'https://i.pinimg.com/originals/2c/19/7d/2c197db4eb3e3695bc09777a31a86de2.png'
             "
             class="avatarImg"
@@ -126,20 +110,19 @@
         <h3 class="name text-center">{{ name }}</h3>
         <h3 class="name text-center">{{ arName }}</h3>
         <div class="details">
+          <p class="text" *ngIf="description">{{ description }}</p>
           <p class="text" *ngIf="duration">
             <strong class="h5">{{ "duration" | translate }} : </strong>
             <span>{{ duration }} {{ "min" | translate }}</span>
           </p>
-          <p class="text" *ngIf="joz2">
-            <strong class="h5">{{ "joz2" | translate }} : </strong>
-            <span>{{ joz2 }} {{ "joz2" | translate }}</span>
-          </p>
-          <p class="text" *ngIf="noOfAyat">
-            <strong class="h5">{{ "ayatNum" | translate }} : </strong>
-            <span>{{ noOfAyat }} {{ "aya" | translate }}</span>
+          <p class="text" *ngIf="showTime">
+            <strong class="h5">{{ "startTime" | translate }} : </strong>
+            <span>{{ showTime.toLocaleString() }} </span>
           </p>
         </div>
       </div>
     </div>
   </div>
 </div>
+
+

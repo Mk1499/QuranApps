@@ -3,26 +3,25 @@
     no-repeat center center;
   height: 5vh;
 }
-.header{
-    margin: 3vh 0;
-    font-family: Cairo;
-    font-weight: bolder;
+.header {
+  margin: 3vh 0;
+  font-family: Cairo;
+  font-weight: bolder;
 }
-.loadCont{
-    text-align: center;
+.loadCont {
+  text-align: center;
 }
-.addSampleCont{
+.addSampleCont {
   width: 100%;
   min-height: 10vh;
 }
-.addSampleIcon{
+.addSampleIcon {
   cursor: pointer;
 }
 
-.lectCont{
-  padding : 2vh 0px;
-  cursor: pointer;
+.lectCont {
+  padding: 5vh 0px;
 }
-.emptyMsg{
+.emptyMsg {
   justify-content: center;
 }

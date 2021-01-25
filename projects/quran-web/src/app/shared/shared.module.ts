@@ -48,8 +48,6 @@ import { NoteRowComponent } from '../Components/note-row/note-row.component';
       }
     }),
     StoreModule
-
-    // FormsModule
   ],
   exports: [
     CommonModule,
@@ -66,7 +64,6 @@ import { NoteRowComponent } from '../Components/note-row/note-row.component';
     MobileAudioPlayerComponent,
     NoteRowComponent,
     LectureCardComponent
-
   ]
 })
 
