@@ -12,6 +12,7 @@ import { AddSampleComponent } from './AddSample/AddSample.component';
 import { TeacherEnrollsComponent } from './TeacherEnrolls/TeacherEnrolls.component';
 import { TeacherLecturesComponent } from './TeacherLectures/teacher-lectures.component';
 import { AddLectureComponent } from './AddLecture/add-lecture.component';
+import { LectureDetailsComponent } from './LectureDetails/lecture-details.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { AddLectureComponent } from './AddLecture/add-lecture.component';
     TeacherEnrollsComponent,
     TeacherLecturesComponent,
     AddLectureComponent,
+    LectureDetailsComponent,
   ],
   imports: [
     SharedModule,

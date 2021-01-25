@@ -21,16 +21,16 @@
   font-weight: bold;
   /* font-size: 2.5vh; */
 }
-.data{
+.data {
   text-align: start;
 }
-.data strong{
+.data strong {
   color: gold;
 }
-.data span{
+.data span {
   cursor: pointer;
 }
-.playOverlay{
+.playOverlay {
   position: absolute;
   background: rgba(0, 0, 0, 0.3);
   z-index: 20;
@@ -41,11 +41,16 @@
   justify-content: center;
   display: none;
 }
-.playIcon{
-  color:gold;
+.playIcon {
+  color: gold;
   cursor: pointer;
   font-size: 8vh;
 }
-.card:hover .playOverlay{
+.card:hover .playOverlay {
   display: flex;
+}
+.desc {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }

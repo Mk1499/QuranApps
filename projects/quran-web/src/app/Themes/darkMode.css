@@ -14,8 +14,8 @@
 .dark .logoName,
 .dark .card-title.name,
 .dark .logoName:hover,
-.dark input.form-control ,
-.dark textarea.form-control {
+.dark .formCont input.form-control,
+.dark .formCont textarea.form-control {
   color: #fff;
 }
 

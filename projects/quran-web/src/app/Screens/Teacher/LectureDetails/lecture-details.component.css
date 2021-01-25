@@ -1,0 +1,52 @@
+.loadingCont {
+  width: 100vw;
+  height: 80vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.solidCover {
+  width: 100vw;
+  height: 20vh;
+  background-color: gold;
+}
+.imgCont {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: -15vh;
+}
+.lecCover {
+  width: 45%;
+  height: 30vh;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  margin-bottom: 2vh;
+}
+.desc {
+  justify-content: center;
+  text-align: center;
+  margin: 5vh 0;
+}
+.line {
+  background: url(https://vatican.modeltheme.com/wp-content/plugins/modeltheme-framework/inc/shortcodes/img/delimiter_dark.png)
+    no-repeat center center;
+  height: 5vh;
+}
+.header {
+  margin: 5vh 0;
+}
+.timerCont {
+  display: flex;
+  justify-content: center;
+  margin: 5vh 0;
+}
+.main {
+  padding-bottom: 2vh;
+}
+.studentItem {
+  list-style-type: none;
+  text-align: center;
+}

@@ -10,5 +10,5 @@ export interface Lecture {
   students: [Student];
   duration: Number;
   teacher: Teacher;
-  state?: String;
+  state?: string;
 }

@@ -79,5 +79,6 @@
   "cover": "الغلاف",
   "lectureAddedSuccess": "تم اضافة المحاضرة بنجاح",
   "timeDiffNote":"من فضلك حدد الموعد حسب توقيت جرينتش",
-  "sorryUHavenot":"نأسف و لكنك لا تمتلك اي"
+  "sorryUHavenot":"نأسف و لكنك لا تمتلك اي",
+  "lectureWillStart":"سوف تبدأ المحاضرة بعد"
 }

@@ -17,11 +17,11 @@ export class StudentCardComponent implements OnInit {
 
 
   constructor(private l: LangService) {
-    console.log("T: ", this.student);
 
   }
 
   ngOnInit(): void {
+    console.log("T: ", this.student);
     this.lang = this.l.urlLang;
   }
 

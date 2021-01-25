@@ -20,6 +20,7 @@ import * as fromApp from '../Store/app.reducer';
 import { MobileAudioPlayerComponent } from '../Components/mobile-audio-player/mobile-audio-player.component';
 import { LectureCardComponent } from '../Components/lecture-card/lecture-card.component';
 import { NoteRowComponent } from '../Components/note-row/note-row.component';
+import { TimerComponent } from '../Components/timer/timer.component';
 
 
 @NgModule({
@@ -34,6 +35,7 @@ import { NoteRowComponent } from '../Components/note-row/note-row.component';
     MobileAudioPlayerComponent,
     LectureCardComponent,
     NoteRowComponent,
+    TimerComponent,
 
 
   ],
@@ -63,7 +65,8 @@ import { NoteRowComponent } from '../Components/note-row/note-row.component';
     AudioPlayerComponent,
     MobileAudioPlayerComponent,
     NoteRowComponent,
-    LectureCardComponent
+    LectureCardComponent,
+    TimerComponent
   ]
 })
 

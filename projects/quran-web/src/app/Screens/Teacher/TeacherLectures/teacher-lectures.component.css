@@ -22,6 +22,9 @@
 .lectCont {
   padding: 5vh 0px;
 }
+.lecCard {
+  cursor: pointer;
+}
 .emptyMsg {
   justify-content: center;
 }

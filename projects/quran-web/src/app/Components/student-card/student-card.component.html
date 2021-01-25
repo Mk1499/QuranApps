@@ -1,8 +1,8 @@
 <div class="card animate__animated" [ngClass]="animateClass">
-  <div class="cardItem" >
+  <div class="cardItem">
     <img [src]="student.avatar" class="studentImg" />
     <h3 class="studentName">
-      {{ lang === "ar" ? student?.arName : student.name }}
+      {{ lang === "ar" ? student?.arName || student.name : student.name }}
     </h3>
     <p class="studentEmail">{{ student.email }}</p>
   </div>

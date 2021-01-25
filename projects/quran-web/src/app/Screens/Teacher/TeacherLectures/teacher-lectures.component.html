@@ -25,7 +25,8 @@
       <lecture-card
         *ngFor="let lecture of upcomingLecs"
         [lecture]="lecture"
-        class="col-lg-4 col-md-6"
+        class="col-lg-4 col-md-6 lecCard"
+        [routerLink]="['./', lecture._id]"
       ></lecture-card>
     </div>
     <div class="row emptyMsg" *ngIf="!upcomingLecs.length">
@@ -42,7 +43,7 @@
       <lecture-card
         *ngFor="let lecture of finishedLecs"
         [lecture]="lecture"
-        class="col-lg-4 col-md-6"
+        class="col-lg-4 col-md-6 lecCard"
       ></lecture-card>
     </div>
     <div class="row emptyMsg" *ngIf="!finishedLecs.length">
@@ -51,12 +52,13 @@
     <hr />
   </section>
   <section class="upcoming" *ngIf="!loading && cancelledLecs.length">
-    <h3 class="h2">{{ "cancelledLectures" | translate }}</h3>
+    <h3 class="h2 text-center">{{ "cancelledLectures" | translate }}</h3>
     <div class="row lectCont" *ngIf="cancelledLecs.length">
       <lecture-card
         *ngFor="let lecture of cancelledLecs"
         [lecture]="lecture"
-        class="col-lg-4 col-md-6"
+        class="col-lg-4 col-md-6 lecCard"
+        [routerLink]="'./' + lecture._id"
       ></lecture-card>
     </div>
     <div class="row emptyMsg" *ngIf="!cancelledLecs.length">
