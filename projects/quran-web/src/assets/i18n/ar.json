@@ -65,6 +65,7 @@
   "yes": "نعم",
   "no": "لا",
   "noEnrolls": "لا يوجد اشتراكات لديك",
+  "noUpcomingLecs": "لا يوجد محاضرات قادمة",
   "lecture": "محاضرة",
   "lectures": "المحاضرات",
   "yourLectures": "محاضراتك",
@@ -78,7 +79,11 @@
   "arName": "الاسم بالعربي",
   "cover": "الغلاف",
   "lectureAddedSuccess": "تم اضافة المحاضرة بنجاح",
-  "timeDiffNote":"من فضلك حدد الموعد حسب توقيت جرينتش",
-  "sorryUHavenot":"نأسف و لكنك لا تمتلك اي",
-  "lectureWillStart":"سوف تبدأ المحاضرة بعد"
+  "timeDiffNote": "من فضلك حدد الموعد حسب توقيت جرينتش",
+  "sorryUHavenot": "نأسف و لكنك لا تمتلك اي",
+  "lectureWillStart": "سوف تبدأ المحاضرة بعد",
+  "joinNow": "أنضم الان",
+  "joinSuccess": "تم الانضمام بنجاح",
+  "mustEnrolled": "يجب ان تكون طالب لدي هذا المعلم لتصفح المحاضرات القادمة",
+  "joined":"تم الانضمام"
 }

@@ -65,15 +65,19 @@ export class TeacherService implements OnInit {
     return this.http.get(url)
   }
 
-  getTeacherLectures() {
-    console.log("Teahcer on store : ", this.teacherData);
-    let teacher = JSON.parse(localStorage.getItem("quranTeacher"))
-    let url = baseURL + "/teacher/" + teacher._id + "/lectures";
-    return this.http.get(url)
+  getTeacherLectures(teacherID?) {
+    let url;
+    let teacher;
+    if (teacherID) {
+      url = baseURL + "/teacher/" + teacherID + "/lectures";
+    } else {
+      teacher = JSON.parse(localStorage.getItem("quranTeacher"))
+      url = baseURL + "/teacher/" + teacher._id + "/lectures";
+    }
+    return this.http.get(url);
   }
 
   addLecture(lecture: Lecture) {
-
     let url = baseURL + '/lecture/add';
     return this.http.post(url, lecture);
   }

@@ -1,0 +1,69 @@
+<app-success-alert
+  [msg]="'joinSuccess' | translate"
+  #successAlert
+></app-success-alert>
+
+<div class="loadingCont" *ngIf="loading">
+  <img src="../../../../assets/images/loading.gif" alt="" class="loadingImg" />
+</div>
+
+<div class="main" *ngIf="!loading">
+  <div class="solidCover"></div>
+  <div class="container">
+    <div class="imgCont">
+      <img [src]="imageURL" class="lecCover" />
+      <p class="h1 lecName">
+        {{
+          activeLang === "en" ? lecture?.name : lecture?.arName || lecture?.name
+        }}
+      </p>
+    </div>
+    <div class="line"></div>
+
+    <div
+      class="timerCont"
+      *ngIf="lecture.state == 'upcoming' || !lecture.state"
+    >
+      <timer [date]="lecture.time"></timer>
+    </div>
+
+    <div class="row desc">
+      <p class="h3">
+        {{ lecture.description }}
+      </p>
+    </div>
+    <div class="students">
+      <p class="h2 header">
+        {{ "students" | translate }} ({{ lecture.students.length }})
+      </p>
+      <ul class="students row">
+        <li
+          class="studentItem col-md-3"
+          *ngFor="let student of lecture.students"
+        >
+          <div>
+            <student-card [student]="student"></student-card>
+          </div>
+        </li>
+      </ul>
+      <p class="emptyMsg h5" *ngIf="!lecture.students.length">
+        {{ "sorryUHavenot" | translate }} {{ "students" | translate }}
+      </p>
+    </div>
+  </div>
+
+  <button class="btn btn-danger joinBtn" (click)="joinLect()" *ngIf="!joined">
+    <img
+      src="../../../../assets/images/loading.gif"
+      alt=""
+      class="loadingImgBtn"
+      *ngIf="joinning"
+    />
+    <span *ngIf="!joinning">
+      {{ "joinNow" | translate }}
+    </span>
+  </button>
+  <div class="joinBtn joinMsg">
+    {{ "joined" | translate }}
+  </div>
+</div>

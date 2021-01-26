@@ -12,7 +12,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  direction: string = "ltr";
+  direction: string;
   constructor(private translate: TranslateService,
     private title: Title,
     private lang: LangService,
@@ -24,7 +24,7 @@ export class HomeComponent implements OnInit {
       if (t !== 'siteName' && t)
         this.title.setTitle(t)
     })
-    if (this.lang.urlLang === "ar") {
+    if (this.lang.getLang() === "ar") {
       this.direction = "rtl";
     } else {
       this.direction = "ltr";

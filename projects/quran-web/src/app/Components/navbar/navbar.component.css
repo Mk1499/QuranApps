@@ -1,6 +1,3 @@
-
-
-
 .navBar {
   min-height: 10vh;
   font-family: Cairo;
@@ -18,11 +15,15 @@
   border-radius: 3.5vh;
   margin-left: 1.5vh;
   margin-right: 1.5vh;
+  cursor: pointer;
+
 }
 .logoName {
   font-family: "Oswald";
   font-weight: bolder;
   font-size: 3vh;
+  cursor: pointer;
+
 }
 .gold {
   color: gold;
@@ -58,7 +59,7 @@ i {
   color: #333;
 }
 .dropdown-menu {
-  left:-10vw
+  /* left:-10vw */
 }
 .dropdown-item {
   cursor: pointer;

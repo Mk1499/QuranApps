@@ -11,20 +11,22 @@ import { CarouselComponent } from './../../Components/carousel/carousel.componen
 
 import { Routes, RouterModule } from '@angular/router';
 import { NgModule } from "@angular/core";
+import { LectureDetailsComponent } from './LectureDetails/lecture-details.component';
 
 const routes: Routes = [
   { path: 'login', component: StudentLoginComponent },
   { path: 'signup', component: StudentRegComponent },
   {
     path: '', component: HomeComponent, children: [
-      { path: 'home', component: CarouselComponent  },
+      { path: 'home', component: CarouselComponent },
       { path: 'teachers', component: TeacherComponent },
       { path: 'teachers/:id', component: TeacherProfileComponent },
       { path: 'library', component: LiberaryComponent },
-      { path : 'profile',component:ProfileComponent},
+      { path: 'profile', component: ProfileComponent },
+      { path: 'lectures/:id', component: LectureDetailsComponent },
       { path: '**', redirectTo: 'home' }
     ],
-    canActivate:[StudentGuard]
+    canActivate: [StudentGuard]
   }
 ]
 

@@ -1,3 +1,4 @@
+import { Lecture } from './../../../Models/Lecture.model';
 import { Subscription } from 'rxjs';
 import { TeacherService } from './../../../Services/teacher.service';
 import { Title } from '@angular/platform-browser';
@@ -22,9 +23,11 @@ export class TeacherProfileComponent implements OnInit, OnDestroy {
   enrolled: boolean = false;
   lang: string;
   loadSamples: boolean = true;
+  loadLecture: boolean = true;
   samples: Sample[] = [];
+  lectures: Lecture[] = [];
   teacherSamplesSub: Subscription;
-
+  teacherLecSub: Subscription;
 
   constructor(private apiService: ApiCallService,
     private activeRoute: ActivatedRoute,
@@ -35,13 +38,14 @@ export class TeacherProfileComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.getTeacherData();
+    this.getTeacherLectures();
     this.lang = this.langService.urlLang;
   }
 
   getTeacherData() {
     this.teacherID = this.activeRoute.snapshot.params['id'];
     this.apiService.getTeacherProfile(this.teacherID).subscribe(t => {
-      console.log("teacherData : ",t);
+      console.log("teacherData : ", t);
 
       this.teacher = t;
       this.getSamples();
@@ -51,22 +55,25 @@ export class TeacherProfileComponent implements OnInit, OnDestroy {
       } else {
         this.enrolled = false
       }
-
       this.title.setTitle(this.teacher.name || "Teacher Profile")
     })
   }
 
-
+  getTeacherLectures() {
+    this.teacherLecSub = this.teacherSer.getTeacherLectures(this.teacherID).subscribe((lecs: Lecture[]) => {
+      console.log("Teacher Lecs : ", lecs);
+      this.lectures = lecs.filter(l => l.state === "upcoming" || !l.state);
+      this.loadLecture = false;
+    })
+  }
 
   getSamples() {
     this.teacherSamplesSub = this.teacherSer.getTeacherSamples(this.teacher._id).subscribe((smpls: Sample[]) => {
-
       this.samples = smpls;
       this.loadSamples = false;
     }, (err) => {
       this.loadSamples = false;
       console.log("Load Samples Err :  ", err);
-
     })
   }
 
@@ -75,18 +82,15 @@ export class TeacherProfileComponent implements OnInit, OnDestroy {
       studentID: this.user._id,
       teacherID: this.teacher._id
     }
-
     this.loading = true;
     this.apiService.studentEnroll(data).subscribe(res => {
       this.enrolled = true;
       this.loading = false;
       this.getTeacherData();
-
     },
       (err) => {
         this.loading = false;
         console.error("ERR ", err);
-
       }
     )
   }
@@ -106,7 +110,6 @@ export class TeacherProfileComponent implements OnInit, OnDestroy {
       (err) => {
         this.loading = false;
         console.error("ERR ", err);
-
       }
     )
   }

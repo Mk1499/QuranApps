@@ -10,6 +10,7 @@ import { Component, OnInit, Input } from '@angular/core';
 export class LectureCardComponent implements OnInit {
 
   @Input("lecture") lecture: Lecture;
+  @Input('mode') mode: string;
   imageURL: string = 'https://i.pinimg.com/originals/2c/19/7d/2c197db4eb3e3695bc09777a31a86de2.png';
   currentLang: string;
 

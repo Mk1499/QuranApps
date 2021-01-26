@@ -61,28 +61,64 @@
         </button>
       </div>
     </div>
+    <section>
+      <div class="header">
+        <h2 class="text-center h1">{{ "samples" | translate }}</h2>
+        <div class="line"></div>
+      </div>
+      <div class="row loadSampleCont" *ngIf="loadSamples">
+        <img
+          src="../../../assets/images/loading.gif"
+          alt=""
+          class="loadingSamplesImg"
+        />
+      </div>
 
-    <div class="header">
-      <h2 class="text-center h1">{{ "samples" | translate }}</h2>
-      <div class="line"></div>
-    </div>
-    <div class="row loadSampleCont" *ngIf="loadSamples">
-      <img
-        src="../../../assets/images/loading.gif"
-        alt=""
-        class="loadingSamplesImg"
-      />
-    </div>
+      <div class="row samples" *ngIf="samples.length">
+        <sample-card
+          class="col-lg-4 col-md-6"
+          *ngFor="let sample of samples"
+          [sample]="sample"
+        ></sample-card>
+      </div>
+      <div class="row msgCont" *ngIf="!loadSamples && !samples.length">
+        <h1 class="">{{ "noSamples" | translate }}</h1>
+      </div>
+    </section>
 
-    <div class="row samples" *ngIf="samples.length">
-      <sample-card
-        class="col-lg-4  col-md-6"
-        *ngFor="let sample of samples"
-        [sample]="sample"
-      ></sample-card>
-    </div>
-    <div class="row msgCont" *ngIf="!loadSamples && !samples.length">
-      <h1 class="">{{ "noSamples" | translate }}</h1>
-    </div>
+    <section>
+      <div class="header">
+        <h2 class="text-center h1">{{ "lectures" | translate }}</h2>
+        <div class="line"></div>
+      </div>
+
+      <div class="row msgCont" *ngIf="!enrolled">
+        <h1 class="">{{ "mustEnrolled" | translate }}</h1>
+      </div>
+      <div *ngIf="enrolled">
+        <div class="row loadSampleCont" *ngIf="loadLecture">
+          <img
+            src="../../../assets/images/loading.gif"
+            alt=""
+            class="loadingSamplesImg"
+          />
+        </div>
+
+        <div class="row samples" *ngIf="lectures.length">
+          <lecture-card
+            class="col-lg-4 col-md-6 lectCard"
+            *ngFor="let lecture of lectures"
+            [lecture]="lecture"
+            [routerLink]="['../../lectures', lecture._id]"
+          ></lecture-card>
+        </div>
+      </div>
+      <div
+        class="row msgCont"
+        *ngIf="enrolled && !loadLecture && !lectures.length"
+      >
+        <h1 class="">{{ "noUpcomingLecs" | translate }}</h1>
+      </div>
+    </section>
   </div>
 </div>
