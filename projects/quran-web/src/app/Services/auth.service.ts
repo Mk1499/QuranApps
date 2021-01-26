@@ -36,7 +36,7 @@ export class AuthService {
   logOut() {
     let url = baseURL + "/student/logout";
     let body = {
-      studentId: JSON.parse(localStorage.getItem('quranUser'))._id,
+      studentId: JSON.parse(localStorage.getItem('quranUser'))?._id,
       platform: this.deviceService.isMobile() ? 'mobile' : 'web'
     }
     this.http.post(url, body).subscribe(res => {
@@ -58,7 +58,7 @@ export class AuthService {
   teacherLogout() {
     let url = baseURL + "/teacher/logout";
     let body = {
-      teacherId: JSON.parse(localStorage.getItem('quranTeacher'))._id,
+      teacherId: JSON.parse(localStorage.getItem('quranTeacher'))?._id,
       platform: this.deviceService.isMobile() ? 'mobile' : 'web'
     }
     this.http.post(url, body).subscribe(res => {

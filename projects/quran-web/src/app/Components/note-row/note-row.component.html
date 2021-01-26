@@ -1,5 +1,9 @@
 <div class="cont" (click)="noteClicked()">
-  <p class="title h4">{{ note.title | titlecase }}</p>
+  <div class="head">
+
+    <p class="title h5">{{ note.title | titlecase }}</p>
+    <p class="from">{{time}}</p>
+  </div>
   <p class="body">{{ note.body }}</p>
   <hr>
 </div>

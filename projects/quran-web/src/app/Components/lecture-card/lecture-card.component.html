@@ -18,7 +18,7 @@
 
     <p class="card-text data">
       <strong>{{ "startTime" | translate }} : </strong>
-      {{ lecture.time | date: "dd/MM/YYYY hh:mm a":"" }}
+      {{ dateTime }}
     </p>
     <p class="card-text data" *ngIf="lecture.duration">
       <strong>{{ "duration" | translate }} : </strong> {{ lecture.duration }}

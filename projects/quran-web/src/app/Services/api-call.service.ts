@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http'
 import { Observable } from 'rxjs';
 import * as fromApp from '../Store/app.reducer';
 
+// export const baseURL = "http://192.168.1.8:3005";
 export const baseURL = "https://quranmkserver.herokuapp.com";
 
 @Injectable({

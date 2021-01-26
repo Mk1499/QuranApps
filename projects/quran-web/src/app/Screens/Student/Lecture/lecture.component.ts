@@ -15,6 +15,7 @@ export class LectureComponent implements OnInit {
   cancelledLectures: Lecture[] = [];
   lecSub: Subscription;
   student: Student;
+  loading: boolean = true;
 
   constructor(
     private studentService: StudentService
@@ -25,14 +26,15 @@ export class LectureComponent implements OnInit {
     this.student = JSON.parse(localStorage.getItem("quranUser"));
 
     this.lecSub = this.studentService.getLectures(this.student._id).subscribe((lecs: Lecture[]) => {
-       lecs.map((lec) => {
-         if (!lec.state || lec.state === "upcoming"){
-           this.upcomigLectures.push(lec);
-         }
-         if (lec.state === "cancelled"){
+      lecs.map((lec) => {
+        if (!lec.state || lec.state === "upcoming") {
+          this.upcomigLectures.push(lec);
+        }
+        if (lec.state === "cancelled") {
           this.cancelledLectures.push(lec);
         }
-       })
+      })
+      this.loading = false;
     })
   }
 

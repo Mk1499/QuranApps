@@ -45,6 +45,7 @@ export class LectureDetailsComponent implements OnInit, OnDestroy {
 
 
   getData() {
+    this.user = JSON.parse(localStorage.getItem('quranUser'));
     this.lecSubscription = this.lectureService.getLectureDetails(this.lectureId).subscribe((lecture: Lecture) => {
       this.lecture = lecture;
       if (this.lecture?.coverURL) {
@@ -56,7 +57,6 @@ export class LectureDetailsComponent implements OnInit, OnDestroy {
       alert(err);
     })
     this.activeLang = this.lang.getLang();
-    this.user = JSON.parse(localStorage.getItem('quranUser'));
   }
 
   joinLect() {

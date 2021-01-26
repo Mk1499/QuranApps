@@ -1,19 +1,22 @@
 <div class="container">
-  <div class="header">
-    <h2 class="text-center h1">{{ "upcomingLectures" | translate }}</h2>
-    <div class="line"></div>
-  </div>
-  <div class="loadCont" *ngIf="!upcomigLectures.length">
+  <div class="loadCont" *ngIf="loading">
     <img src="../../../assets/images/loading.gif" alt="" class="loadImg" />
   </div>
-  <div class="row" *ngIf="upcomigLectures.length">
-    <lecture-card
-      [routerLink]="['../lectures', lecture._id]"
-      class="col-md-4 lectCard"
-      *ngFor="let lecture of upcomigLectures"
-      [lecture]="lecture"
-    ></lecture-card>
-  </div>
+  <section *ngIf="upcomigLectures.length">
+    <div class="header">
+      <h2 class="text-center h1">{{ "upcomingLectures" | translate }}</h2>
+      <div class="line"></div>
+    </div>
+
+    <div class="row" *ngIf="upcomigLectures.length">
+      <lecture-card
+        [routerLink]="['../lectures', lecture._id]"
+        class="col-md-4 lectCard"
+        *ngFor="let lecture of upcomigLectures"
+        [lecture]="lecture"
+      ></lecture-card>
+    </div>
+  </section>
 
   <section *ngIf="cancelledLectures.length">
     <div class="header">
@@ -29,5 +32,9 @@
         [lecture]="lecture"
       ></lecture-card>
     </div>
+  </section>
+
+  <section *ngIf="!loading && !upcomigLectures && !cancelledLectures" class="h5 text-center">
+    <p>{{"sorryUHavenot" | translate}} {{'lectures' | translate}}</p>
   </section>
 </div>

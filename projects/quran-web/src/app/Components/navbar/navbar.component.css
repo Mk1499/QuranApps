@@ -78,7 +78,11 @@ i {
     text-align: center;
     top: -1vh;
 }
+.notesCont{
+  max-height: 60vh;
+  overflow: auto;
 
+}
 .noteDiv{
   cursor: pointer;
 }

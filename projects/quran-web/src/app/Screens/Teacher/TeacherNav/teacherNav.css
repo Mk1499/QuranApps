@@ -87,6 +87,10 @@ i {
   color:#333
 }
 
+.notesCont{
+  max-height: 50vh;
+  overflow: auto;
+}
 @media (max-width: 966px) {
   .dropdown-menu {
     width: 100%;
