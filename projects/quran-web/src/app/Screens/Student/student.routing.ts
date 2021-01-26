@@ -1,3 +1,4 @@
+import { LectureLiveComponent } from './LectureLive/lecture-live.component';
 import { LectureComponent } from './Lecture/lecture.component';
 import { StudentGuard } from './../../Guards/Student.guard';
 import { ProfileComponent } from './profile/profile.component';
@@ -26,6 +27,7 @@ const routes: Routes = [
       { path: 'profile', component: ProfileComponent },
       { path: 'lectures', component: LectureComponent },
       { path: 'lectures/:id', component: LectureDetailsComponent },
+      { path: 'lectures/:id/live', component: LectureLiveComponent },
       { path: '**', redirectTo: 'home' }
     ],
     canActivate: [StudentGuard]

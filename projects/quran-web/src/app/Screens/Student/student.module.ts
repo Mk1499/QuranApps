@@ -15,7 +15,7 @@ import { NgModule } from "@angular/core";
 import { StudentRouting } from "./student.routing";
 import { LectureDetailsComponent } from './LectureDetails/lecture-details.component';
 import { LectureComponent } from './Lecture/lecture.component';
-import { LectureLiveComponent } from './lecture-live/lecture-live.component';
+import { LectureLiveComponent } from './LectureLive/lecture-live.component';
 
 
 
