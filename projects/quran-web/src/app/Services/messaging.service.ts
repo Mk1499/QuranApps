@@ -34,7 +34,7 @@ export class MessagingService {
 
   getIntialNotes(userId, userType) {
     let url = `${baseURL}/notify/user`;
-console.log("CALLED , ",userId,userType);
+    console.log("CALLED , ", userId, userType);
 
     return this.http.post(url, {
       recieverId: userId,
@@ -62,7 +62,7 @@ console.log("CALLED , ",userId,userType);
 
         let note = new Note(payload.title || "Note Title",
           payload.notification.body || "Note Body",
-          payload.notification.click_action || "https://www.google.com"
+          payload.notification.click_action || "https://www.google.com",
         );
 
         // this.allNotes.push(note);

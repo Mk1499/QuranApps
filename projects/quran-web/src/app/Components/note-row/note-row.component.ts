@@ -19,19 +19,18 @@ export class NoteRowComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    console.log("Note : ",this.note);
-
     this.time = moment(new Date(+this.note.date)).fromNow();
   }
   noteClicked() {
     // alert(`Note ${this.note.click_action} Clicked`)
-    let url = `../${this.note.click_action}`;
-    // this.router.navigateByUrl(url)
-    console.log(this.note);
+    let clickArr = this.note.click_action.split("/");
+    let url = `./${clickArr[0]}`;
+    console.log("URL : ",url);
 
-    console.log(this.router.url);
-
-
+    this.router.navigate([url,clickArr[1]],{
+      relativeTo: this.route
+    })
+    console.log("Clicked Note : ", clickArr);
   }
 
 }
