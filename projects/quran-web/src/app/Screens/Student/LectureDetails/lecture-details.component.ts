@@ -74,8 +74,10 @@ export class LectureDetailsComponent implements OnInit, OnDestroy {
 
 
   checkJoin() {
+
     let lecStudentIDs = this.lecture.students.map(s => s._id);
     if (lecStudentIDs.includes(this.user._id)) {
+
       this.joined = true;
     }
     this.loading = false;

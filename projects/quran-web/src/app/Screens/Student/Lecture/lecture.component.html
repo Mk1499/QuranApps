@@ -1,0 +1,33 @@
+<div class="container">
+  <div class="header">
+    <h2 class="text-center h1">{{ "upcomingLectures" | translate }}</h2>
+    <div class="line"></div>
+  </div>
+  <div class="loadCont" *ngIf="!upcomigLectures.length">
+    <img src="../../../assets/images/loading.gif" alt="" class="loadImg" />
+  </div>
+  <div class="row" *ngIf="upcomigLectures.length">
+    <lecture-card
+      [routerLink]="['../lectures', lecture._id]"
+      class="col-md-4 lectCard"
+      *ngFor="let lecture of upcomigLectures"
+      [lecture]="lecture"
+    ></lecture-card>
+  </div>
+
+  <section *ngIf="cancelledLectures.length">
+    <div class="header">
+      <h2 class="text-center h1">{{ "cancelledLectures" | translate }}</h2>
+      <div class="line"></div>
+    </div>
+
+    <div class="row">
+      <lecture-card
+        [routerLink]="['../lectures', lecture._id]"
+        class="col-md-4 lectCard"
+        *ngFor="let lecture of cancelledLectures"
+        [lecture]="lecture"
+      ></lecture-card>
+    </div>
+  </section>
+</div>

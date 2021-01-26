@@ -59,11 +59,11 @@
       class="loadingImgBtn"
       *ngIf="joinning"
     />
-    <span *ngIf="!joinning">
+    <span *ngIf="!joinning && !joined">
       {{ "joinNow" | translate }}
     </span>
   </button>
-  <div class="joinBtn joinMsg">
+  <div class="joinBtn joinMsg" *ngIf="joined">
     {{ "joined" | translate }}
   </div>
 </div>

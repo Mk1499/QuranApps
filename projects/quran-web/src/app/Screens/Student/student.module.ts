@@ -14,6 +14,7 @@ import { FormsModule } from '@angular/forms';
 import { NgModule } from "@angular/core";
 import { StudentRouting } from "./student.routing";
 import { LectureDetailsComponent } from './LectureDetails/lecture-details.component';
+import { LectureComponent } from './Lecture/lecture.component';
 
 
 
@@ -28,7 +29,8 @@ import { LectureDetailsComponent } from './LectureDetails/lecture-details.compon
     TeacherProfileComponent,
     HomeComponent,
     StudentComponent,
-    LectureDetailsComponent
+    LectureDetailsComponent,
+    LectureComponent
   ],
   imports: [
     FormsModule,

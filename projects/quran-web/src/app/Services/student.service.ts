@@ -31,4 +31,9 @@ export class StudentService implements OnInit {
     return this.http.post(url, body)
   }
 
+  getLectures(studentID) {
+    let url = baseURL + "/lecture/student/" + studentID;
+    return this.http.get(url);
+  }
+
 }

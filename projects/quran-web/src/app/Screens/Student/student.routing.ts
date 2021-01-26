@@ -1,3 +1,4 @@
+import { LectureComponent } from './Lecture/lecture.component';
 import { StudentGuard } from './../../Guards/Student.guard';
 import { ProfileComponent } from './profile/profile.component';
 import { HomeComponent } from './home/home.component';
@@ -23,6 +24,7 @@ const routes: Routes = [
       { path: 'teachers/:id', component: TeacherProfileComponent },
       { path: 'library', component: LiberaryComponent },
       { path: 'profile', component: ProfileComponent },
+      { path: 'lectures', component: LectureComponent },
       { path: 'lectures/:id', component: LectureDetailsComponent },
       { path: '**', redirectTo: 'home' }
     ],
