@@ -1,10 +1,15 @@
+import { LangService } from './../../../Services/lang.service';
+import { Title } from '@angular/platform-browser';
+import { Subscription } from 'rxjs';
+import { LectureService } from './../../../Services/lecture.service';
 import { Student } from './../../../Models/Student.model';
 import { VideoStream } from './../../../Models/VideoStream.model';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { baseURL } from './../../../Services/api-call.service';
 import { Component, OnInit, ViewChild, AfterViewInit, ElementRef, OnDestroy, HostListener } from '@angular/core';
-import { io } from 'socket.io-client';
+import { io, Socket } from 'socket.io-client';
 import Peer from 'peerjs';
+import { Lecture } from '../../../Models/Lecture.model';
 
 
 
@@ -25,13 +30,21 @@ export class LectureLiveComponent implements OnInit, AfterViewInit, OnDestroy {
   myData: Student;
   streamssIDs: string[] = [];
   myPeerID: string;
-  navData;
-  myPeer;
-  socket;
-
+  navData: Student;
+  myPeer: Peer;
+  socket: Socket;
+  lectSub: Subscription;
+  lectureData: Lecture;
+  loading: boolean = true;
+  imageURL: string = 'https://i.pinimg.com/originals/2c/19/7d/2c197db4eb3e3695bc09777a31a86de2.png';
+  activeLang: string = 'ar';
 
   constructor(
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router,
+    private lectureService: LectureService,
+    private title: Title,
+    private lang: LangService
   ) { }
 
   ngOnInit(): void {
@@ -45,16 +58,10 @@ export class LectureLiveComponent implements OnInit, AfterViewInit, OnDestroy {
       withCredentials: true,
     });
 
-    this.joinToLectRoom();
-    this.streamAliveChecker();
     this.myData = JSON.parse(localStorage.getItem("quranUser"));
-  }
+    this.checkAuthorize();
 
-  @HostListener('window:beforeunload',  ['$event'])
-  unloadHandler() {
-      // Your logic on beforeunload
-      // this.closeSession()
-      alert("Work")
+    this.activeLang = this.lang.getLang();
   }
 
 
@@ -79,6 +86,28 @@ export class LectureLiveComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
 
+  checkAuthorize() {
+    this.lectSub = this.lectureService.getLectureDetails(this.route.snapshot.params.id).subscribe((lecData: Lecture) => {
+      console.log("LECT DATA : ", lecData);
+      this.lectureData = lecData;
+      if (lecData?.coverURL) {
+        this.imageURL = lecData.coverURL
+      }
+      let lectureStudents = lecData.students.map(s => s._id);
+      if (!lectureStudents.includes(this.myData._id)) {
+        alert("Sorry but you aren't a lecture's student");
+        this.router.navigate(['../'], {
+          relativeTo: this.route
+        })
+      } else {
+        this.loading = false;
+        this.title.setTitle(this.lectureData.name);
+        this.joinToLectRoom();
+        this.streamAliveChecker();
+      }
+    })
+  }
+
   //  let other lecture teammate know my peer id
   joinToLectRoom() {
     this.myPeer.on("open", (id) => {
@@ -93,13 +122,6 @@ export class LectureLiveComponent implements OnInit, AfterViewInit, OnDestroy {
     })
   }
 
-  // answerCallConfig() {
-  //   this.myPeer.on('call', (call: Peer.MediaConnection) => {
-
-  //     call.answer(this.myStream);
-  //     this.callListener(call)
-  //   })
-  // }
 
   startCallListener() {
     this.myPeer.on('call', (call: Peer.MediaConnection) => {
@@ -209,8 +231,8 @@ export class LectureLiveComponent implements OnInit, AfterViewInit, OnDestroy {
 
   closeSession() {
 
-      this.stopStreaming()
-      this.socket.emit("student-quite", this.myPeerID, this.route.snapshot.params.id)
+    this.stopStreaming()
+    this.socket.emit("student-quite", this.myPeerID, this.route.snapshot.params.id)
   }
 
 

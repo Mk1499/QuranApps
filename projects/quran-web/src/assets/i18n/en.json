@@ -86,5 +86,17 @@
   "joinSuccess": "Joined to Lecture Successfully",
   "mustEnrolled": "You must be enrolled to this teacher to show his upcoming lectures",
   "joined": "Joined",
-  "goNow": "Go Now"
+  "goNow": "Go Now",
+  "notBelong":"Sorry but this lecture not hosted by you ",
+  "expiredLecture":"Sorry but this lecture is expired so you can't join to it",
+  "finishedLecture":"Sorry but this lecture is finished so you can't join to it",
+  "live":"Live",
+  "upcoming":"Upcoming",
+  "expired":"Expired",
+  "details":"Details",
+  "cancelled":"Cancelled",
+  "notMemberLect":"You aren't a lecture student to join this lecture",
+  "waitTeacherConn":"Waiting for teacher connection",
+  "endLecture":"End Lecture"
+
 }

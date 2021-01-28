@@ -14,3 +14,9 @@
 .lectCard{
   cursor: pointer;
 }
+.noLecSec{
+  min-height: 30vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

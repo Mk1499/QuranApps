@@ -1,5 +1,12 @@
+import { Teacher } from './../../../Models/teacher';
+import { LangService } from './../../../Services/lang.service';
+import { Title } from '@angular/platform-browser';
+import { LectureService } from './../../../Services/lecture.service';
+import { Lecture } from './../../../Models/Lecture.model';
+import { Subscription } from 'rxjs';
+import { Student } from './../../../Models/Student.model';
 import { VideoStream } from './../../../Models/VideoStream.model';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { baseURL } from './../../../Services/api-call.service';
 import { Component, ElementRef, OnInit, ViewChild, ContentChild, AfterViewInit, OnDestroy, HostListener } from '@angular/core';
 import { io, Socket } from 'socket.io-client';
@@ -20,16 +27,24 @@ export class LectureLiveComponent implements OnInit, AfterViewInit, OnDestroy {
   peerID: string;
   myStream: MediaStream;
   streamssIDs: string[] = [];
-  socket: Socket;
   myPeer: Peer;
+  socket: Socket;
+  lectSub: Subscription;
+  lectureData: Lecture;
+  loading: boolean = true;
+  imageURL: string = 'https://i.pinimg.com/originals/2c/19/7d/2c197db4eb3e3695bc09777a31a86de2.png';
+  activeLang: string = 'ar';
+  myData: Teacher;
+
 
   constructor(
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router,
+    private lectureService: LectureService,
+    private title: Title,
+    private lang: LangService
   ) { }
 
-  @HostListener("window:beforeunload", ["$event"]) unloadHandler(event: Event) {
-    this.closeSession()
-  }
 
   ngOnInit(): void {
     this.myPeer = new Peer(undefined, {
@@ -42,8 +57,10 @@ export class LectureLiveComponent implements OnInit, AfterViewInit, OnDestroy {
       withCredentials: true,
     });
 
-    this.joinToLectRoom();
-    this.streamAliveChecker();
+    this.myData = JSON.parse(localStorage.getItem("quranTeacher"));
+    this.checkAuthorize();
+
+    this.activeLang = this.lang.getLang();
   }
 
   ngAfterViewInit() {
@@ -54,7 +71,26 @@ export class LectureLiveComponent implements OnInit, AfterViewInit, OnDestroy {
       this.studentsStreams = this.studentsStreams.filter(vs => vs.id != streamID)
     })
   }
-
+  checkAuthorize() {
+    this.lectSub = this.lectureService.getLectureDetails(this.route.snapshot.params.id).subscribe((lecData: Lecture) => {
+      console.log("LECT DATA : ", lecData);
+      this.lectureData = lecData;
+      if (lecData?.coverURL) {
+        this.imageURL = lecData.coverURL
+      }
+      if (this.lectureData.teacher._id !== this.myData._id) {
+        alert("Sorry but you aren't a lecture's Teacher");
+        this.router.navigate(['../'], {
+          relativeTo: this.route
+        })
+      } else {
+        this.loading = false;
+        this.title.setTitle(this.lectureData.name);
+        this.joinToLectRoom();
+        this.streamAliveChecker();
+      }
+    })
+  }
 
   answerCallConfig() {
     this.myPeer.on('call', (call: Peer.MediaConnection) => {
@@ -148,8 +184,8 @@ export class LectureLiveComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   closeSession() {
-      this.stopStreaming()
-      this.socket.emit("teacher-quite", this.peerID, this.route.snapshot.params.id)
+    this.stopStreaming()
+    this.socket.emit("teacher-quite", this.peerID, this.route.snapshot.params.id)
   }
 
 

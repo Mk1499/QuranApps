@@ -22,6 +22,7 @@ import { LectureCardComponent } from '../Components/lecture-card/lecture-card.co
 import { NoteRowComponent } from '../Components/note-row/note-row.component';
 import { TimerComponent } from '../Components/timer/timer.component';
 import { VideoPlayerComponent } from '../Components/video-player/video-player.component';
+import { LoadingOverlayComponent } from '../Components/loading-overlay/loading-overlay.component';
 
 
 @NgModule({
@@ -38,6 +39,7 @@ import { VideoPlayerComponent } from '../Components/video-player/video-player.co
     NoteRowComponent,
     TimerComponent,
     VideoPlayerComponent,
+    LoadingOverlayComponent,
 
 
   ],
@@ -69,7 +71,8 @@ import { VideoPlayerComponent } from '../Components/video-player/video-player.co
     NoteRowComponent,
     LectureCardComponent,
     TimerComponent,
-    VideoPlayerComponent
+    VideoPlayerComponent,
+    LoadingOverlayComponent
   ]
 })
 

@@ -1,19 +1,43 @@
-<div class="container">
-  <h1>Meeting Room</h1>
-  <button class="finishBtn btn btn-danger">Finish Lecture</button>
+<div class="solidCover"></div>
+<div class="imgCont">
+  <img [src]="imageURL" class="lecCover" />
+  <p>
+    <span class="h1 lecName">
+      {{
+        activeLang === "en"
+          ? lectureData?.name
+          : lectureData?.arName || lectureData?.name
+      }}
+    </span>
+  </p>
+</div>
+<div class="line"></div>
+
+<div class="container main">
+  <button class="finishBtn btn btn-danger">
+    <span>
+      {{ "endLecture" | translate }}
+    </span>
+  </button>
+  <h1 class="teacherName">
+    {{
+      activeLang === "ar"
+        ? lectureData?.teacher.arName || lectureData?.teacher.name
+        : lectureData?.teacher.name
+    }}
+  </h1>
 
   <!-- <div class="row firstVidsCont"></div> -->
   <div class="row teacherVideoCont">
     <video #teacherVideo class="teacherVideo"></video>
-    <div class="loadingCont" *ngIf="!myVidLoaded">
-      <h3>Loading...</h3>
-    </div>
   </div>
   <div class="row secVidsCont">
     <div
       class="col-md-4 studentVidCont"
-      *ngFor="let studentStream of studentsStreams">
+      *ngFor="let studentStream of studentsStreams"
+    >
       <video-player [vidData]="studentStream"></video-player>
     </div>
   </div>
 </div>
+<loading-overlay *ngIf="loading"></loading-overlay>

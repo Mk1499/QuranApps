@@ -71,17 +71,25 @@
   border: 1px solid #333;
   color: #333;
 }
-.loadingImgBtn{
+.loadingImgBtn {
   height: 100%;
 }
-.joinMsg{
+.joinMsg {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-@media(max-width:786px){
-.students ul{
-  padding-inline-start: 0;
+.lecState {
+  margin: 0 0.5vw;
 }
+.subHead {
+  font-weight: bold;
+  color: gold;
+}
+
+@media (max-width: 786px) {
+  .students ul {
+    padding-inline-start: 0;
+  }
 }

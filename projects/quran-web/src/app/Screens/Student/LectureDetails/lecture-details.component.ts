@@ -1,3 +1,4 @@
+import { Teacher } from './../../../Models/teacher';
 import { SuccessAlertComponent } from './../../../Components/success-alert/success-alert.component';
 import { Student } from './../../../Models/Student.model';
 import { StudentService } from './../../../Services/student.service';
@@ -26,6 +27,8 @@ export class LectureDetailsComponent implements OnInit, OnDestroy {
   user: Student;
   joined: boolean;
   joinChecked: boolean = false;
+  authorized: boolean = false;
+
 
   @ViewChild('successAlert') successAlert: SuccessAlertComponent;
 
@@ -51,14 +54,30 @@ export class LectureDetailsComponent implements OnInit, OnDestroy {
       if (this.lecture?.coverURL) {
         this.imageURL = this.lecture.coverURL
       }
+      this.checkState();
       this.checkJoin();
+
     }, (err) => {
       this.loading = false;
       alert(err);
     })
     this.activeLang = this.lang.getLang();
   }
+  checkState() {
+    if (!this.lecture.state) {
+      let msDate = new Date(this.lecture.time).getTime();
+      let msDuration = +this.lecture.duration * 60000;
+      let msNow = new Date().getTime();
 
+      if (msNow > (msDuration + msDate)) {
+        this.lecture.state = "expired"
+      } else if (msNow > msDate) {
+        this.lecture.state = "live"
+      } else {
+        this.lecture.state = "upcoming"
+      }
+    }
+  }
   joinLect() {
     this.joinning = true;
     this.lecSubscription = this.studentService
@@ -71,6 +90,7 @@ export class LectureDetailsComponent implements OnInit, OnDestroy {
         this.successAlert.showAlert();
       })
   }
+
 
 
   checkJoin() {

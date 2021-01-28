@@ -50,3 +50,10 @@
   list-style-type: none;
   text-align: center;
 }
+.lecState{
+  margin: 0 0.5vw;
+}
+.subHead{
+  font-weight: bold;
+  color: gold;
+}

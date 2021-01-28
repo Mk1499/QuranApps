@@ -1,20 +1,29 @@
-.time{
+.time {
   color: gold;
   font-weight: bold;
 }
 
-.goBtn{
+.goBtn {
   background-color: #333;
   color: gold;
-  width: 15vw;
+  width: 25vw;
   height: 10vh;
   border: 1px solid gold;
-  font-size: 1.5vw;
-  transition: 0.5 ease-in-out;
+  transition: 0.5s ease-in-out;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.goBtn:hover{
-  color:#333;
+.goBtn:hover {
+  color: #333;
   background-color: gold;
   border-color: #333;
+}
+
+.loadImg {
+  height: 10vh;
+}
+.goText {
+  font-size: 3vw;
 }

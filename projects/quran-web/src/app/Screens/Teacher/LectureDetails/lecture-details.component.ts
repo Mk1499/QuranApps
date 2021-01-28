@@ -1,3 +1,4 @@
+import { Teacher } from './../../../Models/teacher';
 import { LangService } from './../../../Services/lang.service';
 import { Lecture } from './../../../Models/Lecture.model';
 import { Subscription } from 'rxjs';
@@ -17,7 +18,8 @@ export class LectureDetailsComponent implements OnInit, OnDestroy {
   imageURL: string = 'https://i.pinimg.com/originals/2c/19/7d/2c197db4eb3e3695bc09777a31a86de2.png';
   activeLang: string;
   loading: boolean = true;
-  remain:string;
+  remain: string;
+  authorized: boolean = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -35,9 +37,23 @@ export class LectureDetailsComponent implements OnInit, OnDestroy {
     this.lecSubscription = this.lectureService.getLectureDetails(this.lectureId).subscribe((lecture: Lecture) => {
       console.log("Loaded Lec : ", lecture);
       this.lecture = lecture;
-      this.loading = false;
+      // this.loading = false;
       if (this.lecture?.coverURL) {
         this.imageURL = this.lecture.coverURL
+      }
+      if (!this.lecture.state) {
+        let msDate = new Date(this.lecture.time).getTime();
+        let msDuration = +this.lecture.duration * 60000;
+        let msNow = new Date().getTime();
+
+        if (msNow > (msDuration + msDate)) {
+          this.lecture.state = "expired"
+        } else if (msNow > msDate) {
+          this.lecture.state = "live"
+        } else {
+          this.lecture.state = "upcoming"
+        }
+        this.checkAuth();
       }
 
     }, (err) => {
@@ -47,6 +63,14 @@ export class LectureDetailsComponent implements OnInit, OnDestroy {
     this.activeLang = this.lang.getLang();
   }
 
+
+  checkAuth() {
+    let teacher: Teacher = JSON.parse(localStorage.getItem('quranTeacher'));
+    if (this.lecture.teacher._id === teacher._id) {
+      this.authorized = true;
+    }
+    this.loading = false;
+  }
 
 
 

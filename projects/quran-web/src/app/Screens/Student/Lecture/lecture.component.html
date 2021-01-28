@@ -34,7 +34,7 @@
     </div>
   </section>
 
-  <section *ngIf="!loading && !upcomigLectures && !cancelledLectures" class="h5 text-center">
+  <section *ngIf="!loading && !upcomigLectures.length && !cancelledLectures.length" class="h3 text-center noLecSec">
     <p>{{"sorryUHavenot" | translate}} {{'lectures' | translate}}</p>
   </section>
 </div>

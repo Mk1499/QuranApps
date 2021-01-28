@@ -7,6 +7,13 @@
   </p>
 </section>
 
+
 <button class="btn goBtn" *ngIf="done" [routerLink]="'./live'">
-  {{ "goNow" | translate }}
+  <p class="goText">
+    {{ "goNow" | translate }}
+  </p>
 </button>
+
+<div *ngIf="!remain && !done">
+  <img src="../../../assets/images/loading.gif" alt="" class="loadImg" />
+</div>

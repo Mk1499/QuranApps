@@ -1,0 +1,17 @@
+.cont {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #333;
+  z-index: 10;
+  top: 0;
+  left: 0;
+}
+
+
+.loadImg{
+  /* height: 10vh; */
+}
