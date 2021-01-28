@@ -29,6 +29,8 @@ export class StudentGuard implements CanActivate {
 
     let user = JSON.parse(localStorage.getItem('quranUser'));
     let lang = this.lang.urlLang || "en";
+    console.log("USer in guard : ",user);
+
 
     if (user && (user.role == "Student" || user.role == "student")) {
       console.log("Auth Student : ",user);

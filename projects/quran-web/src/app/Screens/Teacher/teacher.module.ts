@@ -1,4 +1,4 @@
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TeacherSamples } from './TeacherSamples/TeacherSamples.component';
 import { TeacherMainComponent } from './TeacherMain/teacherMain.component';
 import { TeacherHomeComponent } from './TeacherHome/teacherHome.component';
@@ -13,6 +13,7 @@ import { TeacherEnrollsComponent } from './TeacherEnrolls/TeacherEnrolls.compone
 import { TeacherLecturesComponent } from './TeacherLectures/teacher-lectures.component';
 import { AddLectureComponent } from './AddLecture/add-lecture.component';
 import { LectureDetailsComponent } from './LectureDetails/lecture-details.component';
+import { LectureLiveComponent } from './LectureLive/lecture-live.component';
 
 @NgModule({
   declarations: [
@@ -27,11 +28,13 @@ import { LectureDetailsComponent } from './LectureDetails/lecture-details.compon
     TeacherLecturesComponent,
     AddLectureComponent,
     LectureDetailsComponent,
+    LectureLiveComponent,
   ],
   imports: [
     SharedModule,
     TeacherRouting,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 

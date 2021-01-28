@@ -11,7 +11,8 @@
     "dev:ssr": "ng run QuranWeb:serve-ssr",
     "serve:ssr": "node dist/QuranWeb/server/main.js",
     "build:ssr": "ng build --prod && ng run QuranWeb:server:production",
-    "prerender": "ng run QuranWeb:prerender"
+    "prerender": "ng run QuranWeb:prerender",
+    "secServe": "ng serve --host 0.0.0.0 --ssl --ssl-key localhost.key  --ssl-cert localhost.crt"
   },
   "private": true,
   "dependencies": {

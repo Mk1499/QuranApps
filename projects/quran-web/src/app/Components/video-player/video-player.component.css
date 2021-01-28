@@ -1,0 +1,8 @@
+.cont{
+  width: 100%;
+  overflow: hidden;
+}
+
+.cont video{
+  width: 100%;
+}

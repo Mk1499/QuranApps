@@ -84,6 +84,7 @@
   "noUpcomingLecs": "No Upcomming Lectures",
   "joinNow": "Join Now",
   "joinSuccess": "Joined to Lecture Successfully",
-  "mustEnrolled":"You must be enrolled to this teacher to show his upcoming lectures",
-  "joined":"Joined"
+  "mustEnrolled": "You must be enrolled to this teacher to show his upcoming lectures",
+  "joined": "Joined",
+  "goNow": "Go Now"
 }

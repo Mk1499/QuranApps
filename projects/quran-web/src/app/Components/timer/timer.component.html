@@ -1,6 +1,12 @@
-<p class="h2" *ngIf="remain && !done">
-  {{ "lectureWillStart" | translate }}
-</p>
+<section *ngIf="remain && !done">
+  <p class="h2">
+    {{ "lectureWillStart" | translate }}
+  </p>
   <p class="time h2 text-center">
     {{ remain }}
   </p>
+</section>
+
+<button class="btn goBtn" *ngIf="done" [routerLink]="'./live'">
+  {{ "goNow" | translate }}
+</button>

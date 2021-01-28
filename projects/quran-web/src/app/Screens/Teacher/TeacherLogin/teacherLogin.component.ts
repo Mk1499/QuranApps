@@ -47,11 +47,11 @@ export class TeacherLoginComponent implements OnInit, OnDestroy {
       this.loginSub = this.teacher.teacherLogin(
         this.email.toLocaleLowerCase(),
         this.password
-      ).subscribe((data: Teacher) => {
+      ).subscribe((data: {teacher : Teacher}) => {
         console.log("Teacher data : ", data);
         this.loading = false;
-        localStorage.setItem('quranTeacher', JSON.stringify(data));
-        this.store.dispatch(new TeacherActions.LoginSuccess(data))
+        localStorage.setItem('quranTeacher', JSON.stringify(data.teacher));
+        this.store.dispatch(new TeacherActions.LoginSuccess(data.teacher))
         this.router.navigateByUrl("/" + this.lang + '/teacher')
       },
         (err) => {

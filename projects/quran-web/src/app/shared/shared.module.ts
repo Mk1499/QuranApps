@@ -21,6 +21,7 @@ import { MobileAudioPlayerComponent } from '../Components/mobile-audio-player/mo
 import { LectureCardComponent } from '../Components/lecture-card/lecture-card.component';
 import { NoteRowComponent } from '../Components/note-row/note-row.component';
 import { TimerComponent } from '../Components/timer/timer.component';
+import { VideoPlayerComponent } from '../Components/video-player/video-player.component';
 
 
 @NgModule({
@@ -36,6 +37,7 @@ import { TimerComponent } from '../Components/timer/timer.component';
     LectureCardComponent,
     NoteRowComponent,
     TimerComponent,
+    VideoPlayerComponent,
 
 
   ],
@@ -66,7 +68,8 @@ import { TimerComponent } from '../Components/timer/timer.component';
     MobileAudioPlayerComponent,
     NoteRowComponent,
     LectureCardComponent,
-    TimerComponent
+    TimerComponent,
+    VideoPlayerComponent
   ]
 })
 
