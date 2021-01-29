@@ -53,9 +53,9 @@ export class LectureDetailsComponent implements OnInit, OnDestroy {
         } else {
           this.lecture.state = "upcoming"
         }
-        this.checkAuth();
       }
 
+      this.checkAuth();
     }, (err) => {
       this.loading = false;
       alert(err);
@@ -69,6 +69,8 @@ export class LectureDetailsComponent implements OnInit, OnDestroy {
     if (this.lecture.teacher._id === teacher._id) {
       this.authorized = true;
     }
+    console.log("auth : ",this.authorized);
+
     this.loading = false;
   }
 

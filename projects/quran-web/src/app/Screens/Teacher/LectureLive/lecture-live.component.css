@@ -63,6 +63,9 @@
 .teacherName {
   margin: 3vh 0;
 }
+.btnLoadImg {
+  height: 100%;
+}
 
 @media (max-width: 786px) {
   .finishBtn {

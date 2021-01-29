@@ -18,4 +18,12 @@ export class LectureService {
     return this.http.get(url);
   }
 
+  finishLecture(id) {
+    let url = baseURL + '/lecture/finish';
+    let body = {
+      id
+    };
+    return this.http.post(url, body);
+  }
+
 }

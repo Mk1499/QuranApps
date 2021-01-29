@@ -35,6 +35,7 @@ export class LectureLiveComponent implements OnInit, AfterViewInit, OnDestroy {
   imageURL: string = 'https://i.pinimg.com/originals/2c/19/7d/2c197db4eb3e3695bc09777a31a86de2.png';
   activeLang: string = 'ar';
   myData: Teacher;
+  endingLecture: boolean = false;
 
 
   constructor(
@@ -61,6 +62,21 @@ export class LectureLiveComponent implements OnInit, AfterViewInit, OnDestroy {
     this.checkAuthorize();
 
     this.activeLang = this.lang.getLang();
+  }
+
+
+  endLecture() {
+
+    this.endingLecture = true;
+    let lectureID = this.route.snapshot.params.id;
+    this.socket.emit('finish-lecture', lectureID);
+
+    this.lectureService.finishLecture(lectureID).subscribe(res => {
+      this.endingLecture = false;
+      this.router.navigate(['../'], {
+        relativeTo: this.route
+      })
+    })
   }
 
   ngAfterViewInit() {

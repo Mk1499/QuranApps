@@ -120,6 +120,12 @@ export class LectureLiveComponent implements OnInit, AfterViewInit, OnDestroy {
     this.socket.on("remove-stream", (streamID) => {
       this.studentsStreams = this.studentsStreams.filter(vs => vs.id != streamID)
     })
+    this.socket.on("lecture-finished", () => {
+      alert("lecture finished");
+      this.router.navigate(['../'], {
+        relativeTo: this.route
+      })
+    })
   }
 
 

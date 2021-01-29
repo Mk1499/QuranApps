@@ -14,10 +14,15 @@
 <div class="line"></div>
 
 <div class="container main">
-  <button class="finishBtn btn btn-danger">
-    <span>
+  <button
+    class="finishBtn btn btn-danger"
+    (click)="endLecture()"
+    [disabled]="endingLecture"
+  >
+    <span *ngIf="!endingLecture">
       {{ "endLecture" | translate }}
     </span>
+    <img src="../../../../assets/images/loading.gif" *ngIf="endingLecture" class="btnLoadImg" />
   </button>
   <h1 class="teacherName">
     {{
