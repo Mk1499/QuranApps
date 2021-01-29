@@ -29,7 +29,7 @@
                   : 'gold'
             }"
           >
-            {{ lecture.state || "upcoming" | translate }}
+            {{ lecture.state | translate }}
           </span>
           )
         </span>
@@ -52,7 +52,7 @@
         lecture.state === 'expired'
       "
     >
-      <p class="h4">
+      <p class="h6 text-center">
         {{
           lecture.state === "finished"
             ? ("finishedLecture" | translate)
@@ -70,7 +70,7 @@
     </div>
 
     <div class="row desc">
-      <p class="h3">
+      <p class="h5">
         {{ lecture.description }}
       </p>
     </div>
@@ -78,16 +78,16 @@
       <p class="h2 header">
         {{ "students" | translate }} ({{ lecture.students.length }})
       </p>
-      <ul class="students row">
-        <li
+      <div class="students row">
+        <div
           class="studentItem col-md-3"
           *ngFor="let student of lecture.students"
         >
           <div>
             <student-card [student]="student"></student-card>
           </div>
-        </li>
-      </ul>
+        </div>
+      </div>
       <p class="emptyMsg h5" *ngIf="!lecture.students.length">
         {{ "sorryUHavenot" | translate }} {{ "students" | translate }}
       </p>

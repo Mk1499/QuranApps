@@ -44,8 +44,10 @@
   margin: 5vh 0;
 }
 .main {
-  padding-bottom: 2vh;
+  padding-bottom: 5vh;
 }
+
+
 .studentItem {
   list-style-type: none;
   text-align: center;

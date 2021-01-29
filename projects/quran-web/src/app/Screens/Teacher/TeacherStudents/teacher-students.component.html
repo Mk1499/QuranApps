@@ -11,11 +11,13 @@
       {{ "noStudents" | translate }}
     </h3>
   </div>
-  <ul class="students row" *ngIf="students.length">
-    <li class="studentItem col-md-3" *ngFor="let student of students">
-      <div>
-        <student-card [student]="student"></student-card>
+  <div class="container">
+    <div class="students row" *ngIf="students.length">
+      <div class="studentItem col-md-4" *ngFor="let student of students">
+        <div>
+          <student-card [student]="student"></student-card>
+        </div>
       </div>
-    </li>
-  </ul>
+    </div>
+  </div>
 </div>

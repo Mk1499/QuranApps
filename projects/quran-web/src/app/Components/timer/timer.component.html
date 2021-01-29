@@ -9,9 +9,9 @@
 
 
 <button class="btn goBtn" *ngIf="done" [routerLink]="'./live'">
-  <p class="goText">
+  <span class="goText">
     {{ "goNow" | translate }}
-  </p>
+  </span>
 </button>
 
 <div *ngIf="!remain && !done">

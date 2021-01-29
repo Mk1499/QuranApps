@@ -121,7 +121,7 @@
     </div>
   </div>
 
-  <button class="btn btn-danger joinBtn" (click)="joinLect()" *ngIf="!joined">
+  <button class="btn btn-danger joinBtn" (click)="joinLect()" *ngIf="!joined && lecture.state == 'upcoming' || lecture.state === 'live'">
     <img
       src="../../../../assets/images/loading.gif"
       alt=""

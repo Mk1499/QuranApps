@@ -2,6 +2,8 @@
 
   font-family: Cairo;
   text-align: center;
+  min-height: 100vh;
+  padding-bottom: 5vh;
 }
 
 .students{

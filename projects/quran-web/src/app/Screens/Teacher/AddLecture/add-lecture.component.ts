@@ -52,7 +52,8 @@ export class AddLectureComponent implements OnInit, OnDestroy {
     lecture['teacher'] = JSON.parse(this.user)?._id;
     // this.showSuccess = true;
 
-    if (formData.valid)
+    if (formData.valid) {
+      lecture['time'] = this.showTime.toISOString();
       this.addLectureSub = this.teacherServcie.addLecture(lecture).subscribe(sample => {
         this.loading = false;
         this.successAlert.showAlert();
@@ -61,6 +62,7 @@ export class AddLectureComponent implements OnInit, OnDestroy {
         this.location.back();
 
       })
+    }
     else {
       this.loading = false;
       this.errMsg = this.lang.urlLang === "en" ? "Please Complete Required Feilds" : "من فضلك اكمل باقي الحقول"
@@ -76,6 +78,8 @@ export class AddLectureComponent implements OnInit, OnDestroy {
 
   logDate() {
     this.showTime = new Date(this.time);
+    console.log(this.time);
+    console.log(this.showTime.toISOString());
   }
 
   ngOnDestroy() {

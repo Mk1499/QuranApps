@@ -41,14 +41,14 @@ export class LectureDetailsComponent implements OnInit, OnDestroy {
       if (this.lecture?.coverURL) {
         this.imageURL = this.lecture.coverURL
       }
-      if (!this.lecture.state) {
+      if (!this.lecture.state || this.lecture.state === 'upcoming') {
         let msDate = new Date(this.lecture.time).getTime();
         let msDuration = +this.lecture.duration * 60000;
         let msNow = new Date().getTime();
 
         if (msNow > (msDuration + msDate)) {
           this.lecture.state = "expired"
-        } else if (msNow > msDate) {
+        } else if (msNow > msDate && msNow < (msDate + msDuration)) {
           this.lecture.state = "live"
         } else {
           this.lecture.state = "upcoming"
@@ -69,7 +69,7 @@ export class LectureDetailsComponent implements OnInit, OnDestroy {
     if (this.lecture.teacher._id === teacher._id) {
       this.authorized = true;
     }
-    console.log("auth : ",this.authorized);
+    console.log("auth : ", this.authorized);
 
     this.loading = false;
   }
