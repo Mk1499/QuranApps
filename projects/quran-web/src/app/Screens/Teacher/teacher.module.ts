@@ -14,6 +14,7 @@ import { TeacherLecturesComponent } from './TeacherLectures/teacher-lectures.com
 import { AddLectureComponent } from './AddLecture/add-lecture.component';
 import { LectureDetailsComponent } from './LectureDetails/lecture-details.component';
 import { LectureLiveComponent } from './LectureLive/lecture-live.component';
+import { QuranComponent } from './Quran/quran.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { LectureLiveComponent } from './LectureLive/lecture-live.component';
     AddLectureComponent,
     LectureDetailsComponent,
     LectureLiveComponent,
+    QuranComponent,
   ],
   imports: [
     SharedModule,

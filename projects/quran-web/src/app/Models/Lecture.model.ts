@@ -11,4 +11,5 @@ export interface Lecture {
   duration: Number;
   teacher: Teacher;
   state?: string;
+  aya?:string;
 }

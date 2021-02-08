@@ -11,6 +11,7 @@
   height: 20vh;
   background-color: gold;
 }
+
 .imgCont {
   display: flex;
   justify-content: center;
@@ -18,6 +19,7 @@
   flex-direction: column;
   margin-top: -15vh;
 }
+
 .lecCover {
   width: 45%;
   height: 30vh;
@@ -25,37 +27,70 @@
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   margin-bottom: 2vh;
 }
+
 .desc {
   justify-content: center;
+  align-items: center;
   text-align: center;
   margin: 5vh 0;
 }
+
 .line {
-  background: url(https://vatican.modeltheme.com/wp-content/plugins/modeltheme-framework/inc/shortcodes/img/delimiter_dark.png)
-    no-repeat center center;
+  background: url(https://vatican.modeltheme.com/wp-content/plugins/modeltheme-framework/inc/shortcodes/img/delimiter_dark.png) no-repeat center center;
   height: 5vh;
 }
+
 .header {
   margin: 5vh 0;
 }
+
 .timerCont {
   display: flex;
   justify-content: center;
   margin: 5vh 0;
 }
+
 .main {
   padding-bottom: 5vh;
 }
-
 
 .studentItem {
   list-style-type: none;
   text-align: center;
 }
-.lecState{
+
+.lecState {
   margin: 0 0.5vw;
 }
-.subHead{
+
+.subHead {
   font-weight: bold;
   color: gold;
+}
+
+.quranAlert {
+  width: 88vw;
+  height: 90vh;
+}
+
+.alertCont {
+  overflow: auto;
+  z-index: 5;
+  position: fixed;
+  top: 0px;
+  background: rgba(0, 0, 0, 0.5);
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.closeBtn {
+  position: absolute;
+  top: 5vh;
+  left: 5vw;
+  width: 6vh;
+  height: 6vh;
+  border-radius: 3vh;
 }

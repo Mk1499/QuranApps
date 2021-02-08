@@ -13,6 +13,7 @@ import { TeacherEnrollsComponent } from './TeacherEnrolls/TeacherEnrolls.compone
 import { Routes, RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { TeacherGuard } from '../../Guards/Teacher.guard';
+import { QuranComponent } from './Quran/quran.component';
 
 
 const routes: Routes = [
@@ -25,6 +26,7 @@ const routes: Routes = [
       { path: 'students', component: TeacherStudentsComponent },
       { path: 'enrolls', component: TeacherEnrollsComponent },
       { path: 'lectures', component: TeacherLecturesComponent },
+      { path: 'assignaya/:lectureid', component: QuranComponent },
       { path: 'lectures/add', component: AddLectureComponent },
       { path: 'lectures/:id', component: LectureDetailsComponent },
       { path: 'lectures/:id/live', component: LectureLiveComponent },

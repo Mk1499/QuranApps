@@ -40,7 +40,7 @@ import { LoadingOverlayComponent } from '../Components/loading-overlay/loading-o
     TimerComponent,
     VideoPlayerComponent,
     LoadingOverlayComponent,
-
+  
 
   ],
   imports: [

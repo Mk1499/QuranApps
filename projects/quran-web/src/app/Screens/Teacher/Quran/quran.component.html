@@ -1,0 +1,71 @@
+<div class="container">
+  <div class="row">
+    <button
+      class="btn btn-warning backBtn"
+      *ngIf="mode === 'aya'"
+      (click)="back()"
+    >
+      {{ "back" | translate }}
+    </button>
+    <div class="cont">
+      <!-- <h3>{{ "noEnrolls" | translate }}</h3> -->
+      <input
+        type="text"
+        class="form-control searchFeild"
+        [placeholder]="
+          mode === 'soura'
+            ? ('searchSoura' | translate)
+            : ('searchAya' | translate)
+        "
+        [(ngModel)]="searchQ"
+        (keyup)="filtering()"
+      />
+    </div>
+
+    <div class="cont" *ngIf="loading">
+      <img src="../../../../assets/images/loading.gif" class="loadImg" />
+    </div>
+    <table
+      class="table table-hover table-dark usersTable"
+      *ngIf="chapters.length && mode === 'soura' && !loading"
+    >
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">{{ "souraName" | translate }}</th>
+          <th scope="col">{{ "revelationPlace" | translate }}</th>
+          <th scope="col">{{ "ayatNum" | translate }}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          *ngFor="let chapter of chapters; let i = index"
+          (click)="chooseSoura(chapter)"
+        >
+          <th scope="row">{{ i + 1 }}</th>
+          <td>
+            {{
+              activeLang === "ar" ? chapter?.name_arabic : chapter?.name_simple
+            }}
+          </td>
+          <td>{{ chapter?.revelation_place }}</td>
+          <td>{{ chapter?.verses_count }}</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <table
+      class="table table-hover table-dark usersTable"
+      *ngIf="ayat.length && mode === 'aya' && !loading"
+    >
+      <tbody>
+        <tr *ngFor="let aya of ayat; let i = index" (click)="setActiveAya(aya)">
+          <th scope="row">{{ i + 1 }}</th>
+          <td>
+            {{ aya?.text_uthmani }}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

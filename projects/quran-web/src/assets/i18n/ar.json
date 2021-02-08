@@ -97,5 +97,10 @@
   "cancelled": "تم الالغاء",
   "notMemberLect": " أنت لست طالب في هذه المحاضرة لذلك لا يمكنك الانضمام لها ",
   "waitTeacherConn":"في انتظار اتصال المعلم",
-  "endLecture":"أنهاء المحاضرة"
+  "endLecture":"أنهاء المحاضرة",
+  "souraName":"أسم السورة",
+  "revelationPlace":"مكان النزول",
+  "searchSoura":"ابحث عن السورة",
+  "searchAya":"أبحث عن اية",
+  "back":"رجوع"
 }

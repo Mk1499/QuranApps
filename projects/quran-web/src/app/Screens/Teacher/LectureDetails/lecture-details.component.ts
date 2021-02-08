@@ -5,6 +5,8 @@ import { Subscription } from 'rxjs';
 import { LectureService } from './../../../Services/lecture.service';
 import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit, OnDestroy } from '@angular/core';
+import { QuranService } from '../../../Services/quran.service';
+import { Aya } from '../../../Models/Aya.model';
 
 @Component({
   selector: 'app-lecture-details',
@@ -20,11 +22,13 @@ export class LectureDetailsComponent implements OnInit, OnDestroy {
   loading: boolean = true;
   remain: string;
   authorized: boolean = false;
+  changeMode: boolean = false;
 
   constructor(
     private route: ActivatedRoute,
     private lectureService: LectureService,
-    private lang: LangService
+    private lang: LangService,
+    private quranService: QuranService
   ) { }
 
   ngOnInit(): void {
@@ -74,7 +78,17 @@ export class LectureDetailsComponent implements OnInit, OnDestroy {
     this.loading = false;
   }
 
+  openChangeAlert() {
+    this.changeMode = true;
+  }
+  closeChangeAlert(changedAya) {
+    this.changeMode = false;
+    console.log("Changed Aya : ", changedAya);
+    if (changedAya) {
+      this.lecture.aya = changedAya;
+    }
 
+  }
 
   ngOnDestroy() {
     if (this.lecSubscription) {

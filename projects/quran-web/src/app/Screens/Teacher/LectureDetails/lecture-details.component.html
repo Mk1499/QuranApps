@@ -10,15 +10,14 @@
       <p>
         <span class="h1 lecName">
           {{
-            activeLang === "en"
-              ? lecture?.name
-              : lecture?.arName || lecture?.name
+          activeLang === "en"
+          ? lecture?.name
+          : lecture?.arName || lecture?.name
           }}
         </span>
         <span class="lecState h5">
           (
-          <span
-            [ngStyle]="{
+          <span [ngStyle]="{
               color:
                 lecture.state === 'live'
                   ? 'green'
@@ -27,8 +26,7 @@
                   : lecture.state === 'expired'
                   ? 'orange'
                   : 'gold'
-            }"
-          >
+            }">
             {{ lecture.state | translate }}
           </span>
           )
@@ -37,28 +35,22 @@
     </div>
     <div class="line"></div>
 
-    <div
-      class="timerCont"
-      *ngIf="
+    <div class="timerCont" *ngIf="
         lecture.state == 'upcoming' || (lecture.state === 'live' && authorized)
-      "
-    >
+      ">
       <timer [date]="lecture.time"></timer>
     </div>
-    <div
-      class="timerCont"
-      *ngIf="
+    <div class="timerCont" *ngIf="
         (authorized && lecture.state == 'finished') ||
         lecture.state === 'expired'
-      "
-    >
+      ">
       <p class="h6 text-center">
         {{
-          lecture.state === "finished"
-            ? ("finishedLecture" | translate)
-            : lecture.state === "expired"
-            ? ("expiredLecture" | translate)
-            : ""
+        lecture.state === "finished"
+        ? ("finishedLecture" | translate)
+        : lecture.state === "expired"
+        ? ("expiredLecture" | translate)
+        : ""
         }}
       </p>
     </div>
@@ -71,18 +63,22 @@
 
     <div class="row desc">
       <p class="h5">
+        {{ lecture?.aya }}
+      </p>
+      <button class="btn" (click)="openChangeAlert()"><i class="fa fa-edit"></i></button>
+    </div>
+    <div class="row desc">
+      <p class="h5">
         {{ lecture.description }}
       </p>
     </div>
+
     <div class="students">
       <p class="h2 header">
         {{ "students" | translate }} ({{ lecture.students.length }})
       </p>
       <div class="students row">
-        <div
-          class="studentItem col-md-3"
-          *ngFor="let student of lecture.students"
-        >
+        <div class="studentItem col-md-3" *ngFor="let student of lecture.students">
           <div>
             <student-card [student]="student"></student-card>
           </div>
@@ -107,12 +103,16 @@
         <span class="subHead"> {{ "sheikh" | translate }} : </span>
         <span class="subValue">
           {{
-            activeLang === "ar"
-              ? lecture.teacher.arName || lecture.teacher.name
-              : lecture.teacher.name
+          activeLang === "ar"
+          ? lecture.teacher.arName || lecture.teacher.name
+          : lecture.teacher.name
           }}
         </span>
       </p>
     </div>
   </div>
+</div>
+<div class="alertCont" *ngIf="changeMode">
+  <button class="btn-danger closeBtn" (click)="closeChangeAlert()">X</button>
+  <quran-selector class="quranAlert" [lectureId]="lectureId" (doneFlag)="closeChangeAlert($event)"></quran-selector>
 </div>

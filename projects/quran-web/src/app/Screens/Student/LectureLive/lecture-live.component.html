@@ -17,8 +17,8 @@
   <h1 class="teacherName">
     {{
       activeLang === "ar"
-        ? lectureData.teacher.arName || lectureData.teacher.name
-        : lectureData.teacher.name
+        ? lectureData?.teacher.arName || lectureData?.teacher.name
+        : lectureData?.teacher.name
     }}
   </h1>
 
