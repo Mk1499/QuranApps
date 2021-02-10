@@ -10,7 +10,7 @@ import { Component, OnInit, ViewChild, AfterViewInit, ElementRef, OnDestroy, Hos
 import { io, Socket } from 'socket.io-client';
 import Peer from 'peerjs';
 import { Lecture } from '../../../Models/Lecture.model';
-
+import { RecordRTCPromisesHandler, invokeSaveAsDialog } from 'recordrtc';
 
 
 
@@ -38,6 +38,9 @@ export class LectureLiveComponent implements OnInit, AfterViewInit, OnDestroy {
   loading: boolean = true;
   imageURL: string = 'https://i.pinimg.com/originals/2c/19/7d/2c197db4eb3e3695bc09777a31a86de2.png';
   activeLang: string = 'ar';
+  recorder;
+  recording: boolean = false;
+  screenRecordStream: MediaStream;
 
   constructor(
     private route: ActivatedRoute,
@@ -126,6 +129,12 @@ export class LectureLiveComponent implements OnInit, AfterViewInit, OnDestroy {
         relativeTo: this.route
       })
     })
+
+    this.socket.on("newAya", (newAya) => {
+      this.lectureData.aya = newAya
+    })
+
+
   }
 
 
@@ -223,10 +232,73 @@ export class LectureLiveComponent implements OnInit, AfterViewInit, OnDestroy {
     this.callListener(call, "startFromMe")
   }
 
+  async recordScreen() {
+    const options = {
+      video: {
+        cursor: "always"
+      }
+    }
 
+    const mediaDevices: any = navigator.mediaDevices;
+    await mediaDevices.getDisplayMedia(options)
+      .then(async displayStream => {
+        let videoTracks = displayStream.getVideoTracks();
+        await navigator.mediaDevices.getUserMedia({ audio: true }).then(audioStream => {
+          let audioTracks = audioStream.getAudioTracks();
+          this.screenRecordStream = new MediaStream([...videoTracks, ...audioTracks])
+          this.screenRecordStream.getVideoTracks()[0].onended = (tr) => {
+            this.recording = false;
+            this.stopRecording();
+
+          }
+        })
+      }).catch(err => {
+        alert(err)
+      })
+
+    // this.studentsStreams.push({
+    //   ownerName: "Recording",
+    //   streamData: this.screenRecordStream
+    // })
+
+    this.recorder = new RecordRTCPromisesHandler(this.screenRecordStream, {
+      type: 'video',
+      mimeType: 'video/webm',
+      disableLogs: true,
+
+    });
+    this.recorder.startRecording();
+    this.recording = true;
+
+
+
+
+
+  }
+
+  async stopRecording() {
+
+    this.recording = false;
+    await this.recorder.stopRecording();
+    let blob = await this.recorder.getBlob();
+    let name = this.lectureData.name + '.webm';
+    invokeSaveAsDialog(blob, name);
+    this.screenRecordStream.getTracks().forEach(t => t.stop())
+  }
+
+  toggleRecording() {
+    if (this.recording) {
+      this.stopRecording()
+    } else {
+      this.recordScreen();
+    }
+  }
 
   ngOnDestroy() {
     this.closeSession();
+    if (this.screenRecordStream) {
+      this.stopRecording();
+    }
   }
 
   stopStreaming() {

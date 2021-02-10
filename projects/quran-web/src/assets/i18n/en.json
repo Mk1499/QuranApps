@@ -102,5 +102,7 @@
   "revelationPlace":"Revelation Place",
   "searchSoura":"Search for Soura",
   "searchAya":"Search for Aya",
-  "back":"Back"
+  "back":"Back",
+  "recordLecture":"Record Lecture",
+  "stopRecording":"Stop Recording"
 }

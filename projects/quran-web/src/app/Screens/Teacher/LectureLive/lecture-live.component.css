@@ -67,6 +67,40 @@
   height: 100%;
 }
 
+.quranAlert {
+  width: 88vw;
+  height: 90vh;
+}
+
+.alertCont {
+  overflow: auto;
+  z-index: 5;
+  position: fixed;
+  top: 0px;
+  background: rgba(0, 0, 0, 0.5);
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.closeBtn {
+  position: absolute;
+  top: 5vh;
+  left: 5vw;
+  width: 6vh;
+  height: 6vh;
+  border-radius: 3vh;
+}
+.aya{
+  width:100%;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 5vh ;
+}
+
 @media (max-width: 786px) {
   .finishBtn {
     position: unset;

@@ -25,9 +25,9 @@ export class NoteRowComponent implements OnInit {
     // alert(`Note ${this.note.click_action} Clicked`)
     let clickArr = this.note.click_action.split("/");
     let url = `./${clickArr[0]}`;
-    console.log("URL : ",url);
+    console.log("URL : ", url);
 
-    this.router.navigate([url,clickArr[1]],{
+    this.router.navigate([url, clickArr[1]], {
       relativeTo: this.route
     })
     console.log("Clicked Note : ", clickArr);

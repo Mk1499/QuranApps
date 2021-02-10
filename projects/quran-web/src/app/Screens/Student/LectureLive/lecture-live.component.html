@@ -4,21 +4,27 @@
   <p>
     <span class="h1 lecName">
       {{
-        activeLang === "en"
-          ? lectureData?.name
-          : lectureData?.arName || lectureData?.name
+      activeLang === "en"
+      ? lectureData?.name
+      : lectureData?.arName || lectureData?.name
       }}
     </span>
   </p>
 </div>
 <div class="line"></div>
 
+<div class="aya">
+  <h5 class="gold">
+    {{lectureData?.aya}}
+  </h5>
+</div>
+
 <div class="container main">
   <h1 class="teacherName">
     {{
-      activeLang === "ar"
-        ? lectureData?.teacher.arName || lectureData?.teacher.name
-        : lectureData?.teacher.name
+    activeLang === "ar"
+    ? lectureData?.teacher.arName || lectureData?.teacher.name
+    : lectureData?.teacher.name
     }}
   </h1>
 
@@ -30,12 +36,18 @@
     </div>
   </div>
   <div class="row secVidsCont">
-    <div
-      class="col-md-4 studentVidCont"
-      *ngFor="let studentStream of studentsStreams"
-    >
+    <div class="col-md-4 studentVidCont" *ngFor="let studentStream of studentsStreams">
       <video-player [vidData]="studentStream"></video-player>
     </div>
   </div>
+  <button class="btn btn-danger recBtn" (click)="toggleRecording()">
+
+    <span *ngIf="!recording">
+      {{ "recordLecture" | translate }}
+    </span>
+    <span *ngIf="recording">
+      {{"stopRecording" | translate}}
+    </span>
+  </button>
 </div>
 <loading-overlay *ngIf="loading"></loading-overlay>

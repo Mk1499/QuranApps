@@ -36,6 +36,7 @@ export class LectureLiveComponent implements OnInit, AfterViewInit, OnDestroy {
   activeLang: string = 'ar';
   myData: Teacher;
   endingLecture: boolean = false;
+  changeMode: boolean = false;
 
 
   constructor(
@@ -124,6 +125,7 @@ export class LectureLiveComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   startStreaming() {
+
     navigator.mediaDevices.getUserMedia({
       video: true,
       audio: true
@@ -138,7 +140,11 @@ export class LectureLiveComponent implements OnInit, AfterViewInit, OnDestroy {
           this.socket.emit("lecture-teacher-id", this.peerID, this.route.snapshot.params.id)
       })
 
+    }).catch(err => {
+
+      alert(err)
     })
+
   }
 
   myVideoStram(stream) {
@@ -187,6 +193,19 @@ export class LectureLiveComponent implements OnInit, AfterViewInit, OnDestroy {
     call.answer(this.myStream);
 
     this.callListener(call, "startFromTeacher")
+  }
+
+  openChangeAlert() {
+    this.changeMode = true;
+  }
+  closeChangeAlert(changedAya) {
+    this.changeMode = false;
+    console.log("Changed Aya : ", changedAya);
+    if (changedAya) {
+      this.lectureData.aya = changedAya;
+      this.socket.emit("teacherChangeAya", this.lectureData._id, changedAya)
+    }
+
   }
 
   ngOnDestroy() {

@@ -102,5 +102,7 @@
   "revelationPlace":"مكان النزول",
   "searchSoura":"ابحث عن السورة",
   "searchAya":"أبحث عن اية",
-  "back":"رجوع"
+  "back":"رجوع",
+  "recordLecture":"تسجيل المحاضرة",
+  "stopRecording": "أيقاف التسجيل"
 }

@@ -4,21 +4,26 @@
   <p>
     <span class="h1 lecName">
       {{
-        activeLang === "en"
-          ? lectureData?.name
-          : lectureData?.arName || lectureData?.name
+      activeLang === "en"
+      ? lectureData?.name
+      : lectureData?.arName || lectureData?.name
       }}
     </span>
   </p>
 </div>
 <div class="line"></div>
 
+
+<div class="row aya">
+  <p class="h5 gold">
+    {{ lectureData?.aya }}
+  </p>
+  <button class="btn" (click)="openChangeAlert()"><i class="fa fa-edit"></i></button>
+</div>
+
+
 <div class="container main">
-  <button
-    class="finishBtn btn btn-danger"
-    (click)="endLecture()"
-    [disabled]="endingLecture"
-  >
+  <button class="finishBtn btn btn-danger" (click)="endLecture()" [disabled]="endingLecture">
     <span *ngIf="!endingLecture">
       {{ "endLecture" | translate }}
     </span>
@@ -26,9 +31,9 @@
   </button>
   <h1 class="teacherName">
     {{
-      activeLang === "ar"
-        ? lectureData?.teacher.arName || lectureData?.teacher.name
-        : lectureData?.teacher.name
+    activeLang === "ar"
+    ? lectureData?.teacher.arName || lectureData?.teacher.name
+    : lectureData?.teacher.name
     }}
   </h1>
 
@@ -37,12 +42,16 @@
     <video #teacherVideo class="teacherVideo"></video>
   </div>
   <div class="row secVidsCont">
-    <div
-      class="col-md-4 studentVidCont"
-      *ngFor="let studentStream of studentsStreams"
-    >
+    <div class="col-md-4 studentVidCont" *ngFor="let studentStream of studentsStreams">
       <video-player [vidData]="studentStream"></video-player>
     </div>
   </div>
 </div>
 <loading-overlay *ngIf="loading"></loading-overlay>
+
+
+<div class="alertCont" *ngIf="changeMode">
+  <button class="btn-danger closeBtn" (click)="closeChangeAlert()">X</button>
+  <quran-selector class="quranAlert" [lectureId]="lectureData._id" (doneFlag)="closeChangeAlert($event)">
+  </quran-selector>
+</div>
