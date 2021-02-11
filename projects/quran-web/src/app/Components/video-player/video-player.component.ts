@@ -1,14 +1,18 @@
 import { VideoStream } from './../../Models/VideoStream.model';
-import { Component, ElementRef, Input, OnInit, ViewChild, AfterViewInit } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, ViewChild, AfterViewInit, OnChanges, SimpleChange } from '@angular/core';
 
 @Component({
   selector: 'video-player',
   templateUrl: './video-player.component.html',
   styleUrls: ['./video-player.component.css']
 })
-export class VideoPlayerComponent implements OnInit, AfterViewInit {
+export class VideoPlayerComponent implements OnInit, AfterViewInit, OnChanges {
   @ViewChild('video') video: ElementRef;
   @Input("vidData") vidData: VideoStream;
+  @Input("stream") stream: MediaStream;
+  @Input("controls") controls: boolean;
+  @Input("poster") poster: string;
+  vidoeStream: MediaStream;
 
   constructor() { }
 
@@ -17,19 +21,29 @@ export class VideoPlayerComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    this.play();
+    if (this.stream) {
+      this.vidoeStream = this.stream;
+      this.play();
+    }
 
   }
 
-  play() {
+  play(muted = true) {
     let vid = this.video.nativeElement;
-    vid.srcObject = this.vidData.streamData;
-    vid.muted = true;
-    console.log("new Video for : ", this.vidData);
+    vid.srcObject = this.stream;
+    vid.muted = muted;
+    vid.controls = this.controls
 
     vid.addEventListener("loadedmetadata", () => {
       vid.play();
     })
+  }
+
+  ngOnChanges(changes) {
+    console.log("Changes  : ", changes);
+    this.stream = changes.stream.currentValue;
+    if (this.video)
+      this.play(false);
   }
 
 

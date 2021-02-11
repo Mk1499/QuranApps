@@ -1,6 +1,7 @@
 .cont{
   width: 100%;
   overflow: hidden;
+  margin: 2vh 0;
 }
 
 .cont video{

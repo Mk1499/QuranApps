@@ -1,6 +1,6 @@
 import { LangService } from './../../../Services/lang.service';
 import { Title } from '@angular/platform-browser';
-import { Subscription } from 'rxjs';
+import { Subscription, Subject } from 'rxjs';
 import { LectureService } from './../../../Services/lecture.service';
 import { Student } from './../../../Models/Student.model';
 import { VideoStream } from './../../../Models/VideoStream.model';
@@ -11,6 +11,9 @@ import { io, Socket } from 'socket.io-client';
 import Peer from 'peerjs';
 import { Lecture } from '../../../Models/Lecture.model';
 import { RecordRTCPromisesHandler, invokeSaveAsDialog } from 'recordrtc';
+import { WebRTCService, socket } from '../../../Services/webRTC.service';
+import { Call } from '../../../Models/Call.model';
+import { ThemeService } from 'ng2-charts';
 
 
 
@@ -23,16 +26,19 @@ import { RecordRTCPromisesHandler, invokeSaveAsDialog } from 'recordrtc';
 export class LectureLiveComponent implements OnInit, AfterViewInit, OnDestroy {
 
   @ViewChild("teacherVideo") teacherVideo: ElementRef;
+  myStream: MediaStream = new MediaStream([]);
+  teacherStream: MediaStream = null;
+  teacherStreamSub: Subscription;
   teacherVidLoaded: boolean = false;
-  teacherID: string;
-  studentsStreams: VideoStream[] = [];
-  myStream: MediaStream;
+  teacherAvatar:string;
+
   myData: Student;
   streamssIDs: string[] = [];
   myPeerID: string;
+  teacherPeerID: string;
   navData: Student;
   myPeer: Peer;
-  socket: Socket;
+  socket: Socket = socket;
   lectSub: Subscription;
   lectureData: Lecture;
   loading: boolean = true;
@@ -41,57 +47,46 @@ export class LectureLiveComponent implements OnInit, AfterViewInit, OnDestroy {
   recorder;
   recording: boolean = false;
   screenRecordStream: MediaStream;
+  audioOn: boolean = false;
+  videoOn: boolean = false;
+
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     private lectureService: LectureService,
     private title: Title,
-    private lang: LangService
+    private lang: LangService,
+    private callService: WebRTCService
   ) { }
 
   ngOnInit(): void {
-    this.myPeer = new Peer(undefined, {
-      host: "mkpeerserver.herokuapp.com",
-      secure: true,
-      port: 443
-    });
 
-    this.socket = io(baseURL, {
-      withCredentials: true,
-    });
 
     this.myData = JSON.parse(localStorage.getItem("quranUser"));
     this.checkAuthorize();
 
     this.activeLang = this.lang.getLang();
+
   }
 
 
   ngAfterViewInit() {
-    // check if teacher joined after me
-    this.socket.on('new-teacher', (teacherID: string) => {
-      // this.teacherID = teacherID;
-      let call = this.myPeer.call(teacherID, this.myStream, {
-        metadata: {
-          callerName: this.myData.name || "NEW Student"
-        }
-      });
-      this.streamTeacherVideo(call);
+    this.socketListeners();
+    this.callService.recievingCallConfig()
+    this.teacherStreamSub = this.callService.otherStream.subscribe(stream => {
+      console.log("Changing stream");
+
+      this.teacherVidLoaded = true
+      this.teacherStream = stream;
+
     })
 
-    // Recieve lecture's teacher id (if I joined after teacher)
-    this.socket.on('define-teacher-id', (teacherID: string) => {
-      this.teacherID = teacherID;
-    })
-    this.startCallListener();
-    this.startStreaming();
   }
 
 
   checkAuthorize() {
     this.lectSub = this.lectureService.getLectureDetails(this.route.snapshot.params.id).subscribe((lecData: Lecture) => {
-      console.log("LECT DATA : ", lecData);
       this.lectureData = lecData;
       if (lecData?.coverURL) {
         this.imageURL = lecData.coverURL
@@ -105,24 +100,14 @@ export class LectureLiveComponent implements OnInit, AfterViewInit, OnDestroy {
       } else {
         this.loading = false;
         this.title.setTitle(this.lectureData.name);
-        this.joinToLectRoom();
-        this.streamAliveChecker();
+        this.callService.joinLectureRoom(this.route.snapshot.params.id, this.myData?.name, "student" , this.myData?.avatar)
       }
     })
   }
 
-  //  let other lecture teammate know my peer id
-  joinToLectRoom() {
-    this.myPeer.on("open", (id) => {
-      this.myPeerID = id;
-      this.socket.emit('student-join-room', this.route.snapshot.params.id, id, this.myData?.name);
-    });
-  }
 
-  streamAliveChecker() {
-    this.socket.on("remove-stream", (streamID) => {
-      this.studentsStreams = this.studentsStreams.filter(vs => vs.id != streamID)
-    })
+  socketListeners() {
+
     this.socket.on("lecture-finished", () => {
       alert("lecture finished");
       this.router.navigate(['../'], {
@@ -130,107 +115,35 @@ export class LectureLiveComponent implements OnInit, AfterViewInit, OnDestroy {
       })
     })
 
+
     this.socket.on("newAya", (newAya) => {
+
       this.lectureData.aya = newAya
     })
 
 
-  }
+    this.socket.on("teacherJoined", (teacherPeerID , teacherAvatar) => {
+      console.log("Teacher Joined : ", teacherPeerID);
 
-
-  startCallListener() {
-    this.myPeer.on('call', (call: Peer.MediaConnection) => {
-
-      if (call.peer === this.teacherID || call.metadata.callerName === "Teacher") {
-        this.streamTeacherVideo(call);
-      } else {
-
-        call.answer(this.myStream);
-        this.callListener(call)
-
+      this.teacherPeerID = teacherPeerID;
+      this.teacherAvatar = teacherAvatar;
+      this.socket.emit("bcStudentPeerID", this.route.snapshot.params.id, this.callService.getMyPeerID() , this.myData?.avatar)
+      let call: Call = {
+        recieverID: teacherPeerID,
+        stream: this.myStream
       }
+      this.callService.makeACall(call)
     })
-  }
-
-  startStreaming() {
-
-    navigator.mediaDevices.getUserMedia({
-      video: true,
-      audio: true
-    }).then(stream => {
-      // this.myVideoStram(stream);
-      this.streamssIDs.push(stream.id);
-      let newVidStream: VideoStream = {
-        ownerName: "YOU",
-        streamData: stream
-      }
-      this.myStream = stream;
-      this.studentsStreams.push(newVidStream);
-      // this.answerCallConfig();
-      this.socket.on('new-student', (studentID, studentName) => {
-        this.sendMyVideo(studentID, studentName);
-      })
-    })
-  }
 
 
-  callListener(call: Peer.MediaConnection, mode = "startFromOther") {
-
-    call.on('stream', (studentStream: MediaStream) => {
-
-      if (!this.streamssIDs.includes(studentStream.id)) {
-        this.streamssIDs.push(studentStream.id)
-
-
-        let newVid: VideoStream = {
-          id: call.peer,
-          ownerName: mode === "startFromMe" ? call.metadata?.recieverName : call.metadata?.callerName || "Student",
-          streamData: studentStream
-        }
-        this.studentsStreams.push(newVid);
-      }
-    });
-    call.on("close", () => {
-
-      this.studentsStreams = this.studentsStreams.filter(vs => vs.id != call.peer)
-    })
-    call.on("error", () => {
-      this.studentsStreams = this.studentsStreams.filter(vs => vs.id != call.peer)
+    this.socket.on("teacherPeerID", (teacherPeerID) => {
+      console.log("Teacher Peer ID  : ", teacherPeerID);
+      this.teacherPeerID = teacherPeerID;
 
     })
+
   }
 
-  streamTeacherVideo(call: Peer.MediaConnection) {
-
-    this.teacherVidLoaded = true;
-    call.answer(this.myStream);
-    call.on('stream', (stream: MediaStream) => {
-      let teacherVideo = this.teacherVideo.nativeElement;
-      teacherVideo.srcObject = stream;
-      this.streamssIDs.push(stream.id);
-      // teacherVideo.muted = true;
-      teacherVideo.addEventListener("loadedmetadata", () => {
-        teacherVideo.play();
-      });
-      call.on('close', () => {
-        // this.teacherVideo.nativeElement.remove();
-        this.teacherVidLoaded = false;
-      })
-    })
-  }
-
-  sendMyVideo(studentID, studentName) {
-
-    const call = this.myPeer.call(studentID, this.myStream, {
-      metadata: {
-        callerName: this.myData.name || "NEW Student",
-        recieverName: studentName
-      }
-    });
-    call.answer(this.myStream);
-
-    this.callListener(call, "startFromMe")
-  }
 
   async recordScreen() {
     const options = {
@@ -256,10 +169,6 @@ export class LectureLiveComponent implements OnInit, AfterViewInit, OnDestroy {
         alert(err)
       })
 
-    // this.studentsStreams.push({
-    //   ownerName: "Recording",
-    //   streamData: this.screenRecordStream
-    // })
 
     this.recorder = new RecordRTCPromisesHandler(this.screenRecordStream, {
       type: 'video',
@@ -294,10 +203,85 @@ export class LectureLiveComponent implements OnInit, AfterViewInit, OnDestroy {
     }
   }
 
+  async toggleVideo() {
+    if (this.videoOn) {
+      this.videoOn = false;
+      await this.removeVideoFromStream();
+    }
+    else {
+      this.videoOn = true;
+      await this.addVideoFromStream();
+      // this.callTeacher()
+    }
+
+    let call: Call = {
+      recieverID: this.teacherPeerID,
+      stream: this.myStream
+    }
+    this.callService.makeACall(call)
+  }
+
+
+  async toggleAudio() {
+    if (this.audioOn) {
+      this.audioOn = false;
+      await this.removeAudioFromStream();
+    } else {
+      this.audioOn = true;
+      await this.addAudioFromStream();
+      // this.callTeacher();
+    }
+
+    let call: Call = {
+      recieverID: this.teacherPeerID,
+      stream: this.myStream
+    }
+    this.callService.makeACall(call)
+  }
+
+  async removeVideoFromStream() {
+    await this.myStream.getVideoTracks().forEach(t => {
+      t.stop();
+      this.myStream.removeTrack(t);
+    })
+  }
+  async addVideoFromStream() {
+
+    await navigator.mediaDevices.getUserMedia({ video: true }).then(videoStream => {
+      let videoTrack = videoStream.getVideoTracks();
+      videoTrack.forEach(t => {
+        this.myStream.addTrack(t);
+      })
+    }).catch(err => {
+      console.log("adding vidoe stream err : ", err);
+    })
+  }
+  async removeAudioFromStream() {
+    await this.myStream.getAudioTracks().forEach(t => {
+      t.stop();
+      this.myStream.removeTrack(t)
+    })
+  }
+  async addAudioFromStream() {
+    await navigator.mediaDevices.getUserMedia({ audio: true }).then(audioStream => {
+      let audioTracks = audioStream.getAudioTracks();
+      audioTracks.forEach(t => {
+        this.myStream.addTrack(t)
+      })
+    }).catch(err => {
+      console.log("Adding Audio Tracks err : ", err);
+    })
+  }
+
+
   ngOnDestroy() {
     this.closeSession();
     if (this.screenRecordStream) {
       this.stopRecording();
+    }
+
+    if (this.teacherStreamSub) {
+      this.teacherStreamSub.unsubscribe();
     }
   }
 
@@ -310,7 +294,7 @@ export class LectureLiveComponent implements OnInit, AfterViewInit, OnDestroy {
   closeSession() {
 
     this.stopStreaming()
-    this.socket.emit("student-quite", this.myPeerID, this.route.snapshot.params.id)
+    this.socket.emit("student-quite", this.callService.getMyPeerID(), this.route.snapshot.params.id)
   }
 
 

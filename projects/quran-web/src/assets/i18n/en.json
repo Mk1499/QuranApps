@@ -104,5 +104,9 @@
   "searchAya":"Search for Aya",
   "back":"Back",
   "recordLecture":"Record Lecture",
-  "stopRecording":"Stop Recording"
+  "stopRecording":"Stop Recording",
+  "stopMicrophone":"Stop Microphone",
+  "activeMicrophone":"Activate Microphone",
+  "stopCamera":"Stop Camera",
+  "activeCamera":"Activate Camera"
 }

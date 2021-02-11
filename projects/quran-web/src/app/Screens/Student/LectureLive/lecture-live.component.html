@@ -15,7 +15,7 @@
 
 <div class="aya">
   <h5 class="gold">
-    {{lectureData?.aya}}
+    {{ lectureData?.aya }}
   </h5>
 </div>
 
@@ -30,24 +30,50 @@
 
   <!-- <div class="row firstVidsCont"></div> -->
   <div class="row teacherVideoCont">
-    <video #teacherVideo class="teacherVideo" *ngIf="teacherVidLoaded"></video>
+    <!-- <video #teacherVideo class="teacherVideo" controls ></video> -->
+    <video-player class="teacherVideo" controls [stream]="teacherStream" [controls]="true" *ngIf="teacherVidLoaded"
+      [poster]="teacherAvatar"></video-player>
     <div class="loadingCont" *ngIf="!teacherVidLoaded">
       <h3>{{ "waitTeacherConn" | translate }}...</h3>
     </div>
   </div>
   <div class="row secVidsCont">
-    <div class="col-md-4 studentVidCont" *ngFor="let studentStream of studentsStreams">
-      <video-player [vidData]="studentStream"></video-player>
+    <div class="col-md-4 studentVidCont" *ngIf="(myStream && videoOn) || audioOn">
+      <video-player [stream]="myStream" [poster]="myData?.avatar"></video-player>
     </div>
   </div>
   <button class="btn btn-danger recBtn" (click)="toggleRecording()">
-
     <span *ngIf="!recording">
       {{ "recordLecture" | translate }}
     </span>
     <span *ngIf="recording">
-      {{"stopRecording" | translate}}
+      {{ "stopRecording" | translate }}
     </span>
   </button>
 </div>
 <loading-overlay *ngIf="loading"></loading-overlay>
+
+<div class="sideMenu">
+  <div class="menuItem" (click)="toggleAudio()">
+    <span>
+      {{
+      audioOn
+      ? ("stopMicrophone" | translate)
+      : ("activeMicrophone" | translate)
+      }}
+    </span>
+    <i class="fa" [ngClass]="{
+        'fa-microphone-slash': !audioOn,
+        'fa-microphone': audioOn
+      }"></i>
+  </div>
+  <div class="menuItem" (click)="toggleVideo()">
+    <span>
+      {{ videoOn ? ("stopCamera" | translate) : ("activeCamera" | translate) }}
+    </span>
+    <i class="fa" [ngClass]="{
+        'fa-video-slash': !videoOn,
+        'fa-video': videoOn
+      }"></i>
+  </div>
+</div>

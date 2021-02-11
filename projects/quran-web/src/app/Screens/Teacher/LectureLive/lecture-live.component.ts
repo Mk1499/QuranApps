@@ -11,6 +11,9 @@ import { baseURL } from './../../../Services/api-call.service';
 import { Component, ElementRef, OnInit, ViewChild, ContentChild, AfterViewInit, OnDestroy, HostListener } from '@angular/core';
 import { io, Socket } from 'socket.io-client';
 import Peer from 'peerjs';
+import { WebRTCService, socket } from '../../../Services/webRTC.service';
+import { Call } from '../../../Models/Call.model';
+import { StringifyOptions } from 'querystring';
 
 
 
@@ -24,11 +27,13 @@ export class LectureLiveComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild('teacherVideo') teacherVideo: ElementRef;
   myVidLoaded: boolean = false;
   studentsStreams: VideoStream[] = [];
+  studentStream: MediaStream = new MediaStream([]);
+  studentAvatar:string;
   peerID: string;
-  myStream: MediaStream;
+  myStream: MediaStream = new MediaStream([]);
   streamssIDs: string[] = [];
   myPeer: Peer;
-  socket: Socket;
+  socket: Socket = socket;
   lectSub: Subscription;
   lectureData: Lecture;
   loading: boolean = true;
@@ -37,6 +42,10 @@ export class LectureLiveComponent implements OnInit, AfterViewInit, OnDestroy {
   myData: Teacher;
   endingLecture: boolean = false;
   changeMode: boolean = false;
+  audioOn: boolean = false;
+  videoOn: boolean = false;
+  studentPeerID: string;
+
 
 
   constructor(
@@ -44,21 +53,12 @@ export class LectureLiveComponent implements OnInit, AfterViewInit, OnDestroy {
     private router: Router,
     private lectureService: LectureService,
     private title: Title,
-    private lang: LangService
+    private lang: LangService,
+    private callService: WebRTCService
   ) { }
 
 
   ngOnInit(): void {
-    this.myPeer = new Peer(undefined, {
-      host: "mkpeerserver.herokuapp.com",
-      secure: true,
-      port: 443
-    });
-
-    this.socket = io(baseURL, {
-      withCredentials: true,
-    });
-
     this.myData = JSON.parse(localStorage.getItem("quranTeacher"));
     this.checkAuthorize();
 
@@ -81,13 +81,15 @@ export class LectureLiveComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngAfterViewInit() {
-    this.startStreaming();
-  }
-  streamAliveChecker() {
-    this.socket.on("remove-stream", (streamID) => {
-      this.studentsStreams = this.studentsStreams.filter(vs => vs.id != streamID)
+    this.socketListener();
+    this.callService.recievingCallConfig();
+    this.callService.otherStream.subscribe(stream => {
+      console.log("Changing stream  : ", stream);
+
+      this.studentStream = stream
     })
   }
+
   checkAuthorize() {
     this.lectSub = this.lectureService.getLectureDetails(this.route.snapshot.params.id).subscribe((lecData: Lecture) => {
       console.log("LECT DATA : ", lecData);
@@ -103,51 +105,42 @@ export class LectureLiveComponent implements OnInit, AfterViewInit, OnDestroy {
       } else {
         this.loading = false;
         this.title.setTitle(this.lectureData.name);
-        this.joinToLectRoom();
+        this.callService.joinLectureRoom(this.route.snapshot.params.id, this.myData?.name, "teacher", this.myData?.avatar)
         this.streamAliveChecker();
       }
     })
   }
 
-  answerCallConfig() {
-    this.myPeer.on('call', (call: Peer.MediaConnection) => {
-
-      call.answer(this.myStream);
-      this.callListener(call)
+  streamAliveChecker() {
+    this.socket.on("remove-stream", (streamID) => {
+      this.studentsStreams = this.studentsStreams.filter(vs => vs.id != streamID)
     })
   }
 
-  joinToLectRoom() {
-    this.myPeer.on("open", (id) => {
-      this.peerID = id;
-      this.socket.emit('teacher-join-room', this.route.snapshot.params.id, id);
-    });
-  }
 
-  startStreaming() {
+  socketListener() {
 
-    navigator.mediaDevices.getUserMedia({
-      video: true,
-      audio: true
-    }).then(stream => {
-      this.myStream = stream;
-      this.myVideoStram(stream);
-      this.streamssIDs.push(stream.id)
-      this.answerCallConfig();
-      this.socket.on('new-student', (studntID, studentName) => {
-        this.sendMyVideo(stream, studntID, studentName);
-        if (this.peerID)
-          this.socket.emit("lecture-teacher-id", this.peerID, this.route.snapshot.params.id)
-      })
+    this.socket.on("studentJoined", (studentPeerID, studentAvatar) => {
+      console.log("Student Joined : ", studentPeerID);
+      this.studentPeerID = studentPeerID;
+      this.studentAvatar = studentAvatar;
+      this.socket.emit("bcTeacherPeerID", this.route.snapshot.params.id, this.callService.getMyPeerID(), this.myData?.avatar)
+      let call: Call = {
+        recieverID: studentPeerID,
+        stream: this.myStream
+      }
+      this.callService.makeACall(call);
+    })
 
-    }).catch(err => {
+    this.socket.on("studentPeerID", (studentPeerID) => {
+      console.log("its Worked SID: ", studentPeerID);
+      this.studentPeerID = studentPeerID;
 
-      alert(err)
     })
 
   }
 
-  myVideoStram(stream) {
+  myVideoStream(stream) {
     let video = this.teacherVideo.nativeElement;
     video.muted = true;
     video.srcObject = stream;
@@ -157,43 +150,7 @@ export class LectureLiveComponent implements OnInit, AfterViewInit, OnDestroy {
     })
   }
 
-  callListener(call: Peer.MediaConnection, mode = "startFromStudent") {
 
-    call.on('stream', (studentStream: MediaStream) => {
-
-      if (!this.streamssIDs.includes(studentStream.id)) {
-        this.streamssIDs.push(studentStream.id)
-
-
-        let newVid: VideoStream = {
-          id: call.peer,
-          ownerName: mode === "startFromTeacher" ? call.metadata?.recieverName : call.metadata?.callerName || "Student",
-          streamData: studentStream
-        }
-        this.studentsStreams.push(newVid);
-      }
-    });
-    call.on("close", () => {
-      alert("Call closed")
-      this.teacherVideo.nativeElement.remove();
-    })
-    call.on("error", () => {
-      alert("Call Error")
-      this.teacherVideo.nativeElement.remove();
-    })
-  }
-
-  sendMyVideo(stream, studntID, studentName) {
-    const call = this.myPeer.call(studntID, stream, {
-      metadata: {
-        callerName: "Teacher",
-        recieverName: studentName
-      }
-    });
-    call.answer(this.myStream);
-
-    this.callListener(call, "startFromTeacher")
-  }
 
   openChangeAlert() {
     this.changeMode = true;
@@ -207,6 +164,79 @@ export class LectureLiveComponent implements OnInit, AfterViewInit, OnDestroy {
     }
 
   }
+
+  async toggleVideo() {
+    if (this.videoOn) {
+      this.videoOn = false;
+      await this.removeVideoFromStream();
+    }
+    else {
+      this.videoOn = true;
+      await this.addVideoFromStream();
+      // this.callTeacher()
+    }
+    let call: Call = {
+      recieverID: this.studentPeerID,
+      stream: this.myStream
+    }
+    this.callService.makeACall(call)
+  }
+
+
+  async toggleAudio() {
+    if (this.audioOn) {
+      this.audioOn = false;
+      await this.removeAudioFromStream();
+    } else {
+      this.audioOn = true;
+      await this.addAudioFromStream();
+      // this.callTeacher();
+
+    }
+    let call: Call = {
+      recieverID: this.studentPeerID,
+      stream: this.myStream
+    }
+    this.callService.makeACall(call)
+  }
+
+  async removeVideoFromStream() {
+    await this.myStream.getVideoTracks().forEach(t => {
+      t.stop();
+      this.myStream.removeTrack(t);
+    })
+  }
+  async addVideoFromStream() {
+
+    await navigator.mediaDevices.getUserMedia({ video: true }).then(videoStream => {
+      let videoTrack = videoStream.getVideoTracks();
+      videoTrack.forEach(t => {
+        this.myStream.addTrack(t);
+      })
+
+      console.log("Stream Updated");
+
+    }).catch(err => {
+      console.log("adding vidoe stream err : ", err);
+    })
+  }
+  async removeAudioFromStream() {
+    await this.myStream.getAudioTracks().forEach(t => {
+      t.stop();
+      this.myStream.removeTrack(t)
+    })
+  }
+  async addAudioFromStream() {
+    await navigator.mediaDevices.getUserMedia({ audio: true }).then(audioStream => {
+      let audioTracks = audioStream.getAudioTracks();
+      audioTracks.forEach(t => {
+        this.myStream.addTrack(t)
+      })
+    }).catch(err => {
+      console.log("Adding Audio Tracks err : ", err);
+    })
+  }
+
 
   ngOnDestroy() {
     this.closeSession()

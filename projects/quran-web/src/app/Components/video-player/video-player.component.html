@@ -1,6 +1,9 @@
 <div class="cont">
-  <h3>
+  <!-- <h3>
     {{vidData.ownerName}}
-  </h3>
-  <video #video controls></video>
+  </h3> -->
+  <video
+    #video
+    [poster]="poster || 'https://cdn.osxdaily.com/wp-content/uploads/2017/03/there-is-no-connected-camera-mac-610x313.jpg'"
+  ></video>
 </div>

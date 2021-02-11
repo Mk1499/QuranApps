@@ -104,5 +104,9 @@
   "searchAya":"أبحث عن اية",
   "back":"رجوع",
   "recordLecture":"تسجيل المحاضرة",
-  "stopRecording": "أيقاف التسجيل"
+  "stopRecording": "أيقاف التسجيل",
+  "stopCamera":"ايقاف الكاميرا",
+  "stopMicrophone":"أيقاف الميكروفون",
+  "activeCamera":"تشغيل الكاميرا",
+  "activeMicrophone":"تشغيل الميكروفون"
 }
