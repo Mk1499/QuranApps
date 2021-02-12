@@ -108,5 +108,8 @@
   "stopCamera":"ايقاف الكاميرا",
   "stopMicrophone":"أيقاف الميكروفون",
   "activeCamera":"تشغيل الكاميرا",
-  "activeMicrophone":"تشغيل الميكروفون"
+  "activeMicrophone":"تشغيل الميكروفون",
+  "activeChat":"فتح الشات",
+  "stopChat":"أيقاف الشات",
+  "send":"أرسال"
 }

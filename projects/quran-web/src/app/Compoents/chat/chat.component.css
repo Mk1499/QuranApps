@@ -1,0 +1,49 @@
+.cont {
+  height: 50vh;
+  background: #fff;
+  box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%);
+  border-radius: 10px;
+  padding: 1vh;
+  border: 1px gold solid;
+}
+
+.msgsCont {
+  height: 74%;
+  border: 1px gold solid;
+  border-radius: 10px;
+  overflow: auto;
+  padding: 1vh;
+}
+
+.controlsCont {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 3%
+}
+
+.msgInput {
+  width: 80%;
+}
+
+.message {
+  text-align: start;
+  color: #333;
+  margin-inline: 1vw;
+  margin-top: 1vw;
+}
+
+.msgSource {
+  color: grey;
+  font-size: 2vh;
+  margin-bottom: 1vh;
+}
+
+.msgCont {
+  background: gold;
+  width: auto;
+  padding-inline: 2%;
+  border-radius: 2vw;
+  display: inline;
+}

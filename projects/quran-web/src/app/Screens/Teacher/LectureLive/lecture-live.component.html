@@ -4,9 +4,9 @@
   <p>
     <span class="h1 lecName">
       {{
-        activeLang === "en"
-          ? lectureData?.name
-          : lectureData?.arName || lectureData?.name
+      activeLang === "en"
+      ? lectureData?.name
+      : lectureData?.arName || lectureData?.name
       }}
     </span>
   </p>
@@ -23,58 +23,52 @@
 </div>
 
 <div class="container main">
-  <button
-    class="finishBtn btn btn-danger"
-    (click)="endLecture()"
-    [disabled]="endingLecture"
-  >
+  <button class="finishBtn btn btn-danger" (click)="endLecture()" [disabled]="endingLecture">
     <span *ngIf="!endingLecture">
       {{ "endLecture" | translate }}
     </span>
-    <img
-      src="../../../../assets/images/loading.gif"
-      *ngIf="endingLecture"
-      class="btnLoadImg"
-    />
+    <img src="../../../../assets/images/loading.gif" *ngIf="endingLecture" class="btnLoadImg" />
   </button>
   <h1 class="teacherName">
     {{
-      activeLang === "ar"
-        ? lectureData?.teacher.arName || lectureData?.teacher.name
-        : lectureData?.teacher.name
+    activeLang === "ar"
+    ? lectureData?.teacher.arName || lectureData?.teacher.name
+    : lectureData?.teacher.name
     }}
   </h1>
 
-  <!-- <div class="row firstVidsCont"></div> -->
-  <div class="row teacherVideoCont">
-    <!-- <video #teacherVideo class="teacherVideo"></video> -->
-    <video-player
-      [stream]="studentStream"
-      class="teacherVideo"
-      [controls]="true"
-      *ngIf="studentStream"
-      [poster]="studentAvatar"
-    ></video-player>
+  <div class="row cont text-center">
+
+    <div [ngClass]="{
+    'col-md-6': chatOn,
+    'col-md-12':!chatOn
+  }">
+      <div class="row teacherVideoCont">
+        <!-- <video #teacherVideo class="teacherVideo"></video> -->
+        <video-player [stream]="studentStream" class="teacherVideo" [controls]="true" *ngIf="studentStream"
+          [poster]="studentAvatar"></video-player>
+      </div>
+
+      <div class="col-md-4 studentVidCont">
+        <video-player class="myVideo" [stream]="myStream" *ngIf="videoOn || audioOn" [poster]="myData?.avatar">
+        </video-player>
+      </div>
+    </div>
+
+    <div class="col-md-6" [ngClass]="{
+  'd-none':!chatOn
+}">
+      <app-chat [newMsg]="newMsg" (sendMsg)="sendMsg($event)"></app-chat>
+    </div>
   </div>
 
-  <div class="col-md-4 studentVidCont">
-    <video-player
-      class="myVideo"
-      [stream]="myStream"
-      *ngIf="videoOn || audioOn"
-      [poster]="myData?.avatar"
-    ></video-player>
-  </div>
+
 </div>
 <loading-overlay *ngIf="loading"></loading-overlay>
 
 <div class="alertCont" *ngIf="changeMode">
   <button class="btn-danger closeBtn" (click)="closeChangeAlert()">X</button>
-  <quran-selector
-    class="quranAlert"
-    [lectureId]="lectureData._id"
-    (doneFlag)="closeChangeAlert($event)"
-  >
+  <quran-selector class="quranAlert" [lectureId]="lectureData._id" (doneFlag)="closeChangeAlert($event)">
   </quran-selector>
 </div>
 
@@ -82,29 +76,32 @@
   <div class="menuItem" (click)="toggleAudio()">
     <span>
       {{
-        audioOn
-          ? ("stopMicrophone" | translate)
-          : ("activeMicrophone" | translate)
+      audioOn
+      ? ("stopMicrophone" | translate)
+      : ("activeMicrophone" | translate)
       }}
     </span>
-    <i
-      class="fa"
-      [ngClass]="{
+    <i class="fa" [ngClass]="{
         'fa-microphone-slash': !audioOn,
         'fa-microphone': audioOn
-      }"
-    ></i>
+      }"></i>
   </div>
   <div class="menuItem" (click)="toggleVideo()">
     <span>
       {{ videoOn ? ("stopCamera" | translate) : ("activeCamera" | translate) }}
     </span>
-    <i
-      class="fa"
-      [ngClass]="{
+    <i class="fa" [ngClass]="{
         'fa-video-slash': !videoOn,
         'fa-video': videoOn
-      }"
-    ></i>
+      }"></i>
+  </div>
+  <div class="menuItem" (click)="toggleChat()">
+    <span>
+      {{ chatOn ? ("stopChat" | translate) : ("activeChat" | translate) }}
+    </span>
+    <i class="fa" [ngClass]="{
+        'fa-comment-slash': !chatOn,
+        'fa-comment': chatOn
+      }"></i>
   </div>
 </div>

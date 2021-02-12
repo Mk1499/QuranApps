@@ -23,6 +23,7 @@ import { NoteRowComponent } from '../Components/note-row/note-row.component';
 import { TimerComponent } from '../Components/timer/timer.component';
 import { VideoPlayerComponent } from '../Components/video-player/video-player.component';
 import { LoadingOverlayComponent } from '../Components/loading-overlay/loading-overlay.component';
+import { ChatComponent } from '../Compoents/chat/chat.component';
 
 
 @NgModule({
@@ -40,7 +41,8 @@ import { LoadingOverlayComponent } from '../Components/loading-overlay/loading-o
     TimerComponent,
     VideoPlayerComponent,
     LoadingOverlayComponent,
-  
+    ChatComponent,
+
 
   ],
   imports: [
@@ -53,7 +55,8 @@ import { LoadingOverlayComponent } from '../Components/loading-overlay/loading-o
         deps: [HttpClient, TransferState]
       }
     }),
-    StoreModule
+    StoreModule,
+    FormsModule
   ],
   exports: [
     CommonModule,
@@ -72,7 +75,8 @@ import { LoadingOverlayComponent } from '../Components/loading-overlay/loading-o
     LectureCardComponent,
     TimerComponent,
     VideoPlayerComponent,
-    LoadingOverlayComponent
+    LoadingOverlayComponent,
+    ChatComponent
   ]
 })
 

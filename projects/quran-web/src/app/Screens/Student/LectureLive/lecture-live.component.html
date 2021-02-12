@@ -29,19 +29,36 @@
   </h1>
 
   <!-- <div class="row firstVidsCont"></div> -->
-  <div class="row teacherVideoCont">
-    <!-- <video #teacherVideo class="teacherVideo" controls ></video> -->
-    <video-player class="teacherVideo" controls [stream]="teacherStream" [controls]="true" *ngIf="teacherVidLoaded"
-      [poster]="teacherAvatar"></video-player>
-    <div class="loadingCont" *ngIf="!teacherVidLoaded">
-      <h3>{{ "waitTeacherConn" | translate }}...</h3>
+  <div class="row cont text-center">
+
+    <div [ngClass]="{
+    'col-md-6': chatOn,
+    'col-md-12':!chatOn
+  }">
+      <div class="row teacherVideoCont">
+        <!-- <video #teacherVideo class="teacherVideo" controls ></video> -->
+        <video-player class="teacherVideo" controls [stream]="teacherStream" [controls]="true" *ngIf="teacherVidLoaded"
+          [poster]="teacherAvatar"></video-player>
+        <div class="loadingCont" *ngIf="!teacherVidLoaded">
+          <h3 class="text-center">{{ "waitTeacherConn" | translate }}...</h3>
+        </div>
+      </div>
+      <div class="row secVidsCont">
+        <div class="col-md-4 studentVidCont" *ngIf="(myStream && videoOn) || audioOn">
+          <video-player [stream]="myStream" [poster]="myData?.avatar"></video-player>
+        </div>
+      </div>
     </div>
-  </div>
-  <div class="row secVidsCont">
-    <div class="col-md-4 studentVidCont" *ngIf="(myStream && videoOn) || audioOn">
-      <video-player [stream]="myStream" [poster]="myData?.avatar"></video-player>
+
+    <div class="col-md-6" [ngClass]="{
+        'd-none':!chatOn
+      }">
+      <app-chat [newMsg]="newMsg" (sendMsg)="sendMsg($event)"></app-chat>
     </div>
+
   </div>
+
+
   <button class="btn btn-danger recBtn" (click)="toggleRecording()">
     <span *ngIf="!recording">
       {{ "recordLecture" | translate }}
@@ -74,6 +91,16 @@
     <i class="fa" [ngClass]="{
         'fa-video-slash': !videoOn,
         'fa-video': videoOn
+      }"></i>
+  </div>
+
+  <div class="menuItem" (click)="toggleChat()">
+    <span>
+      {{ chatOn ? ("stopChat" | translate) : ("activeChat" | translate) }}
+    </span>
+    <i class="fa" [ngClass]="{
+        'fa-comment-slash': !chatOn,
+        'fa-comment': chatOn
       }"></i>
   </div>
 </div>

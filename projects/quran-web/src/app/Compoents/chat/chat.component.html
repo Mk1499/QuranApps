@@ -1,0 +1,18 @@
+<div class="cont">
+  <div class="msgsCont">
+    <div class="message" *ngFor="let msg of messages" [ngStyle]="{
+        'text-align': msg.source === 'You'? 'end':'start'
+      }">
+      <p class="msgSource">{{msg.source}}</p>
+      <p class="msgCont" [ngStyle]="{
+        'background': msg.source === 'You' ? 'gold' : '#333',
+        'color':msg.source === 'You' ? '#333':'gold'
+      }">{{msg.content}}</p>
+    </div>
+  </div>
+  <div class="controlsCont">
+    <input type="text" class="form-control msgInput" [(ngModel)]="activeMsg" (keyup.enter)="sendMessage()">
+    <button class="btn btn-warning sendBtn" (click)="sendMessage()" [disabled]="!activeMsg">{{'send' |
+      translate}}</button>
+  </div>
+</div>

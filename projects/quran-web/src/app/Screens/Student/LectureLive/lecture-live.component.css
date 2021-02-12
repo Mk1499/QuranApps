@@ -2,33 +2,40 @@
   min-height: 30vh;
   width: 100%;
 }
+
 .teacherVideoCont {
   width: 100%;
 }
+
 .studentVidCont {
   position: relative;
   /* top:-31vh */
 }
+
 .teacherVideo {
   width: 100%;
   border: 1px gold solid;
   border-radius: 5px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
+
 .loadingCont {
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100%;
 }
+
 .finishBtn {
   left: 50px;
 }
+
 .solidCover {
   width: 100vw;
   height: 20vh;
   background-color: gold;
 }
+
 .imgCont {
   display: flex;
   justify-content: center;
@@ -36,6 +43,7 @@
   flex-direction: column;
   margin-top: -15vh;
 }
+
 .lecCover {
   width: 45%;
   height: 30vh;
@@ -43,9 +51,9 @@
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   margin-bottom: 2vh;
 }
+
 .line {
-  background: url(https://vatican.modeltheme.com/wp-content/plugins/modeltheme-framework/inc/shortcodes/img/delimiter_dark.png)
-    no-repeat center center;
+  background: url(https://vatican.modeltheme.com/wp-content/plugins/modeltheme-framework/inc/shortcodes/img/delimiter_dark.png) no-repeat center center;
   height: 5vh;
 }
 
@@ -55,12 +63,13 @@
   align-items: center;
   flex-direction: column;
 }
+
 .teacherName {
   margin: 3vh 0;
 }
 
 .aya {
-  width: 100vw;
+  margin-inline: 2vw;
   text-align: center;
 }
 
@@ -86,14 +95,19 @@
   flex-direction: column;
 }
 
+.cont {
+  width: 100%;
+}
+
 .menuItem {
   display: flex;
   justify-content: space-around;
-  min-width: 12vw;
+  min-width: 14vw;
   background: #fff;
   color: #333;
   align-items: center;
-  margin: 2vh -8vw;
+  margin: 2vh 0vw;
+  /* margin-inline-start: -8vw; */
   border-radius: 1vw;
   height: 5vh;
   cursor: pointer;
@@ -107,5 +121,8 @@
 }
 
 .menuItem:hover {
-  margin: 2vh 0;
+  /* margin: 2vh 0; */
+  /* margin-inline-start: 0; */
+  transform: scale(1.1);
+  background-color: gold;
 }

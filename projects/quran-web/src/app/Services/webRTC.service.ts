@@ -39,10 +39,10 @@ export class WebRTCService implements OnInit {
 
 
   async makeACall(callData: Call) {
-    console.log("Making a call To : ", callData.recieverID, "with stream : ", callData.stream);
+    // console.log("Making a call To : ", callData.recieverID, "with stream : ", callData.stream);
 
     let call = await myPeer.call(callData.recieverID, callData.stream);
-    console.log("Call : ", call);
+    // console.log("Call : ", call);
 
     call.answer(callData.stream);
     call.on('stream', (stream) => {
@@ -58,7 +58,7 @@ export class WebRTCService implements OnInit {
       else
         socket.emit('teacherJoin', lectureID, id, username, avatar);
 
-      console.log("student with peer id : ", id, " and Name : ", username, " connect to room : ", lectureID);
+      // console.log("student with peer id : ", id, " and Name : ", username, " connect to room : ", lectureID);
 
     });
   }
@@ -68,24 +68,18 @@ export class WebRTCService implements OnInit {
   }
 
   recievingCallConfig() {
-    console.log("R C C Called ");
+    // console.log("R C C Called ");
 
     myPeer.on('call', (call) => {
-      console.log("recieving a call from another peer : ", call);
+      // console.log("recieving a call from another peer : ", call);
       call.answer(this.myStream);
       call.on('stream', stream => {
-        console.log("recieving a stream from another peer : ", stream);
+        // console.log("recieving a stream/ from another peer : ", stream);
 
         this.otherStream.next(stream);
       })
 
     })
   }
-
-
-
-
-
-
 
 }

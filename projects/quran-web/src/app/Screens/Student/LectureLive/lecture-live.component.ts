@@ -14,7 +14,8 @@ import { RecordRTCPromisesHandler, invokeSaveAsDialog } from 'recordrtc';
 import { WebRTCService, socket } from '../../../Services/webRTC.service';
 import { Call } from '../../../Models/Call.model';
 import { ThemeService } from 'ng2-charts';
-
+import { Message } from '../../../Models/Message.model';
+import {Howl} from 'howler';
 
 
 
@@ -30,7 +31,7 @@ export class LectureLiveComponent implements OnInit, AfterViewInit, OnDestroy {
   teacherStream: MediaStream = null;
   teacherStreamSub: Subscription;
   teacherVidLoaded: boolean = false;
-  teacherAvatar:string;
+  teacherAvatar: string;
 
   myData: Student;
   streamssIDs: string[] = [];
@@ -49,7 +50,8 @@ export class LectureLiveComponent implements OnInit, AfterViewInit, OnDestroy {
   screenRecordStream: MediaStream;
   audioOn: boolean = false;
   videoOn: boolean = false;
-
+  chatOn: boolean = false;
+  newMsg: Message;
 
   constructor(
     private route: ActivatedRoute,
@@ -75,8 +77,7 @@ export class LectureLiveComponent implements OnInit, AfterViewInit, OnDestroy {
     this.socketListeners();
     this.callService.recievingCallConfig()
     this.teacherStreamSub = this.callService.otherStream.subscribe(stream => {
-      console.log("Changing stream");
-
+      // console.log("Changing stream");
       this.teacherVidLoaded = true
       this.teacherStream = stream;
 
@@ -100,7 +101,7 @@ export class LectureLiveComponent implements OnInit, AfterViewInit, OnDestroy {
       } else {
         this.loading = false;
         this.title.setTitle(this.lectureData.name);
-        this.callService.joinLectureRoom(this.route.snapshot.params.id, this.myData?.name, "student" , this.myData?.avatar)
+        this.callService.joinLectureRoom(this.route.snapshot.params.id, this.myData?.name, "student", this.myData?.avatar)
       }
     })
   }
@@ -122,12 +123,12 @@ export class LectureLiveComponent implements OnInit, AfterViewInit, OnDestroy {
     })
 
 
-    this.socket.on("teacherJoined", (teacherPeerID , teacherAvatar) => {
-      console.log("Teacher Joined : ", teacherPeerID);
+    this.socket.on("teacherJoined", (teacherPeerID, teacherAvatar) => {
+      // console.log("Teacher Joined : ", teacherPeerID);
 
       this.teacherPeerID = teacherPeerID;
       this.teacherAvatar = teacherAvatar;
-      this.socket.emit("bcStudentPeerID", this.route.snapshot.params.id, this.callService.getMyPeerID() , this.myData?.avatar)
+      this.socket.emit("bcStudentPeerID", this.route.snapshot.params.id, this.callService.getMyPeerID(), this.myData?.avatar)
       let call: Call = {
         recieverID: teacherPeerID,
         stream: this.myStream
@@ -137,11 +138,37 @@ export class LectureLiveComponent implements OnInit, AfterViewInit, OnDestroy {
 
 
     this.socket.on("teacherPeerID", (teacherPeerID) => {
-      console.log("Teacher Peer ID  : ", teacherPeerID);
       this.teacherPeerID = teacherPeerID;
-
     })
 
+    this.socket.on("newMsg", (msgCont, senderName) => {
+
+      console.log("New Msg Rec : ", msgCont);
+      this.chatOn = true;
+      let msg: Message = {
+        content: msgCont,
+        source: senderName
+      }
+      this.newMsg = msg;
+      this.playNote()
+    })
+
+  }
+
+  sendMsg(msg: Message) {
+    console.log("Message Send : ", msg);
+    // msg.source = this.myData?.name || "Student";
+    this.socket.emit("sendMessage", this.route.snapshot.params.id, msg.content, this.myData?.name || "Student")
+  }
+
+  playNote(){
+    let sound = new Howl({
+      src:['https://actions.google.com/sounds/v1/doors/locked_doorknob_jiggle.ogg']
+    })
+
+    sound.once('load',()=>{
+      sound.play()
+    })
   }
 
 
@@ -239,6 +266,15 @@ export class LectureLiveComponent implements OnInit, AfterViewInit, OnDestroy {
     this.callService.makeACall(call)
   }
 
+  toggleChat() {
+    if (this.chatOn) {
+      this.chatOn = false
+    }
+    else {
+      this.chatOn = true
+    }
+  }
+
   async removeVideoFromStream() {
     await this.myStream.getVideoTracks().forEach(t => {
       t.stop();
@@ -253,7 +289,7 @@ export class LectureLiveComponent implements OnInit, AfterViewInit, OnDestroy {
         this.myStream.addTrack(t);
       })
     }).catch(err => {
-      console.log("adding vidoe stream err : ", err);
+      // console.log("adding vidoe stream err : ", err);
     })
   }
   async removeAudioFromStream() {
@@ -269,7 +305,7 @@ export class LectureLiveComponent implements OnInit, AfterViewInit, OnDestroy {
         this.myStream.addTrack(t)
       })
     }).catch(err => {
-      console.log("Adding Audio Tracks err : ", err);
+      // console.log("Adding Audio Tracks err : ", err);
     })
   }
 
