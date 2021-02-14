@@ -14,7 +14,7 @@ import Peer from 'peerjs';
 import { WebRTCService, socket } from '../../../Services/webRTC.service';
 import { Call } from '../../../Models/Call.model';
 import { Message } from '../../../Models/Message.model';
-import {Howl} from 'howler';
+import { Howl } from 'howler';
 
 
 @Component({
@@ -123,7 +123,7 @@ export class LectureLiveComponent implements OnInit, AfterViewInit, OnDestroy {
   socketListener() {
 
     this.socket.on("studentJoined", (studentPeerID, studentAvatar) => {
-      // console.log("Student Joined : ", studentPeerID);
+      console.log("Student Joined : ", studentPeerID);
       this.studentPeerID = studentPeerID;
       this.studentAvatar = studentAvatar;
       this.socket.emit("bcTeacherPeerID", this.route.snapshot.params.id, this.callService.getMyPeerID(), this.myData?.avatar)
@@ -135,6 +135,9 @@ export class LectureLiveComponent implements OnInit, AfterViewInit, OnDestroy {
     })
 
     this.socket.on("studentPeerID", (studentPeerID) => {
+      console.log("Recieve student Peer : ", studentPeerID);
+
+
       this.studentPeerID = studentPeerID;
     })
 
@@ -157,12 +160,12 @@ export class LectureLiveComponent implements OnInit, AfterViewInit, OnDestroy {
     this.socket.emit("sendMessage", this.route.snapshot.params.id, msg.content, this.myData?.name || "Teacher")
   }
 
-  playNote(){
+  playNote() {
     let sound = new Howl({
-      src:['https://actions.google.com/sounds/v1/doors/locked_doorknob_jiggle.ogg']
+      src: ['https://actions.google.com/sounds/v1/doors/locked_doorknob_jiggle.ogg']
     })
 
-    sound.once('load',()=>{
+    sound.once('load', () => {
       sound.play()
     })
   }
