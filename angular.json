@@ -3,29 +3,29 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "QuranWeb": {
+    "Quran": {
       "projectType": "application",
       "schematics": {},
-      "root": "projects/quran-web",
-      "sourceRoot": "projects/quran-web/src",
+      "root": "projects/Quran",
+      "sourceRoot": "projects/Quran/src",
       "prefix": "app",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/QuranWeb/browser",
-            "index": "projects/quran-web/src/index.html",
-            "main": "projects/quran-web/src/main.ts",
-            "polyfills": "projects/quran-web/src/polyfills.ts",
-            "tsConfig": "projects/quran-web/tsconfig.app.json",
+            "outputPath": "www",
+            "index": "projects/Quran/src/index.html",
+            "main": "projects/Quran/src/main.ts",
+            "polyfills": "projects/Quran/src/polyfills.ts",
+            "tsConfig": "projects/Quran/tsconfig.app.json",
             "aot": true,
             "assets": [
-              "projects/quran-web/src/favicon.ico",
-              "projects/quran-web/src/assets",
-              "projects/quran-web/src/assets/robots.txt",
-              "projects/quran-web/src/assets/sitemap.xml",
-              "projects/quran-web/src/firebase-messaging-sw.js",
-              "projects/quran-web/src/manifest.json",
+              "projects/Quran/src/favicon.ico",
+              "projects/Quran/src/assets",
+              "projects/Quran/src/assets/robots.txt",
+              "projects/Quran/src/assets/sitemap.xml",
+              "projects/Quran/src/firebase-messaging-sw.js",
+              "projects/Quran/src/manifest.json",
               {
                 "glob": "**/*.svg",
                 "input": "node_modules/ionicons/dist/ionicons/svg",
@@ -34,9 +34,9 @@
             ],
             "styles": [
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
-              "projects/quran-web/src/assets/css/fontAwesome/all.min.css",
+              "projects/Quran/src/assets/css/fontAwesome/all.min.css",
               "node_modules/animate.css/animate.min.css",
-              "projects/quran-web/src/styles.css",
+              "projects/Quran/src/styles.css",
               {
                 "input": "node_modules/@ionic/angular/css/normalize.css"
               },
@@ -65,7 +65,7 @@
                 "input": "node_modules/@ionic/angular/css/flex-utils.css"
               },
               {
-                "input": "projects/quran-web/src/theme/variables.css"
+                "input": "projects/Quran/src/theme/variables.css"
               }
             ],
             "scripts": [
@@ -77,8 +77,8 @@
             "production": {
               "fileReplacements": [
                 {
-                  "replace": "projects/quran-web/src/environments/environment.ts",
-                  "with": "projects/quran-web/src/environments/environment.prod.ts"
+                  "replace": "projects/Quran/src/environments/environment.ts",
+                  "with": "projects/Quran/src/environments/environment.prod.ts"
                 }
               ],
               "optimization": true,
@@ -106,33 +106,33 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "QuranWeb:build"
+            "browserTarget": "Quran:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "QuranWeb:build:production"
+              "browserTarget": "Quran:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "QuranWeb:build"
+            "browserTarget": "Quran:build"
           }
         },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "projects/quran-web/src/test.ts",
-            "polyfills": "projects/quran-web/src/polyfills.ts",
-            "tsConfig": "projects/quran-web/tsconfig.spec.json",
-            "karmaConfig": "projects/quran-web/karma.conf.js",
+            "main": "projects/Quran/src/test.ts",
+            "polyfills": "projects/Quran/src/polyfills.ts",
+            "tsConfig": "projects/Quran/tsconfig.spec.json",
+            "karmaConfig": "projects/Quran/karma.conf.js",
             "assets": [
-              "projects/quran-web/src/favicon.ico",
-              "projects/quran-web/src/assets"
+              "projects/Quran/src/favicon.ico",
+              "projects/Quran/src/assets"
             ],
             "styles": [
-              "projects/quran-web/src/styles.css"
+              "projects/Quran/src/styles.css"
             ],
             "scripts": []
           }
@@ -141,10 +141,10 @@
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "projects/quran-web/tsconfig.app.json",
-              "projects/quran-web/tsconfig.spec.json",
-              "projects/quran-web/e2e/tsconfig.json",
-              "projects/quran-web/tsconfig.server.json"
+              "projects/Quran/tsconfig.app.json",
+              "projects/Quran/tsconfig.spec.json",
+              "projects/Quran/e2e/tsconfig.json",
+              "projects/Quran/tsconfig.server.json"
             ],
             "exclude": [
               "**/node_modules/**"
@@ -154,29 +154,29 @@
         "e2e": {
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
-            "protractorConfig": "projects/quran-web/e2e/protractor.conf.js",
-            "devServerTarget": "QuranWeb:serve"
+            "protractorConfig": "projects/Quran/e2e/protractor.conf.js",
+            "devServerTarget": "Quran:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "QuranWeb:serve:production"
+              "devServerTarget": "Quran:serve:production"
             }
           }
         },
         "server": {
           "builder": "@angular-devkit/build-angular:server",
           "options": {
-            "outputPath": "dist/QuranWeb/server",
-            "main": "projects/quran-web/server.ts",
-            "tsConfig": "projects/quran-web/tsconfig.server.json"
+            "outputPath": "dist/Quran/server",
+            "main": "projects/Quran/server.ts",
+            "tsConfig": "projects/Quran/tsconfig.server.json"
           },
           "configurations": {
             "production": {
               "outputHashing": "media",
               "fileReplacements": [
                 {
-                  "replace": "projects/quran-web/src/environments/environment.ts",
-                  "with": "projects/quran-web/src/environments/environment.prod.ts"
+                  "replace": "projects/Quran/src/environments/environment.ts",
+                  "with": "projects/Quran/src/environments/environment.prod.ts"
                 }
               ],
               "sourceMap": false,
@@ -187,21 +187,21 @@
         "serve-ssr": {
           "builder": "@nguniversal/builders:ssr-dev-server",
           "options": {
-            "browserTarget": "QuranWeb:build",
-            "serverTarget": "QuranWeb:server"
+            "browserTarget": "Quran:build",
+            "serverTarget": "Quran:server"
           },
           "configurations": {
             "production": {
-              "browserTarget": "QuranWeb:build:production",
-              "serverTarget": "QuranWeb:server:production"
+              "browserTarget": "Quran:build:production",
+              "serverTarget": "Quran:server:production"
             }
           }
         },
         "prerender": {
           "builder": "@nguniversal/builders:prerender",
           "options": {
-            "browserTarget": "QuranWeb:build:production",
-            "serverTarget": "QuranWeb:server:production",
+            "browserTarget": "Quran:build:production",
+            "serverTarget": "Quran:server:production",
             "routes": [
               "/"
             ]
@@ -213,24 +213,24 @@
         "ionic-cordova-serve": {
           "builder": "@ionic/angular-toolkit:cordova-serve",
           "options": {
-            "cordovaBuildTarget": "QuranWeb:ionic-cordova-build",
-            "devServerTarget": "QuranWeb:serve"
+            "cordovaBuildTarget": "Quran:ionic-cordova-build",
+            "devServerTarget": "Quran:serve"
           },
           "configurations": {
             "production": {
-              "cordovaBuildTarget": "QuranWeb:ionic-cordova-build:production",
-              "devServerTarget": "QuranWeb:serve:production"
+              "cordovaBuildTarget": "Quran:ionic-cordova-build:production",
+              "devServerTarget": "Quran:serve:production"
             }
           }
         },
         "ionic-cordova-build": {
           "builder": "@ionic/angular-toolkit:cordova-build",
           "options": {
-            "browserTarget": "QuranWeb:build"
+            "browserTarget": "Quran:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "QuranWeb:build:production"
+              "browserTarget": "Quran:build:production"
             }
           }
         }
@@ -405,7 +405,7 @@
       }
     }
   },
-  "defaultProject": "QuranWeb",
+  "defaultProject": "Quran",
   "cli": {
     "analytics": false
   }

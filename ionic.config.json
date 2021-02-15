@@ -1,21 +1,13 @@
 {
+  "defaultProject": "Quran",
   "projects": {
-    "quranMobile": {
-      "name": "quranMobile",
+    "Quran": {
+      "name": "Quran",
       "integrations": {
         "capacitor": {}
       },
       "type": "angular",
-      "root": "projects/quranMobile"
-    },
-    "quran-web": {
-      "name": "quran-web",
-      "integrations": {
-        "capacitor": {}
-      },
-      "type": "angular",
-      "root": "projects/quran-web"
+      "root": "projects/Quran"
     }
-  },
-  "defaultProject":"quran-web"
+  }
 }

@@ -1,13 +1,16 @@
 {
   "appId": "io.mk14.quranMobile",
-  "appName": "quranMob",
+  "appName": "New Ionic App",
   "bundledWebRuntime": false,
-  "npmClient": "yarn",
+  "npmClient": "npm",
   "webDir": "www",
   "plugins": {
     "SplashScreen": {
       "launchShowDuration": 0
     }
   },
+
+  "linuxAndroidStudioPath": "/media/mk14/46229A46229A3B3F/android-studio/bin/studio.sh",
+
   "cordova": {}
 }

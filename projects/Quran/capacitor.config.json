@@ -1,0 +1,14 @@
+{
+  "appId": "io.mk14.quranMobile",
+  "appName": "Quran",
+  "bundledWebRuntime": false,
+  "npmClient": "yarn",
+  "webDir": "../../www",
+  "plugins": {
+    "SplashScreen": {
+      "launchShowDuration": 0
+    }
+  },
+  "linuxAndroidStudioPath": "/media/mk14/46229A46229A3B3F/android-studio/bin/studio.sh",
+  "cordova": {}
+}

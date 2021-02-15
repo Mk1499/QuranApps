@@ -1,0 +1,12 @@
+{
+  "defaultProject": "Quran",
+  "projects": {
+    "Quran": {
+      "name": "Quran",
+      "integrations": {
+        "capacitor": {}
+      },
+      "type": "angular"
+    }
+  }
+}
