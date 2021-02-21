@@ -77,7 +77,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     Title,
     Meta,
     MessagingService,
-    AsyncPipe
+    AsyncPipe,
   ],
   bootstrap: [AppComponent]
 })

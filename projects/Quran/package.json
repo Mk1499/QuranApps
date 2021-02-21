@@ -2,6 +2,9 @@
   "name": "Quran",
   "version": "1.0.0",
   "license": "MIT",
+  "scripts": {
+    "android": "ionic cap run android -l --external"
+  },
   "private": true,
   "dependencies": {},
   "devDependencies": {}

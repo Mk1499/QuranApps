@@ -51,17 +51,43 @@ export class WebRTCService implements OnInit {
   }
 
   joinLectureRoom(lectureID, username, role, avatar) {
-    myPeer.on("open", (id) => {
-      this.myPeerID = id;
-      if (role === "student")
-        socket.emit('studentJoin', lectureID, id, username, avatar);
-      else
-        socket.emit('teacherJoin', lectureID, id, username, avatar);
+    console.log("Join Room Called : ", role, this.myPeerID);
 
-      console.log("student with peer id : ", id, " and Name : ", username, " connect to room : ", lectureID);
+    if (!this.myPeerID) {
 
-    });
+
+      myPeer.on("open", (id) => {
+        this.myPeerID = id;
+        if (role === "student") {
+          console.log("student try to join room");
+
+          socket.emit('studentJoin', lectureID, id, username, avatar);
+          console.log("student with peer id : ", id, " and Name : ", username, " connect to room : ", lectureID);
+        }
+        else {
+          socket.emit('teacherJoin', lectureID, id, username, avatar);
+          console.log("teacher with peer id : ", id, " and Name : ", username, " connect to room : ", lectureID);
+
+        }
+
+
+      });
+    } else {
+      if (role === "student") {
+        console.log("student try to join room");
+
+        socket.emit('studentJoin', lectureID, this.myPeerID, username, avatar);
+        console.log("student with peer id : ", this.myPeerID, " and Name : ", username, " connect to room : ", lectureID);
+      }
+      else {
+        socket.emit('teacherJoin', lectureID, this.myPeerID, username, avatar);
+        console.log("teacher with peer id : ", this.myPeerID, " and Name : ", username, " connect to room : ", lectureID);
+
+      }
+    }
   }
+
+
 
   getMyPeerID() {
     return this.myPeerID;

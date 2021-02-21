@@ -28,6 +28,8 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    console.log("Platform : ", this.deviceService.os , this.deviceService.isMobile());
+
     if (this.deviceService.isMobile()) {
       this.mobileNoteService.requestPermission();
       this.mobileNoteService.notificationListeners();

@@ -23,8 +23,7 @@ import { NoteRowComponent } from '../Components/note-row/note-row.component';
 import { TimerComponent } from '../Components/timer/timer.component';
 import { VideoPlayerComponent } from '../Components/video-player/video-player.component';
 import { LoadingOverlayComponent } from '../Components/loading-overlay/loading-overlay.component';
-import { ChatComponent } from '../Compoents/chat/chat.component';
-
+import { ChatComponent } from '../Components/chat/chat.component';
 
 @NgModule({
   declarations: [

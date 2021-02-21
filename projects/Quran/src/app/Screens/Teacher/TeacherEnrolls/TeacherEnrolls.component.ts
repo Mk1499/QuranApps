@@ -30,7 +30,7 @@ export class TeacherEnrollsComponent implements OnInit, OnDestroy {
       this.loading = false;
       this.enrolls = enrolls.data;
     }, (err) => {
-      console.log("enrolls err : ", err);
+      console.log("enrolls err : ", JSON.stringify(err));
       this.loading = false;
 
     })

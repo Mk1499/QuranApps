@@ -11,7 +11,7 @@
     <div class="row" *ngIf="upcomigLectures.length">
       <lecture-card
         [routerLink]="['../lectures', lecture._id]"
-        class="col-md-4 lectCard"
+        class="col-md-6 col-lg-4 lectCard"
         *ngFor="let lecture of upcomigLectures"
         [lecture]="lecture"
       ></lecture-card>
@@ -27,7 +27,7 @@
     <div class="row">
       <lecture-card
         [routerLink]="['../lectures', lecture._id]"
-        class="col-md-4 lectCard"
+        class="col-md-6 col-lg-4  lectCard"
         *ngFor="let lecture of cancelledLectures"
         [lecture]="lecture"
       ></lecture-card>
