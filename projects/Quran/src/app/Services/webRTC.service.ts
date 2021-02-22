@@ -43,7 +43,7 @@ export class WebRTCService implements OnInit {
   async makeACall(callData: Call) {
     console.log("Making a call To : ", callData.recieverID, "with stream : ", callData.stream);
 
-    let call = await myPeer.call(callData.recieverID, callData.stream, {
+    let call = myPeer.call(callData.recieverID, callData.stream, {
       metadata: {
         senderRole: callData.senderRole || ""
       }

@@ -8,6 +8,7 @@ import { socket, WebRTCService, myPeer } from '../../../Services/webRTC.service'
 import { Socket } from 'socket.io-client';
 import { Call } from '../../../Models/Call.model';
 
+
 @Component({
   selector: 'app-admin-lecture-live',
   templateUrl: './admin-lecture-live.component.html',
@@ -42,18 +43,22 @@ export class AdminLectureLiveComponent implements OnInit {
     this.activeLang = this.langService.getLang();
     this.getLectuerDetails();
     this.socketListener();
-    // this.webRTCService.getMyPeerID().then(id => {
 
-    //   console.log("PEER ID : ", id);
-    //   this.startMonitoring();
 
-    //   // this.myPeerID = id;
-    // })
-
-    myPeer.on("open", (id) => {
-      this.myPeerID = id;
+    if (myPeer.id) {
+      this.myPeerID = myPeer.id;
       this.startMonitoring();
-    })
+      console.log("(PRE) Joinning Lecture : ", this.lectureID, " with peer : ", this.myPeerID);
+
+    } else {
+
+      myPeer.on("open", (id) => {
+        this.myPeerID = id;
+        this.startMonitoring();
+        console.log("Joinning Lecture : ", this.lectureID, " with peer : ", this.myPeerID);
+
+      })
+    }
 
   }
 
@@ -93,32 +98,12 @@ export class AdminLectureLiveComponent implements OnInit {
     // teacher join to lecture after admin did
     this.socket.on("teacherJoined", (teacherPeerID) => {
       console.log("Teacher Joined : ", teacherPeerID);
-
-      // let call = myPeer.call(teacherPeerID, this.myStream, {
-      //   metadata: {
-      //     senderRole: "Admin"
-      //   }
-      // })
-      // call.answer();
-      // call.on('stream', (stream: MediaStream) => {
-      //   this.teacherStream = stream
-      // })
       this.socket.emit('bcAdminPeerID', this.lectureID, this.myPeerID);
     })
 
     // student join to lecture after admin did
     this.socket.on("studentJoined", (studentPeerID) => {
       console.log("Student Joined : ", studentPeerID);
-
-      // let call = myPeer.call(studentPeerID, this.myStream, {
-      //   metadata: {
-      //     senderRole: "Admin"
-      //   }
-      // })
-      // call.answer();
-      // call.on('stream', (stream: MediaStream) => {
-      //   this.studentStream = stream
-      // })
       this.socket.emit('bcAdminPeerID', this.lectureID, this.myPeerID);
 
     })

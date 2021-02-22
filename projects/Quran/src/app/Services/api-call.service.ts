@@ -5,9 +5,9 @@ import { Observable } from 'rxjs';
 import * as fromApp from '../Store/app.reducer';
 
 // export const baseURL = "http://localhost:3005";
-export const baseURL = "http://192.168.1.10:3005";
+// export const baseURL = "http://192.168.1.10:3005";
 
-// export const baseURL = "https://quranmkserver.herokuapp.com";
+export const baseURL = "https://quranmkserver.herokuapp.com";
 
 @Injectable({
   providedIn: 'root'

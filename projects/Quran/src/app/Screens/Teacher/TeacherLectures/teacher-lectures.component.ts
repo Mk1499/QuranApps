@@ -43,7 +43,7 @@ export class TeacherLecturesComponent implements OnInit {
 
   filterLectures(lectures: [Lecture]) {
     lectures.map(lec => {
-      if (lec.state === "upcoming" || !lec.state) {
+      if (lec.state === "upcoming" || lec.state === "live" || !lec.state) {
         this.upcomingLecs.push(lec)
       }
       else if (lec.state === "finished") {

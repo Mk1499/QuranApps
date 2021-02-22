@@ -27,7 +27,7 @@ export class LectureComponent implements OnInit {
 
     this.lecSub = this.studentService.getLectures(this.student._id).subscribe((lecs: Lecture[]) => {
       lecs.map((lec) => {
-        if (!lec.state || lec.state === "upcoming") {
+        if (!lec.state || lec.state === "upcoming" || lec.state === "live") {
           this.upcomigLectures.push(lec);
         }
         if (lec.state === "cancelled") {

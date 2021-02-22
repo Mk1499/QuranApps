@@ -62,7 +62,7 @@ export class TeacherProfileComponent implements OnInit, OnDestroy {
   getTeacherLectures() {
     this.teacherLecSub = this.teacherSer.getTeacherLectures(this.teacherID).subscribe((lecs: Lecture[]) => {
       console.log("Teacher Lecs : ", lecs);
-      this.lectures = lecs.filter(l => l.state === "upcoming" || !l.state);
+      this.lectures = lecs.filter(l => l.state === "upcoming" || l.state === "live" || !l.state);
       this.loadLecture = false;
     })
   }

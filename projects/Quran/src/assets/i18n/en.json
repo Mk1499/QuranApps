@@ -111,5 +111,7 @@
   "activeCamera": "Activate Camera",
   "activeChat": "Active Chat",
   "stopChat": "Stop Chat",
-  "send": "Send"
+  "send": "Send",
+  "teacher": "Teacher",
+  "student": "Student"
 }

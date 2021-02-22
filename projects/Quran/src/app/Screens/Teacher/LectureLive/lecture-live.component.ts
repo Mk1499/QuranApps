@@ -11,10 +11,11 @@ import { baseURL } from '../../../Services/api-call.service';
 import { Component, ElementRef, OnInit, ViewChild, ContentChild, AfterViewInit, OnDestroy, HostListener } from '@angular/core';
 import { io, Socket } from 'socket.io-client';
 import Peer from 'peerjs';
-import { WebRTCService, socket } from '../../../Services/webRTC.service';
+import { WebRTCService, socket, myPeer } from '../../../Services/webRTC.service';
 import { Call } from '../../../Models/Call.model';
 import { Message } from '../../../Models/Message.model';
 import { Howl } from 'howler';
+import { async } from '@angular/core/testing';
 
 
 @Component({
@@ -28,6 +29,7 @@ export class LectureLiveComponent implements OnInit, AfterViewInit, OnDestroy {
   myVidLoaded: boolean = false;
   studentsStreams: VideoStream[] = [];
   studentStream: MediaStream = new MediaStream([]);
+  studentVidLoaded: boolean = false;
   studentAvatar: string;
   peerID: string;
   myStream: MediaStream = new MediaStream([]);
@@ -48,7 +50,7 @@ export class LectureLiveComponent implements OnInit, AfterViewInit, OnDestroy {
   chatOn: boolean = false;
   newMsg: Message;
   adminPeerID: string;
-
+  myPeerID: string;
 
 
 
@@ -60,7 +62,12 @@ export class LectureLiveComponent implements OnInit, AfterViewInit, OnDestroy {
     private title: Title,
     private lang: LangService,
     private callService: WebRTCService
-  ) { }
+  ) {
+
+    console.log("PEER : ", myPeer);
+
+
+  }
 
 
   ngOnInit(): void {
@@ -90,12 +97,13 @@ export class LectureLiveComponent implements OnInit, AfterViewInit, OnDestroy {
     this.callService.otherStream.subscribe(stream => {
       // console.log("Changing stream  : ", stream);
 
-      this.studentStream = stream
+      this.studentStream = stream;
+      this.studentVidLoaded = true;
     })
   }
 
   checkAuthorize() {
-    this.lectSub = this.lectureService.getLectureDetails(this.route.snapshot.params.id).subscribe((lecData: Lecture) => {
+    this.lectSub = this.lectureService.getLectureDetails(this.route.snapshot.params.id).subscribe(async (lecData: Lecture) => {
       // console.log("LECT DATA : ", lecData);
       this.lectureData = lecData;
       if (lecData?.coverURL) {
@@ -107,12 +115,34 @@ export class LectureLiveComponent implements OnInit, AfterViewInit, OnDestroy {
           relativeTo: this.route
         })
       } else {
-        this.loading = false;
         this.title.setTitle(this.lectureData.name);
-        this.callService.joinLectureRoom(this.route.snapshot.params.id, this.myData?.name, "teacher", this.myData?.avatar)
+        // this.callService.joinLectureRoom(this.route.snapshot.params.id, this.myData?.name, "teacher", this.myData?.avatar)
         this.streamAliveChecker();
+        await this.joinLectureRoom();
       }
     })
+  }
+
+  async joinLectureRoom() {
+
+    let lectureID = this.route.snapshot.params.id;
+    let studentName = this.myData.name;
+    let avatar = this.myData.avatar;
+    if (myPeer.id) {
+      let peerID = myPeer.id;
+      this.myPeerID = myPeer.id;
+      this.socket.emit("teacherJoin", lectureID, peerID, studentName, avatar);
+      console.log("Joinning Lecture room with peer id : ", peerID);
+      this.loading = false;
+    } else {
+      await myPeer.on('open', peerID => {
+        this.myPeerID = peerID;
+        this.socket.emit("teacherJoin", lectureID, peerID, studentName, avatar);
+        console.log("Joinning Lecture room with peer id : ", peerID);
+        this.loading = false;
+
+      })
+    }
   }
 
   streamAliveChecker() {
@@ -128,13 +158,8 @@ export class LectureLiveComponent implements OnInit, AfterViewInit, OnDestroy {
       console.log("Student Joined : ", studentPeerID);
       this.studentPeerID = studentPeerID;
       this.studentAvatar = studentAvatar;
-      this.socket.emit("bcTeacherPeerID", this.route.snapshot.params.id, this.callService.getMyPeerID(), this.myData?.avatar)
-      let call: Call = {
-        recieverID: studentPeerID,
-        stream: this.myStream,
-        senderRole:"Teacher"
-      }
-      this.callService.makeACall(call);
+      this.socket.emit("bcTeacherPeerID", this.route.snapshot.params.id, this.myPeerID, this.myData?.avatar)
+      this.callStudent();
     })
 
     this.socket.on("studentPeerID", (studentPeerID) => {
@@ -164,12 +189,7 @@ export class LectureLiveComponent implements OnInit, AfterViewInit, OnDestroy {
       // this.myPeer.call(adminPeerID,this.myStream)
       console.log("Admin Connected : ", adminPeerID);
       this.adminPeerID = adminPeerID;
-      let callData: Call = {
-        recieverID: adminPeerID,
-        stream: this.myStream,
-        senderRole: 'Teacher'
-      }
-      this.callService.makeACall(callData);
+      this.callAdmin()
     })
 
 

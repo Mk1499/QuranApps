@@ -41,25 +41,33 @@
       <div class="row">
         <div class="teacher col-md-6">
           <h3 class="text-center">
-            {{ lecture.teacher?.name }}
+            {{ lecture.teacher?.name }} ( {{ "teacher" | translate }} )
           </h3>
           <p class="h3 text-center" *ngIf="!teacherStream">
             Waiting for Teacher Connecting...
           </p>
           <div class="vidCont">
-            <video-player [stream]="teacherStream" [controls]="true" *ngIf="teacherStream"></video-player>
+            <video-player
+              [stream]="teacherStream"
+              [controls]="true"
+              *ngIf="teacherStream"
+            ></video-player>
           </div>
         </div>
 
         <div class="teacher col-md-6">
           <h3 class="text-center">
-            {{ lecture.student?.name }}
+            {{ lecture.student?.name }} ( {{ "student" | translate }})
           </h3>
           <p class="h3 text-center" *ngIf="!studentStream">
             Waiting for Student Connecting...
           </p>
           <div class="vidCont">
-            <video-player [stream]="studentStream" [controls]="true" *ngIf="studentStream"></video-player>
+            <video-player
+              [stream]="studentStream"
+              [controls]="true"
+              *ngIf="studentStream"
+            ></video-player>
           </div>
         </div>
       </div>
