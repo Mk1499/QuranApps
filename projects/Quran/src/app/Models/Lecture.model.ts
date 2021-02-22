@@ -8,8 +8,9 @@ export interface Lecture {
   time: string;
   description: string;
   students: [Student];
+  student: Student;
   duration: Number;
   teacher: Teacher;
   state?: string;
-  aya?:string;
+  aya?: string;
 }

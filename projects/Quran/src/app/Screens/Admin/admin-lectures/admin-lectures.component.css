@@ -1,0 +1,48 @@
+.line {
+  background: url(https://vatican.modeltheme.com/wp-content/plugins/modeltheme-framework/inc/shortcodes/img/delimiter_dark.png)
+    no-repeat center center;
+  height: 5vh;
+}
+.header {
+  margin: 3vh 0;
+  font-family: Cairo;
+  font-weight: bolder;
+}
+.loadCont {
+  text-align: center;
+}
+.lectCard {
+  cursor: pointer;
+}
+.noLecSec {
+  min-height: 30vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.loadCont {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.tableCont {
+  width: 100%;
+  margin-top: 10%;
+}
+
+.lectureItem{
+  cursor: pointer;
+}
+.selectCont{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 5%;
+  flex-direction: column;
+  align-items: center;
+}
+.selectCont select {
+  width: 60%;
+}

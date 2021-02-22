@@ -35,10 +35,11 @@ export class VideoPlayerComponent implements OnInit, AfterViewInit, OnChanges {
     vid.controls = this.controls
 
     vid.addEventListener("loadedmetadata", () => {
-      try{
+      try {
         vid.play();
-      } catch(err){
+      } catch (err) {
         console.log("Playing Err");
+        alert("Sorry But you need to play video manually")
         this.play(true)
       }
     })

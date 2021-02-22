@@ -15,7 +15,7 @@ import { WebRTCService, socket } from '../../../Services/webRTC.service';
 import { Call } from '../../../Models/Call.model';
 import { ThemeService } from 'ng2-charts';
 import { Message } from '../../../Models/Message.model';
-import {Howl} from 'howler';
+import { Howl } from 'howler';
 
 
 
@@ -35,8 +35,11 @@ export class LectureLiveComponent implements OnInit, AfterViewInit, OnDestroy {
 
   myData: Student;
   streamssIDs: string[] = [];
+
   myPeerID: string;
   teacherPeerID: string;
+  adminPeerID: string;
+
   navData: Student;
   myPeer: Peer;
   socket: Socket = socket;
@@ -52,6 +55,8 @@ export class LectureLiveComponent implements OnInit, AfterViewInit, OnDestroy {
   videoOn: boolean = false;
   chatOn: boolean = false;
   newMsg: Message;
+
+
 
   constructor(
     private route: ActivatedRoute,
@@ -92,8 +97,8 @@ export class LectureLiveComponent implements OnInit, AfterViewInit, OnDestroy {
       if (lecData?.coverURL) {
         this.imageURL = lecData.coverURL
       }
-      let lectureStudents = lecData.students.map(s => s._id);
-      if (!lectureStudents.includes(this.myData._id)) {
+      // let lectureStudents = lecData.students.map(s => s._id);
+      if (this.lectureData.student?._id !== this.myData._id) {
         alert("Sorry but you aren't a lecture's student");
         this.router.navigate(['../'], {
           relativeTo: this.route
@@ -129,11 +134,24 @@ export class LectureLiveComponent implements OnInit, AfterViewInit, OnDestroy {
       this.teacherPeerID = teacherPeerID;
       this.teacherAvatar = teacherAvatar;
       this.socket.emit("bcStudentPeerID", this.route.snapshot.params.id, this.callService.getMyPeerID(), this.myData?.avatar)
-      let call: Call = {
-        recieverID: teacherPeerID,
-        stream: this.myStream
-      }
-      this.callService.makeACall(call)
+      // let call: Call = {
+      //   recieverID: teacherPeerID,
+      //   stream: this.myStream,
+      //   senderRole: 'Student'
+      // }
+      // this.callService.makeACall(call)
+      this.callTeacher();
+    })
+
+    this.socket.on("adminConnected", (adminPeerID) => {
+      this.adminPeerID = adminPeerID;
+      this.callAdmin();
+    })
+
+
+    this.socket.on("adminPeerID", (adminPeerID) => {
+      console.log("Reciving admin peer id : ", adminPeerID);
+      this.adminPeerID = adminPeerID;
     })
 
 
@@ -161,12 +179,12 @@ export class LectureLiveComponent implements OnInit, AfterViewInit, OnDestroy {
     this.socket.emit("sendMessage", this.route.snapshot.params.id, msg.content, this.myData?.name || "Student")
   }
 
-  playNote(){
+  playNote() {
     let sound = new Howl({
-      src:['https://actions.google.com/sounds/v1/doors/locked_doorknob_jiggle.ogg']
+      src: ['https://actions.google.com/sounds/v1/doors/locked_doorknob_jiggle.ogg']
     })
 
-    sound.once('load',()=>{
+    sound.once('load', () => {
       sound.play()
     })
   }
@@ -241,13 +259,41 @@ export class LectureLiveComponent implements OnInit, AfterViewInit, OnDestroy {
       // this.callTeacher()
     }
 
+    // let call: Call = {
+    //   recieverID: this.teacherPeerID,
+    //   stream: this.myStream,
+    //   senderRole: 'Student'
+    // }
+    // this.callService.makeACall(call)\
+    if (this.teacherPeerID) {
+      this.callTeacher();
+    }
+    if (this.adminPeerID) {
+      this.callAdmin();
+    }
+  }
+
+
+  callAdmin() {
+    console.log("calleding Admin : ", this.adminPeerID);
     let call: Call = {
-      recieverID: this.teacherPeerID,
-      stream: this.myStream
+      recieverID: this.adminPeerID,
+      stream: this.myStream,
+      senderRole: "Student"
     }
     this.callService.makeACall(call)
   }
 
+  callTeacher() {
+    console.log("Calling Teacher : ", this.teacherPeerID);
+
+    let call: Call = {
+      recieverID: this.teacherPeerID,
+      stream: this.myStream,
+      senderRole: 'Studnet'
+    }
+    this.callService.makeACall(call)
+  }
 
   async toggleAudio() {
     if (this.audioOn) {
@@ -259,11 +305,19 @@ export class LectureLiveComponent implements OnInit, AfterViewInit, OnDestroy {
       // this.callTeacher();
     }
 
-    let call: Call = {
-      recieverID: this.teacherPeerID,
-      stream: this.myStream
+    // let call: Call = {
+    //   recieverID: this.teacherPeerID,
+    //   stream: this.myStream,
+    //   senderRole: 'Student'
+    // }
+    // this.callService.makeACall(call)
+    if (this.teacherPeerID) {
+      this.callTeacher();
     }
-    this.callService.makeACall(call)
+    if (this.adminPeerID) {
+      this.callAdmin();
+    }
+
   }
 
   toggleChat() {

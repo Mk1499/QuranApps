@@ -8,7 +8,7 @@ import { Subject } from 'rxjs';
 
 
 
-const myPeer = new Peer(undefined, {
+export const myPeer = new Peer(undefined, {
   host: "mkpeerserver.herokuapp.com",
   secure: true,
   port: 443
@@ -35,13 +35,19 @@ export class WebRTCService implements OnInit {
 
 
   ngOnInit() {
+
+
   }
 
 
   async makeACall(callData: Call) {
     console.log("Making a call To : ", callData.recieverID, "with stream : ", callData.stream);
 
-    let call = await myPeer.call(callData.recieverID, callData.stream);
+    let call = await myPeer.call(callData.recieverID, callData.stream, {
+      metadata: {
+        senderRole: callData.senderRole || ""
+      }
+    });
     console.log("Call : ", call);
 
     call.answer(callData.stream);
@@ -89,8 +95,17 @@ export class WebRTCService implements OnInit {
 
 
 
-  getMyPeerID() {
-    return this.myPeerID;
+  async getMyPeerID() {
+
+
+    return new Promise((resolve, reject) => {
+      myPeer.on('open', (id) => {
+        console.log("Your PeerID is : ", id);
+        this.myPeerID = id;
+        resolve(id)
+      })
+    })
+
   }
 
   recievingCallConfig() {

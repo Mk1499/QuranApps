@@ -14,6 +14,8 @@ import { AdminTeachersComponent } from './admin-teachers/admin-teachers.componen
 import { AdminComponent } from './admin/admin.component';
 import { AdminHomeComponent } from './admin-home/admin-home.component';
 import { ChartsModule } from 'ng2-charts';
+import { AdminLecturesComponent } from './admin-lectures/admin-lectures.component';
+import { AdminLectureLiveComponent } from './admin-lecture-live/admin-lecture-live.component';
 
 
 
@@ -30,6 +32,8 @@ import { ChartsModule } from 'ng2-charts';
     SideBarComponent,
     AddTeacherFormComponent,
     AddItemComponent,
+    AdminLecturesComponent,
+    AdminLectureLiveComponent,
   ],
   imports: [
     RouterModule,

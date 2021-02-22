@@ -79,14 +79,16 @@ export class LectureDetailsComponent implements OnInit, OnDestroy {
     }
   }
   joinLect() {
+    console.log("username: ",this.user.name);
+
     this.joinning = true;
     this.lecSubscription = this.studentService
-      .joinLecture(this.user._id, this.lectureId)
+      .joinLecture(this.user?._id, this.lectureId, this.user.name)
       .subscribe(res => {
         console.log("Join Res : ", res);
         this.joinning = false;
         this.joined = true;
-        this.lecture.students.push(this.user);
+        // this.lecture.students.push(this.user);
         this.successAlert.showAlert();
       })
   }
@@ -95,10 +97,17 @@ export class LectureDetailsComponent implements OnInit, OnDestroy {
 
   checkJoin() {
 
-    let lecStudentIDs = this.lecture.students.map(s => s._id);
-    if (lecStudentIDs.includes(this.user._id)) {
+    // let lecStudentIDs = this.lecture.students.map(s => s._id);
+    // if (lecStudentIDs.includes(this.user._id)) {
 
-      this.joined = true;
+    //   this.joined = true;
+    // }
+
+    console.log("lecStudentID : ", this.lecture.student?._id, " userID : ", this.user?._id);
+
+
+    if (this.lecture.student?._id === this.user?._id) {
+      this.joined = true
     }
     this.loading = false;
   }

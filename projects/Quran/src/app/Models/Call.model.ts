@@ -1,5 +1,6 @@
 export interface Call {
   senderID?: string;
   recieverID: string;
-  stream: MediaStream;
+  stream?: MediaStream;
+  senderRole: string;
 }

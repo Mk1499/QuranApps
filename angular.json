@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "www",
+            "outputPath": "dist/QuranWeb/web",
             "index": "projects/Quran/src/index.html",
             "main": "projects/Quran/src/main.ts",
             "polyfills": "projects/Quran/src/polyfills.ts",
@@ -131,9 +131,7 @@
               "projects/Quran/src/favicon.ico",
               "projects/Quran/src/assets"
             ],
-            "styles": [
-              "projects/Quran/src/styles.css"
-            ],
+            "styles": ["projects/Quran/src/styles.css"],
             "scripts": []
           }
         },
@@ -146,9 +144,7 @@
               "projects/Quran/e2e/tsconfig.json",
               "projects/Quran/tsconfig.server.json"
             ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
+            "exclude": ["**/node_modules/**"]
           }
         },
         "e2e": {
@@ -202,9 +198,7 @@
           "options": {
             "browserTarget": "Quran:build:production",
             "serverTarget": "Quran:server:production",
-            "routes": [
-              "/"
-            ]
+            "routes": ["/"]
           },
           "configurations": {
             "production": {}
@@ -261,9 +255,7 @@
               "projects/booky-copy/src/assets/css/fontAwesome/all.min.css",
               "projects/booky-copy/src/styles.css"
             ],
-            "scripts": [
-              "node_modules/bootstrap/dist/js/bootstrap.min.js"
-            ]
+            "scripts": ["node_modules/bootstrap/dist/js/bootstrap.min.js"]
           },
           "configurations": {
             "production": {
@@ -323,9 +315,7 @@
               "projects/booky-copy/src/favicon.ico",
               "projects/booky-copy/src/assets"
             ],
-            "styles": [
-              "projects/booky-copy/src/styles.css"
-            ],
+            "styles": ["projects/booky-copy/src/styles.css"],
             "scripts": []
           }
         },
@@ -338,9 +328,7 @@
               "projects/booky-copy/e2e/tsconfig.json",
               "projects/booky-copy/tsconfig.server.json"
             ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
+            "exclude": ["**/node_modules/**"]
           }
         },
         "e2e": {
@@ -394,9 +382,7 @@
           "options": {
             "browserTarget": "BookyCopy:build:production",
             "serverTarget": "BookyCopy:server:production",
-            "routes": [
-              "/"
-            ]
+            "routes": ["/"]
           },
           "configurations": {
             "production": {}

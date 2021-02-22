@@ -1,0 +1,68 @@
+<div class="loadingCont" *ngIf="loading">
+  <img src="../../../../assets/images/loading.gif" alt="" class="loadingImg" />
+</div>
+
+<div class="main" *ngIf="!loading">
+  <div class="solidCover"></div>
+  <div class="container">
+    <div class="imgCont">
+      <img [src]="imageURL" class="lecCover" />
+      <p>
+        <span class="h1 lecName">
+          {{
+            activeLang === "en"
+              ? lecture?.name
+              : lecture?.arName || lecture?.name
+          }}
+        </span>
+        <span class="lecState h5">
+          (
+          <span
+            [ngStyle]="{
+              color:
+                lecture.state === 'live'
+                  ? 'green'
+                  : lecture.state === 'finished'
+                  ? 'red'
+                  : lecture.state === 'expired'
+                  ? 'orange'
+                  : 'gold'
+            }"
+          >
+            {{ lecture.state | translate }}
+          </span>
+          )
+        </span>
+      </p>
+    </div>
+    <div class="line"></div>
+
+    <div class="videosCont">
+      <div class="row">
+        <div class="teacher col-md-6">
+          <h3 class="text-center">
+            {{ lecture.teacher?.name }}
+          </h3>
+          <p class="h3 text-center" *ngIf="!teacherStream">
+            Waiting for Teacher Connecting...
+          </p>
+          <div class="vidCont">
+            <video-player [stream]="teacherStream" [controls]="true" *ngIf="teacherStream"></video-player>
+          </div>
+        </div>
+
+        <div class="teacher col-md-6">
+          <h3 class="text-center">
+            {{ lecture.student?.name }}
+          </h3>
+          <p class="h3 text-center" *ngIf="!studentStream">
+            Waiting for Student Connecting...
+          </p>
+          <div class="vidCont">
+            <video-player [stream]="studentStream" [controls]="true" *ngIf="studentStream"></video-player>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

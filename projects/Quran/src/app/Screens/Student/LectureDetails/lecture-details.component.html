@@ -79,9 +79,9 @@
         {{ lecture.description }}
       </p>
     </div>
-    <div class="students">
+    <!-- <div class="students">
       <p class="h2 header">
-        {{ "students" | translate }} ({{ lecture.students.length }})
+        {{ "students" | translate }} ({{ lecture.students?.length }})
       </p>
       <ul class="students row">
         <li
@@ -96,7 +96,7 @@
       <p class="emptyMsg h5" *ngIf="!lecture.students.length">
         {{ "sorryUHavenot" | translate }} {{ "students" | translate }}
       </p>
-    </div>
+    </div> -->
 
     <div class="detailsSec">
       <p class="h2 header">

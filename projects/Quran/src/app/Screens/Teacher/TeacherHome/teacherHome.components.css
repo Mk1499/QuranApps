@@ -28,9 +28,13 @@
 
 .teacherData {
   margin-top: 10%;
+  text-align: center;
 }
 .label {
   margin-left: 1%;
   margin-right: 1%;
   color: gold;
+}
+.data p {
+  display: inline;
 }

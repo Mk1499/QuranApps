@@ -1,0 +1,60 @@
+<div class="container">
+  <div class="row text-center">
+    <div class="loadCont" *ngIf="loading">
+      <img src="../../../../assets/images/loading.gif" class="loadImg" />
+    </div>
+
+    <div class="selectCont" *ngIf="!loading">
+      <h3>Filter by Lecture State</h3>
+      <select
+        name="stateFilter"
+        class="form-control"
+        #filterSelect
+        (change)="changeFilter(filterSelect.value)"
+      >
+        <option value="all">All</option>
+        <option value="live">Live</option>
+        <option value="upcoming">Upcoming</option>
+        <option value="finished">Finshed</option>
+      </select>
+    </div>
+    <div class="tableCont">
+      <table
+        class="table table-hover table-dark usersTable"
+        *ngIf="lectures.length"
+      >
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">{{ "lectureName" | translate }}</th>
+            <th scope="col">{{ "teacherName" | translate }}</th>
+            <th scope="col">{{ "studentName" | translate }}</th>
+            <th scope="col">{{ "dateTime" | translate }}</th>
+            <th scope="col">{{ "status" | translate }}</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr
+            *ngFor="let lecture of lectures; let i = index"
+            class="lectureItem"
+            [ngClass]="{
+              lectureItem: lecture.state === 'live'
+            }"
+            (click)="gotoLecture(lecture)"
+          >
+            <th scope="row">{{ i + 1 }}</th>
+            <td>{{ lecture.name }}</td>
+            <td>{{ lecture.teacher?.name }}</td>
+            <td>{{ lecture.student?.name }}</td>
+            <td>{{ lecture.time | date }}</td>
+            <td>{{ lecture.state }}</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p class="h3" *ngIf="!loading && !lectures.length">
+        Sorry but there is no available lectures
+      </p>
+    </div>
+  </div>
+</div>

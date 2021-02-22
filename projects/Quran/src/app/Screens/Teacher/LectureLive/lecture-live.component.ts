@@ -47,6 +47,8 @@ export class LectureLiveComponent implements OnInit, AfterViewInit, OnDestroy {
   studentPeerID: string;
   chatOn: boolean = false;
   newMsg: Message;
+  adminPeerID: string;
+
 
 
 
@@ -129,7 +131,8 @@ export class LectureLiveComponent implements OnInit, AfterViewInit, OnDestroy {
       this.socket.emit("bcTeacherPeerID", this.route.snapshot.params.id, this.callService.getMyPeerID(), this.myData?.avatar)
       let call: Call = {
         recieverID: studentPeerID,
-        stream: this.myStream
+        stream: this.myStream,
+        senderRole:"Teacher"
       }
       this.callService.makeACall(call);
     })
@@ -152,6 +155,23 @@ export class LectureLiveComponent implements OnInit, AfterViewInit, OnDestroy {
       this.playNote()
 
     })
+    this.socket.on("adminPeerID", (adminPeerID) => {
+      console.log("Reciving admin peer id : ", adminPeerID);
+      this.adminPeerID = adminPeerID;
+    })
+
+    this.socket.on('adminConnected', (adminPeerID) => {
+      // this.myPeer.call(adminPeerID,this.myStream)
+      console.log("Admin Connected : ", adminPeerID);
+      this.adminPeerID = adminPeerID;
+      let callData: Call = {
+        recieverID: adminPeerID,
+        stream: this.myStream,
+        senderRole: 'Teacher'
+      }
+      this.callService.makeACall(callData);
+    })
+
 
   }
 
@@ -195,6 +215,26 @@ export class LectureLiveComponent implements OnInit, AfterViewInit, OnDestroy {
 
   }
 
+
+  callAdmin() {
+    console.log("calleding Admin");
+    let call: Call = {
+      recieverID: this.adminPeerID,
+      stream: this.myStream,
+      senderRole: "Teacher"
+    }
+    this.callService.makeACall(call)
+  }
+
+  callStudent() {
+    let call: Call = {
+      recieverID: this.studentPeerID,
+      stream: this.myStream,
+      senderRole: 'Teacher'
+    }
+    this.callService.makeACall(call)
+  }
+
   async toggleVideo() {
     if (this.videoOn) {
       this.videoOn = false;
@@ -203,13 +243,13 @@ export class LectureLiveComponent implements OnInit, AfterViewInit, OnDestroy {
     else {
       this.videoOn = true;
       await this.addVideoFromStream();
-      // this.callTeacher()
     }
-    let call: Call = {
-      recieverID: this.studentPeerID,
-      stream: this.myStream
+    if (this.studentPeerID) {
+      this.callStudent();
     }
-    this.callService.makeACall(call)
+    if (this.adminPeerID) {
+      this.callAdmin();
+    }
   }
 
 
@@ -223,11 +263,13 @@ export class LectureLiveComponent implements OnInit, AfterViewInit, OnDestroy {
       // this.callTeacher();
 
     }
-    let call: Call = {
-      recieverID: this.studentPeerID,
-      stream: this.myStream
+    if (this.studentPeerID) {
+      this.callStudent();
     }
-    this.callService.makeACall(call)
+
+    if (this.adminPeerID) {
+      this.callAdmin();
+    }
   }
 
   toggleChat() {
