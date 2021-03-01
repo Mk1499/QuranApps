@@ -16,6 +16,7 @@ import { StudentRouting } from "./student.routing";
 import { LectureDetailsComponent } from './LectureDetails/lecture-details.component';
 import { LectureComponent } from './Lecture/lecture.component';
 import { LectureLiveComponent } from './LectureLive/lecture-live.component';
+import { MohafezComponent } from './mohafez/mohafez.component';
 
 
 
@@ -32,7 +33,8 @@ import { LectureLiveComponent } from './LectureLive/lecture-live.component';
     StudentComponent,
     LectureDetailsComponent,
     LectureComponent,
-    LectureLiveComponent
+    LectureLiveComponent,
+    MohafezComponent
   ],
   imports: [
     FormsModule,

@@ -24,6 +24,7 @@ import { TimerComponent } from '../Components/timer/timer.component';
 import { VideoPlayerComponent } from '../Components/video-player/video-player.component';
 import { LoadingOverlayComponent } from '../Components/loading-overlay/loading-overlay.component';
 import { ChatComponent } from '../Components/chat/chat.component';
+import { AyaComponent } from '../Components/aya/aya.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,7 @@ import { ChatComponent } from '../Components/chat/chat.component';
     VideoPlayerComponent,
     LoadingOverlayComponent,
     ChatComponent,
-
+    AyaComponent
 
   ],
   imports: [
@@ -75,7 +76,8 @@ import { ChatComponent } from '../Components/chat/chat.component';
     TimerComponent,
     VideoPlayerComponent,
     LoadingOverlayComponent,
-    ChatComponent
+    ChatComponent,
+    AyaComponent
   ]
 })
 

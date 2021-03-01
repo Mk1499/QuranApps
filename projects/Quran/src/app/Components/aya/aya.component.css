@@ -1,0 +1,23 @@
+.content {
+  margin-bottom: 1vh;
+  cursor: pointer;
+}
+
+.ayaText:hover {
+  color: gold;
+}
+
+.ayaTextGold {
+  color: gold;
+}
+.index {
+  width: 40px;
+  height: 40px;
+  border: 1px gold solid;
+  text-align: center;
+  border-radius: 20px;
+  margin-inline: 1vw;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+}

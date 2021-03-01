@@ -14,6 +14,7 @@ import { CarouselComponent } from '../../Components/carousel/carousel.component'
 import { Routes, RouterModule } from '@angular/router';
 import { NgModule } from "@angular/core";
 import { LectureDetailsComponent } from './LectureDetails/lecture-details.component';
+import { MohafezComponent } from './mohafez/mohafez.component';
 
 const routes: Routes = [
   { path: 'login', component: StudentLoginComponent },
@@ -26,6 +27,7 @@ const routes: Routes = [
       { path: 'library', component: LiberaryComponent },
       { path: 'profile', component: ProfileComponent },
       { path: 'lectures', component: LectureComponent },
+      { path: 'mohafez', component: MohafezComponent },
       { path: 'lectures/:id', component: LectureDetailsComponent },
       { path: 'lectures/:id/live', component: LectureLiveComponent },
       { path: '**', redirectTo: 'home' }

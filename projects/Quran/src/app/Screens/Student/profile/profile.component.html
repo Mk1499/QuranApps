@@ -3,7 +3,12 @@
 <div class="profile">
   <div class="cover"></div>
   <div class="imgCont">
-    <img [src]="user.avatar" [alt]="user.name + 'Img'" class="profileImg" />
+    <img
+      [src]="user.avatar"
+      [alt]="user.name + 'Img'"
+      class="profileImg"
+      (click)="opemImgPicker()"
+    />
     <p class="h1 name">{{ user.name }}</p>
   </div>
   <div class="container section">
@@ -17,11 +22,17 @@
         [routerLink]="['../teachers', teacher._id]"
         class="col-md-4 text-center"
       >
-        <teacher-card
-          [teacher]="teacher"
-        ></teacher-card>
+        <teacher-card [teacher]="teacher"></teacher-card>
       </div>
     </div>
+
+    <input
+      type="file"
+      class="selectInput"
+      accept="image/x-png,image/gif,image/jpeg"
+      (change)="handleImageChange($event)"
+    />
+
     <!-- <ng-template #noTeachers> -->
     <div class="row text-center" *ngIf="!loading && !user.teachers.length">
       <p class="col-sm-12 h3">

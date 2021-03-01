@@ -1,0 +1,34 @@
+<div class="container">
+  <div class="controller">
+    <div class="row">
+      <div class="col-auto souraSelect">
+        <label class="mr-sm-2" for="inlineFormCustomSelect">{{
+          "soura" | translate
+        }}</label>
+        <select
+          class="custom-select mr-sm-2"
+          id="inlineFormCustomSelect"
+          (change)="getChapterAya($event.target.value)"
+        >
+          <option *ngFor="let chapter of chapters" value="{{ chapter.id }}">
+            {{
+              activeLang === "ar" ? chapter.name_arabic : chapter.name_simple
+            }}
+          </option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <div class="ayatCont">
+    <div class="row">
+      <app-aya
+        *ngFor="let aya of ayat; index as i"
+        [aya]="aya"
+        [index]="i"
+        (click)="playAya(i)"
+        [active] = "activeAyaIndex === i "
+      ></app-aya>
+    </div>
+  </div>
+</div>

@@ -3,13 +3,17 @@ import { Injectable, OnInit } from '@angular/core';
 import { Aya } from '../Models/Aya.model';
 import { baseURL } from './api-call.service';
 
+export const audioURL = "https://audio.qurancdn.com/";
 @Injectable({
   providedIn: 'root'
 })
+
+
 export class QuranService implements OnInit {
 
 
   url: string = "https://api.quran.com/api/v4";
+  urlAya: string = "https://audio.qurancdn.com/wbw/002_001_001.mp3"
   activeAya: Aya;
 
   constructor(
@@ -28,6 +32,12 @@ export class QuranService implements OnInit {
 
   getChapterAyat(chapterID) {
     let url = `${this.url}/quran/verses/uthmani?chapter_number=${chapterID}`;
+    return this.http.get(url);
+  }
+
+
+  getChapterAyatAudio(chapterID) {
+    let url = `${this.url}/quran/recitations/1?chapter_number=${chapterID}`;
     return this.http.get(url);
   }
 

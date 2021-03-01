@@ -6,6 +6,7 @@ import { AuthService } from '../../../Services/auth.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs'
 import { Teacher } from '../../../Models/teacher';
+import { UploadService } from '../../../Services/upload.service';
 
 @Component({
   selector: 'app-profile',
@@ -23,15 +24,16 @@ export class ProfileComponent implements OnInit, OnDestroy {
     private auth: AuthService,
     private api: ApiCallService,
     private student: StudentService,
-    private metaService: DynamicMeta
-    ) { }
+    private metaService: DynamicMeta,
+    private uploadService: UploadService
+  ) { }
 
   ngOnInit(): void {
     this.user = this.auth.user;
     this.getStudentData();
 
-    let metaData : RouteData = {
-      title:"Student Profile",
+    let metaData: RouteData = {
+      title: "Student Profile",
       description: "Student Profile data",
     }
     this.metaService.updateTags(metaData)
@@ -50,9 +52,40 @@ export class ProfileComponent implements OnInit, OnDestroy {
 
   getStudentTeachers(studentID) {
     this.getTeachersSub = this.student.getTeachers(studentID).subscribe((teachers: Teacher[]) => {
-      this.user['teachers'] = teachers;
+      console.log("Student Teachers : ", teachers);
+      try {
+
+        this.user = {
+          ...this.user,
+          teachers
+        }
+      } catch (err) {
+        console.log("Err Here : ", err);
+      }
       this.loading = false;
     })
+  }
+
+
+  handleImageChange($event) {
+    let img = $event.target.files[0];
+    const reader = new FileReader();
+    reader.readAsDataURL(img);
+    reader.onload = e => {
+      console.log("RRr : ", reader.result);
+      this.user = {
+        ...this.user,
+        avatar: reader.result
+      }
+    }
+    // console.log("Selected Img : ", img);
+  }
+
+
+
+  opemImgPicker() {
+    // alert("Clicked")
+    // document.querySelector('.selectInput').click();
   }
 
   ngOnDestroy(): void {
